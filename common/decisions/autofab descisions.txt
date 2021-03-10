@@ -1,0 +1,29 @@
+decision_manage_autofab = {
+	owned_planets_only = yes
+	#sound = event_administrative_work
+	icon = decision_autofab
+	
+	resources = {
+		category = planet_districts
+		cost = {
+		}	
+	}
+	
+	potential = {
+		exists = owner
+		owner = {
+			can_use_autofab = yes
+		}
+	}
+
+	effect = {
+		custom_tooltip = "Manage the Automatic Factory"
+		planet_event = { id = autofab_menu.10 }
+		factory_reset_all_planet_flags = yes
+		factory_set_default_queue_planet = yes
+	}
+	
+	ai_weight = {
+		weight = 0
+	}
+}

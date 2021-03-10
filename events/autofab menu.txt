@@ -1,0 +1,98 @@
+namespace = autofab_menu
+
+country_event = { ###Country Terminal
+	id = autofab_menu.1
+	title = "autofab_menu.1.name"
+	desc = "autofab_menu.1.desc"
+	diplomatic = yes
+	custom_gui = "autofab_country_window"
+	is_triggered_only = yes
+	
+	immediate = {
+	}
+	
+	# Confirm
+	option = {
+		name = "autofab_menu.1.confirm"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_main_menu_YEET"
+		default_hide_option = yes
+	}
+	option = {
+		name = "autofab_menu.1.confirm"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_main_menu_confirm"
+		country_event = { id = autofab_menu.20 }
+	}
+}
+
+
+
+planet_event = { ###Planet Terminal
+	id = autofab_menu.10
+	title = "autofab_menu.10.name"
+	desc = "autofab_menu.10.desc"
+	diplomatic = yes
+	custom_gui = "autofab_planet_window"
+	is_triggered_only = yes
+	
+	
+	# Confirm
+	option = {
+		name = "autofab_menu.1.confirm"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_planet_menu_YEET"
+		default_hide_option = yes
+	}
+	# Confirm
+	option = {
+		name = "autofab_menu.1.confirm"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_planet_menu_confirm"
+		owner = { country_event = { id = autofab_menu.20 } }
+	}
+	option = {
+		name = "autofab_menu.10.confirm"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_planet_menu_confirm"
+		owner = { country_event = { id = autofab_menu.1 } }
+	}
+}
+
+country_event = { ###Advisor
+	id = autofab_menu.20
+	title = "autofab_menu.0.name"
+	desc = "autofab_menu.0.desc"
+	diplomatic = yes
+	custom_gui = "autofab_advisor"
+	is_triggered_only = yes
+	
+	option = {
+		name = "autofab_menu.0.name.1"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_advisor_confirm"
+		response_text = autofab_menu.0.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab.1.name"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_advisor_confirm"
+		response_text = autofab.1.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab.2.name"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_advisor_confirm"
+		response_text = autofab.2.desc
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab.3.name"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_advisor_confirm"
+		response_text = autofab.3.desc
+		is_dialog_only = yes
+	}
+}

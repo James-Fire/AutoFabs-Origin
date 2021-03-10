@@ -1,0 +1,1926 @@
+namespace = autofab_queue
+
+event = {
+	id = autofab_queue.0
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		every_country = {
+			limit = {
+				is_ai = no
+				can_use_autofab = yes
+				has_queue = yes
+				any_owned_planet = {
+					can_expand_factory = yes
+					has_queue = yes
+				}
+				any_owned_planet = {
+					can_expand_factory = yes
+				}
+			}
+			document_factory = yes
+			random_list = {
+				10 = {
+					country_event = { id = autofab_queue.10 days = 5 }
+				}
+				10 = {
+					country_event = { id = autofab_queue.10 days = 95 }
+				}
+				10 = {
+					country_event = { id = autofab_queue.10 days = 185 }
+				}
+				10 = {
+					country_event = { id = autofab_queue.10 days = 275 }
+				}
+			}
+		}
+		every_country = {
+			limit = {
+				is_ai = yes
+				can_use_autofab = yes
+			}
+			random_list = {
+				10 = {
+					country_event = { id = autofab_queue.3 days = 5 }
+				}
+				10 = {
+					country_event = { id = autofab_queue.3 days = 95 }
+				}
+				10 = {
+					country_event = { id = autofab_queue.3 days = 185 }
+				}
+				10 = {
+					country_event = { id = autofab_queue.3 days = 275 }
+				}
+			}
+		}
+	}
+}
+
+#Autofab Queue
+country_event = {
+	id = autofab_queue.3
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				has_country_flag = factory_autofab_construction_on
+				check_variable = { which = autofab_queue value > 0 }
+				can_afford_autofab = yes
+				any_owned_planet = {
+					NOT = {
+						has_planet_flag = has_autofab
+						has_planet_flag = factory_autofab_construction_off
+						has_supported_district_set = yes
+					}
+				}
+			}
+			random_list = {
+				10 = { #We need Energy
+					modifier = {
+						factor = 2
+						check_variable = { which = autofab_energy_avail value < 5 }
+					}
+					modifier = {
+						factor = 2
+						check_variable = { which = autofab_energy_avail value < 4 }
+					}
+					modifier = {
+						factor = 2
+						check_variable = { which = autofab_energy_avail value < 3 }
+					}
+					modifier = {
+						factor = 2
+						check_variable = { which = autofab_energy_avail value < 2 }
+					}
+					modifier = {
+						factor = 2
+						check_variable = { which = autofab_energy_avail value < 1 }
+					}
+					random_owned_planet = {
+						limit = {
+							NOT = {
+								has_planet_flag = has_autofab
+								has_planet_flag = factory_autofab_construction_off
+							}
+							is_energy_colony = yes
+							has_supported_district_set = yes
+						}
+						planet_event = { id = autofab_queue.4 days = -1 } #Autofab
+					}
+				}
+				10 = { #We need Minerals
+					modifier = {
+						factor = 2
+						check_variable = { which = autofab_minerals_avail value < 5 }
+					}
+					modifier = {
+						factor = 2
+						check_variable = { which = autofab_minerals_avail value < 4 }
+					}
+					modifier = {
+						factor = 2
+						check_variable = { which = autofab_minerals_avail value < 3 }
+					}
+					modifier = {
+						factor = 2
+						check_variable = { which = autofab_minerals_avail value < 2 }
+					}
+					modifier = {
+						factor = 2
+						check_variable = { which = autofab_minerals_avail value < 1 }
+					}
+					random_owned_planet = {
+						limit = {
+							NOT = {
+								has_planet_flag = has_autofab
+								has_planet_flag = factory_autofab_construction_off
+							}
+							is_mining_colony = yes
+							has_supported_district_set = yes
+						}
+						planet_event = { id = autofab_queue.4 days = -1 } #Autofab
+					}
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							check_variable = { which = autofab_minerals_avail value < 5 }
+							check_variable = { which = autofab_energy_avail value < 5 }
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							NOT = {
+								has_planet_flag = has_autofab
+								has_planet_flag = factory_autofab_construction_off
+							}
+							has_supported_district_set = yes
+						}
+						planet_event = { id = autofab_queue.4 days = -1 } #Autofab
+					}
+				}
+			}
+		}
+	}
+}
+#Autofab
+planet_event = {
+	id = autofab_queue.4
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.5
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		add_autofab = yes
+	}
+}
+
+#Distribution Queue
+country_event = {
+	id = autofab_queue.10
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		every_owned_planet = {
+			limit = {
+				has_queue = yes
+			}
+			if = {
+				limit = {
+					can_expand_factory = yes
+					automation_active = no
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_energy_queue value > 0 }
+					}
+					planet_event = { id = autofab_queue.20 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_mineral_queue value > 0 }
+					}
+					planet_event = { id = autofab_queue.22 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_food_queue value > 0 }
+					}
+					planet_event = { id = autofab_queue.24 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_alloys_queue value > 0 }
+					}
+					planet_event = { id = autofab_queue.26 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_congoods_queue value > 0 }
+					}
+					planet_event = { id = autofab_queue.28 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_motes_queue value > 0 }
+					}
+					planet_event = { id = autofab_queue.30 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_gases_queue value > 0 }
+					}
+					planet_event = { id = autofab_queue.32 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_crystals_queue value > 0 }
+					}
+					planet_event = { id = autofab_queue.34 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_extractor_queue value > 0 }
+					}
+					planet_event = { id = autofab_queue.36 days = -1 }
+				}
+				###Retooling
+				if = {
+					limit = {
+						check_variable = { which = autofab_energy_queue value < 0 }
+					}
+					planet_event = { id = autofab_queue.50 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_mineral_queue value < 0 }
+					}
+					planet_event = { id = autofab_queue.51 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_food_queue value < 0 }
+					}
+					planet_event = { id = autofab_queue.52 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_alloys_queue value < 0 }
+					}
+					planet_event = { id = autofab_queue.53 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_congoods_queue value < 0 }
+					}
+					planet_event = { id = autofab_queue.54 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_motes_queue value < 0 }
+					}
+					planet_event = { id = autofab_queue.55 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_gases_queue value < 0 }
+					}
+					planet_event = { id = autofab_queue.56 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_crystals_queue value < 0 }
+					}
+					planet_event = { id = autofab_queue.57 days = -1 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_extractor_queue value < 0 }
+					}
+					planet_event = { id = autofab_queue.58 days = -1 }
+				}
+			}
+			else = {
+				clear_queue = yes
+			}
+		}
+		###Building
+		if = {
+			limit = {
+				has_country_flag = factory_autofab_construction_on
+				check_variable = { which = autofabs_queue value > 0 }
+			}
+			country_event = { id = autofab_queue.3 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_energy_queue value > 0 }
+			}
+			country_event = { id = autofab_queue.11 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_mineral_queue value > 0 }
+			}
+			country_event = { id = autofab_queue.12 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_food_queue value > 0 }
+			}
+			country_event = { id = autofab_queue.13 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_alloys_queue value > 0 }
+			}
+			country_event = { id = autofab_queue.14 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_congoods_queue value > 0 }
+			}
+			country_event = { id = autofab_queue.15 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_motes_queue value > 0 }
+			}
+			country_event = { id = autofab_queue.16 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_gases_queue value > 0 }
+			}
+			country_event = { id = autofab_queue.17 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_crystals_queue value > 0 }
+			}
+			country_event = { id = autofab_queue.18 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_extractor_queue value > 0 }
+			}
+			country_event = { id = autofab_queue.19 days = -1 }
+		}
+		###Retooling
+		if = {
+			limit = {
+				check_variable = { which = autofab_energy_queue value < 0 }
+			}
+			country_event = { id = autofab_queue.50 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_mineral_queue value < 0 }
+			}
+			country_event = { id = autofab_queue.51 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_food_queue value < 0 }
+			}
+			country_event = { id = autofab_queue.52 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_alloys_queue value < 0 }
+			}
+			country_event = { id = autofab_queue.53 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_congoods_queue value < 0 }
+			}
+			country_event = { id = autofab_queue.54 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_motes_queue value < 0 }
+			}
+			country_event = { id = autofab_queue.55 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_gases_queue value < 0 }
+			}
+			country_event = { id = autofab_queue.56 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_crystals_queue value < 0 }
+			}
+			country_event = { id = autofab_queue.57 days = -1 }
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_extractor_queue value < 0 }
+			}
+			country_event = { id = autofab_queue.58 days = -1 }
+		}
+	}
+}
+#Energy Queue
+country_event = {
+	id = autofab_queue.11
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_energy_queue value > 0 }
+				can_afford_district = yes
+				OR = {
+					AND = {
+						any_owned_planet = {
+							can_expand_factory = yes
+							is_energy_colony = yes
+						}
+					}
+					AND = {
+						has_country_flag = factory_fallback
+						any_owned_planet = {
+							can_expand_factory = yes
+							has_planet_flag = factory_fallback
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_expand_factory = yes
+						is_energy_colony = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						is_energy_colony = yes
+					}
+					planet_event = { id = autofab_queue.20 days = -1 } #Energy
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+						}
+					}
+					planet_event = { id = autofab_queue.20 days = -1 } #Energy
+				}
+			}
+		}
+	}
+}
+#Mineral Queue
+country_event = {
+	id = autofab_queue.12
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_mineral_queue value > 0 }
+				can_afford_district = yes
+				OR = {
+					AND = {
+						any_owned_planet = {
+							can_expand_factory = yes
+							is_mining_colony = yes
+						}
+					}
+					AND = {
+						OR = {
+							has_country_flag = factory_fallback
+							any_owned_planet = {
+								can_expand_factory = yes
+								has_planet_flag = factory_fallback
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_expand_factory = yes
+						is_mining_colony = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						is_mining_colony = yes
+					}
+					planet_event = { id = autofab_queue.22 days = -1 } #Minerals
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+						}
+					}
+					planet_event = { id = autofab_queue.22 days = -1 } #Minerals
+				}
+			}
+		}
+	}
+}
+#Food Queue
+country_event = {
+	id = autofab_queue.13
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_food_queue value > 0 }
+				can_afford_district = yes
+				OR = {
+					AND = {
+						any_owned_planet = {
+							can_expand_factory = yes
+							is_farming_colony = yes
+						}
+					}
+					AND = {
+						OR = {
+							has_country_flag = factory_fallback
+							any_owned_planet = {
+								can_expand_factory = yes
+								has_planet_flag = factory_fallback
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_expand_factory = yes
+						is_farming_colony = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						is_farming_colony = yes
+					}
+					planet_event = { id = autofab_queue.24 days = -1 } #Food
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+						}
+					}
+					planet_event = { id = autofab_queue.24 days = -1 } #Food
+				}
+			}
+		}
+	}
+}
+#Alloys Queue
+country_event = {
+	id = autofab_queue.14
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_alloys_queue value > 0 }
+				OR = {
+					can_afford_building = yes
+					AND = {
+						can_afford_t2_foundry = yes
+						has_technology = tech_alloys_1
+						any_owned_planet = {
+							has_deposit = autofab_foundry
+						}
+					}
+					AND = {
+						can_afford_t3_foundry = yes
+						has_technology = tech_alloys_2
+						any_owned_planet = {
+							has_deposit = autofab_foundry_2
+						}
+					}
+				}
+				OR = {
+					AND = {
+						any_owned_planet = {
+							OR = {
+								can_expand_factory = yes
+								can_upgrade_foundry = yes
+							}
+							is_alloys_colony = yes
+						}
+					}
+					AND = {
+						has_country_flag = factory_fallback
+						any_owned_planet = {
+							has_planet_flag = factory_fallback
+							OR = {
+								can_expand_factory = yes
+								can_upgrade_foundry = yes
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_upgrade_foundry = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_upgrade_foundry = yes
+					}
+					planet_event = { id = autofab_queue.38 days = -1 } #Alloys
+				}
+			}
+			else_if = {
+				limit = {
+					any_owned_planet = {
+						can_expand_factory = yes
+						is_alloys_colony = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						is_alloys_colony = yes
+					}
+					planet_event = { id = autofab_queue.26 days = -1 } #Food
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+						}
+					}
+					planet_event = { id = autofab_queue.26 days = -1 } #Alloys
+				}
+			}
+		}
+	}
+}
+#ConGoods Queue
+country_event = {
+	id = autofab_queue.15
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_congoods_queue value > 0 }
+				OR = {
+					can_afford_building = yes
+					AND = {
+						can_afford_t2_factory = yes
+						has_technology = tech_luxuries_1
+						any_owned_planet = {
+							has_deposit = autofab_factory
+						}
+					}
+					AND = {
+						can_afford_t3_factory = yes
+						has_technology = tech_luxuries_2
+						any_owned_planet = {
+							has_deposit = autofab_factory_2
+						}
+					}
+				}
+				OR = {
+					AND = {
+						any_owned_planet = {
+							OR = {
+								can_expand_factory = yes
+								can_upgrade_factory = yes
+							}
+							is_congood_colony = yes
+						}
+					}
+					AND = {
+						has_country_flag = factory_fallback
+						any_owned_planet = {
+							has_planet_flag = factory_fallback
+							OR = {
+								can_expand_factory = yes
+								can_upgrade_factory = yes
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_upgrade_factory = yes
+						is_congood_colony = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_upgrade_factory = yes
+						is_congood_colony = yes
+					}
+					planet_event = { id = autofab_queue.40 days = -1 } #ConGoods
+				}
+			}
+			else_if = {
+				limit = {
+					any_owned_planet = {
+						can_upgrade_factory = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_upgrade_factory = yes
+					}
+					planet_event = { id = autofab_queue.40 days = -1 } #ConGoods
+				}
+			}
+			else_if = {
+				limit = {
+					any_owned_planet = {
+						can_expand_factory = yes
+						is_congood_colony = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						is_congood_colony = yes
+					}
+					planet_event = { id = autofab_queue.28 days = -1 } #ConGoods
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+						}
+					}
+					planet_event = { id = autofab_queue.28 days = -1 } #ConGoods
+				}
+			}
+		}
+	}
+}
+#Motes Queue
+country_event = {
+	id = autofab_queue.16
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_motes_queue value > 0 }
+				can_afford_building = yes
+				OR = {
+					AND = {
+						any_owned_planet = {
+							can_expand_factory = yes
+							is_refinery_colony = yes
+						}
+					}
+					AND = {
+						OR = {
+							has_country_flag = factory_fallback
+							any_owned_planet = {
+								can_expand_factory = yes
+								has_planet_flag = factory_fallback
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_expand_factory = yes
+						is_refinery_colony = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						is_refinery_colony = yes
+					}
+					planet_event = { id = autofab_queue.30 days = -1 } #Motes
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+						}
+					}
+					planet_event = { id = autofab_queue.30 days = -1 } #Motes
+				}
+			}
+		}
+	}
+}
+#Gases Queue
+country_event = {
+	id = autofab_queue.17
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_gases_queue value > 0 }
+				can_afford_building = yes
+				OR = {
+					AND = {
+						any_owned_planet = {
+							can_expand_factory = yes
+							is_refinery_colony = yes
+						}
+					}
+					AND = {
+						OR = {
+							has_country_flag = factory_fallback
+							any_owned_planet = {
+								can_expand_factory = yes
+								has_planet_flag = factory_fallback
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_expand_factory = yes
+						is_refinery_colony = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						is_refinery_colony = yes
+					}
+					planet_event = { id = autofab_queue.32 days = -1 } #Gases
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+						}
+					}
+					planet_event = { id = autofab_queue.32 days = -1 } #Gases
+				}
+			}
+		}
+	}
+}
+#Crystals Queue
+country_event = {
+	id = autofab_queue.18
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_crystals_queue value > 0 }
+				can_afford_building = yes
+				OR = {
+					AND = {
+						any_owned_planet = {
+							can_expand_factory = yes
+							is_refinery_colony = yes
+						}
+					}
+					AND = {
+						OR = {
+							has_country_flag = factory_fallback
+							any_owned_planet = {
+								can_expand_factory = yes
+								has_planet_flag = factory_fallback
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_expand_factory = yes
+						is_refinery_colony = yes
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						is_refinery_colony = yes
+					}
+					planet_event = { id = autofab_queue.34 days = -1 } #Crystals
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+						}
+					}
+					planet_event = { id = autofab_queue.34 days = -1 } #Crystals
+				}
+			}
+		}
+	}
+}
+#Extractor Queue
+country_event = {
+	id = autofab_queue.19
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_extractor_queue value > 0 }
+				can_afford_building = yes
+				any_owned_planet = {
+					has_rare_resource_deposit = yes
+				}
+			}
+			random_owned_planet = {
+				limit = {
+					can_expand_factory = yes
+					has_rare_resource_deposit = yes
+				}
+				planet_event = { id = autofab_queue.36 days = -1 } #Extractor
+			}
+		}
+	}
+}
+
+
+###Script Events
+
+#Generator
+planet_event = {
+	id = autofab_queue.20
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_power = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.21
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		add_autofab_power = yes
+	}
+}
+
+#Mine
+planet_event = {
+	id = autofab_queue.22
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_mine = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.23
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		add_autofab_mine = yes
+	}
+}
+
+#Farm
+planet_event = {
+	id = autofab_queue.24
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_farm = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.25
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		add_autofab_farm = yes
+	}
+}
+
+#Foundry
+planet_event = {
+	id = autofab_queue.26
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_foundry = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.27
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		add_autofab_foundry = yes
+	}
+}
+
+#Factory
+planet_event = {
+	id = autofab_queue.28
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_factory = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.29
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		add_autofab_factory = yes
+	}
+}
+
+#Refinery
+planet_event = {
+	id = autofab_queue.30
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_refinery = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.31
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		add_autofab_refinery = yes
+	}
+}
+
+#Chemical
+planet_event = {
+	id = autofab_queue.32
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_chemical = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.33
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		add_autofab_chemical = yes
+	}
+}
+
+#Translucer
+planet_event = {
+	id = autofab_queue.34
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_translucer = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.35
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		add_autofab_translucer = yes
+	}
+}
+
+#Extractor
+planet_event = {
+	id = autofab_queue.36
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_extractor = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.37
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		add_autofab_extractor = yes
+	}
+}
+
+#Foundry Upgrade
+planet_event = {
+	id = autofab_queue.38
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_foundry_upgrade = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.39
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		upgrade_foundry = yes
+	}
+}
+
+#Factory Upgrade
+planet_event = {
+	id = autofab_queue.40
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_factory_upgrade = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.41
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		upgrade_factory = yes
+	}
+}
+
+###Retooling
+
+#Energy Retooling
+country_event = {
+	id = autofab_queue.50
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_energy_queue value < 0 }
+				OR = {
+					any_owned_planet = {
+						has_energy_factory = yes
+						can_queue_factory = yes
+					}
+					any_owned_planet = {
+						is_energy_colony = yes
+						has_energy_factory = yes
+						can_queue_factory = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_energy_factory = yes
+						NOT = {
+							is_energy_colony = yes
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_energy_factory = yes
+						NOT = {
+							is_energy_colony = yes
+						}
+					}
+					planet_event = { id = autofab_queue.61 days = -1 } #Retool Energy
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_energy_factory = yes
+					}
+					planet_event = { id = autofab_queue.61 days = -1 } #Retool Energy
+				}
+			}
+		}
+	}
+}
+
+#Minerals Retooling
+country_event = {
+	id = autofab_queue.51
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_mineral_queue value < 0 }
+				OR = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_minerals_factory = yes
+					}
+					any_owned_planet = {
+						can_queue_factory = yes
+						is_mining_colony = yes
+						has_minerals_factory = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_minerals_factory = yes
+						NOT = {
+							is_mining_colony = yes
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_minerals_factory = yes
+						NOT = {
+							is_mining_colony = yes
+						}
+					}
+					planet_event = { id = autofab_queue.63 days = -1 } #Retool Minerals
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_minerals_factory = yes
+					}
+					planet_event = { id = autofab_queue.63 days = -1 } #Retool Minerals
+				}
+			}
+		}
+	}
+}
+
+#Food Retooling
+country_event = {
+	id = autofab_queue.52
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_food_queue value < 0 }
+				OR = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_food_factory = yes
+					}
+					any_owned_planet = {
+						can_queue_factory = yes
+						is_farming_colony = yes
+						has_food_factory = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_food_factory = yes
+						NOT = {
+							is_farming_colony = yes
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_food_factory = yes
+						NOT = {
+							is_farming_colony = yes
+						}
+					}
+					planet_event = { id = autofab_queue.65 days = -1 } #Retool Food
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_food_factory = yes
+					}
+					planet_event = { id = autofab_queue.65 days = -1 } #Retool Food
+				}
+			}
+		}
+	}
+}
+
+#Alloys Retooling
+country_event = {
+	id = autofab_queue.53
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_alloys_queue value < 0 }
+				OR = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_alloys_factory = yes
+					}
+					any_owned_planet = {
+						can_queue_factory = yes
+						is_alloys_colony = yes
+						has_alloys_factory = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_alloys_factory = yes
+						NOT = {
+							is_alloys_colony = yes
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_alloys_factory = yes
+						NOT = {
+							is_alloys_colony = yes
+						}
+					}
+					planet_event = { id = autofab_queue.67 days = -1 } #Retool Alloys
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_alloys_factory = yes
+					}
+					planet_event = { id = autofab_queue.67 days = -1 } #Retool Alloys
+				}
+			}
+		}
+	}
+}
+
+#ConGoods Retooling
+country_event = {
+	id = autofab_queue.54
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_congoods_queue value < 0 }
+				OR = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_congoods_factory = yes
+					}
+					any_owned_planet = {
+						can_queue_factory = yes
+						is_congood_colony = yes
+						has_congoods_factory = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_congoods_factory = yes
+						NOT = {
+							is_congood_colony = yes
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_congoods_factory = yes
+						NOT = {
+							is_congood_colony = yes
+						}
+					}
+					planet_event = { id = autofab_queue.69 days = -1 } #Retool ConGoods
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_congoods_factory = yes
+					}
+					planet_event = { id = autofab_queue.69 days = -1 } #Retool ConGoods
+				}
+			}
+		}
+	}
+}
+
+#Motes Retooling
+country_event = {
+	id = autofab_queue.55
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_motes_queue value < 0 }
+				OR = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_motes_factory = yes
+					}
+					any_owned_planet = {
+						can_queue_factory = yes
+						is_refinery_colony = yes
+						has_motes_factory = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_motes_factory = yes
+						NOT = {
+							is_refinery_colony = yes
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_motes_factory = yes
+						NOT = {
+							is_refinery_colony = yes
+						}
+					}
+					planet_event = { id = autofab_queue.71 days = -1 } #Retool Motes
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_motes_factory = yes
+					}
+					planet_event = { id = autofab_queue.71 days = -1 } #Retool Motes
+				}
+			}
+		}
+	}
+}
+
+#Gases Retooling
+country_event = {
+	id = autofab_queue.56
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_gases_queue value < 0 }
+				OR = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_gases_factory = yes
+					}
+					any_owned_planet = {
+						can_queue_factory = yes
+						is_refinery_colony = yes
+						has_gases_factory = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_gases_factory = yes
+						NOT = {
+							is_refinery_colony = yes
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_gases_factory = yes
+						NOT = {
+							is_refinery_colony = yes
+						}
+					}
+					planet_event = { id = autofab_queue.73 days = -1 } #Retool Gases
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_gases_factory = yes
+					}
+					planet_event = { id = autofab_queue.73 days = -1 } #Retool Gases
+				}
+			}
+		}
+	}
+}
+
+#Crystals Retooling
+country_event = {
+	id = autofab_queue.57
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_crystals_queue value < 0 }
+				OR = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_crystals_factory = yes
+					}
+					any_owned_planet = {
+						can_queue_factory = yes
+						is_refinery_colony = yes
+						has_crystals_factory = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_crystals_factory = yes
+						NOT = {
+							is_refinery_colony = yes
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_crystals_factory = yes
+						NOT = {
+							is_refinery_colony = yes
+						}
+					}
+					planet_event = { id = autofab_queue.75 days = -1 } #Retool Crystals
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_crystals_factory = yes
+					}
+					planet_event = { id = autofab_queue.75 days = -1 } #Retool Crystals
+				}
+			}
+		}
+	}
+}
+
+#Extractor Retooling
+country_event = {
+	id = autofab_queue.58
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_extractor_queue value < 0 }
+				OR = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_planet_flag = has_autofab_extractor
+					}
+					any_owned_planet = {
+						can_queue_factory = yes
+						is_refinery_colony = yes
+						has_planet_flag = has_autofab_extractor
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_owned_planet = {
+						can_queue_factory = yes
+						has_planet_flag = has_autofab_extractor
+						NOT = {
+							is_refinery_colony = yes
+						}
+					}
+				}
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_planet_flag = has_autofab_extractor
+						NOT = {
+							is_refinery_colony = yes
+						}
+					}
+					planet_event = { id = autofab_queue.77 days = -1 } #Retool Extractor
+				}
+			}
+			else = {
+				random_owned_planet = {
+					limit = {
+						can_queue_factory = yes
+						has_planet_flag = has_autofab_extractor
+					}
+					planet_event = { id = autofab_queue.77 days = -1 } #Retool Extractor
+				}
+			}
+		}
+	}
+}
+
+##Retooling Script Events
+
+#Generator
+planet_event = {
+	id = autofab_queue.61
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_power_retool = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.62
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		retool_autofab_power = yes
+	}
+}
+
+#Mine
+planet_event = {
+	id = autofab_queue.63
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_mine_retool = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.64
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		retool_autofab_mine = yes
+	}
+}
+
+#Farm
+planet_event = {
+	id = autofab_queue.65
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_farm_retool = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.66
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		retool_autofab_farm = yes
+	}
+}
+
+#Foundry
+planet_event = {
+	id = autofab_queue.67
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_foundry_retool = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.68
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		retool_autofab_foundry = yes
+	}
+}
+
+#Factory
+planet_event = {
+	id = autofab_queue.69
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_factory_retool = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.70
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		retool_autofab_factory = yes
+	}
+}
+
+#Refinery
+planet_event = {
+	id = autofab_queue.71
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_refinery_retool = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.72
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		retool_autofab_refinery = yes
+	}
+}
+
+#Chemical
+planet_event = {
+	id = autofab_queue.73
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_chemical_retool = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.74
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		retool_autofab_chemical = yes
+	}
+}
+
+#Translucer
+planet_event = {
+	id = autofab_queue.75
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_translucer_retool = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.76
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		retool_autofab_translucer = yes
+	}
+}
+
+#Extractor
+planet_event = {
+	id = autofab_queue.77
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		start_autofab_extractor_retool = yes
+	}
+}
+planet_event = {
+	id = autofab_queue.78
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		retool_autofab_extractor = yes
+	}
+}

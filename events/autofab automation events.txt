@@ -1,0 +1,732 @@
+namespace = autofab_automation
+
+event = {
+	id = autofab_automation.0
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		every_country = {
+			limit = {
+				can_use_autofab = yes
+			}
+			random_list = {
+				10 = {
+					country_event = { id = autofab_automation.1000 days = 1 }
+				}
+				10 = {
+					country_event = { id = autofab_automation.1000 days = 91 }
+				}
+				10 = {
+					country_event = { id = autofab_automation.1000 days = 181 }
+				}
+				10 = {
+					country_event = { id = autofab_automation.1000 days = 271 }
+				}
+			}
+		}
+	}
+	after = {
+	}
+}
+
+country_event = {
+	id = autofab_automation.1000
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		set_variable = { which = autofab_auto_planets value = 0 }
+		every_owned_planet = {
+			limit = {
+				NOT = {
+					has_planet_flag = factory_expanding
+				}
+				automation_active = yes
+				OR = {
+					can_expand_factory = yes
+					can_upgrade_foundry = yes
+					can_upgrade_factory = yes
+				}
+			}
+			PREV = {
+				change_variable = { which = autofab_auto_planets value = 1 }
+			}
+		}
+		set_variable = { which = country_consumer_goods_need value = 0 }
+		set_variable = { which = country_minerals_need value = 0 }
+		set_variable = { which = country_food_need value = 0 }
+		set_variable = { which = country_energy_need value = 0 }
+		set_variable = { which = autofab_auto_planets_debug value = autofab_auto_planets }
+		log = "[This.autofab_auto_planets] planet(s) with automation"
+	}
+	
+	#Automation Counting Logic
+	after = {
+		country_energy_check = yes
+		country_food_check = yes
+		country_minerals_check = yes
+		country_consumer_goods_check = yes
+		country_event = { id = autofab_automation.1001 days = 1 }
+	}
+}
+
+country_event = {
+	id = autofab_automation.1001
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+	}
+	
+	after = {
+		set_variable = { which = country_energy_need_debug value = country_energy_need }
+		set_variable = { which = country_food_need_debug value = country_food_need }
+		set_variable = { which = country_minerals_need_debug value = country_minerals_need }
+		set_variable = { which = country_consumer_goods_need_debug value = country_consumer_goods_need }
+		country_event = { id = autofab_automation.1 days = 1 }
+	}
+}
+
+#Automation Building Logic
+country_event = {
+	id = autofab_automation.1
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				any_owned_planet = {
+					can_expand_factory = yes
+					owner = {
+						is_ai = yes
+					}
+					automation_active = yes
+				}
+			}
+			log = "Building Logic Fired for [This.GetName]"
+			while = {
+				limit = {
+					check_variable = { which = country_energy_need value > 0 }
+					any_owned_planet = {
+						has_energy_available = yes
+						can_expand_factory = yes
+						automation_active = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+							is_energy_colony = yes
+						}
+					}
+					can_afford_district = yes
+				}
+				if = {
+					limit = {
+						any_owned_planet = {
+							has_energy_available = yes
+							can_expand_factory = yes
+							is_energy_colony = yes
+							automation_active = yes
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							has_energy_available = yes
+							can_expand_factory = yes
+							is_energy_colony = yes
+							automation_active = yes
+						}
+						planet_event = { id = autofab_queue.20 days = -1 } #Energy
+						ROOT = { change_variable = { which = country_energy_need value = -1 } }
+						ROOT = { change_variable = { which = autofab_energy_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = -1 } }
+						log = "Automation Generator Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+				else = {
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							has_energy_available = yes
+							can_expand_factory = yes
+							OR = {
+								ROOT = { has_country_flag = factory_fallback }
+								has_planet_flag = factory_fallback
+							}
+						}
+						planet_event = { id = autofab_queue.20 days = -1 } #Energy
+						ROOT = { change_variable = { which = country_energy_need value = -1 } }
+						ROOT = { change_variable = { which = autofab_energy_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = -1 } }
+						log = "Automation Generator Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+			}
+			while = {
+				limit = {
+					country_uses_food = yes
+					check_variable = { which = country_food_need value > 0 }
+					food_building_upkeep_check = yes
+					any_owned_planet = {
+						automation_active = yes
+						has_food_available = yes
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+							is_farming_colony = yes
+						}
+					}
+					can_afford_district = yes
+				}
+				if = {
+					limit = {
+						any_owned_planet = {
+							automation_active = yes
+							has_food_available = yes
+							can_expand_factory = yes
+							is_farming_colony = yes
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							has_food_available = yes
+							can_expand_factory = yes
+							is_farming_colony = yes
+						}
+						planet_event = { id = autofab_queue.24 days = -1 } #Food
+						ROOT = { change_variable = { which = country_food_need value = -1 } }
+						ROOT = { change_variable = { which = autofab_food_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 1 } }
+						log = "Automation Farming Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+				else = {
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							has_food_available = yes
+							can_expand_factory = yes
+							OR = {
+								ROOT = { has_country_flag = factory_fallback }
+								has_planet_flag = factory_fallback
+							}
+						}
+						planet_event = { id = autofab_queue.24 days = -1 } #Food
+						ROOT = { change_variable = { which = country_food_need value = -1 } }
+						ROOT = { change_variable = { which = autofab_food_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 1 } }
+						log = "Automation Farming Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = { which = country_minerals_need value > 0 }
+					minerals_building_upkeep_check = yes
+					any_owned_planet = {
+						automation_active = yes
+						has_minerals_available = yes
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+							is_mining_colony = yes
+						}
+					}
+					can_afford_district = yes
+				}
+				if = {
+					limit = {
+						any_owned_planet = {
+							automation_active = yes
+							has_minerals_available = yes
+							can_expand_factory = yes
+							is_mining_colony = yes
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							has_minerals_available = yes
+							can_expand_factory = yes
+							is_mining_colony = yes
+						}
+						planet_event = { id = autofab_queue.22 days = -1 } #Minerals
+						ROOT = { change_variable = { which = country_minerals_need value = -1 } }
+						ROOT = { change_variable = { which = autofab_minerals_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 1 } }
+						log = "Automation Mining Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+				else = {
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							has_minerals_available = yes
+							can_expand_factory = yes
+							OR = {
+								ROOT = { has_country_flag = factory_fallback }
+								has_planet_flag = factory_fallback
+							}
+						}
+						planet_event = { id = autofab_queue.22 days = -1 } #Minerals
+						ROOT = { change_variable = { which = country_minerals_need value = -1 } }
+						ROOT = { change_variable = { which = autofab_minerals_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 1 } }
+						log = "Automation Mining Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = { which = country_consumer_goods_need value > 0 }
+					congoods_building_upkeep_check = yes
+					OR = {
+						AND = {
+							any_owned_planet = {
+								automation_active = yes
+								OR = {
+									can_expand_factory = yes
+									can_upgrade_factory = yes
+								}
+								is_congood_colony = yes
+							}
+						}
+						AND = {
+							has_country_flag = factory_fallback
+							any_owned_planet = {
+								automation_active = yes
+								has_planet_flag = factory_fallback
+								OR = {
+									can_expand_factory = yes
+									can_upgrade_factory = yes
+								}
+							}
+						}
+					}
+					OR = {
+						can_afford_building = yes
+						AND = {
+							can_afford_t2_factory = yes
+							has_technology = tech_luxuries_1
+							any_owned_planet = {
+								has_deposit = autofab_factory
+							}
+						}
+						AND = {
+							can_afford_t3_factory = yes
+							has_technology = tech_luxuries_2
+							any_owned_planet = {
+								has_deposit = autofab_factory_2
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						any_owned_planet = {
+							automation_active = yes
+							can_upgrade_factory = yes
+							is_congood_colony = yes
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_upgrade_factory = yes
+							is_congood_colony = yes
+						}
+						planet_event = { id = autofab_queue.40 days = -1 } #ConGoods
+						ROOT = { change_variable = { which = country_consumer_goods_need value = -1 } }
+						ROOT = { change_variable = { which = autofab_congoods_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 3 } }
+						log = "Automation Factory Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+				else_if = {
+					limit = {
+						any_owned_planet = {
+							automation_active = yes
+							can_upgrade_factory = yes
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_upgrade_factory = yes
+						}
+						planet_event = { id = autofab_queue.40 days = -1 } #ConGoods
+						ROOT = { change_variable = { which = country_consumer_goods_need value = -1 } }
+						ROOT = { change_variable = { which = autofab_congoods_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 3 } }
+						log = "Automation Factory Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+				else_if = {
+					limit = {
+						any_owned_planet = {
+							automation_active = yes
+							can_expand_factory = yes
+							is_congood_colony = yes
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_expand_factory = yes
+							is_congood_colony = yes
+						}
+						planet_event = { id = autofab_queue.40 days = -1 } #ConGoods
+						ROOT = { change_variable = { which = country_consumer_goods_need value = -1 } }
+						ROOT = { change_variable = { which = autofab_congoods_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 1 } }
+						log = "Automation Factory Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+				else = {
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_expand_factory = yes
+							OR = {
+								ROOT = { has_country_flag = factory_fallback }
+								has_planet_flag = factory_fallback
+							}
+						}
+						planet_event = { id = autofab_queue.40 days = -1 } #ConGoods
+						ROOT = { change_variable = { which = country_consumer_goods_need value = -1 } }
+						ROOT = { change_variable = { which = autofab_congoods_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 1 } }
+						log = "Automation Factory Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = { which = autofab_auto_planets value > 0 }
+					OR = {
+						has_technology = tech_mine_volatile_motes
+						has_technology = tech_mine_exotic_gases
+						has_technology = tech_mine_rare_crystals
+					}
+					any_owned_planet = {
+						automation_active = yes
+						can_expand_factory = yes
+						has_rare_resource_deposit = yes
+						free_district_slots > 0
+						NOR = {
+							has_deposit = autofab_refinery_extractor
+							has_planet_flag = has_autofab_extractor
+						}
+					}
+					can_afford_building = yes
+				}
+				random_owned_planet = {
+					limit = {
+						has_rare_resource_deposit = yes
+						NOR = {
+							has_deposit = autofab_refinery_extractor
+							has_planet_flag = has_autofab_extractor
+						}					
+					}
+					planet_event = { id = autofab_queue.36 } #Strategic Resource Extractor	
+					log = "Automation Extractor Queued on [This.GetName] for [PREV.GetName]"
+					ROOT = { change_variable = { which = autofab_auto_planets value = -1 } }
+					ROOT = { change_variable = { which = autofab_extractor_building value = 1 } }
+					ROOT = { change_variable = { which = autofab_upkeep_building value = 4 } }
+				}
+			}
+			while = {
+				limit = {
+					check_variable = { which = autofab_auto_planets value > 0 }
+					resource_income_compare = { resource = volatile_motes  value < 10 }
+					has_technology = tech_volatile_motes
+					any_owned_planet = {
+						automation_active = yes
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+							is_refinery_colony = yes
+						}
+					}
+					can_afford_building = yes
+				}
+				if = {
+					limit = {
+						any_owned_planet = {
+							automation_active = yes
+							can_expand_factory = yes
+							is_refinery_colony = yes
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_expand_factory = yes
+							is_refinery_colony = yes
+						}
+						planet_event = { id = autofab_queue.30 days = -1 } #Motes
+						ROOT = { change_variable = { which = autofab_auto_planets value = -1 } }
+						ROOT = { change_variable = { which = autofab_motes_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 2 } }
+						log = "Automation Motes Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+				else = {
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_expand_factory = yes
+							OR = {
+								ROOT = { has_country_flag = factory_fallback }
+								has_planet_flag = factory_fallback
+							}
+						}
+						planet_event = { id = autofab_queue.30 days = -1 } #Motes
+						ROOT = { change_variable = { which = autofab_auto_planets value = -1 } }
+						ROOT = { change_variable = { which = autofab_motes_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 2 } }
+						log = "Automation Motes Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = { which = autofab_auto_planets value > 0 }
+					resource_income_compare = { resource = exotic_gases  value < 10 }
+					has_technology = tech_exotic_gases
+					any_owned_planet = {
+						automation_active = yes
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+							is_refinery_colony = yes
+						}
+					}
+					can_afford_building = yes
+				}
+				if = {
+					limit = {
+						any_owned_planet = {
+							automation_active = yes
+							can_expand_factory = yes
+							is_refinery_colony = yes
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_expand_factory = yes
+							is_refinery_colony = yes
+						}
+						planet_event = { id = autofab_queue.32 days = -1 } #Gases
+						ROOT = { change_variable = { which = autofab_auto_planets value = -1 } }
+						ROOT = { change_variable = { which = autofab_gases_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 2 } }
+						log = "Automation Gases Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+				else = {
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_expand_factory = yes
+							OR = {
+								ROOT = { has_country_flag = factory_fallback }
+								has_planet_flag = factory_fallback
+							}
+						}
+						planet_event = { id = autofab_queue.32 days = -1 } #Gases
+						ROOT = { change_variable = { which = autofab_auto_planets value = -1 } }
+						ROOT = { change_variable = { which = autofab_gases_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 2 } }
+						log = "Automation Gases Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = { which = autofab_auto_planets value > 0 }
+					resource_income_compare = { resource = rare_crystals  value < 10 }
+					has_technology = tech_rare_crystals
+					any_owned_planet = {
+						automation_active = yes
+						can_expand_factory = yes
+						OR = {
+							ROOT = { has_country_flag = factory_fallback }
+							has_planet_flag = factory_fallback
+							is_refinery_colony = yes
+						}
+					}
+					can_afford_building = yes
+				}
+				if = {
+					limit = {
+						any_owned_planet = {
+							automation_active = yes
+							can_expand_factory = yes
+							is_refinery_colony = yes
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_expand_factory = yes
+							is_refinery_colony = yes
+						}
+						planet_event = { id = autofab_queue.34 days = -1 } #Crystals
+						ROOT = { change_variable = { which = autofab_auto_planets value = -1 } }
+						ROOT = { change_variable = { which = autofab_crystals_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 2 } }
+						log = "Automation Crystals Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+				else = {
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_expand_factory = yes
+							OR = {
+								ROOT = { has_country_flag = factory_fallback }
+								has_planet_flag = factory_fallback
+							}
+						}
+						planet_event = { id = autofab_queue.34 days = -1 } #Crystals
+						ROOT = { change_variable = { which = autofab_auto_planets value = -1 } }
+						ROOT = { change_variable = { which = autofab_crystals_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 2 } }
+						log = "Automation Crystals Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+			}
+			while = {
+				limit = {
+					check_variable = { which = autofab_auto_planets value > 0 }
+					OR = {
+						AND = {
+							any_owned_planet = {
+								automation_active = yes
+								OR = {
+									can_expand_factory = yes
+									can_upgrade_foundry = yes
+								}
+								is_alloys_colony = yes
+							}
+						}
+						AND = {
+							has_country_flag = factory_fallback
+							any_owned_planet = {
+								automation_active = yes
+								has_planet_flag = factory_fallback
+								OR = {
+									can_expand_factory = yes
+									can_upgrade_foundry = yes
+								}
+							}
+						}
+					}
+					OR = {
+						can_afford_building = yes
+						AND = {
+							can_afford_t2_foundry = yes
+							has_technology = tech_alloys_1
+							any_owned_planet = {
+								has_deposit = autofab_foundry
+							}
+						}
+						AND = {
+							can_afford_t3_foundry = yes
+							has_technology = tech_alloys_2
+							any_owned_planet = {
+								has_deposit = autofab_foundry_2
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						any_owned_planet = {
+							automation_active = yes
+							can_upgrade_foundry = yes
+							is_alloys_colony = yes
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_upgrade_foundry = yes
+							is_alloys_colony = yes
+						}
+						planet_event = { id = autofab_queue.38 days = -1 } #Alloys
+						ROOT = { change_variable = { which = autofab_auto_planets value = -1 } }
+						ROOT = { change_variable = { which = autofab_alloys_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 3 } }
+						log = "Automation Alloys Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+				else_if = {
+					limit = {
+						any_owned_planet = {
+							automation_active = yes
+							can_upgrade_foundry = yes
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_upgrade_foundry = yes
+						}
+						planet_event = { id = autofab_queue.38 days = -1 } #Alloys
+						ROOT = { change_variable = { which = autofab_auto_planets value = -1 } }
+						ROOT = { change_variable = { which = autofab_alloys_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 3 } }
+						log = "Automation Alloys Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+				else_if = {
+					limit = {
+						any_owned_planet = {
+							automation_active = yes
+							can_expand_factory = yes
+							is_alloys_colony = yes
+						}
+					}
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_expand_factory = yes
+							is_alloys_colony = yes
+						}
+						planet_event = { id = autofab_queue.40 days = -1 } #ConGoods
+						ROOT = { change_variable = { which = autofab_auto_planets value = -1 } }
+						ROOT = { change_variable = { which = autofab_alloys_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 1 } }
+						log = "Automation Factory Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+				else = {
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							can_expand_factory = yes
+							OR = {
+								ROOT = { has_country_flag = factory_fallback }
+								has_planet_flag = factory_fallback
+							}
+						}
+						planet_event = { id = autofab_queue.40 days = -1 } #ConGoods
+						ROOT = { change_variable = { which = autofab_auto_planets value = -1 } }
+						ROOT = { change_variable = { which = autofab_alloys_building value = 1 } }
+						ROOT = { change_variable = { which = autofab_upkeep_building value = 1 } }
+						log = "Automation Factory Queued on [This.GetName] for [PREV.GetName]"
+					}
+				}
+			}
+		}
+	}	
+}

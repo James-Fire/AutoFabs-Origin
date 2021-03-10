@@ -1,0 +1,34 @@
+origin_autofab = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_mechanist.dds"
+	picture = GFX_origin_mechanist
+	description = "origin_tooltip_autofab_effects"
+
+	playable = {
+		always = yes
+	}
+	
+	potential = {
+		always = yes
+	}
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_agrarian_idyll
+			}
+		}
+	}
+	random_weight = { base = 0 }
+	modifier = {
+		pop_growth_speed_reduction = 0.4
+		planet_pop_assembly_reduction = 0.4
+	}
+	#swap_type = {
+	#	name = origin_autofab_machine
+	#	description = "origin_autofab_machine_effects"
+#
+#		trigger = {
+#			is_machine_empire = yes
+#		}
+#	}	
+}

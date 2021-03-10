@@ -1,0 +1,149 @@
+Shuffled around Ethic-based Living standards so that Fanatic ethics are considered first.
+
+Fixed starting with no Factory Farms.
+
+Localised the factory documenting edict.
+
+Made the factory documenting edict have better Order of Operations.
+
+_________________________
+
+Fixed farms being counted twice for the Documenting.
+
+Fixed empires that should not have Factory Industry on game start getting it.
+
+Hive Minds and Machine Empires now properly have less pops, just as normal empires do. Also added all Metallurgists to the kill group.
+
+_________________________
+
+Fixed Vanilla swapping happening on planets with no Factory.
+
+Added a check to factory automation for buildong Consumer Goods so it won't if you don't need it.
+
+Improvements to Automation logic to fully consider upkeep requirements.
+
+Fixed automation not using alloys...
+
+_________________________
+
+Fixed Factory Conversion not converting the first farm.
+
+Added a picture to the Advisor Events.
+
+Changed the localisation for the last events option from Next to Close, to properly reflect what it does.
+
+Properly limited AI stuff to the AI.
+
+Removed the space between 'Next' and '.' in the Advisor event options.
+
+Attempted a clearer sentence for Vanilla Swapping in the Advisor.
+
+Added a fallback option for the AI and new planets. If they don't have enough resources when it initially checks to build a new Factory, it will check again in a year, and keep doing so until the Factory is built.
+
+_________________________
+
+Added descriptions to the decisions.
+
+_________________________
+
+Added images for Strategic Resource Factory deposits.
+
+Fixed errors relating to events that are not supposed to show up.
+
+Decisions now don't show up as unlocked by techs if you don't have the origin.
+
+_________________________
+
+Automation operates under the same limitations you have, only being allowed 1 extractor per planet.
+
+_________________________
+
+Farms, mines, and power plants are no longer allowed to stay on planets that can't have them.
+
+The Factory Extractor now works on Habitat Strategic Resource Deposits.
+
+Habitat mining and energy districts now have a factory deposit for them.
+
+Foundry and Factory deposits now produce/consume double on Ecumenopolis.
+
+Using the decision to convert all existing infrastructure now properly tracks what it converted.
+
+Fixed Non Automatic Factory AI getting the factory.
+
+_________________________
+
+Localised the habitat deposits...
+
+Fixed a check for habitats.
+
+Removed habitable_structure checks, since they are no longer needed.
+
+_________________________
+
+Included checks for if the empire uses food and CGs.
+
+Allowed usage on Hive and Machine Worlds.
+
+Included support for the Industrial Sector deposit on Relic Worlds.
+
+A betharian deposit on the planet now increases the Factory energy output by 25%, and +4.
+
+_________________________
+
+Included another check for if the empire uses food/CGs. Apparently 1 wasn't enough.
+
+_________________________
+
+Fixed an omission regarding the Relic World rare resource deposit.
+
+_________________________
+
+Fixed Swapping not working for Machine and Hive worlds.
+
+Added an event triggered 2 days after game start to reset my stuff so that mods that reroll deposits day 1 don't fuck everything up for 6 months. (Looking at you, Planetary Diversity.)
+
+_________________________
+
+Readded the starting planet stuff.
+
+Appeared to have fixed the deposits missing bug.
+
+Fixed the Document Factory edict doing nothing.
+
+Removed some resource income checks from building mines that shouldn't have been there.
+
+Fixed the SR manufacturing Factories, and the Extractor not taking into account the energy upkeep on the buildings they replace.
+
+Doubled the time it takes to build the intial factory.
+
+_________________________
+
+Replaced the existing Edicts and Decisions with Custom UI, making the factory far easier to control.*
+
+Added Queue functionality, so you can queue up several constructions.
+
+Added Fallback functionality, so you can choose whether the Automation and Queue will only buid on the correct planets, or simply prefer them.
+
+Rolled the Document Factory Edict into the new custom UI for controlling the Factory.
+
+Changed the Advisor over to a custom UI, allowing far simpler navigation of topics. The content of the advisor has also been overhauled, due to how you manage the factory being overhauled.*
+
+All factory functions can now be controlled from the single Country UI, accessed by the Factory Terminal edict. It can also be accessed from planet specific Factory Terminals.*
+
+The factory terminals show how many factory deposits are in the empire/on the planet, and include how many are queued to build, and how many are currently being built.*
+
+Added a check for vanilla swapping, so it doesn't convert buildings if there are no district slots left.
+
+Included support for ringworld districts.*
+
+Retooling has been redone so it works with the new queue system.
+
+Added more triggered modifiers to cancel out broken technician modifiers that are inherited.*
+
+Added a button to open the Country Factory Terminal in the bottom left of the screen.*
+
+Included triggers to prepare for allowing anyone to use the factory, leaving the origin to have a head start on it.
+
+The Planet UI includes an option to block the primary Autofab being built by Automation or the Queue on that planet.*
+
+The Country UI has an option to block the primary Autofab from being built by Automation or the Queue.
