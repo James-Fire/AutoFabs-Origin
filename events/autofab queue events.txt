@@ -263,55 +263,55 @@ country_event = {
 					limit = {
 						check_variable = { which = autofab_energy_queue value < 0 }
 					}
-					planet_event = { id = autofab_queue.50 days = -1 }
+					planet_event = { id = autofab_queue.61 days = -1 }
 				}
 				if = {
 					limit = {
 						check_variable = { which = autofab_mineral_queue value < 0 }
 					}
-					planet_event = { id = autofab_queue.51 days = -1 }
+					planet_event = { id = autofab_queue.63 days = -1 }
 				}
 				if = {
 					limit = {
 						check_variable = { which = autofab_food_queue value < 0 }
 					}
-					planet_event = { id = autofab_queue.52 days = -1 }
+					planet_event = { id = autofab_queue.65 days = -1 }
 				}
 				if = {
 					limit = {
 						check_variable = { which = autofab_alloys_queue value < 0 }
 					}
-					planet_event = { id = autofab_queue.53 days = -1 }
+					planet_event = { id = autofab_queue.67 days = -1 }
 				}
 				if = {
 					limit = {
 						check_variable = { which = autofab_congoods_queue value < 0 }
 					}
-					planet_event = { id = autofab_queue.54 days = -1 }
+					planet_event = { id = autofab_queue.69 days = -1 }
 				}
 				if = {
 					limit = {
 						check_variable = { which = autofab_motes_queue value < 0 }
 					}
-					planet_event = { id = autofab_queue.55 days = -1 }
+					planet_event = { id = autofab_queue.71 days = -1 }
 				}
 				if = {
 					limit = {
 						check_variable = { which = autofab_gases_queue value < 0 }
 					}
-					planet_event = { id = autofab_queue.56 days = -1 }
+					planet_event = { id = autofab_queue.73 days = -1 }
 				}
 				if = {
 					limit = {
 						check_variable = { which = autofab_crystals_queue value < 0 }
 					}
-					planet_event = { id = autofab_queue.57 days = -1 }
+					planet_event = { id = autofab_queue.75 days = -1 }
 				}
 				if = {
 					limit = {
 						check_variable = { which = autofab_extractor_queue value < 0 }
 					}
-					planet_event = { id = autofab_queue.58 days = -1 }
+					planet_event = { id = autofab_queue.77 days = -1 }
 				}
 			}
 			else = {
