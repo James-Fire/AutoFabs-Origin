@@ -102,7 +102,7 @@ country_event = {
 			set_country_flag = factory_vanilla_swapping
 			set_country_flag = factory_fallback
 			set_country_flag = factory_autofab_construction_on
-			country_event = { id = autofab.0 }
+			country_event = { id = autofab_menu.20 }
 			switch = {
 				trigger = has_ethic
 				ethic_fanatic_authoritarian = {

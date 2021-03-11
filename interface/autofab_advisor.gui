@@ -19,6 +19,26 @@ guiTypes = {
 			size = { x=65 y= 28 }
 		}
 	}
+	containerWindowType = {
+		name = "easter_egg_text"
+		position = { x=0 y=0 }
+		size = { width = 388 height = 35 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_blank_menu_button_bg" 
+			position = { x=15 y=-480 }
+			font = "large_title_font_28"
+			text = "Your Advisor is in another Castle"
+		}
+
+		OverlappingElementsBoxType = {
+			name = "trigger_icons"
+			position = { x = 0  y = 10 }
+			size = { x=65 y= 28 }
+		}
+	}
 
 	containerWindowType = {
 		name = "autofab_advisor"
@@ -26,24 +46,95 @@ guiTypes = {
 		origo = center
 		moveable = yes
 		size = { width = 724 height = 680 }
-		
+		containerWindowType = {
+			name = "portrait"
+			position = { x = -95 y = 325 }
+			size = { width = 384 height = 400 }
+			clipping = yes
+			iconType = {
+				name = "black_frame"
+				spriteType = "GFX_autofab_portrait_bg"
+				position = { x = 95 y = -90 }
+				alwaysTransparent = yes
+			}
+			iconType = {
+				name = "portrait"
+				spriteType = "GFX_portrait_character"
+				position = { x = 0 y = 15 }
+				scale = 0.70
+				alwaysTransparent = yes
+			}
+			iconType = {
+				name = "city_frame"
+				spriteType = "GFX_diplomacy_portrait_frame_curator"
+				position = { x = -6 y = -5000 }
+				alwaysTransparent = yes
+			}
+		}
+		effectButtonType = {
+			name = "easter_egg_on"
+			position = { x = 0 y = 625 }
+			spriteType = "GFX_blank_menu_button_bg"
+			no_clicksound = yes
+			font = "large_title_font_28"
+			text = ""
+			effect = "hidden_button_on"
+		}
+		effectButtonType = {
+			name = "easter_egg_off"
+			position = { x = 0 y = 625 }
+			spriteType = "GFX_blank_menu_button_bg"
+			no_clicksound = yes
+			font = "large_title_font_28"
+			text = ""
+			effect = "hidden_button_off"
+		}
+		effectButtonType = {
+			name = "easter_egg_off_2"
+			position = { x = 0 y = 68 }
+			spriteType = "GFX_blank_menu_button_bg"
+			no_clicksound = yes
+			font = "large_title_font_28"
+			text = ""
+			effect = "hidden_button_off"
+		}
 		iconType = {
             name = "advisor_image"
             quadTextureSprite = "GFX_advisor_autofab"
             alwaysTransparent = yes
 			position = { x = 225 y = 55 }
         }
+		effectButtonType = {
+			name = "easter_egg"
+			position = { x = 225 y = 55 }
+			spriteType = "GFX_easter_egg_autofab"
+			no_clicksound = yes
+			alwaysTransparent = yes
+			font = "large_title_font_28"
+			text = ""
+			effect = "hidden_button"
+		}
+		effectButtonType = {
+			name = "easter_egg_text"
+            position = { x = 260 y = 365 }
+			spriteType = "GFX_blank_menu_button_bg"
+			no_clicksound = yes
+			alwaysTransparent = yes
+			font = "large_title_font_28"
+			text = "Your Advisor is in another Castle!"
+			effect = "hidden_button"
+		}
 		iconType = {
             name = "gearwrench_dongs"
-            quadTextureSprite = "GFX_gears_dongs"
+            quadTextureSprite = "GFX_advisor_upper_dongs"
             alwaysTransparent = yes
-			position = { x = -23 y = 30 }
+			position = { x = -48 y = 30 }
         }
 		iconType = {
             name = "gearwrench_dongs_2"
-            quadTextureSprite = "GFX_gears_dongs"
+            quadTextureSprite = "GFX_advisor_lower_dongs"
             alwaysTransparent = yes
-			position = { x = -23 y = 590 }
+			position = { x = -48 y = 590 }
         }
 		iconType = {#Hexagon fade in
 			name = "hex_bg"

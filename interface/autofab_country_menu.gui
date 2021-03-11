@@ -45,7 +45,32 @@ guiTypes = {
 		orientation = center
 		origo = center
 		moveable = yes
-		size = { width = 704 height = 720 }
+		size = { width = 704 height = 720 }	
+		containerWindowType = {
+			name = "portrait"
+			position = { x = -95 y = 315 }
+			size = { width = 384 height = 400 }
+			clipping = yes
+			iconType = {
+				name = "black_frame"
+				spriteType = "GFX_autofab_portrait_bg"
+				position = { x = 95 y = -90 }
+				alwaysTransparent = yes
+			}
+			iconType = {
+				name = "portrait"
+				spriteType = "GFX_portrait_character"
+				position = { x = 0 y = 15 }
+				scale = 0.70
+				alwaysTransparent = yes
+			}
+			iconType = {
+				name = "city_frame"
+				spriteType = "GFX_diplomacy_portrait_frame_curator"
+				position = { x = -6 y = -5000 }
+				alwaysTransparent = yes
+			}
+		}
 		iconType = {
             name = "terminal_image"
             quadTextureSprite = "GFX_terminal_autofab"
@@ -54,14 +79,14 @@ guiTypes = {
         }
 		iconType = {#Gear Dongs
 			name = "gearwrench_dongs"
-			spriteType = "GFX_gears_dongs"
+			spriteType = "GFX_flipped_gearwrench_dongs"
 			position = { x = -23 y = 30 }
 			alwaysTransparent = yes
 		}
 		iconType = {#Gear Dongs
 			name = "gearwrench_dongs_2"
-			spriteType = "GFX_gears_dongs"
-			position = { x = -23 y = 620 }
+			spriteType = "GFX_lower_gearwrench_dongs"
+			position = { x = -48 y = 620 }
 			alwaysTransparent = yes
 		}
 		iconType = {#Hexagon fade in
@@ -412,8 +437,6 @@ guiTypes = {
 			effectButtonType = { name = "factory_extractor_queue_5" spriteType = "GFX_autofab_menu_5" position = { x = 420 y = 365 } clicksound = interface effect = "factory_extractor_queue_5" }
 			effectButtonType = { name = "factory_extractor_decrease_queue" spriteType = "GFX_autofab_menu_minus" position = { x = 450 y = 365 } clicksound = interface effect = "factory_extractor_decrease_queue" }
 		}
-
-
 		instantTextBoxType = {
 			name = "alien_message"
 			font = "cg_16b"
@@ -453,9 +476,9 @@ guiTypes = {
 
 
 		### PORTRAIT ###
-		containerWindowType = {#Hide this thing.
+		containerWindowType = {
 			name = "portrait_background"
-			position = { x = 17 y = 20000 }
+			position = { x = 0 y = 200 }
 			size = { width = 964 height = 350 }
 			clipping = yes
 			iconType = {
@@ -465,38 +488,11 @@ guiTypes = {
 			}
 			iconType = {
 				name = "portrait"
-				position = { x = 250 y = 0 }
+				position = { x = 0 y = 0 }
 				spriteType = "GFX_portrait_character"
 			}	
 		}
-		containerWindowType = {#Hide this thing.
-			name = "portrait"
-			position = { x = 11 y = 20000 }
-			size = { width = 964 height = 350 }
-			clipping = yes
-			iconType = {
-				name = "portrait"
-				spriteType = "GFX_portrait_gamesetup_mask"
-				alwaysTransparent = yes
-			}
-			iconType = {
-				name = "black_frame"
-				spriteType = "GFX_diplomacy_portrait_shadow_frame"
-				position = { x = -4 y = -5}
-				alwaysTransparent = yes
-			}
-			iconType = {
-				name = "stripes_1"
-				spriteType = "GFX_diplomacy_stripes_2"
-				alwaysTransparent = yes
-			}
-			iconType = {
-				name = "city_frame"
-				spriteType = "GFX_diplomacy_portrait_frame_curator"
-				position = { x = -6 y = -5 }
-				alwaysTransparent = yes
-			}
-		}
+		
 		iconType = {#Hide this thing.
 			name = "empire_info_bg"
 			spriteType = "GFX_diplomacy_dark_fade_bg"
@@ -548,7 +544,7 @@ guiTypes = {
 			position = { x = 25 y = 20000 }
 			orientation = UPPER_LEFT
 		}
-		containerWindowType = {#Hide this thing.
+		containerWindowType = {#Hide this thing
 			name = "leader_details"
 			position = { x = 25 y = 20000 }
 			containerWindowType = {

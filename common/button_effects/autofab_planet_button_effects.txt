@@ -1,3 +1,20 @@
+planet_hidden_button = {
+	potential = { NOT = { has_planet_flag = easter_egg } }
+	allow = { hidden_trigger = { always = yes } }
+	effect = { set_planet_flag = easter_egg }
+}
+planet_hidden_button_off = {
+	potential = { has_planet_flag = easter_egg }
+	allow = { hidden_trigger = { always = yes } }
+	effect = { remove_planet_flag = easter_egg }
+}
+
+
+
+
+
+
+
 planet_factory_automation_off = {
 	potential = { has_planet_flag = autofab_automation_off }
 	allow = { hidden_trigger = { always = yes } }

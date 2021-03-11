@@ -190,7 +190,7 @@
      
      autofab.1.name:0 "Country Terminal"
      autofab.1.desc:0 "$autofab.1.desc_1$ \n\n$autofab.1.desc_2$ \n\n$autofab.1.desc_3$ \n\n$autofab.1.desc_4$ \n\n$autofab.1.desc_5$"
-     autofab.1.desc_1:0 "The Management tab for each planetary factory includes various options specific to this factory."
+     autofab.1.desc_1:0 "The Country Terminal allows high level control of all factories in your Empire."
      autofab.1.desc_2:0 "Decisions are available to have the Factory take over existing District and Building Infrastructure. Useful for recently conquered planets. This does take some time."
      autofab.1.desc_3:0 "You can also turn off the automatic process of the factory taking over manual infrastructure, called Vanilla Swapping, as well as turn on Factory Automation, allowing it to use some simple logic to decide what to build next."
      autofab.1.desc_4:0 "Decisions to retool the Factory are available here. Retooling refunds the Alloy cost of the Factory section, and open up the slot for new development."
@@ -198,8 +198,8 @@
      
      autofab.2.name:0 "Planet Terminal"
      autofab.2.desc:0 "$autofab.2.desc_1$ \n\n$autofab.2.desc_2$ \n\n$autofab.2.desc_3$ \n\n$autofab.2.desc_4$ \n\n$autofab.2.desc_5$"
-     autofab.2.desc_1:0 "There are 2 resource tabs; Basic Resources, and Advanced Resources."
-     autofab.2.desc_2:0 "Basic Resources are: Energy, Minerals, Food. The factory can use available space for the Job Districts to produces these resources without jobs."
+     autofab.2.desc_1:0 "The Planet Terminal functions in much the same way the Country Terminal does, aside from only working on the local planet."
+     autofab.2.desc_2:0 "Factory options here override those selected in the Country Terminal, allowing fine grain control of what happens where, if you wish to use it."
      autofab.2.desc_3:0 "Advanced Resources are: Alloys, Consumer Goods, Rare Crystals, Volatile Motes, Exotic Gases. The factory can use District slots to produce these resources without jobs."
      autofab.2.desc_3:0 "The Factory automatically converts built Districts and Buildings into the Factory equivalent, to make resources without jobs. This funtionality can be turned off in the Management Tab."
      autofab.2.desc_4:0 "The Alloy and Consumer Good Factories can be upgraded. If any level 2 of these exist, they will be upgraded to level 3 before more are upgraded to level 2, assuming we have the technology to do so."
@@ -237,10 +237,13 @@
      
      autofab_menu.10.name:0 "[This.GetName] Factory Terminal"
      autofab_menu.10.desc:0 "$factory_planets$\n\n$factory_available_space$\n\n$factory_construction_extender$"
-     autofab_menu.10.confirm:0 "[Owner.GetName] Factory Terminal"
+     autofab_menu.10.confirm:0 "Open the Country Terminal"
      autofab_menu.1.name:0 "[This.GetName] Factory Terminal"
      autofab_menu.1.desc:0 "$factory_planets$\n\n$factory_available_space$\n\n$factory_construction_extender$"
      autofab_menu.1.confirm:0 "Open the Advisor"
+     
+     
+     autofab.4.desc:0 ""
      
      Terminal_greeting:0 "This is the Country-wide Factory Control Terminal. From here, you can make high level changes to how our Factories operate."
     

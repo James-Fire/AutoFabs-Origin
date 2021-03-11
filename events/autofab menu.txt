@@ -8,6 +8,11 @@ country_event = { ###Country Terminal
 	custom_gui = "autofab_country_window"
 	is_triggered_only = yes
 	
+	picture_event_data = {
+		portrait = ROOT.ruler
+		room = ethic_spaceship_room
+	}
+	
 	immediate = {
 	}
 	
@@ -37,6 +42,11 @@ planet_event = { ###Planet Terminal
 	is_triggered_only = yes
 	
 	
+	picture_event_data = {
+		portrait = ROOT.owner.ruler
+		room = ethic_spaceship_room
+	}
+	
 	# Confirm
 	option = {
 		name = "autofab_menu.1.confirm"
@@ -56,6 +66,9 @@ planet_event = { ###Planet Terminal
 		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
 		custom_gui = "autofab_planet_menu_confirm"
 		owner = { country_event = { id = autofab_menu.1 } }
+		factory_reset_all_country_flags = yes
+		document_factory_country = yes
+		factory_set_default_queue = yes
 	}
 }
 
@@ -67,12 +80,18 @@ country_event = { ###Advisor
 	custom_gui = "autofab_advisor"
 	is_triggered_only = yes
 	
+	picture_event_data = {
+		portrait = ROOT.ruler
+		room = ethic_spaceship_room
+	}
+	
 	option = {
 		name = "autofab_menu.0.name.1"
 		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
 		custom_gui = "autofab_advisor_confirm"
 		response_text = autofab_menu.0.desc
 		is_dialog_only = yes
+		remove_country_flag = easter_egg
 	}
 	option = {
 		name = "autofab.1.name"
@@ -80,6 +99,7 @@ country_event = { ###Advisor
 		custom_gui = "autofab_advisor_confirm"
 		response_text = autofab.1.desc
 		is_dialog_only = yes
+		remove_country_flag = easter_egg
 	}
 	option = {
 		name = "autofab.2.name"
@@ -87,6 +107,7 @@ country_event = { ###Advisor
 		custom_gui = "autofab_advisor_confirm"
 		response_text = autofab.2.desc
 		is_dialog_only = yes
+		remove_country_flag = easter_egg
 	}
 	option = {
 		name = "autofab.3.name"
@@ -94,5 +115,14 @@ country_event = { ###Advisor
 		custom_gui = "autofab_advisor_confirm"
 		response_text = autofab.3.desc
 		is_dialog_only = yes
+		remove_country_flag = easter_egg
+	}
+	option = {
+		name = ""
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "easter_egg_text"
+		response_text = autofab.4.desc
+		is_dialog_only = yes
+		set_country_flag = easter_egg
 	}
 }

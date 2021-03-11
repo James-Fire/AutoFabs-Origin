@@ -4,6 +4,22 @@ blank_effect = {
 	effect = { }
 }
 
+hidden_button_on = {
+	potential = { NOT = { has_country_flag = easter_egg } }
+	allow = { hidden_trigger = { always = yes } }
+	effect = { set_country_flag = easter_egg }
+}
+hidden_button = {
+	potential = { has_country_flag = easter_egg }
+	allow = { hidden_trigger = { always = yes } }
+	effect = { }
+}
+hidden_button_off = {
+	potential = { has_country_flag = easter_egg }
+	allow = { hidden_trigger = { always = yes } }
+	effect = { remove_country_flag = easter_egg }
+}
+
 
 factory_automation_off = {
 	potential = { has_country_flag = autofab_automation }

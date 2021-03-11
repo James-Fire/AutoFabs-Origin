@@ -46,6 +46,32 @@ guiTypes = {
 		origo = center
 		moveable = yes
 		size = { width = 704 height = 720 }
+		
+		containerWindowType = {
+			name = "portrait"
+			position = { x = -95 y = 285 }
+			size = { width = 384 height = 400 }
+			clipping = yes
+			iconType = {
+				name = "black_frame"
+				spriteType = "GFX_autofab_portrait_bg"
+				position = { x = 95 y = -90 }
+				alwaysTransparent = yes
+			}
+			iconType = {
+				name = "portrait"
+				spriteType = "GFX_portrait_character"
+				position = { x = 0 y = 15 }
+				scale = 0.70
+				alwaysTransparent = yes
+			}
+			iconType = {
+				name = "city_frame"
+				spriteType = "GFX_diplomacy_portrait_frame_curator"
+				position = { x = -6 y = -5000 }
+				alwaysTransparent = yes
+			}
+		}
 		iconType = {
             name = "terminal_image"
             quadTextureSprite = "GFX_planet_terminal_autofab"
@@ -54,14 +80,14 @@ guiTypes = {
         }
 		iconType = {#Gear Dongs
 			name = "gearwrench_dongs"
-			spriteType = "GFX_gears_dongs"
+			spriteType = "GFX_flipped_gearwrench_dongs"
 			position = { x = -23 y = 30 }
 			alwaysTransparent = yes
 		}
 		iconType = {#Gear Dongs
 			name = "gearwrench_dongs_2"
-			spriteType = "GFX_gears_dongs"
-			position = { x = -23 y = 620 }
+			spriteType = "GFX_lower_gearwrench_dongs"
+			position = { x = -48 y = 620 }
 			alwaysTransparent = yes
 		}
 		iconType = {#Hexagon fade in
@@ -472,34 +498,6 @@ guiTypes = {
 				position = { x = 250 y = 0 }
 				spriteType = "GFX_portrait_character"
 			}	
-		}
-		containerWindowType = {#Hide this thing.
-			name = "portrait"
-			position = { x = 11 y = 20000 }
-			size = { width = 964 height = 350 }
-			clipping = yes
-			iconType = {
-				name = "portrait"
-				spriteType = "GFX_portrait_gamesetup_mask"
-				alwaysTransparent = yes
-			}
-			iconType = {
-				name = "black_frame"
-				spriteType = "GFX_diplomacy_portrait_shadow_frame"
-				position = { x = -4 y = -5}
-				alwaysTransparent = yes
-			}
-			iconType = {
-				name = "stripes_1"
-				spriteType = "GFX_diplomacy_stripes_2"
-				alwaysTransparent = yes
-			}
-			iconType = {
-				name = "city_frame"
-				spriteType = "GFX_diplomacy_portrait_frame_curator"
-				position = { x = -6 y = -5 }
-				alwaysTransparent = yes
-			}
 		}
 		iconType = {#Hide this thing.
 			name = "empire_info_bg"
