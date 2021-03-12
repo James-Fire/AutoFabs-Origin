@@ -15,6 +15,24 @@ autofab = {
 	
 	triggered_planet_modifier = {
 		potential = {
+			colony_type = col_habitat_energy
+		}
+		modifier = {
+			planet_autofab_energy_produces_mult = -0.1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			colony_type = col_generator
+		}
+		modifier = {
+			planet_autofab_energy_produces_mult = -0.2
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
 			has_deposit = d_betharian_deposit
 		}
 		modifier = {
@@ -267,9 +285,26 @@ autofab_power = {
 	
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_generator_max = -1
 		planet_autofab_energy_produces_add = 8
 		planet_autofab_energy_upkeep_add = 1
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			uses_district_set = standard
+		}
+		modifier = {
+			district_generator_max = -1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			uses_district_set = habitat
+		}
+		modifier = {
+			planet_autofab_energy_produces_add = 4
+			planet_autofab_energy_upkeep_add = 1
+		}
 	}
 	
 	country_modifier = {
@@ -298,11 +333,28 @@ autofab_farm = {
 	
 	planet_modifier = {
 		planet_max_districts_add = -1
-		district_farming_max = -1
 		planet_autofab_food_produces_add = 12
 		planet_autofab_energy_upkeep_add = 5
 	}
 	
+	triggered_planet_modifier = {
+		potential = {
+			uses_district_set = standard
+		}
+		modifier = {
+			district_farming_max = -1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			uses_district_set = ring_world
+		}
+		modifier = {
+			planet_autofab_food_produces_add = 108
+			planet_autofab_energy_upkeep_add = 5
+			planet_autofab_volatile_motes_upkeep_add = 2
+		}
+	}
 	country_modifier = {
 		#country_admin_cap_add = -1
 	}
@@ -340,6 +392,24 @@ autofab_mine = {
 		}
 		modifier = {
 			planet_autofab_minerals_produces_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			uses_district_set = standard
+		}
+		modifier = {
+			district_mining_max = -1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			uses_district_set = habitat
+		}
+		modifier = {
+			planet_autofab_minerals_produces_add = 4
+			planet_autofab_energy_upkeep_add = 3
 		}
 	}
 	
@@ -1120,76 +1190,3 @@ autofab_refinery_extractor = {
 		weight = 0
 	}
 }
-
-#Habitat Deposits
-
-autofab_power_habitat = {
-	is_for_colonizeable = yes
-	use_for_min_max_adjustments = yes
-	category = deposit_cat_energy
-	
-	planet_modifier = {
-		planet_max_districts_add = -1
-		planet_autofab_energy_produces_add = 12
-		planet_autofab_energy_upkeep_add = 2
-	}
-	
-	country_modifier = {
-		#country_admin_cap_add = -1
-	}
-	
-	resources = {
-		category = planet_districts
-		produces = {	
-		}		
-	}
-	
-	potential = {
-		always = yes
-	}
-	
-	drop_weight = {
-		weight = 0
-	}
-}
-
-autofab_mine_habitat = {
-	is_for_colonizeable = yes
-	use_for_min_max_adjustments = yes
-	category = deposit_cat_minerals
-	
-	planet_modifier = {
-		planet_max_districts_add = -1
-		planet_autofab_minerals_produces_add = 12
-		planet_autofab_energy_upkeep_add = 8
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_valid_civic = civic_mining_guilds }
-		}
-		modifier = {
-			planet_autofab_minerals_produces_add = 1
-		}
-	}
-	
-	country_modifier = {
-		#country_admin_cap_add = -1
-	}
-	
-	resources = {
-		category = planet_districts
-		produces = {	
-		}		
-	}
-	
-	potential = {
-		always = yes
-	}
-	
-	drop_weight = {
-		weight = 0
-	}
-}
-
-#Ecumenopolis Deposits

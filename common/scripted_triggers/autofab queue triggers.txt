@@ -41,105 +41,268 @@ can_upgrade_factory = {
 
 #Country Scope
 can_afford_autofab = {
-	resource_stockpile_compare = {
-		resource = minerals
-		value >= 200
+	if = {
+		limit = {
+			uses_district_set = standard
+		}
+		owner = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= @districtcost
+			}
+			resource_stockpile_compare = {
+				resource = minerals
+				value >= @districtcost
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @autofaballoycost
+			}
+		}
 	}
-	resource_stockpile_compare = {
-		resource = alloys
-		value >= 100
+	else_if = {
+		limit = {
+			uses_district_set = habitat
+		}
+		owner = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= @habdistrictcost
+			}
+			resource_stockpile_compare = {
+				resource = minerals
+				value >= @habdistrictcost
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @autofaballoycost
+			}
+		}
 	}
-	resource_stockpile_compare = {
-		resource = energy
-		value >= 200
+	else_if = {
+		limit = {
+			uses_district_set = city_world
+		}
+		owner = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= @citydistrictcost
+			}
+			resource_stockpile_compare = {
+				resource = minerals
+				value >= @citydistrictcost
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @autofaballoycost
+			}
+		}
 	}
+	else_if = {
+		limit = {
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+		owner = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= @specialdistrictcost
+			}
+			resource_stockpile_compare = {
+				resource = minerals
+				value >= @specialdistrictcost
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @autofaballoycost
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			uses_district_set = ring_world
+		}
+		owner = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= @ringdistrictcost
+			}
+			resource_stockpile_compare = {
+				resource = minerals
+				value >= @ringdistrictcost
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @autofaballoycost
+			}
+		}
+	}
+	
 }
 can_afford_district = {
-	resource_stockpile_compare = {
-		resource = minerals
-		value >= @districtcost
+	if = {
+		limit = {
+			uses_district_set = standard
+		}
+		owner = {
+			resource_stockpile_compare = {
+				resource = minerals
+				value >= @districtcost
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @factoryalloycost
+			}
+		}
 	}
-	resource_stockpile_compare = {
-		resource = alloys
-		value >= @factoryalloycost
+	else_if = {
+		limit = {
+			uses_district_set = habitat
+		}
+		owner = {
+			resource_stockpile_compare = {
+				resource = minerals
+				value >= @habdistrictcost
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @factoryalloycost
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			uses_district_set = city_world
+		}
+		owner = {
+			resource_stockpile_compare = {
+				resource = minerals
+				value >= @citydistrictcost
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @factoryalloycost
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+		owner = {
+			resource_stockpile_compare = {
+				resource = minerals
+				value >= @specialdistrictcost
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @factoryalloycost
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			uses_district_set = ring_world
+		}
+		owner = {
+			resource_stockpile_compare = {
+				resource = minerals
+				value >= @ringdistrictcost
+			}
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= @factoryalloycost
+			}
+		}
 	}
 }
 can_afford_building = {
-	resource_stockpile_compare = {
-		resource = minerals
-		value >= @b1_minerals
-	}
-	resource_stockpile_compare = {
-		resource = alloys
-		value >= @factoryalloycost
+	owner = {
+		resource_stockpile_compare = {
+			resource = minerals
+			value >= @b1_minerals
+		}
+		resource_stockpile_compare = {
+			resource = alloys
+			value >= @factoryalloycost
+		}
 	}
 }
 can_afford_t2_foundry = {
-	resource_stockpile_compare = {
-		resource = minerals
-		value >= @b2_minerals
+	owner = {
+		resource_stockpile_compare = {
+			resource = minerals
+			value >= @b2_minerals
+		}
+		resource_stockpile_compare = {
+			resource = volatile_motes
+			value >= @b2_rare_cost
+		}
+		resource_stockpile_compare = {
+			resource = alloys
+			value >= @factoryalloycost
+		}
+		resource_income_compare = { resource = volatile_motes  value > @b2_rare_upkeep }
+		resource_income_compare = { resource = energy  value > 9 }
+		resource_income_compare = { resource = minerals  value > 18 }
 	}
-	resource_stockpile_compare = {
-		resource = volatile_motes
-		value >= @b2_rare_cost
-	}
-	resource_stockpile_compare = {
-		resource = alloys
-		value >= @factoryalloycost
-	}
-	resource_income_compare = { resource = volatile_motes  value > @b2_rare_upkeep }
-	resource_income_compare = { resource = energy  value > 9 }
-	resource_income_compare = { resource = minerals  value > 18 }
 }
 can_afford_t3_foundry = {
-	resource_stockpile_compare = {
-		resource = minerals
-		value >= @b3_minerals
+	owner = {
+		resource_stockpile_compare = {
+			resource = minerals
+			value >= @b3_minerals
+		}
+		resource_stockpile_compare = {
+			resource = volatile_motes
+			value >= @b3_rare_cost
+		}
+		resource_stockpile_compare = {
+			resource = alloys
+			value >= @factoryalloycost
+		}
+		resource_income_compare = { resource = volatile_motes  value > @b3_rare_upkeep }
+		resource_income_compare = { resource = energy  value > 9 }
+		resource_income_compare = { resource = minerals  value > 18 }
 	}
-	resource_stockpile_compare = {
-		resource = volatile_motes
-		value >= @b3_rare_cost
-	}
-	resource_stockpile_compare = {
-		resource = alloys
-		value >= @factoryalloycost
-	}
-	resource_income_compare = { resource = volatile_motes  value > @b3_rare_upkeep }
-	resource_income_compare = { resource = energy  value > 9 }
-	resource_income_compare = { resource = minerals  value > 18 }
 }
 can_afford_t2_factory = {
-	resource_stockpile_compare = {
-		resource = minerals
-		value >= @b2_minerals
+	owner = {
+		resource_stockpile_compare = {
+			resource = minerals
+			value >= @b2_minerals
+		}
+		resource_stockpile_compare = {
+			resource = rare_crystals
+			value >= @b2_rare_cost
+		}
+		resource_stockpile_compare = {
+			resource = alloys
+			value >= @factoryalloycost
+		}
+		resource_income_compare = { resource = rare_crystals  value > @b2_rare_upkeep }
+		resource_income_compare = { resource = energy  value > 9 }
+		resource_income_compare = { resource = minerals  value > 18 }
 	}
-	resource_stockpile_compare = {
-		resource = rare_crystals
-		value >= @b2_rare_cost
-	}
-	resource_stockpile_compare = {
-		resource = alloys
-		value >= @factoryalloycost
-	}
-	resource_income_compare = { resource = rare_crystals  value > @b2_rare_upkeep }
-	resource_income_compare = { resource = energy  value > 9 }
-	resource_income_compare = { resource = minerals  value > 18 }
 }
 can_afford_t3_factory = {
-	resource_stockpile_compare = {
-		resource = minerals
-		value >= @b3_minerals
+	owner = {
+		resource_stockpile_compare = {
+			resource = minerals
+			value >= @b3_minerals
+		}
+		resource_stockpile_compare = {
+			resource = rare_crystals
+			value >= @b3_rare_cost
+		}
+		resource_stockpile_compare = {
+			resource = alloys
+			value >= @factoryalloycost
+		}
+		resource_income_compare = { resource = rare_crystals  value > @b3_rare_upkeep }
+		resource_income_compare = { resource = energy  value > 9 }
+		resource_income_compare = { resource = minerals  value > 18 }
 	}
-	resource_stockpile_compare = {
-		resource = rare_crystals
-		value >= @b3_rare_cost
-	}
-	resource_stockpile_compare = {
-		resource = alloys
-		value >= @factoryalloycost
-	}
-	resource_income_compare = { resource = rare_crystals  value > @b3_rare_upkeep }
-	resource_income_compare = { resource = energy  value > 9 }
-	resource_income_compare = { resource = minerals  value > 18 }
 }
 

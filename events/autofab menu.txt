@@ -65,10 +65,12 @@ planet_event = { ###Planet Terminal
 		name = "autofab_menu.10.confirm"
 		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
 		custom_gui = "autofab_planet_menu_confirm"
-		owner = { country_event = { id = autofab_menu.1 } }
-		factory_reset_all_country_flags = yes
-		document_factory_country = yes
-		factory_set_default_queue = yes
+		owner = {
+			country_event = { id = autofab_menu.1 }
+			factory_reset_all_country_flags = yes
+			document_factory_country = yes
+			factory_set_default_queue = yes
+		}
 	}
 }
 

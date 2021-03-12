@@ -128,22 +128,30 @@ Rolled the Document Factory Edict into the new custom UI for controlling the Fac
 
 Changed the Advisor over to a custom UI, allowing far simpler navigation of topics. The content of the advisor has also been overhauled, due to how you manage the factory being overhauled.*
 
-All factory functions can now be controlled from the single Country UI, accessed by the Factory Terminal edict. It can also be accessed from planet specific Factory Terminals.*
+All factory functions can now be controlled from the single Country UI, accessed by the Factory Terminal edict. It can also be accessed from planet specific Factory Terminals.
 
-The factory terminals show how many factory deposits are in the empire/on the planet, and include how many are queued to build, and how many are currently being built.*
+The factory terminals show how many factory deposits are in the empire/on the planet, and include how many are queued to build, and how many are currently being built.
 
 Added a check for vanilla swapping, so it doesn't convert buildings if there are no district slots left.
 
 Included support for ringworld districts.*
 
+Added triggered modifiers to deposits to change production for Hives.*
+
+Converted separate deposits for Habitats into triggered modifiers on the normal deposits.
+
+Factory module costs now follow the district costs of the planet they are being built on. No longer will Ecu factories cost just as much as a factory on a normal planet.
+
+The initial Autofab deposit now costs the same as building a normal factory module. This results in a 50% increase in cost.
+
 Retooling has been redone so it works with the new queue system.
 
-Added more triggered modifiers to cancel out broken technician modifiers that are inherited.*
+Added more triggered modifiers to cancel out OP technician modifiers that are inherited.
 
 Added a button to open the Country Factory Terminal in the bottom left of the screen.*
 
 Included triggers to prepare for allowing anyone to use the factory, leaving the origin to have a head start on it.
 
-The Planet UI includes an option to block the primary Autofab being built by Automation or the Queue on that planet.*
+The Planet UI includes an option to block the primary Autofab being built by Automation or the Queue on that planet.
 
 The Country UI has an option to block the primary Autofab from being built by Automation or the Queue.

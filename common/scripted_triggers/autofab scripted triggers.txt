@@ -27,6 +27,7 @@ has_supported_district_set = {
 	uses_district_set = city_world
 	uses_district_set = hive_world
 	uses_district_set = machine_world
+	uses_district_set = ring_world
 }
 
 has_energy_available = {
