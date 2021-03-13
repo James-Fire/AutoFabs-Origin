@@ -180,6 +180,7 @@ document_factory_country = {
 	every_owned_planet = {
 		document_factory_planet = yes
 		PREV = {
+			change_variable = { which = autofabs_available value = PREV }
 			change_variable = { which = autofabs value = PREV }
 			change_variable = { which = autofab_farm value = PREV }
 			change_variable = { which = autofab_mine value = PREV }
@@ -413,7 +414,7 @@ document_factory_planet = {
 						is_deposit_type = autofab_factory
 					}
 				}
-				ROOT = {
+				PREV = {
 					change_variable = { which = autofab_factory_available value = 1 }
 				}
 			}
@@ -433,7 +434,7 @@ document_factory_planet = {
 							is_deposit_type = autofab_factory
 						}
 					}
-					ROOT = {
+					PREV = {
 						change_variable = { which = autofab_factory_available value = 1 }
 					}
 				}
@@ -451,7 +452,7 @@ document_factory_planet = {
 						is_deposit_type = autofab_foundry
 					}
 				}
-				ROOT = {
+				PREV = {
 					change_variable = { which = autofab_foundry_available value = 1 }
 				}
 			}
@@ -471,7 +472,7 @@ document_factory_planet = {
 							is_deposit_type = autofab_foundry
 						}
 					}
-					ROOT = {
+					PREV = {
 						change_variable = { which = autofab_foundry_available value = 1 }
 					}
 				}

@@ -31,15 +31,39 @@ event = {
 			random_list = {
 				10 = {
 					country_event = { id = autofab_queue.10 days = 5 }
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Queue 5 day delay for [This.GetName]"
+					}
 				}
 				10 = {
 					country_event = { id = autofab_queue.10 days = 95 }
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Queue 95 day delay for [This.GetName]"
+					}
 				}
 				10 = {
 					country_event = { id = autofab_queue.10 days = 185 }
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Queue 185 day delay for [This.GetName]"
+					}
 				}
 				10 = {
 					country_event = { id = autofab_queue.10 days = 275 }
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Queue 275 day delay for [This.GetName]"
+					}
 				}
 			}
 		}
@@ -120,6 +144,12 @@ country_event = {
 							is_energy_colony = yes
 							has_supported_district_set = yes
 						}
+						if = {
+							limit = {
+								has_global_flag = autofab_logging
+							}
+							log = "Autofab Autofab Queue found planet [This.GetName] for [PREV.GetName]"
+						}
 						planet_event = { id = autofab_queue.4 days = -1 } #Autofab
 					}
 				}
@@ -153,6 +183,12 @@ country_event = {
 							is_mining_colony = yes
 							has_supported_district_set = yes
 						}
+						if = {
+							limit = {
+								has_global_flag = autofab_logging
+							}
+							log = "Autofab Autofab Queue found planet [This.GetName] for [PREV.GetName]"
+						}
 						planet_event = { id = autofab_queue.4 days = -1 } #Autofab
 					}
 				}
@@ -171,6 +207,12 @@ country_event = {
 								has_planet_flag = factory_autofab_construction_off
 							}
 							has_supported_district_set = yes
+						}
+						if = {
+							limit = {
+								has_global_flag = autofab_logging
+							}
+							log = "Autofab Autofab Queue found planet [This.GetName] for [PREV.GetName]"
 						}
 						planet_event = { id = autofab_queue.4 days = -1 } #Autofab
 					}
@@ -526,8 +568,15 @@ country_event = {
 							is_energy_colony = yes
 						}
 					}
-					AND = {
-						has_country_flag = factory_fallback
+					OR = {
+						AND = {
+							has_country_flag = factory_fallback
+							any_owned_planet = {
+								can_afford_district = yes
+								can_expand_factory = yes
+								NOT = { has_planet_flag = factory_fallback_off }
+							}
+						}	
 						any_owned_planet = {
 							can_afford_district = yes
 							can_expand_factory = yes
@@ -536,6 +585,7 @@ country_event = {
 					}
 				}
 			}
+			log = "Autofab Energy Queue check for planets for [This.GetName]"
 			if = {
 				limit = {
 					any_owned_planet = {
@@ -550,6 +600,12 @@ country_event = {
 						can_expand_factory = yes
 						is_energy_colony = yes
 					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Energy Queue found planet [This.GetName] for [PREV.GetName]"
+					}
 					planet_event = { id = autofab_queue.20 days = -1 } #Energy
 				}
 			}
@@ -562,6 +618,12 @@ country_event = {
 							ROOT = { has_country_flag = factory_fallback }
 							has_planet_flag = factory_fallback
 						}
+					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Energy Queue found planet [This.GetName] for [PREV.GetName]"
 					}
 					planet_event = { id = autofab_queue.20 days = -1 } #Energy
 				}
@@ -587,14 +649,19 @@ country_event = {
 							is_mining_colony = yes
 						}
 					}
-					AND = {
-						OR = {
+					OR = {
+						AND = {
 							has_country_flag = factory_fallback
 							any_owned_planet = {
 								can_afford_district = yes
 								can_expand_factory = yes
-								has_planet_flag = factory_fallback
+								NOT = { has_planet_flag = factory_fallback_off }
 							}
+						}	
+						any_owned_planet = {
+							can_afford_district = yes
+							can_expand_factory = yes
+							has_planet_flag = factory_fallback
 						}
 					}
 				}
@@ -611,6 +678,12 @@ country_event = {
 						can_expand_factory = yes
 						is_mining_colony = yes
 					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Mineral Queue found planet [This.GetName] for [PREV.GetName]"
+					}
 					planet_event = { id = autofab_queue.22 days = -1 } #Minerals
 				}
 			}
@@ -622,6 +695,12 @@ country_event = {
 							ROOT = { has_country_flag = factory_fallback }
 							has_planet_flag = factory_fallback
 						}
+					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Mineral Queue found planet [This.GetName] for [PREV.GetName]"
 					}
 					planet_event = { id = autofab_queue.22 days = -1 } #Minerals
 				}
@@ -647,14 +726,19 @@ country_event = {
 							is_farming_colony = yes
 						}
 					}
-					AND = {
-						OR = {
+					OR = {
+						AND = {
 							has_country_flag = factory_fallback
 							any_owned_planet = {
 								can_afford_district = yes
 								can_expand_factory = yes
-								has_planet_flag = factory_fallback
+								NOT = { has_planet_flag = factory_fallback_off }
 							}
+						}	
+						any_owned_planet = {
+							can_afford_district = yes
+							can_expand_factory = yes
+							has_planet_flag = factory_fallback
 						}
 					}
 				}
@@ -671,6 +755,12 @@ country_event = {
 						can_expand_factory = yes
 						is_farming_colony = yes
 					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Food Queue found planet [This.GetName] for [PREV.GetName]"
+					}
 					planet_event = { id = autofab_queue.24 days = -1 } #Food
 				}
 			}
@@ -682,6 +772,12 @@ country_event = {
 							ROOT = { has_country_flag = factory_fallback }
 							has_planet_flag = factory_fallback
 						}
+					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Food Queue found planet [This.GetName] for [PREV.GetName]"
 					}
 					planet_event = { id = autofab_queue.24 days = -1 } #Food
 				}
@@ -748,6 +844,12 @@ country_event = {
 					limit = {
 						can_upgrade_foundry = yes
 					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Alloys Queue found planet [This.GetName] for [PREV.GetName]"
+					}
 					planet_event = { id = autofab_queue.38 days = -1 } #Alloys
 				}
 			}
@@ -763,6 +865,12 @@ country_event = {
 						can_expand_factory = yes
 						is_alloys_colony = yes
 					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Alloys Queue found planet [This.GetName] for [PREV.GetName]"
+					}
 					planet_event = { id = autofab_queue.26 days = -1 } #Food
 				}
 			}
@@ -774,6 +882,12 @@ country_event = {
 							ROOT = { has_country_flag = factory_fallback }
 							has_planet_flag = factory_fallback
 						}
+					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Alloys Queue found planet [This.GetName] for [PREV.GetName]"
 					}
 					planet_event = { id = autofab_queue.26 days = -1 } #Alloys
 				}
@@ -842,6 +956,12 @@ country_event = {
 						can_upgrade_factory = yes
 						is_congood_colony = yes
 					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Consumer Goods Queue found planet [This.GetName] for [PREV.GetName]"
+					}
 					planet_event = { id = autofab_queue.40 days = -1 } #ConGoods
 				}
 			}
@@ -854,6 +974,12 @@ country_event = {
 				random_owned_planet = {
 					limit = {
 						can_upgrade_factory = yes
+					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Consumer Goods Queue found planet [This.GetName] for [PREV.GetName]"
 					}
 					planet_event = { id = autofab_queue.40 days = -1 } #ConGoods
 				}
@@ -869,6 +995,12 @@ country_event = {
 					limit = {
 						can_expand_factory = yes
 						is_congood_colony = yes
+					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Consumer Goods Queue found planet [This.GetName] for [PREV.GetName]"
 					}
 					planet_event = { id = autofab_queue.28 days = -1 } #ConGoods
 				}
@@ -881,6 +1013,12 @@ country_event = {
 							ROOT = { has_country_flag = factory_fallback }
 							has_planet_flag = factory_fallback
 						}
+					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Consumer Goods Queue found planet [This.GetName] for [PREV.GetName]"
 					}
 					planet_event = { id = autofab_queue.28 days = -1 } #ConGoods
 				}
@@ -906,13 +1044,19 @@ country_event = {
 							is_refinery_colony = yes
 						}
 					}
-					AND = {
-						OR = {
+					OR = {
+						AND = {
 							has_country_flag = factory_fallback
 							any_owned_planet = {
+								can_afford_district = yes
 								can_expand_factory = yes
-								has_planet_flag = factory_fallback
+								NOT = { has_planet_flag = factory_fallback_off }
 							}
+						}	
+						any_owned_planet = {
+							can_afford_district = yes
+							can_expand_factory = yes
+							has_planet_flag = factory_fallback
 						}
 					}
 				}
@@ -929,6 +1073,12 @@ country_event = {
 						can_expand_factory = yes
 						is_refinery_colony = yes
 					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Motes Queue found planet [This.GetName] for [PREV.GetName]"
+					}
 					planet_event = { id = autofab_queue.30 days = -1 } #Motes
 				}
 			}
@@ -940,6 +1090,12 @@ country_event = {
 							ROOT = { has_country_flag = factory_fallback }
 							has_planet_flag = factory_fallback
 						}
+					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Motes Queue found planet [This.GetName] for [PREV.GetName]"
 					}
 					planet_event = { id = autofab_queue.30 days = -1 } #Motes
 				}
@@ -965,13 +1121,19 @@ country_event = {
 							is_refinery_colony = yes
 						}
 					}
-					AND = {
-						OR = {
+					OR = {
+						AND = {
 							has_country_flag = factory_fallback
 							any_owned_planet = {
+								can_afford_district = yes
 								can_expand_factory = yes
-								has_planet_flag = factory_fallback
+								NOT = { has_planet_flag = factory_fallback_off }
 							}
+						}	
+						any_owned_planet = {
+							can_afford_district = yes
+							can_expand_factory = yes
+							has_planet_flag = factory_fallback
 						}
 					}
 				}
@@ -988,6 +1150,12 @@ country_event = {
 						can_expand_factory = yes
 						is_refinery_colony = yes
 					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Gases Queue found planet [This.GetName] for [PREV.GetName]"
+					}
 					planet_event = { id = autofab_queue.32 days = -1 } #Gases
 				}
 			}
@@ -999,6 +1167,12 @@ country_event = {
 							ROOT = { has_country_flag = factory_fallback }
 							has_planet_flag = factory_fallback
 						}
+					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Gases Queue found planet [This.GetName] for [PREV.GetName]"
 					}
 					planet_event = { id = autofab_queue.32 days = -1 } #Gases
 				}
@@ -1024,13 +1198,19 @@ country_event = {
 							is_refinery_colony = yes
 						}
 					}
-					AND = {
-						OR = {
+					OR = {
+						AND = {
 							has_country_flag = factory_fallback
 							any_owned_planet = {
+								can_afford_district = yes
 								can_expand_factory = yes
-								has_planet_flag = factory_fallback
+								NOT = { has_planet_flag = factory_fallback_off }
 							}
+						}	
+						any_owned_planet = {
+							can_afford_district = yes
+							can_expand_factory = yes
+							has_planet_flag = factory_fallback
 						}
 					}
 				}
@@ -1047,6 +1227,12 @@ country_event = {
 						can_expand_factory = yes
 						is_refinery_colony = yes
 					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Crystals Queue found planet [This.GetName] for [PREV.GetName]"
+					}
 					planet_event = { id = autofab_queue.34 days = -1 } #Crystals
 				}
 			}
@@ -1058,6 +1244,12 @@ country_event = {
 							ROOT = { has_country_flag = factory_fallback }
 							has_planet_flag = factory_fallback
 						}
+					}
+					if = {
+						limit = {
+							has_global_flag = autofab_logging
+						}
+						log = "Autofab Crystals Queue found planet [This.GetName] for [PREV.GetName]"
 					}
 					planet_event = { id = autofab_queue.34 days = -1 } #Crystals
 				}
@@ -1084,6 +1276,12 @@ country_event = {
 				limit = {
 					can_expand_factory = yes
 					has_rare_resource_deposit = yes
+				}
+				if = {
+					limit = {
+						has_global_flag = autofab_logging
+					}
+					log = "Autofab Extractor Queue found planet [This.GetName] for [PREV.GetName]"
 				}
 				planet_event = { id = autofab_queue.36 days = -1 } #Extractor
 			}

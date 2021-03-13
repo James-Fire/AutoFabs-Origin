@@ -58,16 +58,29 @@ country_event = {
 		set_variable = { which = country_food_need value = 0 }
 		set_variable = { which = country_energy_need value = 0 }
 		set_variable = { which = autofab_auto_planets_debug value = autofab_auto_planets }
-		log = "[This.autofab_auto_planets] planet(s) with automation"
+		if = {
+			limit = {
+				has_global_flag = autofab_logging
+			}
+			log = "[This.autofab_auto_planets] planet(s) with automation for [This.GetName]"
+		}
+		
 	}
 	
 	#Automation Counting Logic
 	after = {
-		country_energy_check = yes
-		country_food_check = yes
-		country_minerals_check = yes
-		country_consumer_goods_check = yes
-		country_event = { id = autofab_automation.1001 days = 1 }
+		if = {
+			limit = {
+				any_owned_planet = {
+					automation_active = yes
+				}
+			}
+			country_energy_check = yes
+			country_food_check = yes
+			country_minerals_check = yes
+			country_consumer_goods_check = yes
+			country_event = { id = autofab_automation.1001 days = 1 }
+		}
 	}
 }
 
@@ -105,7 +118,12 @@ country_event = {
 					automation_active = yes
 				}
 			}
-			log = "Building Logic Fired for [This.GetName]"
+			if = {
+				limit = {
+					has_global_flag = autofab_logging
+				}
+				log = "Building Logic Fired for [This.GetName]"
+			}
 			while = {
 				limit = {
 					check_variable = { which = country_energy_need value > 0 }
