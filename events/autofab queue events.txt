@@ -11,15 +11,23 @@ event = {
 				is_ai = no
 				can_use_autofab = yes
 				has_queue = yes
-				any_owned_planet = {
-					can_expand_factory = yes
-					has_queue = yes
-				}
-				any_owned_planet = {
-					can_expand_factory = yes
+				OR = {
+					any_owned_planet = {
+						can_expand_factory = yes
+						has_queue = yes
+					}
+					any_owned_planet = {
+						can_expand_factory = yes
+					}
 				}
 			}
-			document_factory = yes
+			document_factory_country = yes
+			if = {
+				limit = {
+					has_global_flag = autofab_logging
+				}
+				log = "Autofab Queue for [This.GetName]"
+			}
 			random_list = {
 				10 = {
 					country_event = { id = autofab_queue.10 days = 5 }
@@ -68,9 +76,12 @@ country_event = {
 		while = {
 			limit = {
 				has_country_flag = factory_autofab_construction_on
-				check_variable = { which = autofab_queue value > 0 }
-				can_afford_autofab = yes
+				OR = {
+					check_variable = { which = autofab_queue value > 0 }
+					is_ai = yes
+				}
 				any_owned_planet = {
+					can_afford_autofab = yes
 					NOT = {
 						has_planet_flag = has_autofab
 						has_planet_flag = factory_autofab_construction_off
@@ -324,11 +335,23 @@ country_event = {
 				has_country_flag = factory_autofab_construction_on
 				check_variable = { which = autofabs_queue value > 0 }
 			}
+			if = {
+				limit = {
+					has_global_flag = autofab_logging
+				}
+				log = "Autofab has Autofab Queue for [This.GetName]"
+			}
 			country_event = { id = autofab_queue.3 days = -1 }
 		}
 		if = {
 			limit = {
 				check_variable = { which = autofab_energy_queue value > 0 }
+			}
+			if = {
+				limit = {
+					has_global_flag = autofab_logging
+				}
+				log = "Autofab has Energy Queue for [This.GetName]"
 			}
 			country_event = { id = autofab_queue.11 days = -1 }
 		}
@@ -336,11 +359,23 @@ country_event = {
 			limit = {
 				check_variable = { which = autofab_mineral_queue value > 0 }
 			}
+			if = {
+				limit = {
+					has_global_flag = autofab_logging
+				}
+				log = "Autofab has Minerals Queue for [This.GetName]"
+			}
 			country_event = { id = autofab_queue.12 days = -1 }
 		}
 		if = {
 			limit = {
 				check_variable = { which = autofab_food_queue value > 0 }
+			}
+			if = {
+				limit = {
+					has_global_flag = autofab_logging
+				}
+				log = "Autofab has Food Queue for [This.GetName]"
 			}
 			country_event = { id = autofab_queue.13 days = -1 }
 		}
@@ -348,11 +383,23 @@ country_event = {
 			limit = {
 				check_variable = { which = autofab_alloys_queue value > 0 }
 			}
+			if = {
+				limit = {
+					has_global_flag = autofab_logging
+				}
+				log = "Autofab has Alloys Queue for [This.GetName]"
+			}
 			country_event = { id = autofab_queue.14 days = -1 }
 		}
 		if = {
 			limit = {
 				check_variable = { which = autofab_congoods_queue value > 0 }
+			}
+			if = {
+				limit = {
+					has_global_flag = autofab_logging
+				}
+				log = "Autofab has Consumer Goods Queue for [This.GetName]"
 			}
 			country_event = { id = autofab_queue.15 days = -1 }
 		}
@@ -360,11 +407,23 @@ country_event = {
 			limit = {
 				check_variable = { which = autofab_motes_queue value > 0 }
 			}
+			if = {
+				limit = {
+					has_global_flag = autofab_logging
+				}
+				log = "Autofab has Chemical Queue for [This.GetName]"
+			}
 			country_event = { id = autofab_queue.16 days = -1 }
 		}
 		if = {
 			limit = {
 				check_variable = { which = autofab_gases_queue value > 0 }
+			}
+			if = {
+				limit = {
+					has_global_flag = autofab_logging
+				}
+				log = "Autofab has Refinery Queue for [This.GetName]"
 			}
 			country_event = { id = autofab_queue.17 days = -1 }
 		}
@@ -372,11 +431,23 @@ country_event = {
 			limit = {
 				check_variable = { which = autofab_crystals_queue value > 0 }
 			}
+			if = {
+				limit = {
+					has_global_flag = autofab_logging
+				}
+				log = "Autofab has Translucer Queue for [This.GetName]"
+			}
 			country_event = { id = autofab_queue.18 days = -1 }
 		}
 		if = {
 			limit = {
 				check_variable = { which = autofab_extractor_queue value > 0 }
+			}
+			if = {
+				limit = {
+					has_global_flag = autofab_logging
+				}
+				log = "Autofab has Extractor Queue for [This.GetName]"
 			}
 			country_event = { id = autofab_queue.19 days = -1 }
 		}
@@ -447,10 +518,10 @@ country_event = {
 		while = {
 			limit = {
 				check_variable = { which = autofab_energy_queue value > 0 }
-				can_afford_district = yes
 				OR = {
 					AND = {
 						any_owned_planet = {
+							can_afford_district = yes
 							can_expand_factory = yes
 							is_energy_colony = yes
 						}
@@ -458,6 +529,7 @@ country_event = {
 					AND = {
 						has_country_flag = factory_fallback
 						any_owned_planet = {
+							can_afford_district = yes
 							can_expand_factory = yes
 							has_planet_flag = factory_fallback
 						}
@@ -467,12 +539,14 @@ country_event = {
 			if = {
 				limit = {
 					any_owned_planet = {
+						can_afford_district = yes
 						can_expand_factory = yes
 						is_energy_colony = yes
 					}
 				}
 				random_owned_planet = {
 					limit = {
+						can_afford_district = yes
 						can_expand_factory = yes
 						is_energy_colony = yes
 					}
@@ -482,6 +556,7 @@ country_event = {
 			else = {
 				random_owned_planet = {
 					limit = {
+						can_afford_district = yes
 						can_expand_factory = yes
 						OR = {
 							ROOT = { has_country_flag = factory_fallback }
@@ -504,10 +579,10 @@ country_event = {
 		while = {
 			limit = {
 				check_variable = { which = autofab_mineral_queue value > 0 }
-				can_afford_district = yes
 				OR = {
 					AND = {
 						any_owned_planet = {
+							can_afford_district = yes
 							can_expand_factory = yes
 							is_mining_colony = yes
 						}
@@ -516,6 +591,7 @@ country_event = {
 						OR = {
 							has_country_flag = factory_fallback
 							any_owned_planet = {
+								can_afford_district = yes
 								can_expand_factory = yes
 								has_planet_flag = factory_fallback
 							}
@@ -563,10 +639,10 @@ country_event = {
 		while = {
 			limit = {
 				check_variable = { which = autofab_food_queue value > 0 }
-				can_afford_district = yes
 				OR = {
 					AND = {
 						any_owned_planet = {
+							can_afford_district = yes
 							can_expand_factory = yes
 							is_farming_colony = yes
 						}
@@ -575,6 +651,7 @@ country_event = {
 						OR = {
 							has_country_flag = factory_fallback
 							any_owned_planet = {
+								can_afford_district = yes
 								can_expand_factory = yes
 								has_planet_flag = factory_fallback
 							}

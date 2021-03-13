@@ -18,9 +18,12 @@ decision_manage_autofab = {
 
 	effect = {
 		custom_tooltip = "Manage the Automatic Factory"
+		hidden_effect = {
+			document_factory_planet = yes
+			factory_reset_all_planet_flags = yes
+			factory_set_default_queue_planet = yes
+		}
 		planet_event = { id = autofab_menu.10 }
-		factory_reset_all_planet_flags = yes
-		factory_set_default_queue_planet = yes
 	}
 	
 	ai_weight = {

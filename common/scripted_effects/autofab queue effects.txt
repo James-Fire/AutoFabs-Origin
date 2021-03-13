@@ -470,18 +470,8 @@ start_autofab_power_retool = {
 	owner = { change_variable = { which = autofab_energy_queue value = 1 } }
 }
 retool_autofab_power = {
-	if = {
-		limit = {
-			is_planet_class = pc_habitat
-			has_planet_flag = energy_habitat
-		}
-		remove_deposit = autofab_power_habitat
-		change_variable = { which = autofab_power_habitat value = -1 }
-	}
-	else = {
-		remove_deposit = autofab_power
-		change_variable = { which = autofab_power value = -1 }
-	}
+	remove_deposit = autofab_power
+	change_variable = { which = autofab_power value = -1 }
 	remove_planet_flag = factory_expanding
 	retooling_bonus = yes
 }
@@ -494,18 +484,8 @@ start_autofab_mine_retool = {
 	owner = { change_variable = { which = autofab_mineral_queue value = 1 } }
 }
 retool_autofab_mine = {
-	if = {
-		limit = {
-			is_planet_class = pc_habitat
-			has_planet_flag = mining_habitat
-		}
-		remove_deposit = autofab_mine_habitat
-		change_variable = { which = autofab_mine_habitat value = -1 }
-	}
-	else = {
-		remove_deposit = autofab_mine
-		change_variable = { which = autofab_mine value = -1 }
-	}
+	remove_deposit = autofab_mine
+	change_variable = { which = autofab_mine value = -1 }
 	remove_planet_flag = factory_expanding
 	retooling_bonus = yes
 }

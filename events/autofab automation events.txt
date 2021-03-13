@@ -110,6 +110,7 @@ country_event = {
 				limit = {
 					check_variable = { which = country_energy_need value > 0 }
 					any_owned_planet = {
+						can_afford_district = yes
 						has_energy_available = yes
 						can_expand_factory = yes
 						automation_active = yes
@@ -119,7 +120,6 @@ country_event = {
 							is_energy_colony = yes
 						}
 					}
-					can_afford_district = yes
 				}
 				if = {
 					limit = {
@@ -169,6 +169,7 @@ country_event = {
 					check_variable = { which = country_food_need value > 0 }
 					food_building_upkeep_check = yes
 					any_owned_planet = {
+						can_afford_district = yes
 						automation_active = yes
 						has_food_available = yes
 						can_expand_factory = yes
@@ -178,7 +179,6 @@ country_event = {
 							is_farming_colony = yes
 						}
 					}
-					can_afford_district = yes
 				}
 				if = {
 					limit = {
@@ -227,6 +227,7 @@ country_event = {
 					check_variable = { which = country_minerals_need value > 0 }
 					minerals_building_upkeep_check = yes
 					any_owned_planet = {
+						can_afford_district = yes
 						automation_active = yes
 						has_minerals_available = yes
 						can_expand_factory = yes
@@ -236,7 +237,6 @@ country_event = {
 							is_mining_colony = yes
 						}
 					}
-					can_afford_district = yes
 				}
 				if = {
 					limit = {

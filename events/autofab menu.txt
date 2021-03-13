@@ -65,11 +65,15 @@ planet_event = { ###Planet Terminal
 		name = "autofab_menu.10.confirm"
 		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
 		custom_gui = "autofab_planet_menu_confirm"
+		hidden_effect = {
+			owner = {
+				factory_reset_all_country_flags = yes
+				document_factory_country = yes
+				factory_set_default_queue = yes
+			}
+		}
 		owner = {
 			country_event = { id = autofab_menu.1 }
-			factory_reset_all_country_flags = yes
-			document_factory_country = yes
-			factory_set_default_queue = yes
 		}
 	}
 }
@@ -120,10 +124,18 @@ country_event = { ###Advisor
 		remove_country_flag = easter_egg
 	}
 	option = {
-		name = ""
+		name = "autofab.4.name"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_advisor_confirm"
+		response_text = autofab.4.desc
+		is_dialog_only = yes
+		remove_country_flag = easter_egg
+	}
+	option = {
+		name = "autofab_easter"
 		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
 		custom_gui = "easter_egg_text"
-		response_text = autofab.4.desc
+		response_text = autofab_easter.desc
 		is_dialog_only = yes
 		set_country_flag = easter_egg
 	}

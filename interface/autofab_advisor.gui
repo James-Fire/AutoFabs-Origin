@@ -28,7 +28,7 @@ guiTypes = {
 		buttonType = {
 			name = "option_button"
 			quadTextureSprite = "GFX_blank_menu_button_bg" 
-			position = { x=15 y=-480 }
+			position = { x=15 y=-500 }
 			font = "large_title_font_28"
 			text = "Your Advisor is in another Castle"
 		}
@@ -70,33 +70,6 @@ guiTypes = {
 				position = { x = -6 y = -5000 }
 				alwaysTransparent = yes
 			}
-		}
-		effectButtonType = {
-			name = "easter_egg_on"
-			position = { x = 0 y = 625 }
-			spriteType = "GFX_blank_menu_button_bg"
-			no_clicksound = yes
-			font = "large_title_font_28"
-			text = ""
-			effect = "hidden_button_on"
-		}
-		effectButtonType = {
-			name = "easter_egg_off"
-			position = { x = 0 y = 625 }
-			spriteType = "GFX_blank_menu_button_bg"
-			no_clicksound = yes
-			font = "large_title_font_28"
-			text = ""
-			effect = "hidden_button_off"
-		}
-		effectButtonType = {
-			name = "easter_egg_off_2"
-			position = { x = 0 y = 68 }
-			spriteType = "GFX_blank_menu_button_bg"
-			no_clicksound = yes
-			font = "large_title_font_28"
-			text = ""
-			effect = "hidden_button_off"
 		}
 		iconType = {
             name = "advisor_image"

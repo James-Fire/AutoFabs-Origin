@@ -199,8 +199,8 @@
      autofab.2.name:0 "Factory Queue"
      autofab.2.desc:0 "$autofab.2.desc_1$ \n\n$autofab.2.desc_2$ \n\n$autofab.2.desc_3$ \n\n$autofab.2.desc_4$ \n\n$autofab.2.desc_5$"
      autofab.2.desc_1:0 "The Factory Queue is a script-based application of user-input build orders, placing constructions in locations based on a set of triggers. It is capable of building and dismantling Factory Deposits."
-     autofab.2.desc_2:0 ""
-     autofab.2.desc_3:0 ""
+     autofab.2.desc_2:0 "In both the Planet and Country Terminal, you have controls to increase or decrease the queue, which is then utilized by this script every 3 months to build factory modules on Factory planets that don't have a construction going on."
+     autofab.2.desc_3:0 "The Queue applies constructions from all of one Factory module first, and then moves on to the next one in the list. This order is the same order of the modules in the Terminal."
      autofab.2.desc_4:0 ""
      autofab.2.desc_5:0 ""
      
@@ -208,7 +208,7 @@
      autofab.3.desc:0 "$autofab.3.desc_1$ \n\n$autofab.3.desc_2$ \n\n$autofab.3.desc_3$ \n\n$autofab.3.desc_4$ \n\n$autofab.3.desc_5$"
      autofab.3.desc_1:0 "There are two Terminals available to control the Factory. The Planet Terminal is for local planetary control, and is accessed by a decision on any planet you own. The Country Terminal allows high level control of all factories in your Empire, and is triggered by either the edict, or can be accessed from the Planet Terminal."
      autofab.3.desc_2:0 "The options available in these Terminals allow control of how the Factory expands. Options selected on a planet override those selected for the Country, allowing you to have fine grain control over what can be built where."
-     autofab.3.desc_3:0 ""
+     autofab.3.desc_3:0 "The queue buttons here change the queue values, and can be adjusted to provide anywhere from 1-5 queue. Country and Planet queues are separate, with the planet queue being used first."
      autofab.3.desc_3:0 ""
      autofab.3.desc_4:0 ""
      autofab.3.desc_5:0 ""
@@ -228,7 +228,7 @@
      autofab_know:0 "I do not need advising right now."
      autofab_end:0 "Close"
      Ok:0 "Ok"
-     
+     autofab_easter:0 ""
      
      
      
@@ -251,7 +251,7 @@
      autofab_menu.1.confirm:0 "Open the Advisor"
      
      
-     autofab.4.desc:0 ""
+     autofab_easter.desc:0 ""
      
      Terminal_greeting:0 "This is the Country-wide Factory Control Terminal. From here, you can make high level changes to how our Factories operate."
     

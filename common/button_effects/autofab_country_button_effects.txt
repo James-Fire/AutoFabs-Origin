@@ -4,6 +4,19 @@ blank_effect = {
 	effect = { }
 }
 
+open_manager = {
+	potential = { hidden_trigger = { always = yes } }
+	allow = { hidden_trigger = { always = yes } }
+	effect = {
+		country_event = { id = autofab_menu.1 }
+		hidden_effect = {
+			factory_reset_all_country_flags = yes
+			document_factory_country = yes
+			factory_set_default_queue = yes
+		}
+	}
+}
+
 hidden_button_on = {
 	potential = { NOT = { has_country_flag = easter_egg } }
 	allow = { hidden_trigger = { always = yes } }

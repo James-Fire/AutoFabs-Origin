@@ -124,23 +124,9 @@ advanced_resource_swap = {
 	}
 }
 
-reset_variables = {
+reset_variables = {	
 	set_variable = { which = autofabs value = 0 }
-	set_variable = { which = autofab_farm value = 0 }
-	set_variable = { which = autofab_mine value = 0 }
-	set_variable = { which = autofab_power value = 0 }
-	set_variable = { which = autofab_foundry value = 0 }
-	set_variable = { which = autofab_foundry_2 value = 0 }
-	set_variable = { which = autofab_foundry_3 value = 0 }
-	set_variable = { which = autofab_farm value = 0 }
-	set_variable = { which = autofab_factory value = 0 }
-	set_variable = { which = autofab_factory_2 value = 0 }
-	set_variable = { which = autofab_factory_3 value = 0 }
-	set_variable = { which = autofab_refinery value = 0 }
-	set_variable = { which = autofab_chemical value = 0 }
-	set_variable = { which = autofab_translucer value = 0 }
 	set_variable = { which = autofab_extractor value = 0 }
-	
 	set_variable = { which = autofab_distrcits_queued value = 0 }
 	set_variable = { which = autofabs_available value = 0 }
 	set_variable = { which = autofab_districts_available value = 0 }
@@ -174,7 +160,58 @@ reset_variables = {
 	set_variable = { which = autofab_gases_building value = 0 }
 	set_variable = { which = autofab_crystals_building value = 0 }
 	set_variable = { which = autofab_extractor_building value = 0 }
-	
+}
+#Country Scope
+document_factory_country = {
+	reset_variables = yes
+	set_variable = { which = autofab_farm value = 0 }
+	set_variable = { which = autofab_mine value = 0 }
+	set_variable = { which = autofab_power value = 0 }
+	set_variable = { which = autofab_foundry value = 0 }
+	set_variable = { which = autofab_foundry_2 value = 0 }
+	set_variable = { which = autofab_foundry_3 value = 0 }
+	set_variable = { which = autofab_farm value = 0 }
+	set_variable = { which = autofab_factory value = 0 }
+	set_variable = { which = autofab_factory_2 value = 0 }
+	set_variable = { which = autofab_factory_3 value = 0 }
+	set_variable = { which = autofab_refinery value = 0 }
+	set_variable = { which = autofab_chemical value = 0 }
+	set_variable = { which = autofab_translucer value = 0 }
+	every_owned_planet = {
+		document_factory_planet = yes
+		PREV = {
+			change_variable = { which = autofabs value = PREV }
+			change_variable = { which = autofab_farm value = PREV }
+			change_variable = { which = autofab_mine value = PREV }
+			change_variable = { which = autofab_power value = PREV }
+			change_variable = { which = autofab_foundry value = PREV }
+			change_variable = { which = autofab_foundry_2 value = PREV }
+			change_variable = { which = autofab_foundry_3 value = PREV }
+			change_variable = { which = autofab_foundry value = autofab_foundry_2 }
+			change_variable = { which = autofab_foundry value = autofab_foundry_3 }
+			change_variable = { which = autofab_factory value = PREV }
+			change_variable = { which = autofab_factory_2 value = PREV }
+			change_variable = { which = autofab_factory_3 value = PREV }
+			change_variable = { which = autofab_factory value = autofab_factory_2 }
+			change_variable = { which = autofab_factory value = autofab_factory_3 }
+			change_variable = { which = autofab_refinery value = PREV }
+			change_variable = { which = autofab_chemical value = PREV }
+			change_variable = { which = autofab_translucer value = PREV }
+			change_variable = { which = autofab_extractor value = PREV }
+			change_variable = { which = autofab_distrcits_queued value = PREV }
+			change_variable = { which = autofab_districts_available value = PREV }
+			
+			change_variable = { which = autofab_energy_avail value = PREV }
+			change_variable = { which = autofab_minerals_avail value = PREV }
+			change_variable = { which = autofab_food_avail value = PREV }
+			change_variable = { which = autofab_foundry_available value = PREV }
+			change_variable = { which = autofab_factory_available value = PREV }
+			change_variable = { which = autofab_motes_available value = PREV }
+			change_variable = { which = autofab_gases_available value = PREV }
+			change_variable = { which = autofab_crystals_available value = PREV }
+			change_variable = { which = autofab_extractor_avail value = PREV }
+		}
+	}
 	change_variable = { which = autofab_distrcits_queued value = autofab_energy_queue }
 	change_variable = { which = autofab_distrcits_queued value = autofab_mineral_queue }
 	change_variable = { which = autofab_distrcits_queued value = autofab_food_queue }
@@ -184,40 +221,129 @@ reset_variables = {
 	change_variable = { which = autofab_distrcits_queued value = autofab_gases_queue }
 	change_variable = { which = autofab_distrcits_queued value = autofab_crystals_queue }
 	change_variable = { which = autofab_distrcits_queued value = autofab_extractor_queue }
-}
+	
+	change_variable = { which = autofab_distrcits_queued value = autofab_energy_building }
+	change_variable = { which = autofab_distrcits_queued value = autofab_mineral_building }
+	change_variable = { which = autofab_distrcits_queued value = autofab_food_building }
+	change_variable = { which = autofab_distrcits_queued value = autofab_alloys_building }
+	change_variable = { which = autofab_distrcits_queued value = autofab_congoods_building }
+	change_variable = { which = autofab_distrcits_queued value = autofab_motes_building }
+	change_variable = { which = autofab_distrcits_queued value = autofab_gases_building }
+	change_variable = { which = autofab_distrcits_queued value = autofab_crystals_building }
+	change_variable = { which = autofab_distrcits_queued value = autofab_extractor_building }
+	subtract_variable = { which = autofab_districts_available value = autofab_distrcits_queued }	
+	
+	subtract_variable = { which = autofabs_available value = autofabs_queued }
 
-document_factory_country = {
 }
+#Planet Scope
 document_factory_planet = {
-
-}
-
-#Country Scope
-document_factory = {
 	reset_variables = yes
-	every_owned_planet = {
+	if = {
 		limit = {
 			has_planet_flag = building_autofab
 		}
-		ROOT = {
-			change_variable = { which = autofabs_building value = 1 }
-		}
+		change_variable = { which = autofabs_building value = 1 }
 	}
-	every_owned_planet = {
+	else_if = {
 		limit = {
 			NOT = {
 				has_planet_flag = has_autofab
 				has_planet_flag = building_autofab
 			}
 		}
-		ROOT = {
-			change_variable = { which = autofabs_available value = 1 }
-		}
+		change_variable = { which = autofabs_available value = 1 }
 	}
-	every_owned_planet = {
+	else_if = {
 		limit = {
 			has_planet_flag = has_autofab
 		}
+		change_variable = { which = autofabs value = 1 }
+		if = {
+			limit = {
+				has_planet_flag = has_autofab_extractor
+			}
+			ROOT = {
+				change_variable = { which = autofab_extractor value = 1 }
+			}
+		}
+		if = {
+			limit = {
+				has_rare_resource_deposit = yes
+				NOT = {
+					has_planet_flag = has_autofab_extractor
+				}
+			}
+			ROOT = {
+				change_variable = { which = autofab_extractor_avail value = 1 }
+			}
+		}
+		if = {
+			limit = {
+				has_planet_flag = factory_expanding
+			}
+			switch = {
+				trigger = has_planet_flag 
+				factory_retooling_generator = {
+					change_variable = { which = autofab_energy_building value = -1 }
+				}
+				factory_retooling_mine = {
+					change_variable = { which = autofab_minerals_building value = -1 }
+				}
+				factory_retooling_farm = {
+					change_variable = { which = autofab_food_building value = -1 }
+				}
+				factory_retooling_foundry = {
+					change_variable = { which = autofab_alloys_building value = -1 }
+				}
+				factory_retooling_factory = {
+					change_variable = { which = autofab_congoods_building value = -1 }
+				}
+				factory_retooling_refinery = {
+					change_variable = { which = autofab_gases_building value = -1 }
+				}
+				factory_retooling_chemical = {
+					change_variable = { which = autofab_motes_building value = -1 }
+				}
+				factory_retooling_translucer = {
+					change_variable = { which = autofab_crystals_building value = -1 }
+				}
+				factory_retooling_extractor = {
+					change_variable = { which = autofab_extractor_building value = -1 }
+				}
+			}
+			switch = {
+				trigger = has_planet_flag 
+				factory_building_generator = {
+					change_variable = { which = autofab_energy_building value = 1 }
+				}
+				factory_building_mine = {
+					change_variable = { which = autofab_minerals_building value = 1 }
+				}
+				factory_building_farm = {
+					change_variable = { which = autofab_food_building value = 1 }
+				}
+				factory_building_foundry = {
+					change_variable = { which = autofab_alloys_building value = 1 }
+				}
+				factory_building_factory = {
+					change_variable = { which = autofab_congoods_building value = 1 }
+				}
+				factory_building_refinery = {
+					change_variable = { which = autofab_gases_building value = 1 }
+				}
+				factory_building_chemical = {
+					change_variable = { which = autofab_motes_building value = 1 }
+				}
+				factory_building_translucer = {
+					change_variable = { which = autofab_crystals_building value = 1 }
+				}
+				factory_building_extractor = {
+					change_variable = { which = autofab_extractor_building value = 1 }
+				}
+			}
+		}
+		
 		while = {
 			count = 100
 			limit = {
@@ -227,16 +353,14 @@ document_factory = {
 			add_district = district_generator
 			change_variable = { which = autofab_energy_avail value = 1 }
 		}
-		ROOT = {
-			change_variable = { which = autofab_energy_avail value = PREV }
-		}
+		set_variable = { which = autofab_energy_avail_temp value = autofab_energy_avail }
 		while = {
 			count = 100
 			limit = {
-				check_variable = { which = autofab_energy_avail value > 0 }
+				check_variable = { which = autofab_energy_avail_temp value > 0 }
 			}
 			remove_district = district_generator
-			change_variable = { which = autofab_energy_avail value = -1 }
+			change_variable = { which = autofab_energy_avail_temp value = -1 }
 		}
 		reset_district_counts = yes
 		while = {
@@ -248,16 +372,14 @@ document_factory = {
 			add_district = district_mining
 			change_variable = { which = autofab_minerals_avail value = 1 }
 		}
-		ROOT = {
-			change_variable = { which = autofab_minerals_avail value = PREV }
-		}
+		set_variable = { which = autofab_minerals_avail_temp value = autofab_minerals_avail }
 		while = {
 			count = 100
 			limit = {
-				check_variable = { which = autofab_minerals_avail value > 0 }
+				check_variable = { which = autofab_minerals_avail_temp value > 0 }
 			}
 			remove_district = district_mining
-			change_variable = { which = autofab_minerals_avail value = -1 }
+			change_variable = { which = autofab_minerals_avail_temp value = -1 }
 		}
 		reset_district_counts = yes
 		while = {
@@ -269,16 +391,14 @@ document_factory = {
 			add_district = district_farming
 			change_variable = { which = autofab_food_avail value = 1 }
 		}
-		ROOT = {
-			change_variable = { which = autofab_food_avail value = PREV }
-		}
+		set_variable = { which = autofab_food_avail_temp value = autofab_food_avail }
 		while = {
 			count = 100
 			limit = {
-				check_variable = { which = autofab_food_avail value > 0 }
+				check_variable = { which = autofab_food_avail_temp value > 0 }
 			}
 			remove_district = district_farming
-			change_variable = { which = autofab_food_avail value = -1 }
+			change_variable = { which = autofab_food_avail_temp value = -1 }
 		}
 		reset_district_counts = yes
 		if = {
@@ -357,107 +477,24 @@ document_factory = {
 				}
 			}
 		}
-		if = {
+		while = {
+			count = 100
 			limit = {
-				has_planet_flag = factory_expanding
+				free_district_slots >= 1
 			}
-			switch = {
-				trigger = has_planet_flag 
-				factory_retooling_generator = {
-					ROOT = {
-						change_variable = { which = autofab_energy_building value = -1 }
-					}
-				}
-				factory_retooling_mine = {
-					ROOT = {
-						change_variable = { which = autofab_minerals_building value = -1 }
-					}
-				}
-				factory_retooling_farm = {
-					ROOT = {
-						change_variable = { which = autofab_food_building value = -1 }
-					}
-				}
-				factory_retooling_foundry = {
-					ROOT = {
-						change_variable = { which = autofab_alloys_building value = -1 }
-					}
-				}
-				factory_retooling_factory = {
-					ROOT = {
-						change_variable = { which = autofab_congoods_building value = -1 }
-					}
-				}
-				factory_retooling_refinery = {
-					ROOT = {
-						change_variable = { which = autofab_gases_building value = -1 }
-					}
-				}
-				factory_retooling_chemical = {
-					ROOT = {
-						change_variable = { which = autofab_motes_building value = -1 }
-					}
-				}
-				factory_retooling_translucer = {
-					ROOT = {
-						change_variable = { which = autofab_crystals_building value = -1 }
-					}
-				}
-				factory_retooling_extractor = {
-					ROOT = {
-						change_variable = { which = autofab_extractor_building value = -1 }
-					}
-				}
-			}
-			switch = {
-				trigger = has_planet_flag 
-				factory_building_generator = {
-					ROOT = {
-						change_variable = { which = autofab_energy_building value = 1 }
-					}
-				}
-				factory_building_mine = {
-					ROOT = {
-						change_variable = { which = autofab_minerals_building value = 1 }
-					}
-				}
-				factory_building_farm = {
-					ROOT = {
-						change_variable = { which = autofab_food_building value = 1 }
-					}
-				}
-				factory_building_foundry = {
-					ROOT = {
-						change_variable = { which = autofab_alloys_building value = 1 }
-					}
-				}
-				factory_building_factory = {
-					ROOT = {
-						change_variable = { which = autofab_congoods_building value = 1 }
-					}
-				}
-				factory_building_refinery = {
-					ROOT = {
-						change_variable = { which = autofab_gases_building value = 1 }
-					}
-				}
-				factory_building_chemical = {
-					ROOT = {
-						change_variable = { which = autofab_motes_building value = 1 }
-					}
-				}
-				factory_building_translucer = {
-					ROOT = {
-						change_variable = { which = autofab_crystals_building value = 1 }
-					}
-				}
-				factory_building_extractor = {
-					ROOT = {
-						change_variable = { which = autofab_extractor_building value = 1 }
-					}
-				}
-			}
+			add_district = district_city
+			change_variable = { which = autofab_districts_available value = 1 }
 		}
+		set_variable = { which = autofab_districts_available_temp value = autofab_districts_available }
+		while = {
+			count = 100
+			limit = {
+				check_variable = { which = autofab_districts_available_temp value > 0 }
+			}
+			remove_district = district_city
+			change_variable = { which = autofab_districts_available_temp value = -1 }
+		}
+		
 		change_variable = { which = autofab_distrcits_queued value = autofab_energy_queue }
 		change_variable = { which = autofab_distrcits_queued value = autofab_mineral_queue }
 		change_variable = { which = autofab_distrcits_queued value = autofab_food_queue }
@@ -467,111 +504,14 @@ document_factory = {
 		change_variable = { which = autofab_distrcits_queued value = autofab_gases_queue }
 		change_variable = { which = autofab_distrcits_queued value = autofab_crystals_queue }
 		change_variable = { which = autofab_distrcits_queued value = autofab_extractor_queue }
-		subtract_variable = { which = autofab_districts_available value = autofab_energy_queue }
-		subtract_variable = { which = autofab_districts_available value = autofab_mineral_queue }
-		subtract_variable = { which = autofab_districts_available value = autofab_food_queue }
-		subtract_variable = { which = autofab_districts_available value = autofab_alloys_queue }
-		subtract_variable = { which = autofab_districts_available value = autofab_congoods_queue }
-		subtract_variable = { which = autofab_districts_available value = autofab_motes_queue }
-		subtract_variable = { which = autofab_districts_available value = autofab_gases_queue }
-		subtract_variable = { which = autofab_districts_available value = autofab_crystals_queue }
-		subtract_variable = { which = autofab_districts_available value = autofab_extractor_queue }
-		ROOT = {
-			change_variable = { which = autofabs value = 1 }
-			change_variable = { which = autofab_farm value = PREV }
-			change_variable = { which = autofab_mine value = PREV }
-			change_variable = { which = autofab_power value = PREV }
-			change_variable = { which = autofab_foundry value = PREV }
-			change_variable = { which = autofab_foundry_2 value = PREV }
-			change_variable = { which = autofab_foundry_3 value = PREV }
-			change_variable = { which = autofab_foundry value = autofab_foundry_2 }
-			change_variable = { which = autofab_foundry value = autofab_foundry_3 }
-			change_variable = { which = autofab_factory value = PREV }
-			change_variable = { which = autofab_factory_2 value = PREV }
-			change_variable = { which = autofab_factory_3 value = PREV }
-			change_variable = { which = autofab_factory value = autofab_factory_2 }
-			change_variable = { which = autofab_factory value = autofab_factory_3 }
-			change_variable = { which = autofab_refinery value = PREV }
-			change_variable = { which = autofab_chemical value = PREV }
-			change_variable = { which = autofab_translucer value = PREV }
-			change_variable = { which = autofab_distrcits_queued value = PREV }
-		}
-		set_variable = { which = autofab_districts_available value = 0 }
-		while = {
-			count = 100
-			limit = {
-				free_district_slots > 0
-			}
-			add_district = district_city
-			change_variable = { which = autofab_districts_available value = 1 }
-		}
-		ROOT = {
-			change_variable = { which = autofab_districts_available value = PREV }
-		}
-		while = {
-			count = 100
-			limit = {
-				check_variable = { which = autofab_districts_available value > 0 }
-			}
-			remove_district = district_city
-		}
-		if = {
-			limit = {
-				has_planet_flag = has_autofab_extractor
-			}
-			ROOT = {
-				change_variable = { which = autofab_extractor value = 1 }
-			}
-		}
-		if = {
-			limit = {
-				has_rare_resource_deposit = yes
-				NOT = {
-					has_planet_flag = has_autofab_extractor
-				}
-			}
-			ROOT = {
-				change_variable = { which = autofab_extractor_avail value = 1 }
-			}
-		}
-		#if = {
-		#	limit = {
-		#		free_district_slots > 0
-		#	}
-		#	ROOT = {
-		#		change_variable = { which = autofab_planet_districts value = 1 }
-		#	}
-		#}
+		subtract_variable = { which = autofab_districts_available value = autofab_distrcits_queued }
+	
+		change_variable = { which = autofab_motes_available value = autofab_districts_available }
+		change_variable = { which = autofab_gases_available value = autofab_districts_available }
+		change_variable = { which = autofab_crystals_available value = autofab_districts_available }
+		change_variable = { which = autofab_foundry_available value = autofab_districts_available }
+		change_variable = { which = autofab_factory_available value = autofab_districts_available }
 	}
-	change_variable = { which = autofab_distrcits_queued value = autofab_energy_queue }
-	change_variable = { which = autofab_distrcits_queued value = autofab_mineral_queue }
-	change_variable = { which = autofab_distrcits_queued value = autofab_food_queue }
-	change_variable = { which = autofab_distrcits_queued value = autofab_alloys_queue }
-	change_variable = { which = autofab_distrcits_queued value = autofab_congoods_queue }
-	change_variable = { which = autofab_distrcits_queued value = autofab_motes_queue }
-	change_variable = { which = autofab_distrcits_queued value = autofab_gases_queue }
-	change_variable = { which = autofab_distrcits_queued value = autofab_crystals_queue }
-	change_variable = { which = autofab_distrcits_queued value = autofab_extractor_queue }
-	
-	change_variable = { which = autofab_distrcits_queued value = autofab_energy_building }
-	change_variable = { which = autofab_distrcits_queued value = autofab_mineral_building }
-	change_variable = { which = autofab_distrcits_queued value = autofab_food_building }
-	change_variable = { which = autofab_distrcits_queued value = autofab_alloys_building }
-	change_variable = { which = autofab_distrcits_queued value = autofab_congoods_building }
-	change_variable = { which = autofab_distrcits_queued value = autofab_motes_building }
-	change_variable = { which = autofab_distrcits_queued value = autofab_gases_building }
-	change_variable = { which = autofab_distrcits_queued value = autofab_crystals_building }
-	change_variable = { which = autofab_distrcits_queued value = autofab_extractor_building }
-	subtract_variable = { which = autofab_districts_available value = autofab_distrcits_queued }
-	
-	change_variable = { which = autofab_motes_available value = autofab_districts_available }
-	change_variable = { which = autofab_gases_available value = autofab_districts_available }
-	change_variable = { which = autofab_crystals_available value = autofab_districts_available }
-	change_variable = { which = autofab_foundry_available value = autofab_districts_available }
-	change_variable = { which = autofab_factory_available value = autofab_districts_available }
-	
-	
-	subtract_variable = { which = autofabs_available value = autofabs_queued }
 }
 
 reset_district_counts = {
@@ -592,8 +532,6 @@ reset_factory_part_1 = {
 	set_variable = { which = autofab_farm_temp value = autofab_farm }
 	set_variable = { which = autofab_mine_temp value = autofab_mine }
 	set_variable = { which = autofab_power_temp value = autofab_power }
-	set_variable = { which = autofab_mine_habitat_temp value = autofab_mine_habitat }
-	set_variable = { which = autofab_power_habitat_temp value = autofab_power_habitat }
 	set_variable = { which = autofab_foundry_temp value = autofab_foundry }
 	set_variable = { which = autofab_foundry_temp_2 value = autofab_foundry_2 }
 	set_variable = { which = autofab_foundry_temp_3 value = autofab_foundry_3 }
@@ -642,8 +580,6 @@ reset_factory_part_2 = {
 				is_deposit_type = autofab_gases_refinery
 				is_deposit_type = autofab_motes_refinery
 				is_deposit_type = autofab_crystals_refinery
-				is_deposit_type = autofab_mine_habitat
-				is_deposit_type = autofab_power_habitat
 			}
 		}
 		remove_deposit = yes
@@ -675,20 +611,6 @@ reset_factory_part_3 = {
 		}
 		add_deposit = autofab_power
 		change_variable = { which = autofab_power_temp value = -1 }
-	}
-	while = {
-		limit = {
-			check_variable = { which = autofab_mine_habitat_temp value > 0 }
-		}
-		add_deposit = autofab_mine_habitat
-		change_variable = { which = autofab_mine_habitat_temp value = -1 }
-	}
-	while = {
-		limit = {
-			check_variable = { which = autofab_power_habitat_temp value > 0 }
-		}
-		add_deposit = autofab_power_habitat
-		change_variable = { which = autofab_power_habitat_temp value = -1 }
 	}
 	while = {
 		limit = {
@@ -752,19 +674,5 @@ reset_factory_part_3 = {
 		}
 		add_deposit = autofab_crystals_refinery
 		change_variable = { which = autofab_translucer_temp value = -1 }
-	}
-	while = {
-		limit = {
-			check_variable = { which = autofab_mine_habitat_temp value > 0 }
-		}
-		add_deposit = autofab_mine_habitat
-		change_variable = { which = autofab_mine_habitat_temp value = -1 }
-	}
-	while = {
-		limit = {
-			check_variable = { which = autofab_power_habitat_temp value > 0 }
-		}
-		add_deposit = autofab_power_habitat
-		change_variable = { which = autofab_power_habitat_temp value = -1 }
 	}
 }

@@ -109,11 +109,9 @@ has_rare_resource_deposit = {
 
 has_energy_factory = {
 	has_deposit = autofab_power
-	has_deposit = autofab_power_habitat
 }
 has_minerals_factory = {
 	has_deposit = autofab_mine
-	has_deposit = autofab_mine_habitat
 }
 has_food_factory = {
 	has_deposit = autofab_farm
