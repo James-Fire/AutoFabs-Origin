@@ -1331,10 +1331,9 @@ guiTypes = {
 					}
 					effectButtonType = {
 						name = "autofab_manage"
-						position = { x = 96 y = 73 }
+						position = { x = 96 y = 72 }
 						spriteType = "GFX_autofab_planet_dongs"
 						no_clicksound = yes
-						scale = 0.95
 						font = "large_title_font_28"
 						text = ""
 						effect = "open_planet_manager"
