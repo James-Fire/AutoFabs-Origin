@@ -234,8 +234,7 @@ document_factory_country = {
 	change_variable = { which = autofab_distrcits_queued value = autofab_extractor_building }
 	subtract_variable = { which = autofab_districts_available value = autofab_distrcits_queued }	
 	
-	subtract_variable = { which = autofabs_available value = autofabs_queued }
-
+	subtract_variable = { which = autofabs_available value = autofab_queue }
 }
 #Planet Scope
 document_factory_planet = {

@@ -1,5 +1,5 @@
 clear_queue = {
-	set_variable = { which = autofabs_queue value = 0 }
+	set_variable = { which = autofab_queue value = 0 }
 	set_variable = { which = autofab_energy_queue value = 0 }
 	set_variable = { which = autofab_mineral_queue value = 0 }
 	set_variable = { which = autofab_food_queue value = 0 }

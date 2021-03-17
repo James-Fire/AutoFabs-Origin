@@ -432,17 +432,17 @@ planet_factory_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_queue_1
 				OR = {
-					check_variable = { which = autofabs_queue value > 0 }
+					check_variable = { which = autofab_queue value > 0 }
 					check_variable = { which = autofabs value > 0 }
 				}
 			}
 			AND = {
 				has_planet_flag = factory_queue_2
 				OR = {
-					check_variable = { which = autofabs_queue value > 1 }
+					check_variable = { which = autofab_queue value > 1 }
 					check_variable = { which = autofabs value > 1 }
 					AND = {
-						check_variable = { which = autofabs_queue value > 0 }
+						check_variable = { which = autofab_queue value > 0 }
 						check_variable = { which = autofabs value > 0 }
 					}
 				}
@@ -450,14 +450,14 @@ planet_factory_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_queue_3
 				OR = {
-					check_variable = { which = autofabs_queue value > 2 }
+					check_variable = { which = autofab_queue value > 2 }
 					check_variable = { which = autofabs value > 2 }
 					AND = {
-						check_variable = { which = autofabs_queue value > 1 }
+						check_variable = { which = autofab_queue value > 1 }
 						check_variable = { which = autofabs value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 0 }
+						check_variable = { which = autofab_queue value > 0 }
 						check_variable = { which = autofabs value > 1 }
 					}
 				}
@@ -465,22 +465,22 @@ planet_factory_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_queue_4
 				OR = {
-					check_variable = { which = autofabs_queue value > 3 }
+					check_variable = { which = autofab_queue value > 3 }
 					check_variable = { which = autofabs value > 3 }
 					AND = {
-						check_variable = { which = autofabs_queue value > 1 }
+						check_variable = { which = autofab_queue value > 1 }
 						check_variable = { which = autofabs value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 1 }
+						check_variable = { which = autofab_queue value > 1 }
 						check_variable = { which = autofabs value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 2 }
+						check_variable = { which = autofab_queue value > 2 }
 						check_variable = { which = autofabs value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 0 }
+						check_variable = { which = autofab_queue value > 0 }
 						check_variable = { which = autofabs value > 2 }
 					}
 				}
@@ -488,22 +488,22 @@ planet_factory_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_queue_5
 				OR = {
-					check_variable = { which = autofabs_queue value > 4 }
+					check_variable = { which = autofab_queue value > 4 }
 					check_variable = { which = autofabs value > 4 }
 					AND = {
-						check_variable = { which = autofabs_queue value > 2 }
+						check_variable = { which = autofab_queue value > 2 }
 						check_variable = { which = autofabs value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 1 }
+						check_variable = { which = autofab_queue value > 1 }
 						check_variable = { which = autofabs value > 2 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 3 }
+						check_variable = { which = autofab_queue value > 3 }
 						check_variable = { which = autofabs value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 0 }
+						check_variable = { which = autofab_queue value > 0 }
 						check_variable = { which = autofabs value > 3 }
 					}
 				}

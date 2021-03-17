@@ -67,12 +67,12 @@ factory_fallback_on = {
 factory_autofab_construction_off = {
 	potential = { has_country_flag = factory_autofab_construction_on }
 	allow = { hidden_trigger = { always = yes } }
-	effect = { remove_country_flag = factory_autofab_construction_on set_country_flag = factory_autofab_construction_off hidden_effect = { set_variable = { which = autofabs_queue value = 0 } } }
+	effect = { remove_country_flag = factory_autofab_construction_on set_country_flag = factory_autofab_construction_off }
 }
 factory_autofab_construction_on = {
 	potential = { has_country_flag = factory_autofab_construction_off }
 	allow = { hidden_trigger = { always = yes } }
-	effect = { set_country_flag = factory_autofab_construction_on remove_country_flag = factory_autofab_construction_off }
+	effect = { set_country_flag = factory_autofab_construction_on remove_country_flag = factory_autofab_construction_off hidden_effect = { set_variable = { which = autofab_queue value = 0 } } }
 }
 
 ###Number Looping
@@ -415,17 +415,17 @@ factory_decrease_queue = {
 			AND = {
 				has_country_flag = factory_queue_1
 				OR = {
-					check_variable = { which = autofabs_queue value > 0 }
+					check_variable = { which = autofab_queue value > 0 }
 					check_variable = { which = autofabs value > 0 }
 				}
 			}
 			AND = {
 				has_country_flag = factory_queue_2
 				OR = {
-					check_variable = { which = autofabs_queue value > 1 }
+					check_variable = { which = autofab_queue value > 1 }
 					check_variable = { which = autofabs value > 1 }
 					AND = {
-						check_variable = { which = autofabs_queue value > 0 }
+						check_variable = { which = autofab_queue value > 0 }
 						check_variable = { which = autofabs value > 0 }
 					}
 				}
@@ -433,14 +433,14 @@ factory_decrease_queue = {
 			AND = {
 				has_country_flag = factory_queue_3
 				OR = {
-					check_variable = { which = autofabs_queue value > 2 }
+					check_variable = { which = autofab_queue value > 2 }
 					check_variable = { which = autofabs value > 2 }
 					AND = {
-						check_variable = { which = autofabs_queue value > 1 }
+						check_variable = { which = autofab_queue value > 1 }
 						check_variable = { which = autofabs value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 0 }
+						check_variable = { which = autofab_queue value > 0 }
 						check_variable = { which = autofabs value > 1 }
 					}
 				}
@@ -448,22 +448,22 @@ factory_decrease_queue = {
 			AND = {
 				has_country_flag = factory_queue_4
 				OR = {
-					check_variable = { which = autofabs_queue value > 3 }
+					check_variable = { which = autofab_queue value > 3 }
 					check_variable = { which = autofabs value > 3 }
 					AND = {
-						check_variable = { which = autofabs_queue value > 1 }
+						check_variable = { which = autofab_queue value > 1 }
 						check_variable = { which = autofabs value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 1 }
+						check_variable = { which = autofab_queue value > 1 }
 						check_variable = { which = autofabs value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 2 }
+						check_variable = { which = autofab_queue value > 2 }
 						check_variable = { which = autofabs value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 0 }
+						check_variable = { which = autofab_queue value > 0 }
 						check_variable = { which = autofabs value > 2 }
 					}
 				}
@@ -471,22 +471,22 @@ factory_decrease_queue = {
 			AND = {
 				has_country_flag = factory_queue_5
 				OR = {
-					check_variable = { which = autofabs_queue value > 4 }
+					check_variable = { which = autofab_queue value > 4 }
 					check_variable = { which = autofabs value > 4 }
 					AND = {
-						check_variable = { which = autofabs_queue value > 2 }
+						check_variable = { which = autofab_queue value > 2 }
 						check_variable = { which = autofabs value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 1 }
+						check_variable = { which = autofab_queue value > 1 }
 						check_variable = { which = autofabs value > 2 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 3 }
+						check_variable = { which = autofab_queue value > 3 }
 						check_variable = { which = autofabs value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofabs_queue value > 0 }
+						check_variable = { which = autofab_queue value > 0 }
 						check_variable = { which = autofabs value > 3 }
 					}
 				}

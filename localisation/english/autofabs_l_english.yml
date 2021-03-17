@@ -271,7 +271,7 @@
      
      factory_construction:0 "Factory Stats"
      
-     factory_planets:0 "£planetsize£ Current:[This.autofabs]|Queued:[This.autofabs_queue]|Available:[This.autofabs_available]"
+     factory_planets:0 "£planetsize£ Current:[This.autofabs]|Queued:[This.autofab_queue]|Available:[This.autofabs_available]"
      factory_available_space:0 "£district£ Available:[This.autofab_districts_available]|Queued:[This.autofab_distrcits_queued]"
      
      factory_construction_extender:0 "$factory_generator$\n\n$factory_mine$\n\n$factory_farm$\n\n$factory_foundry$\n\n$factory_factory$\n\n$factory_motes$\n\n$factory_gases$\n\n$factory_crystals$\n\n$factory_extractor$"
