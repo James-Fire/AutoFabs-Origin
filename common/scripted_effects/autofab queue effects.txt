@@ -232,7 +232,7 @@ start_autofab = {
 	set_planet_flag = building_autofab
 	add_modifier = { modifier = factory_expansion days = @autofab_construction_time }
 	planet_event = { id = autofab_queue.5 days = @autofab_construction_time }
-	owner = { change_variable = { which = autofab_energy_queue value = -1 } }
+	owner = { change_variable = { which = autofab_queue value = -1 } }
 }
 add_autofab = {
 	add_deposit = autofab
@@ -247,13 +247,18 @@ start_autofab_power = {
 	set_planet_flag = factory_building_generator
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
 	planet_event = { id = autofab_queue.21 days = @factory_construction_time }
-	owner = { change_variable = { which = autofab_energy_queue value = -1 } }
 }
 add_autofab_power = {
 	add_deposit = autofab_power
 	change_variable = { which = autofab_power value = 1 }
 	remove_planet_flag = factory_expanding
 	remove_planet_flag = factory_building_generator
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Generator built for [PREV.GetName] on [This.GetName]"
+	}
 }
 start_autofab_mine = {
 	pay_for_district = yes
@@ -261,13 +266,18 @@ start_autofab_mine = {
 	set_planet_flag = factory_building_mine
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
 	planet_event = { id = autofab_queue.23 days = @factory_construction_time }
-	owner = { change_variable = { which = autofab_mineral_queue value = -1 } }
 }
 add_autofab_mine = {
 	add_deposit = autofab_mine
 	change_variable = { which = autofab_mine value = 1 }
 	remove_planet_flag = factory_expanding
 	remove_planet_flag = factory_building_mine
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Mine built for [PREV.GetName] on [This.GetName]"
+	}
 }
 
 start_autofab_farm = {
@@ -276,13 +286,18 @@ start_autofab_farm = {
 	set_planet_flag = factory_building_farm
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
 	planet_event = { id = autofab_queue.25 days = @factory_construction_time }
-	owner = { change_variable = { which = autofab_food_queue value = -1 } }
 }
 add_autofab_farm = {
 	add_deposit = autofab_farm
 	change_variable = { which = autofab_farm value = 1 }
 	remove_planet_flag = factory_expanding
 	remove_planet_flag = factory_building_farm
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Farm built for [PREV.GetName] on [This.GetName]"
+	}
 }
 
 start_autofab_foundry = {
@@ -291,13 +306,18 @@ start_autofab_foundry = {
 	set_planet_flag = factory_building_foundry
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
 	planet_event = { id = autofab_queue.27 days = @factory_construction_time }
-	owner = { change_variable = { which = autofab_alloys_queue value = -1 } }
 }
 add_autofab_foundry = {
 	remove_planet_flag = factory_expanding
 	add_deposit = autofab_foundry
 	change_variable = { which = autofab_foundry value = 1 }
 	remove_planet_flag = factory_building_foundry
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Foundry built for [PREV.GetName] on [This.GetName]"
+	}
 }
 
 start_autofab_factory = {
@@ -306,13 +326,18 @@ start_autofab_factory = {
 	set_planet_flag = factory_building_factory
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
 	planet_event = { id = autofab_queue.29 days = @factory_construction_time }
-	owner = { change_variable = { which = autofab_congoods_queue value = -1 } }
 }
 add_autofab_factory = {
 	remove_planet_flag = factory_expanding
 	remove_planet_flag = factory_building_factory
 	add_deposit = autofab_factory
 	change_variable = { which = autofab_factory value = 1 }
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Factory built for [PREV.GetName] on [This.GetName]"
+	}
 }
 
 start_autofab_chemical = {
@@ -321,13 +346,18 @@ start_autofab_chemical = {
 	set_planet_flag = factory_building_chemical
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
 	planet_event = { id = autofab_queue.33 days = @factory_construction_time }
-	owner = { change_variable = { which = autofab_motes_queue value = -1 } }
 }
 add_autofab_chemical = {
 	remove_planet_flag = factory_expanding
 	remove_planet_flag = factory_building_chemical
 	add_deposit = autofab_motes_refinery
 	change_variable = { which = autofab_chemical value = 1 }
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Chemical built for [PREV.GetName] on [This.GetName]"
+	}
 }
 
 start_autofab_refinery = {
@@ -336,13 +366,18 @@ start_autofab_refinery = {
 	set_planet_flag = factory_building_refinery
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
 	planet_event = { id = autofab_queue.31 days = @factory_construction_time }
-	owner = { change_variable = { which = autofab_gases_queue value = -1 } }
 }
 add_autofab_refinery = {
 	remove_planet_flag = factory_expanding
 	remove_planet_flag = factory_building_refinery
 	add_deposit = autofab_gases_refinery
 	change_variable = { which = autofab_refinery value = 1 }
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Refinery built for [PREV.GetName] on [This.GetName]"
+	}
 }
 
 start_autofab_translucer = {
@@ -351,13 +386,18 @@ start_autofab_translucer = {
 	set_planet_flag = factory_building_translucer
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
 	planet_event = { id = autofab_queue.35 days = @factory_construction_time }
-	owner = { change_variable = { which = autofab_crystals_queue value = -1 } }
 }
 add_autofab_translucer = {
 	remove_planet_flag = factory_expanding
 	remove_planet_flag = factory_building_translucer
 	add_deposit = autofab_crystals_refinery
 	change_variable = { which = autofab_translucer value = 1 }
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Translucer built for [PREV.GetName] on [This.GetName]"
+	}
 }
 
 start_autofab_extractor = {
@@ -365,7 +405,6 @@ start_autofab_extractor = {
 	set_planet_flag = factory_building_extractor
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
 	planet_event = { id = autofab_queue.37 days = @factory_construction_time }
-	owner = { change_variable = { which = autofab_extractor_queue value = -1 } }
 }
 add_autofab_extractor = {
 	pay_for_building = yes
@@ -373,6 +412,12 @@ add_autofab_extractor = {
 	remove_planet_flag = factory_expanding
 	remove_planet_flag = factory_building_extractor
 	set_planet_flag = has_autofab_extractor
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Extractor built for [PREV.GetName] on [This.GetName]"
+	}
 }
 
 start_autofab_foundry_upgrade = {
@@ -467,12 +512,12 @@ start_autofab_power_retool = {
 	set_planet_flag = factory_retooling_generator
 	add_modifier = { modifier = factory_expansion days = @factory_retool_time }
 	planet_event = { id = autofab_queue.62 days = @factory_retool_time }
-	owner = { change_variable = { which = autofab_energy_queue value = 1 } }
 }
 retool_autofab_power = {
 	remove_deposit = autofab_power
 	change_variable = { which = autofab_power value = -1 }
 	remove_planet_flag = factory_expanding
+	remove_planet_flag = factory_retooling_generator
 	retooling_bonus = yes
 }
 
@@ -481,12 +526,12 @@ start_autofab_mine_retool = {
 	set_planet_flag = factory_retooling_mine
 	add_modifier = { modifier = factory_expansion days = @factory_retool_time }
 	planet_event = { id = autofab_queue.64 days = @factory_retool_time }
-	owner = { change_variable = { which = autofab_mineral_queue value = 1 } }
 }
 retool_autofab_mine = {
 	remove_deposit = autofab_mine
 	change_variable = { which = autofab_mine value = -1 }
 	remove_planet_flag = factory_expanding
+	remove_planet_flag = factory_retooling_mine
 	retooling_bonus = yes
 }
 
@@ -495,12 +540,12 @@ start_autofab_farm_retool = {
 	set_planet_flag = factory_retooling_farm
 	add_modifier = { modifier = factory_expansion days = @factory_retool_time }
 	planet_event = { id = autofab_queue.66 days = @factory_retool_time }
-	owner = { change_variable = { which = autofab_food_queue value = 1 } }
 }
 retool_autofab_farm = {
 	remove_deposit = autofab_farm
 	change_variable = { which = autofab_farm value = -1 }
 	remove_planet_flag = factory_expanding
+	remove_planet_flag = factory_retooling_farm
 	retooling_bonus = yes
 }
 
@@ -509,7 +554,6 @@ start_autofab_foundry_retool = {
 	set_planet_flag = factory_retooling_foundry
 	add_modifier = { modifier = factory_expansion days = @factory_retool_time }
 	planet_event = { id = autofab_queue.68 days = @factory_retool_time }
-	owner = { change_variable = { which = autofab_alloys_queue value = 1 } }
 }
 retool_autofab_foundry = {
 	if = {
@@ -544,7 +588,6 @@ start_autofab_factory_retool = {
 	set_planet_flag = factory_retooling_factory
 	add_modifier = { modifier = factory_expansion days = @factory_retool_time }
 	planet_event = { id = autofab_queue.70 days = @factory_retool_time }
-	owner = { change_variable = { which = autofab_mineral_queue value = 1 } }
 }
 retool_autofab_factory = {
 	if = {
@@ -579,10 +622,10 @@ start_autofab_refinery_retool = {
 	set_planet_flag = factory_retooling_refinery
 	add_modifier = { modifier = factory_expansion days = @factory_retool_time }
 	planet_event = { id = autofab_queue.72 days = @factory_retool_time }
-	owner = { change_variable = { which = autofab_mineral_queue value = 1 } }
 }
 retool_autofab_refinery = {
 	remove_planet_flag = factory_expanding
+	remove_planet_flag = factory_retooling_refinery
 	remove_deposit = autofab_gases_refinery
 	change_variable = { which = autofab_refinery value = -1 }
 	retooling_bonus = yes
@@ -593,10 +636,10 @@ start_autofab_chemical_retool = {
 	set_planet_flag = factory_retooling_chemical
 	add_modifier = { modifier = factory_expansion days = @factory_retool_time }
 	planet_event = { id = autofab_queue.74 days = @factory_retool_time }
-	owner = { change_variable = { which = autofab_mineral_queue value = 1 } }
 }
 retool_autofab_chemical = {
 	remove_planet_flag = factory_expanding
+	remove_planet_flag = factory_retooling_chemical
 	remove_deposit = autofab_motes_refinery
 	change_variable = { which = autofab_chemical value = -1 }
 	retooling_bonus = yes
@@ -607,10 +650,10 @@ start_autofab_translucer_retool = {
 	set_planet_flag = factory_retooling_translucer
 	add_modifier = { modifier = factory_expansion days = @factory_retool_time }
 	planet_event = { id = autofab_queue.76 days = @factory_retool_time }
-	owner = { change_variable = { which = autofab_mineral_queue value = 1 } }
 }
 retool_autofab_translucer = {
 	remove_planet_flag = factory_expanding
+	remove_planet_flag = factory_retooling_translucer
 	remove_deposit = autofab_crystals_refinery
 	change_variable = { which = autofab_translucer value = -1 }
 	retooling_bonus = yes
@@ -621,11 +664,11 @@ start_autofab_extractor_retool = {
 	set_planet_flag = factory_retooling_extractor
 	add_modifier = { modifier = factory_expansion days = @factory_retool_time }
 	planet_event = { id = autofab_queue.78 days = @factory_retool_time }
-	owner = { change_variable = { which = autofab_mineral_queue value = 1 } }
 }
 retool_autofab_extractor = {
 	remove_deposit = autofab_refinery_extractor
 	remove_planet_flag = factory_expanding
 	remove_planet_flag = has_autofab_extractor
+	remove_planet_flag = factory_retooling_extractor
 	retooling_bonus = yes
 }

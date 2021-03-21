@@ -10,14 +10,14 @@
 @factory_retool_time = 180
 @autofaballoycost = 150
 
-@Negdistrictcost = 300
-@Neghabdistrictcost = 500
-@Negcitydistrictcost = 1000
-@Negspecialdistrictcost = 300
-@Negringdistrictcost = 2000
+@Negdistrictcost = -300
+@Neghabdistrictcost = -500
+@Negcitydistrictcost = -1000
+@Negspecialdistrictcost = -300
+@Negringdistrictcost = -2000
 @Negfactoryalloycost = -50
 
-@Negautofaballoycost = 150
+@Negautofaballoycost = -150
 
 @min_maint_res = 10
 

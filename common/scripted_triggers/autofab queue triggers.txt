@@ -18,11 +18,11 @@ can_build_fallback = {
 	OR = {
 		AND = {
 			has_country_flag = factory_fallback
-			NOT = {
-				has_planet_flag = factory_fallback_off
-				has_planet_flag = factory_fallback
-			}
 			any_owned_planet = {
+				NOT = {
+					has_planet_flag = factory_fallback_off
+					has_planet_flag = factory_fallback
+				}
 				can_expand_factory = yes
 			}
 		}
@@ -61,178 +61,165 @@ can_upgrade_factory = {
 
 #Planet Scope
 can_afford_autofab = {
-	if = {
-		limit = {
+	OR = {
+		AND = {
 			uses_district_set = standard
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= @districtcost
+				}
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @districtcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @autofaballoycost
+				}
+			}
 		}
-		owner = {
-			resource_stockpile_compare = {
-				resource = energy
-				value >= @districtcost
-			}
-			resource_stockpile_compare = {
-				resource = minerals
-				value >= @districtcost
-			}
-			resource_stockpile_compare = {
-				resource = alloys
-				value >= @autofaballoycost
-			}
-		}
-	}
-	else_if = {
-		limit = {
+		AND = {
 			uses_district_set = habitat
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= @habdistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @habdistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @autofaballoycost
+				}
+			}
 		}
-		owner = {
-			resource_stockpile_compare = {
-				resource = energy
-				value >= @habdistrictcost
-			}
-			resource_stockpile_compare = {
-				resource = minerals
-				value >= @habdistrictcost
-			}
-			resource_stockpile_compare = {
-				resource = alloys
-				value >= @autofaballoycost
-			}
-		}
-	}
-	else_if = {
-		limit = {
+		AND = {
 			uses_district_set = city_world
-		}
-		owner = {
-			resource_stockpile_compare = {
-				resource = energy
-				value >= @citydistrictcost
-			}
-			resource_stockpile_compare = {
-				resource = minerals
-				value >= @citydistrictcost
-			}
-			resource_stockpile_compare = {
-				resource = alloys
-				value >= @autofaballoycost
-			}
-		}
-	}
-	else_if = {
-		limit = {
-			uses_district_set = hive_world
-			uses_district_set = machine_world
-		}
-		owner = {
-			resource_stockpile_compare = {
-				resource = energy
-				value >= @specialdistrictcost
-			}
-			resource_stockpile_compare = {
-				resource = minerals
-				value >= @specialdistrictcost
-			}
-			resource_stockpile_compare = {
-				resource = alloys
-				value >= @autofaballoycost
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= @citydistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @citydistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @autofaballoycost
+				}
 			}
 		}
-	}
-	else_if = {
-		limit = {
+		AND = {
+			OR = {
+				uses_district_set = hive_world
+				uses_district_set = machine_world
+			}
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= @specialdistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @specialdistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @autofaballoycost
+				}
+			}
+		}
+		AND = {
 			uses_district_set = ring_world
-		}
-		owner = {
-			resource_stockpile_compare = {
-				resource = energy
-				value >= @ringdistrictcost
-			}
-			resource_stockpile_compare = {
-				resource = minerals
-				value >= @ringdistrictcost
-			}
-			resource_stockpile_compare = {
-				resource = alloys
-				value >= @autofaballoycost
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= @ringdistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @ringdistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @autofaballoycost
+				}
 			}
 		}
 	}
-	
 }
 can_afford_district = {
-	if = {
-		limit = {
+	OR = {
+		AND = {
 			uses_district_set = standard
-		}
-		owner = {
-			resource_stockpile_compare = {
-				resource = minerals
-				value >= @districtcost
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @districtcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @factoryalloycost
+				}
 			}
-			resource_stockpile_compare = {
-				resource = alloys
-				value >= @factoryalloycost
-			}
 		}
-	}
-	else_if = {
-		limit = {
+		AND = {
 			uses_district_set = habitat
-		}
-		owner = {
-			resource_stockpile_compare = {
-				resource = minerals
-				value >= @habdistrictcost
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @habdistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @factoryalloycost
+				}
 			}
-			resource_stockpile_compare = {
-				resource = alloys
-				value >= @factoryalloycost
-			}
 		}
-	}
-	else_if = {
-		limit = {
+		AND = {
 			uses_district_set = city_world
-		}
-		owner = {
-			resource_stockpile_compare = {
-				resource = minerals
-				value >= @citydistrictcost
-			}
-			resource_stockpile_compare = {
-				resource = alloys
-				value >= @factoryalloycost
-			}
-		}
-	}
-	else_if = {
-		limit = {
-			uses_district_set = hive_world
-			uses_district_set = machine_world
-		}
-		owner = {
-			resource_stockpile_compare = {
-				resource = minerals
-				value >= @specialdistrictcost
-			}
-			resource_stockpile_compare = {
-				resource = alloys
-				value >= @factoryalloycost
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @citydistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @factoryalloycost
+				}
 			}
 		}
-	}
-	else_if = {
-		limit = {
+		AND = {
+			OR = {
+				uses_district_set = hive_world
+				uses_district_set = machine_world
+			}
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @specialdistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @factoryalloycost
+				}
+			}
+		}
+		AND = {
 			uses_district_set = ring_world
-		}
-		owner = {
-			resource_stockpile_compare = {
-				resource = minerals
-				value >= @ringdistrictcost
-			}
-			resource_stockpile_compare = {
-				resource = alloys
-				value >= @factoryalloycost
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @ringdistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @factoryalloycost
+				}
 			}
 		}
 	}

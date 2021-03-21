@@ -17,17 +17,19 @@ can_upgrade_autofab = {
 can_queue_factory = {
 	NOR = {
 		has_planet_flag = factory_expanding
-		has_planet_flag = autofab_automation
+		automation_active = yes
 	}
 }
 
 has_supported_district_set = {
-	uses_district_set = standard
-	uses_district_set = habitat
-	uses_district_set = city_world
-	uses_district_set = hive_world
-	uses_district_set = machine_world
-	uses_district_set = ring_world
+	OR = {
+		uses_district_set = standard
+		uses_district_set = habitat
+		uses_district_set = city_world
+		uses_district_set = hive_world
+		uses_district_set = machine_world
+		uses_district_set = ring_world
+	}
 }
 
 has_energy_available = {
@@ -117,14 +119,18 @@ has_food_factory = {
 	has_deposit = autofab_farm
 }
 has_alloys_factory = {
-	has_deposit = autofab_foundry
-	has_deposit = autofab_foundry_2
-	has_deposit = autofab_foundry_3
+	OR = {
+		has_deposit = autofab_foundry
+		has_deposit = autofab_foundry_2
+		has_deposit = autofab_foundry_3
+	}
 }
 has_congoods_factory = {
-	has_deposit = autofab_factory
-	has_deposit = autofab_factory_2
-	has_deposit = autofab_factory_3
+	OR = {
+		has_deposit = autofab_factory
+		has_deposit = autofab_factory_2
+		has_deposit = autofab_factory_3
+	}
 }
 has_motes_factory = {
 	has_deposit = autofab_motes_refinery
@@ -138,48 +144,60 @@ has_crystals_factory = {
 
 
 is_energy_colony = {
-	has_designation = col_generator
-	has_designation = col_habitat_energy
-	has_designation = col_ring_generator
-	has_designation = col_rural_gestalt
-	has_designation = col_rural
-	has_designation = col_mac
-	has_designation = col_hiv
+	OR = {
+		has_designation = col_generator
+		has_designation = col_habitat_energy
+		has_designation = col_ring_generator
+		has_designation = col_rural_gestalt
+		has_designation = col_rural
+		has_designation = col_mac
+		has_designation = col_hiv
+	}
 }
 
 is_mining_colony = {
-	has_designation = col_mining
-	has_designation = col_habitat_mining
-	has_designation = col_rural_gestalt
-	has_designation = col_rural
-	has_designation = col_mac
-	has_designation = col_hiv
+	OR = {
+		has_designation = col_mining
+		has_designation = col_habitat_mining
+		has_designation = col_rural_gestalt
+		has_designation = col_rural
+		has_designation = col_mac
+		has_designation = col_hiv
+	}
 }
 
 is_farming_colony = {
-	has_designation = col_farming
-	has_designation = col_ring_farming
-	has_designation = col_rural_gestalt
-	has_designation = col_rural
-	has_designation = col_hiv
+	OR = {
+		has_designation = col_farming
+		has_designation = col_ring_farming
+		has_designation = col_rural_gestalt
+		has_designation = col_rural
+		has_designation = col_hiv
+	}
 }
 
 is_alloys_colony = {
-	has_designation = col_foundry
-	has_designation = col_habitat_foundry
-	has_designation = col_ecu_foundry
-	has_designation = col_mac_foundry
-	has_designation = col_hiv_foundry
+	OR = {
+		has_designation = col_foundry
+		has_designation = col_habitat_foundry
+		has_designation = col_ecu_foundry
+		has_designation = col_mac_foundry
+		has_designation = col_hiv_foundry
+	}
 }
 
 is_congood_colony = {
-	has_designation = col_factory
-	has_designation = col_habitat_factory
-	has_designation = col_ecu_factory
-	has_designation = col_mac_factory
+	OR = {
+		has_designation = col_factory
+		has_designation = col_habitat_factory
+		has_designation = col_ecu_factory
+		has_designation = col_mac_factory
+	}
 }
 
 is_refinery_colony = {
-	has_designation = col_refinery
-	has_designation = col_habitat_refinery
+	OR = {
+		has_designation = col_refinery
+		has_designation = col_habitat_refinery
+	}
 }
