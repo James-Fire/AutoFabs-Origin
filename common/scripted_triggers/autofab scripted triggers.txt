@@ -1,3 +1,7 @@
+has_autofab_mod = {
+	always = no
+}
+
 can_use_autofab = {
 	has_origin = origin_autofab
 }

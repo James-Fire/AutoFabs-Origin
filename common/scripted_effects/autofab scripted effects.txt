@@ -1,3 +1,5 @@
+
+
 basic_resource_swap = {
 	while = {
 		limit = {
@@ -582,16 +584,21 @@ document_factory_planet = {
 }
 
 reset_district_counts = {
-	if = {
-		limit = {
-			has_district = district_city
+	switch = {
+		trigger = has_district_set
+		standard = {
+			if = {
+				limit = {
+					has_district = district_city
+				}
+				remove_district = district_city
+				add_district = district_city
+			}
+			else = {
+				add_district = district_city
+				remove_district = district_city
+			}
 		}
-		remove_district = district_city
-		add_district = district_city
-	}
-	else = {
-		add_district = district_city
-		remove_district = district_city
 	}
 }
 

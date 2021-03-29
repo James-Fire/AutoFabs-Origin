@@ -97,7 +97,7 @@ guiTypes = {
 			no_clicksound = yes
 			font = "large_title_font_28"
 			text = ""
-			effect = "open_manager"
+			effect = "open_autofab_manager"
 		}
 		####################
 		# Resources and Stuff

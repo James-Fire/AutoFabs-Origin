@@ -1132,6 +1132,7 @@ country_event = {
 				check_variable = { which = autofab_extractor_queue value > 0 }
 				can_afford_building = yes
 				any_owned_planet = {
+					NOT = { has_planet_flag = has_autofab_extractor }
 					has_rare_resource_deposit = yes
 				}
 			}
@@ -1144,6 +1145,7 @@ country_event = {
 			random_owned_planet = {
 				limit = {
 					can_expand_factory = yes
+					NOT = { has_planet_flag = has_autofab_extractor }
 					has_rare_resource_deposit = yes
 				}
 				if = {

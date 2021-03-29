@@ -1,5 +1,10 @@
 country_energy_check = {
-	log = "Check [This.GetName] Energy"
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Check [This.GetName] Energy"
+	}
 	if = {
 		limit = {
 			num_owned_planets > 2
@@ -62,7 +67,12 @@ country_energy_check = {
 }
 
 country_food_check = {
-	log = "Check [This.GetName] Food"
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Check [This.GetName] Food"
+	}
 	country_uses_food = yes
 	if = {
 		limit = {
@@ -139,7 +149,12 @@ country_food_check = {
 }
 
 country_minerals_check = {
-	log = "Check [This.GetName] Minerals"
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Check [This.GetName] Minerals"
+	}
 	if = {
 		limit = {
 			num_owned_planets > 4
@@ -237,7 +252,12 @@ country_minerals_check = {
 }
 
 country_consumer_goods_check = {
-	log = "Check [This.GetName] CGs"
+	if = {
+		limit = {
+			has_global_flag = autofab_logging
+		}
+		log = "Check [This.GetName] CGs"
+	}
 	country_uses_consumer_goods = yes
 	if = {
 		limit = {
