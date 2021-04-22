@@ -9,6 +9,7 @@ event = {
 		every_country = {
 			limit = {
 				can_use_autofab = yes
+				always = no
 			}
 			random_list = {
 				10 = {
@@ -43,20 +44,12 @@ country_event = {
 					has_planet_flag = factory_expanding
 				}
 				automation_active = yes
-				OR = {
-					can_expand_factory = yes
-					can_upgrade_foundry = yes
-					can_upgrade_factory = yes
-				}
+				can_expand_factory = yes
 			}
 			PREV = {
 				change_variable = { which = autofab_auto_planets value = 1 }
 			}
 		}
-		set_variable = { which = country_consumer_goods_need value = 0 }
-		set_variable = { which = country_minerals_need value = 0 }
-		set_variable = { which = country_food_need value = 0 }
-		set_variable = { which = country_energy_need value = 0 }
 		set_variable = { which = autofab_auto_planets_debug value = autofab_auto_planets }
 		if = {
 			limit = {
@@ -67,7 +60,7 @@ country_event = {
 		
 	}
 	
-	#Automation Counting Logic
+	#Automation Get Income Count
 	after = {
 		if = {
 			limit = {
@@ -75,6 +68,21 @@ country_event = {
 					automation_active = yes
 				}
 			}
+			set_variable = { which = autofabs_busy value = 0 }
+			change_variable = { which = autofabs_busy value = autofab_distrcits_building }
+			change_variable = { which = autofabs_busy value = autofab_distrcits_queued }
+			subtract_variable = { which = autofabs_busy value = autofabs }
+			if = {
+				limit = {
+					check_variable = { which = autofabs_busy value < 0 }
+				}
+				multiply_variable = { which = autofabs_busy value = -1 }
+			}
+			export_resource_income_to_variable = { resource = energy variable = autofab_energy_tracking }
+			export_resource_income_to_variable = { resource = minerals variable = autofab_minerals_tracking }
+			export_resource_income_to_variable = { resource = volatile_motes variable = autofab_volatile_motes_tracking }
+			export_resource_income_to_variable = { resource = exotic_gases variable = autofab_exotic_gases_tracking }
+			export_resource_income_to_variable = { resource = rare_crystals variable = autofab_rare_crystals_tracking }
 			country_energy_check = yes
 			country_food_check = yes
 			country_minerals_check = yes
@@ -84,20 +92,29 @@ country_event = {
 	}
 }
 
+#Automation add to queue based on income.
 country_event = {
 	id = autofab_automation.1001
 	is_triggered_only = yes
 	hide_window = yes
 	
 	immediate = {
+		while = {
+			limit = {
+				check_variable = { which = autofab_auto_planets value > 0 }
+				any_owned_planet = {
+					can_expand_factory = yes
+					owner = {
+						is_ai = yes
+					}
+					automation_active = yes
+				}
+			}
+			
+		}
 	}
 	
 	after = {
-		set_variable = { which = country_energy_need_debug value = country_energy_need }
-		set_variable = { which = country_food_need_debug value = country_food_need }
-		set_variable = { which = country_minerals_need_debug value = country_minerals_need }
-		set_variable = { which = country_consumer_goods_need_debug value = country_consumer_goods_need }
-		country_event = { id = autofab_automation.1 days = 1 }
 	}
 }
 
@@ -109,21 +126,6 @@ country_event = {
 	
 	immediate = {
 		if = {
-			limit = {
-				any_owned_planet = {
-					can_expand_factory = yes
-					owner = {
-						is_ai = yes
-					}
-					automation_active = yes
-				}
-			}
-			if = {
-				limit = {
-					has_global_flag = autofab_logging
-				}
-				log = "Building Logic Fired for [This.GetName]"
-			}
 			while = {
 				limit = {
 					check_variable = { which = country_energy_need value > 0 }

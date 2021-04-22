@@ -1,0 +1,21 @@
+ap_autofab = {
+	potential = {
+		always = yes
+	}
+
+	possible = {
+		always = yes
+	}
+
+	on_enabled = {
+		custom_tooltip = "can_use_autofab"
+	}
+
+	modifier = {
+		planet_autofab_produces_mult = 0.1
+	}
+
+	ai_weight = {
+		factor = 10
+	}
+}

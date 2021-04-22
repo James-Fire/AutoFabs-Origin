@@ -8,6 +8,19 @@ spriteTypes = {
 		texturefile = "gfx/event_pictures/origins/origin_autofab.dds"
 		alwaystransparent = yes
 	}
+	spriteType = {
+		name = "GFX_ap_autofab"
+		texturefile = "gfx/interface/icons/ascension_perks/ap_autofab.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_text_autofab_extractor"
+		textureFile = "gfx/interface/icons/text_icons/autofab_extractor.dds"
+	}
+	spriteType = {
+		name = "GFX_text_autofab_planet"
+		textureFile = "gfx/interface/icons/text_icons/autofab_planet.dds"
+	}
 	
 
 	spriteType = { name = "GFX_advisor_autofab"						texturefile = "gfx/event_pictures/custom_uis/Advisor-Room.dds" }
@@ -41,6 +54,24 @@ spriteTypes = {
 	spriteType = { name = "GFX_half_menu_button_skinny"				texturefile = "gfx/interface/menu_ui/skinny_half_button_background.dds" }
 	spriteType = { name = "GFX_blank_menu_button_skinny"			texturefile = "gfx/interface/menu_ui/blank_skinny_button_background.dds" }
 	spriteType = { name = "GFX_blank_half_menu_button_skinny"		texturefile = "gfx/interface/menu_ui/blank_skinny_half_button_background.dds" }
+	spriteType = {
+		name = "GFX_autofab_menu_swap"
+		texturefile = "gfx/interface/menu_ui/UI_menu_swap.dds"
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		animation = {
+			animationmaskfile = "gfx/interface/menu_ui/giga_menu_mask.dds"
+			animationtexturefile = "gfx/interface/icons/relics/crystal_overlay.dds"
+			animationrotation = -90.0
+			animationlooping = yes
+			animationtime = 1
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "rotating"
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+		}
+		legacy_lazy_load = no
+	}
 	spriteType = {
 		name = "GFX_giga_menu_1"
 		texturefile = "gfx/interface/menu_ui/giga_menu_1.dds"

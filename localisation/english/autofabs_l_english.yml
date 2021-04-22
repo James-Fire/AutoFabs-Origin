@@ -160,6 +160,11 @@
      origin_autofab_desc:0 "Ever since the Industrial Revolution, this species has been obsessed with increasing automation in their factories. Achieving fully automatic factories, in operation and expansion, has allowed them to greatly reduce the labour required by their species, and catapult themselves to spacefaring before the expected population levels."
      origin_tooltip_autofab_effects:0 "- $origin_autofab_tooltip_1$ \n- $origin_autofab_tooltip_2$ \n- $origin_autofab_tooltip_3$ \n- $origin_autofab_tooltip_4$"
      
+     ap_autofab:0 "Automation Revolution"
+     ap_autofab_desc:0 "Our society has progressed to the point where our population expects certain things, and is unwilling to do it themselves. Automated Factories can handle the required tasks."
+     
+     can_use_autofab:0 "Unlock the ability to build Automated Factories on your planets, reducing your reliance on labour from people and machines. \nIf you have the Origin, this gives +10% factory production instead."
+     
     #Events
      
      
@@ -190,15 +195,15 @@
      
      autofab.1.name:0 "Factory Options"
      autofab.1.desc:0 "$autofab.1.desc_1$ \n\n$autofab.1.desc_2$ \n\n$autofab.1.desc_3$ \n\n$autofab.1.desc_4$ \n\n$autofab.1.desc_5$"
-     autofab.1.desc_1:0 "General Factory Options allows you to control what the factory can and can't do, and even where. This is general info only, ther Terminal pages have more specific information for their Terminal."
+     autofab.1.desc_1:0 "General Factory Options allows you to control what the factory can and can't do, and even where. This is general info only, the Terminal page has more specific information for the Terminals."
      autofab.1.desc_2:0 "Automation toggles whether the factory decides what to build, or if it just takes orders from the Queue. The Automation page to the left has more detail about how it works."
      autofab.1.desc_3:0 "Vanilla Swapping is the ability of the Factory to convert normal buildings and districts to the Factory version. This allows you to conveniently continue using the standard construction queue to expand the Factory."
      autofab.1.desc_4:0 "Construction Fallback allows you to change how the Queue and Automation handle placement of new constructions. By default, Fallback is on, which has the Queue and Automation prefer to place constructions on a planet with a matching colony designation, but they will still build it elsewhere. If Fallback is turned off, the Queue and Automation will never place something on a colony it doesn't belong."
-     autofab.1.desc_5:0 "Autofab Construction dictates whether Automation and the Queue are allowed to place new Autofabs on planets. If this is disabled, you will be unable to Queue any. If this is disabled on a planet, one will not be bhuilt on that planet only."
+     autofab.1.desc_5:0 "Autofab Construction dictates whether Automation and the Queue are allowed to place new Autofabs on planets. If this is disabled, you will be unable to Queue any. If this is disabled on a planet, one will not be built on that planet only."
      
      autofab.2.name:0 "Factory Queue"
      autofab.2.desc:0 "$autofab.2.desc_1$ \n\n$autofab.2.desc_2$ \n\n$autofab.2.desc_3$ \n\n$autofab.2.desc_4$ \n\n$autofab.2.desc_5$"
-     autofab.2.desc_1:0 "The Factory Queue is a script-based application of user-input build orders, placing constructions in locations based on a set of triggers. It is capable of building and dismantling Factory Deposits."
+     autofab.2.desc_1:0 "The Factory Queue is a script-based application of user-input build orders, placing constructions in locations based on a set of triggers. It is capable of building Factory Deposits."
      autofab.2.desc_2:0 "In both the Planet and Country Terminal, you have controls to increase or decrease the queue, which is then utilized by this script every 3 months to build factory modules on Factory planets that don't have a construction going on."
      autofab.2.desc_3:0 "The Queue applies constructions from all of one Factory module first, and then moves on to the next one in the list. This order is the same order of the modules in the Terminal."
      autofab.2.desc_4:0 ""
@@ -271,7 +276,7 @@
      
      factory_construction:0 "Factory Stats"
      
-     factory_planets:0 "£planetsize£ Current:[This.autofabs]|Queued:[This.autofab_queue]|Available:[This.autofabs_available]"
+     factory_planets:0 "£autofab_planet£ Current:[This.autofabs]|Queued:[This.autofab_queue]|Available:[This.autofabs_available]"
      factory_available_space:0 "£district£ Available:[This.autofab_districts_available]|Building:[This.autofab_distrcits_building]|Queued:[This.autofab_distrcits_queued]"
      
      factory_construction_extender:0 "$factory_generator$\n\n$factory_mine$\n\n$factory_farm$\n\n$factory_foundry$\n\n$factory_factory$\n\n$factory_motes$\n\n$factory_gases$\n\n$factory_crystals$\n\n$factory_extractor$"
@@ -287,13 +292,13 @@
      factory_motes:0 "£volatile_motes£ Current:[This.autofab_chemical]|Building:[This.autofab_motes_building]|Queued:[This.autofab_motes_queue]|Available:[This.autofab_districts_available]"
      factory_gases:0 "£exotic_gases£ Current:[This.autofab_refinery]|Building:[This.autofab_gases_building]|Queued:[This.autofab_gases_queue]|Available:[This.autofab_districts_available]"
      factory_crystals:0 "£rare_crystals£ Current:[This.autofab_translucer]|Building:[This.autofab_crystals_building]|Queued:[This.autofab_crystals_queue]|Available:[This.autofab_districts_available]"
-     factory_extractor:0 "£volatile_motes£ £exotic_gases£ £rare_crystals£ Current:[This.autofab_extractor]|Building:[This.autofab_extractor_building]|Queued:[This.autofab_extractor_queue]|Available:[This.autofab_extractor_avail]"
+     factory_extractor:0 "£autofab_extractor£ Current:[This.autofab_extractor]|Building:[This.autofab_extractor_building]|Queued:[This.autofab_extractor_queue]|Available:[This.autofab_extractor_avail]"
      
      
      
      
      
      
-     edict_autofab_manage_desc:0 "REPLACE_ME"
-     autofab.0.name:0 "REPLACE_ME"
-     autofab.0.desc:0 "REPLACE_ME"
+     edict_autofab_manage_desc:0 ""
+     autofab.0.name:0 ""
+     autofab.0.desc:0 ""

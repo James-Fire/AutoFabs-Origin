@@ -35,8 +35,11 @@ planet_factory_automation_off = {
 }
 planet_factory_automation_country = {
 	potential = { NOR = { has_planet_flag = autofab_automation has_planet_flag = autofab_automation_off } }
-	allow = { hidden_trigger = { always = yes } }
-	effect = { set_planet_flag = autofab_automation }
+	allow = { hidden_trigger = { always = no } }
+	effect = { 
+		custom_tooltip = "Automation is not available right now."
+		set_planet_flag = autofab_automation
+	}
 }
 planet_factory_automation_on = {
 	potential = { has_planet_flag = autofab_automation }
@@ -48,6 +51,17 @@ planet_factory_vanilla_swapping_off = {
 	potential = { has_planet_flag = autofab_ignore_vanilla }
 	allow = { hidden_trigger = { always = yes } }
 	effect = { remove_planet_flag = autofab_ignore_vanilla }
+}
+factory_vanilla_swapping_fire_planet = {
+	potential = { has_planet_flag = factory_vanilla_swapping }
+	allow = { hidden_trigger = { always = yes } }
+	effect = {
+		if = {
+			limit = {
+				has_vanilla_swap_candidate = yes
+			}
+			planet_event = { id = autofab.21 }
+	}
 }
 planet_factory_vanilla_swapping_country = {
 	potential = { NOR = { has_planet_flag = factory_vanilla_swapping has_planet_flag = autofab_ignore_vanilla } }

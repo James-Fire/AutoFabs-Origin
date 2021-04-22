@@ -3,7 +3,10 @@ has_autofab_mod = {
 }
 
 can_use_autofab = {
-	has_origin = origin_autofab
+	OR = {
+		has_origin = origin_autofab
+		has_ascension_perk = ap_autofab
+	}
 }
 
 can_expand_factory = {
@@ -36,6 +39,26 @@ has_supported_district_set = {
 	}
 }
 
+has_vanilla_swap_candidate = {
+	OR = {
+		has_district = district_generator
+		has_district = district_generator_uncapped
+		has_district = district_rw_generator
+		has_district = district_hab_energy
+		has_district = district_farming
+		has_district = district_farming_uncapped
+		has_district = district_rw_farming
+		has_district = district_mining
+		has_district = district_mining_uncapped
+		has_district = district_hab_mining
+		has_district = district_industrial
+		has_district = district_rw_industrial
+		has_district = district_hab_industrial
+		has_district = district_arcology_arms_industry
+		has_district = district_arcology_civilian_industry
+	}
+}
+
 has_energy_available = {
 	OR = {
 		AND = {	
@@ -43,8 +66,11 @@ has_energy_available = {
 			num_free_districts = { type = district_generator value > 0 }
 		}
 		AND = {
-			uses_district_set = hive_world
-			uses_district_set = machine_world
+			OR = {
+				uses_district_set = hive_world
+				uses_district_set = machine_world
+				uses_district_set = ring_world
+			}
 			free_district_slots > 0
 		}
 		AND = {
@@ -79,7 +105,10 @@ has_food_available = {
 			num_free_districts = { type = district_farming value > 0 }
 		}
 		AND = {
-			uses_district_set = hive_world
+			OR = {
+				uses_district_set = hive_world
+				uses_district_set = ring_world
+			}
 			free_district_slots > 0
 		}
 	}

@@ -200,6 +200,7 @@ guiTypes = {
 				text = "factory_vanilla_swapping"
 				effect = "blank_effect"
 			}
+				effectButtonType = { name = "factory_vanilla_swapping_fire_planet" spriteType = "GFX_autofab_menu_swap" position = { x = 145 y = 75 } clicksound = interface effect = "factory_vanilla_swapping_fire_planet" }
 				effectButtonType = { name = "planet_factory_vanilla_swapping_on" spriteType = "GFX_giga_menu_enabled" position = { x = 175 y = 75 } clicksound = interface effect = "planet_factory_vanilla_swapping_off" }
 				effectButtonType = { name = "planet_factory_vanilla_swapping_country" spriteType = "GFX_autofab_menu_minus_g" position = { x = 175 y = 75 } clicksound = interface effect = "planet_factory_vanilla_swapping_country" }
 				effectButtonType = { name = "planet_factory_vanilla_swapping_off" spriteType = "GFX_giga_menu_disabled" position = { x = 175 y = 75 } clicksound = interface effect = "planet_factory_vanilla_swapping_on" }
@@ -448,7 +449,7 @@ guiTypes = {
 			name = "alien_message"
 			font = "cg_16b"
 			position = { x = 225 y = 370 }
-			maxWidth = 340
+			maxWidth = 400
 			maxHeight = 620
 			format = left
 			scrollbartype = "standardtext_slider"

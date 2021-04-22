@@ -1,7 +1,7 @@
 origin_autofab = {
 	is_origin = yes
-	icon = "gfx/interface/icons/origins/origins_mechanist.dds"
-	picture = GFX_origin_mechanist
+	icon = "gfx/interface/icons/origins/origin_autofab.dds"
+	picture = GFX_origin_autofab
 	description = "origin_tooltip_autofab_effects"
 
 	playable = {

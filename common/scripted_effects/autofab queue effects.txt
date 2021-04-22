@@ -11,7 +11,30 @@ clear_queue = {
 	set_variable = { which = autofab_extractor_queue value = 0 }
 }
 
-#Country Scope
+pay_for_swapping = {
+	export_resource_income_to_variable = { resource = alloys variable = autofab_alloys_tracking }
+	if = {
+		limit = {
+			check_variable = { which = autofab_alloys_tracking value > autofab_alloy_debt }
+		}
+		add_resource = {
+			alloys = -1
+			mult = autofab_alloy_debt
+		}
+		set_variable = { which = autofab_alloy_debt value = 0 }
+	}
+	else = {
+		change_variable = { which = autofab_alloys_tracking value = -1 }
+		round_variable = autofab_alloys_tracking
+		add_resource = {
+			alloys = -1
+			mult = autofab_alloys_tracking
+		}
+		subtract_variable = { which = autofab_alloy_debt value = autofab_alloys_tracking }
+	}
+}
+
+#Planet Scope
 pay_for_autofab = {
 	if = {
 		limit = {

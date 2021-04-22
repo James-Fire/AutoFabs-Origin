@@ -263,7 +263,7 @@ document_factory_planet = {
 	}
 	else_if = {
 		limit = {
-			NOT = {
+			NOR = {
 				has_planet_flag = has_autofab
 				has_planet_flag = building_autofab
 			}
@@ -585,7 +585,7 @@ document_factory_planet = {
 
 reset_district_counts = {
 	switch = {
-		trigger = has_district_set
+		trigger = uses_district_set
 		standard = {
 			if = {
 				limit = {
@@ -597,6 +597,108 @@ reset_district_counts = {
 			else = {
 				add_district = district_city
 				remove_district = district_city
+			}
+		}
+		hive_world = {
+			if = {
+				limit = {
+					has_district = district_hive
+				}
+				remove_district = district_hive
+				add_district = district_hive
+			}
+			else = {
+				add_district = district_hive
+				remove_district = district_hive
+			}
+		}
+		machine_world = {
+			if = {
+				limit = {
+					has_district = district_nexus
+				}
+				remove_district = district_nexus
+				add_district = district_nexus
+			}
+			else = {
+				add_district = district_nexus
+				remove_district = district_nexus
+			}
+		}
+		ring_world = {
+			if = {
+				limit = {
+					owner = { is_machine_empire = yes }
+				}
+				if = {
+					limit = {
+						has_district = district_rw_nexus
+					}
+					remove_district = district_rw_nexus
+					add_district = district_rw_nexus
+				}
+				else = {
+					add_district = district_rw_nexus
+					remove_district = district_rw_nexus
+				}
+			}
+			else_if = {
+				limit = {
+					owner = { is_regular_empire = yes }
+				}
+				if = {
+					limit = {
+						has_district = district_rw_city
+					}
+					remove_district = district_rw_city
+					add_district = district_rw_city
+				}
+				else = {
+					add_district = district_rw_city
+					remove_district = district_rw_city
+				}
+			}
+			else_if = {
+				limit = {
+					owner = { is_hive_empire = yes }
+				}
+				if = {
+					limit = {
+						has_district = district_rw_hive
+					}
+					remove_district = district_rw_hive
+					add_district = district_rw_hive
+				}
+				else = {
+					add_district = district_rw_hive
+					remove_district = district_rw_hive
+				}
+			}
+		}
+		habitat = {
+			if = {
+				limit = {
+					has_district = district_hab_housing
+				}
+				remove_district = district_hab_housing
+				add_district = district_hab_housing
+			}
+			else = {
+				add_district = district_hab_housing
+				remove_district = district_hab_housing
+			}
+		}
+		city_world = {
+			if = {
+				limit = {
+					has_district = district_arcology_housing
+				}
+				remove_district = district_arcology_housing
+				add_district = district_arcology_housing
+			}
+			else = {
+				add_district = district_arcology_housing
+				remove_district = district_arcology_housing
 			}
 		}
 	}

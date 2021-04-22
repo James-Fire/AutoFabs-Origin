@@ -242,7 +242,6 @@ country_event = {
 				remove_district = district_farming
 				change_variable = { which = autofab_mine value = 1 }
 				change_variable = { which = autofab_power value = 2 }
-				change_variable = { which = autofab_factory value = 1 }
 				if = {
 					limit = {
 						owner = {
@@ -255,6 +254,7 @@ country_event = {
 						}
 					}
 					add_deposit = autofab_factory
+					change_variable = { which = autofab_factory value = 1 }
 				}
 				while = {
 					limit = {
@@ -282,19 +282,11 @@ country_event = {
 				}
 				while = {
 					limit = {
-						has_building = building_foundry_1
+						num_districts = { type = district_industrial value > 0 }
 					}
-					remove_building = building_foundry_1
+					remove_district = district_industrial
 					add_deposit = autofab_foundry
 					change_variable = { which = autofab_foundry value = 1 }
-				}
-				while = {
-					limit = {
-						has_building = building_factory_1
-					}
-					remove_building = building_factory_1
-					add_deposit = autofab_factory
-					change_variable = { which = autofab_factory value = 1 }
 				}
 				if = {
 					limit = {
@@ -341,79 +333,286 @@ planet_event = {
 				}
 				has_planet_flag = has_autofab
 			}
-			
 			switch = {
 				trigger = last_district_changed
 				district_generator = {
 					remove_district = district_generator
 					add_deposit = autofab_power
 					change_variable = { which = autofab_power value = 1 }
-				}
-				district_farming = {
-					remove_district = district_farming
-					add_deposit = autofab_farm
-					change_variable = { which = autofab_farm value = 1 }
-				}
-				district_mining = {
-					remove_district = district_mining
-					add_deposit = autofab_mine
-					change_variable = { which = autofab_mine value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
 				}
 				district_generator_uncapped = {
 					remove_district = district_generator_uncapped
 					add_deposit = autofab_power
 					change_variable = { which = autofab_power value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_rw_generator = {
+					remove_district = district_rw_generator
+					add_deposit = autofab_power
+					change_variable = { which = autofab_power value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_hab_energy = {
+					remove_district = district_hab_energy
+					add_deposit = autofab_power
+					change_variable = { which = autofab_power value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_farming = {
+					remove_district = district_farming
+					add_deposit = autofab_farm
+					change_variable = { which = autofab_farm value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
 				}
 				district_farming_uncapped = {
 					remove_district = district_farming_uncapped
 					add_deposit = autofab_farm
 					change_variable = { which = autofab_farm value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_rw_farming = {
+					remove_district = district_rw_farming
+					add_deposit = autofab_farm
+					change_variable = { which = autofab_farm value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_mining = {
+					remove_district = district_mining
+					add_deposit = autofab_mine
+					change_variable = { which = autofab_mine value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
 				}
 				district_mining_uncapped = {
 					remove_district = district_mining_uncapped
 					add_deposit = autofab_mine
 					change_variable = { which = autofab_mine value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
 				}
-			}
-			if = {
-				limit = {	
-					free_district_slots > 0
+				district_hab_mining = {
+					remove_district = district_hab_mining
+					add_deposit = autofab_mine
+					change_variable = { which = autofab_mine value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
 				}
-				switch = {
-					trigger = last_building_changed
-					building_foundry_1 = {
-						remove_building = building_foundry_1
-						add_deposit = autofab_foundry
-						change_variable = { which = autofab_foundry value = 1 }
-					}
-					building_foundry_2 = {
-						remove_building = building_foundry_2
-						add_deposit = autofab_foundry_2
-						change_variable = { which = autofab_foundry_2 value = 1 }
-					}
-					building_foundry_3 = {
-						remove_building = building_foundry_3
-						add_deposit = autofab_foundry_3
-						change_variable = { which = autofab_foundry_3 value = 1 }
-					}
-					building_factory_1 = {
-						remove_building = building_factory_1
+				district_industrial = {
+					remove_district = district_industrial
+					if = {
+						limit = {
+							resource_income_compare = {
+								resource = consumer_goods
+								value < 10
+							}
+						}
 						add_deposit = autofab_factory
 						change_variable = { which = autofab_factory value = 1 }
+						owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
 					}
-					building_factory_2 = {
-						remove_building = building_factory_2
-						add_deposit = autofab_factory_2
-						change_variable = { which = autofab_factory_2 value = 1 }
+					else = {
+						add_deposit = autofab_foundry
+						change_variable = { which = autofab_foundry value = 1 }
+						owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
 					}
-					building_factory_3 = {
-						remove_building = building_factory_3
-						add_deposit = autofab_factory_3
-						change_variable = { which = autofab_factory_3 value = 1 }
+				}
+				district_rw_industrial = {
+					remove_district = district_rw_industrial
+					if = {
+						limit = {
+							resource_income_compare = {
+								resource = consumer_goods
+								value < 10
+							}
+						}
+						add_deposit = autofab_factory
+						change_variable = { which = autofab_factory value = 1 }
+						owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
 					}
+					else = {
+						add_deposit = autofab_foundry
+						change_variable = { which = autofab_foundry value = 1 }
+						owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+					}
+				}
+				district_hab_industrial = {
+					remove_district = district_hab_industrial
+					if = {
+						limit = {
+							resource_income_compare = {
+								resource = consumer_goods
+								value < 10
+							}
+						}
+						add_deposit = autofab_factory
+						change_variable = { which = autofab_factory value = 1 }
+						owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+					}
+					else = {
+						add_deposit = autofab_foundry
+						change_variable = { which = autofab_foundry value = 1 }
+						owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+					}
+				}
+				district_arcology_arms_industry = {
+					remove_district = district_arcology_arms_industry
+					add_deposit = autofab_foundry
+					change_variable = { which = autofab_foundry value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_arcology_civilian_industry = {
+					remove_district = district_arcology_civilian_industry
+					add_deposit = autofab_factory
+					change_variable = { which = autofab_factory value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+			}
+			owner = { pay_for_swapping = yes }
+		}
+	}
+}
+planet_event = {
+	id = autofab.21
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		while = {
+			limit = {
+				has_vanilla_swap_candidate = yes
+			}
+			switch = {
+				trigger = has_district
+				district_generator = {
+					remove_district = district_generator
+					add_deposit = autofab_power
+					change_variable = { which = autofab_power value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_generator_uncapped = {
+					remove_district = district_generator_uncapped
+					add_deposit = autofab_power
+					change_variable = { which = autofab_power value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_rw_generator = {
+					remove_district = district_rw_generator
+					add_deposit = autofab_power
+					change_variable = { which = autofab_power value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_hab_energy = {
+					remove_district = district_hab_energy
+					add_deposit = autofab_power
+					change_variable = { which = autofab_power value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_farming = {
+					remove_district = district_farming
+					add_deposit = autofab_farm
+					change_variable = { which = autofab_farm value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_farming_uncapped = {
+					remove_district = district_farming_uncapped
+					add_deposit = autofab_farm
+					change_variable = { which = autofab_farm value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_rw_farming = {
+					remove_district = district_rw_farming
+					add_deposit = autofab_farm
+					change_variable = { which = autofab_farm value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_mining = {
+					remove_district = district_mining
+					add_deposit = autofab_mine
+					change_variable = { which = autofab_mine value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_mining_uncapped = {
+					remove_district = district_mining_uncapped
+					add_deposit = autofab_mine
+					change_variable = { which = autofab_mine value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_hab_mining = {
+					remove_district = district_hab_mining
+					add_deposit = autofab_mine
+					change_variable = { which = autofab_mine value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_industrial = {
+					remove_district = district_industrial
+					if = {
+						limit = {
+							resource_income_compare = {
+								resource = consumer_goods
+								value < 10
+							}
+						}
+						add_deposit = autofab_factory
+						change_variable = { which = autofab_factory value = 1 }
+						owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+					}
+					else = {
+						add_deposit = autofab_foundry
+						change_variable = { which = autofab_foundry value = 1 }
+						owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+					}
+				}
+				district_rw_industrial = {
+					remove_district = district_rw_industrial
+					if = {
+						limit = {
+							resource_income_compare = {
+								resource = consumer_goods
+								value < 10
+							}
+						}
+						add_deposit = autofab_factory
+						change_variable = { which = autofab_factory value = 1 }
+						owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+					}
+					else = {
+						add_deposit = autofab_foundry
+						change_variable = { which = autofab_foundry value = 1 }
+						owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+					}
+				}
+				district_hab_industrial = {
+					remove_district = district_hab_industrial
+					if = {
+						limit = {
+							resource_income_compare = {
+								resource = consumer_goods
+								value < 10
+							}
+						}
+						add_deposit = autofab_factory
+						change_variable = { which = autofab_factory value = 1 }
+						owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+					}
+					else = {
+						add_deposit = autofab_foundry
+						change_variable = { which = autofab_foundry value = 1 }
+						owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+					}
+				}
+				district_arcology_arms_industry = {
+					remove_district = district_arcology_arms_industry
+					add_deposit = autofab_foundry
+					change_variable = { which = autofab_foundry value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
+				}
+				district_arcology_civilian_industry = {
+					remove_district = district_arcology_civilian_industry
+					add_deposit = autofab_factory
+					change_variable = { which = autofab_factory value = 1 }
+					owner = { change_variable = { which = autofab_alloy_debt value = @factoryalloycost } }
 				}
 			}
 		}
+		owner = { pay_for_swapping = yes }
 	}
 }
 
