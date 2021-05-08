@@ -1,0 +1,12 @@
+#Country Scope, no predefined scopes
+autofab_apply_queue = {
+	events = {
+		autofab_queue.1
+	}
+}
+#Planet Scope, no predefined scopes
+autofab_apply_queue_planet = {
+	events = {
+	
+	}
+}

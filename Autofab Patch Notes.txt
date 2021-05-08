@@ -166,7 +166,7 @@ The Factory is now afffected by the vanilla Subsidy Edicts.
 
 We have a new Workshop Image, and new Origin Icon, and a New Origin Image.
 
-Replaced raw effect dump on menu buttons with a layman's tooltip.*
+Replaced raw effect dump on menu buttons with a layman's tooltip.
 
 Fixed Vanilla Swapping to work with 3.0 stuff. It also costs alloys now, as building them directly would.
 
@@ -174,4 +174,42 @@ Added a button to both planet and Country UIs to immediately trigger Vanilla Swa
 
 Disabled Automation until I can properly implement it in 3.0.
 
-Included support for Dynamic Mod Menu.*
+Included support for Dynamic Mod Menu. It is now a required item.
+
+_________________________
+
+Buffed how much bonus production the AP gives for Origin users, up to 40%. (This is additive with other modifiers, so it might not be as good as you think.)
+
+Changed the AP to require another AP being selected already.
+
+Fixed the DMM implementation to properly open the terminal.
+
+Fixed text in the advisor saying you use a decision to build the Factory.
+
+Added Factory Costs and times to the advisor, under Factory Queue.
+
+Fixed Vanilla Swapping button messing stuff up.
+
+Added tooltips to Vanilla Swap button.
+
+Fixed the Autofab Construction option in the planet terminal blocking buttons when it is on.
+
+Fixed Planet queue not being able to build the Factory.
+
+Fixed counting of districts, so that ones being built count against available districts.
+
+_________________________
+
+Fixed a minor error in Vanilla Swapping script.
+
+Actually fixed planets being unable to build the Factory themselves.
+
+Cleaned up the error log some.
+
+_________________________
+
+Upped the minimum size for your home planet to 25, since vanilla upped normal planet sizes.
+
+Fixed loc for the AP to properly say what it actually gives.
+
+Fixed district space counting breaking stuff because Stellaris has a fit.

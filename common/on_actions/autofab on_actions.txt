@@ -8,6 +8,19 @@ on_yearly_pulse = {
 on_game_start = {
 	events = {
 		autofab.30
+		autofab_dmm.1		# New Dynamic Mod Menu support.
+	}
+}
+
+on_single_player_save_game_load = {
+	events = {
+		autofab_dmm.1		# New Dynamic Mod Menu support.
+	}
+}
+
+dmm_mod_selected = {
+	events = {
+		autofab_dmm.2		# New Dynamic Mod Menu support.
 	}
 }
 on_game_start_country = {

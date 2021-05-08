@@ -69,7 +69,7 @@ country_event = {
 				}
 			}
 			set_variable = { which = autofabs_busy value = 0 }
-			change_variable = { which = autofabs_busy value = autofab_distrcits_building }
+			change_variable = { which = autofabs_busy value = autofab_districts_building }
 			change_variable = { which = autofabs_busy value = autofab_distrcits_queued }
 			subtract_variable = { which = autofabs_busy value = autofabs }
 			if = {
@@ -631,10 +631,7 @@ country_event = {
 						AND = {
 							any_owned_planet = {
 								automation_active = yes
-								OR = {
-									can_expand_factory = yes
-									can_upgrade_foundry = yes
-								}
+								can_expand_factory = yes
 								is_alloys_colony = yes
 							}
 						}
@@ -643,30 +640,11 @@ country_event = {
 							any_owned_planet = {
 								automation_active = yes
 								has_planet_flag = factory_fallback
-								OR = {
-									can_expand_factory = yes
-									can_upgrade_foundry = yes
-								}
+								can_expand_factory = yes
 							}
 						}
 					}
-					OR = {
-						can_afford_building = yes
-						AND = {
-							can_afford_t2_foundry = yes
-							has_technology = tech_alloys_1
-							any_owned_planet = {
-								has_deposit = autofab_foundry
-							}
-						}
-						AND = {
-							can_afford_t3_foundry = yes
-							has_technology = tech_alloys_2
-							any_owned_planet = {
-								has_deposit = autofab_foundry_2
-							}
-						}
-					}
+					can_afford_district = yes
 				}
 				if = {
 					limit = {

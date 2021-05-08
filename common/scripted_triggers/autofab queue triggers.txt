@@ -33,32 +33,6 @@ can_build_fallback = {
 	}
 }
 
-can_upgrade_foundry = {
-	exists = owner
-	owner = { has_technology = tech_alloys_1 }
-	OR = {
-		has_deposit = autofab_foundry
-		AND = {
-			has_deposit = autofab_foundry_2
-			exists = owner
-			owner = { has_technology = tech_alloys_2 }
-		}
-	}
-}
-
-can_upgrade_factory = {
-	exists = owner
-	owner = { has_technology = tech_luxuries_1 }
-	OR = {
-		has_deposit = autofab_factory
-		AND = {
-			has_deposit = autofab_factory_2
-			exists = owner
-			owner = { has_technology = tech_luxuries_2 }
-		}
-	}
-}
-
 #Planet Scope
 can_afford_autofab = {
 	OR = {

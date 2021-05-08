@@ -229,9 +229,9 @@ guiTypes = {
 				text = "factory_autofab_construction"
 				effect = "blank_effect"
 			}
-				effectButtonType = { name = "planet_factory_autofab_construction_on" spriteType = "GFX_giga_menu_enabled" position = { x = 175 y = 145 } clicksound = interface effect = "planet_factory_autofab_construction_off" }
+				effectButtonType = { name = "planet_factory_autofab_construction_on" spriteType = "GFX_giga_menu_enabled" position = { x = 175 y = 145 } clicksound = interface effect = "planet_factory_autofab_construction_on" }
 				effectButtonType = { name = "planet_factory_autofab_construction_country" spriteType = "GFX_autofab_menu_minus_g" position = { x = 175 y = 145 } clicksound = interface effect = "planet_factory_autofab_construction_country" }
-				effectButtonType = { name = "planet_factory_autofab_construction_off" spriteType = "GFX_giga_menu_disabled" position = { x = 175 y = 145 } clicksound = interface effect = "planet_factory_autofab_construction_on" }
+				effectButtonType = { name = "planet_factory_autofab_construction_off" spriteType = "GFX_giga_menu_disabled" position = { x = 175 y = 145 } clicksound = interface effect = "planet_factory_autofab_construction_off" }
 		}
 		
 		containerWindowType = {

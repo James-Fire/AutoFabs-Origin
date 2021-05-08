@@ -4,7 +4,10 @@ ap_autofab = {
 	}
 
 	possible = {
-		always = yes
+		custom_tooltip = {
+			fail_text = "requires_ascension_perks_1"
+			num_ascension_perks > 0
+		}
 	}
 
 	on_enabled = {
@@ -12,7 +15,7 @@ ap_autofab = {
 	}
 
 	modifier = {
-		planet_autofab_produces_mult = 0.1
+		#planet_autofab_produces_mult = 0.1
 	}
 
 	ai_weight = {

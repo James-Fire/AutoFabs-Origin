@@ -35,10 +35,10 @@ planet_factory_automation_off = {
 }
 planet_factory_automation_country = {
 	potential = { NOR = { has_planet_flag = autofab_automation has_planet_flag = autofab_automation_off } }
-	allow = { hidden_trigger = { always = no } }
+	allow = { hidden_trigger = { always = yes } }
 	effect = { 
 		custom_tooltip = "Automation is not available right now."
-		set_planet_flag = autofab_automation
+		#set_planet_flag = autofab_automation
 	}
 }
 planet_factory_automation_on = {
@@ -47,21 +47,28 @@ planet_factory_automation_on = {
 	effect = { remove_planet_flag = autofab_automation set_planet_flag = autofab_automation_off }
 }
 
+factory_vanilla_swapping_fire_planet = {
+	potential = { NOT = { has_planet_flag = autofab_ignore_vanilla } OR = { has_planet_flag = factory_vanilla_swapping owner = { has_country_flag = factory_vanilla_swapping } } }
+	allow = {
+		custom_tooltip = "swapping_planet_tooltip"
+		hidden_trigger = { has_vanilla_swap_candidate = yes }
+	}
+	effect = {
+		custom_tooltip = "swapping_planet_effects_tooltip"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_vanilla_swap_candidate = yes
+				}
+				planet_event = { id = autofab.21 }
+			}
+		}
+	}
+}
 planet_factory_vanilla_swapping_off = {
 	potential = { has_planet_flag = autofab_ignore_vanilla }
 	allow = { hidden_trigger = { always = yes } }
 	effect = { remove_planet_flag = autofab_ignore_vanilla }
-}
-factory_vanilla_swapping_fire_planet = {
-	potential = { has_planet_flag = factory_vanilla_swapping }
-	allow = { hidden_trigger = { always = yes } }
-	effect = {
-		if = {
-			limit = {
-				has_vanilla_swap_candidate = yes
-			}
-			planet_event = { id = autofab.21 }
-	}
 }
 planet_factory_vanilla_swapping_country = {
 	potential = { NOR = { has_planet_flag = factory_vanilla_swapping has_planet_flag = autofab_ignore_vanilla } }
@@ -71,7 +78,7 @@ planet_factory_vanilla_swapping_country = {
 planet_factory_vanilla_swapping_on = {
 	potential = { has_planet_flag = factory_vanilla_swapping }
 	allow = { hidden_trigger = { always = yes } }
-	effect = { set_planet_flag = autofab_ignore_vanilla }
+	effect = { remove_planet_flag = factory_vanilla_swapping set_planet_flag = autofab_ignore_vanilla }
 }
 
 planet_factory_fallback_off = {
@@ -109,27 +116,27 @@ planet_factory_autofab_construction_on = {
 ###Number Looping
 
 planet_factory_queue_1 = {
-	potential = { has_planet_flag = factory_autofab_construction_on has_planet_flag = factory_queue_1 }
+	potential = { NOT = { has_planet_flag = factory_autofab_construction_off } OR = { has_planet_flag = factory_autofab_construction_on owner = { has_country_flag = factory_autofab_construction_on } } has_planet_flag = factory_queue_1 }
 	allow = { hidden_trigger = { always = yes } }
 	effect = { remove_planet_flag = factory_queue_1 set_planet_flag = factory_queue_2 }
 }
 planet_factory_queue_2 = {
-	potential = { has_planet_flag = factory_autofab_construction_on has_planet_flag = factory_queue_2 }
+	potential = { NOT = { has_planet_flag = factory_autofab_construction_off } OR = { has_planet_flag = factory_autofab_construction_on owner = { has_country_flag = factory_autofab_construction_on } } has_planet_flag = factory_queue_2 }
 	allow = { hidden_trigger = { always = yes } }
 	effect = { remove_planet_flag = factory_queue_2 set_planet_flag = factory_queue_3 }
 }
 planet_factory_queue_3 = {
-	potential = { has_planet_flag = factory_autofab_construction_on has_planet_flag = factory_queue_3 }
+	potential = { NOT = { has_planet_flag = factory_autofab_construction_off } OR = { has_planet_flag = factory_autofab_construction_on owner = { has_country_flag = factory_autofab_construction_on } } has_planet_flag = factory_queue_3 }
 	allow = { hidden_trigger = { always = yes } }
 	effect = { remove_planet_flag = factory_queue_3 set_planet_flag = factory_queue_4 }
 }
 planet_factory_queue_4 = {
-	potential = { has_planet_flag = factory_autofab_construction_on has_planet_flag = factory_queue_4 }
+	potential = { NOT = { has_planet_flag = factory_autofab_construction_off } OR = { has_planet_flag = factory_autofab_construction_on owner = { has_country_flag = factory_autofab_construction_on } } has_planet_flag = factory_queue_4 }
 	allow = { hidden_trigger = { always = yes } }
 	effect = { remove_planet_flag = factory_queue_4 set_planet_flag = factory_queue_5 }
 }
 planet_factory_queue_5 = {
-	potential = { has_planet_flag = factory_autofab_construction_on has_planet_flag = factory_queue_5 }
+	potential = { NOT = { has_planet_flag = factory_autofab_construction_off } OR = { has_planet_flag = factory_autofab_construction_on owner = { has_country_flag = factory_autofab_construction_on } } has_planet_flag = factory_queue_5 }
 	allow = { hidden_trigger = { always = yes } }
 	effect = { remove_planet_flag = factory_queue_5 set_planet_flag = factory_queue_1 }
 }
@@ -371,7 +378,7 @@ planet_factory_extractor_queue_5 = {
 ###Factory Queueing
 
 planet_factory_increase_queue = {
-	potential = { has_planet_flag = factory_autofab_construction_on }
+	potential = { NOT = { has_planet_flag = factory_autofab_construction_off } OR = { has_planet_flag = factory_autofab_construction_on owner = { has_country_flag = factory_autofab_construction_on } } }
 	allow = {
 		OR = {
 			AND = {
@@ -397,50 +404,53 @@ planet_factory_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_queue_1
-				check_variable = { which = autofabs_available value > 0 }
+		custom_tooltip = "factory_autofab_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_queue_1
+					check_variable = { which = autofabs_available value > 0 }
+				}
+				change_variable = { which = autofab_queue value = 1 }
+				change_variable = { which = autofabs_available value = -1 }
 			}
-			change_variable = { which = autofab_queue value = 1 }
-			change_variable = { which = autofabs_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_queue_2
-				check_variable = { which = autofabs_available value > 1 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_queue_2
+					check_variable = { which = autofabs_available value > 1 }
+				}
+				change_variable = { which = autofab_queue value = 2 }
+				change_variable = { which = autofabs_available value = -2 }
 			}
-			change_variable = { which = autofab_queue value = 2 }
-			change_variable = { which = autofabs_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_queue_3
-				check_variable = { which = autofabs_available value > 2 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_queue_3
+					check_variable = { which = autofabs_available value > 2 }
+				}
+				change_variable = { which = autofab_queue value = 3 }
+				change_variable = { which = autofabs_available value = -3 }
 			}
-			change_variable = { which = autofab_queue value = 3 }
-			change_variable = { which = autofabs_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_queue_4
-				check_variable = { which = autofabs_available value > 3 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_queue_4
+					check_variable = { which = autofabs_available value > 3 }
+				}
+				change_variable = { which = autofab_queue value = 4 }
+				change_variable = { which = autofabs_available value = -4 }
 			}
-			change_variable = { which = autofab_queue value = 4 }
-			change_variable = { which = autofabs_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_queue_5
-				check_variable = { which = autofabs_available value > 4 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_queue_5
+					check_variable = { which = autofabs_available value > 4 }
+				}
+				change_variable = { which = autofab_queue value = 5 }
+				change_variable = { which = autofabs_available value = -5 }
 			}
-			change_variable = { which = autofab_queue value = 5 }
-			change_variable = { which = autofabs_available value = -5 }
 		}
 	}
 }
 planet_factory_decrease_queue = {
-	potential = { has_planet_flag = factory_autofab_construction_on }
+	potential = { NOT = { has_planet_flag = factory_autofab_construction_off } OR = { has_planet_flag = factory_autofab_construction_on owner = { has_country_flag = factory_autofab_construction_on } } }
 	allow = {
 		OR = {
 			AND = {
@@ -525,35 +535,38 @@ planet_factory_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_queue_1
+		custom_tooltip = "factory_autofab_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_queue_1
+				}
+				change_variable = { which = autofab_queue value = -1 }
 			}
-			change_variable = { which = autofab_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_queue_2
+			else_if = {
+				limit = {
+					has_planet_flag = factory_queue_2
+				}
+				change_variable = { which = autofab_queue value = -2 }
 			}
-			change_variable = { which = autofab_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_queue_3
+			else_if = {
+				limit = {
+					has_planet_flag = factory_queue_3
+				}
+				change_variable = { which = autofab_queue value = -3 }
 			}
-			change_variable = { which = autofab_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_queue_4
+			else_if = {
+				limit = {
+					has_planet_flag = factory_queue_4
+				}
+				change_variable = { which = autofab_queue value = -4 }
 			}
-			change_variable = { which = autofab_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_queue_5
+			else_if = {
+				limit = {
+					has_planet_flag = factory_queue_5
+				}
+				change_variable = { which = autofab_queue value = -5 }
 			}
-			change_variable = { which = autofab_queue value = -5 }
 		}
 	}
 }
@@ -590,55 +603,58 @@ planet_factory_generator_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_generator_queue_1
-				check_variable = { which = autofab_energy_avail value > 0 }
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_generator_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_generator_queue_1
+					check_variable = { which = autofab_energy_avail value > 0 }
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_energy_queue value = 1 }
+				change_variable = { which = autofab_energy_avail value = -1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_energy_queue value = 1 }
-			change_variable = { which = autofab_energy_avail value = -1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_generator_queue_2
-				check_variable = { which = autofab_energy_avail value > 1 }
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_generator_queue_2
+					check_variable = { which = autofab_energy_avail value > 1 }
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_energy_queue value = 2 }
+				change_variable = { which = autofab_energy_avail value = -2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_energy_queue value = 2 }
-			change_variable = { which = autofab_energy_avail value = -2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_generator_queue_3
-				check_variable = { which = autofab_energy_avail value > 2 }
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_generator_queue_3
+					check_variable = { which = autofab_energy_avail value > 2 }
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_energy_queue value = 3 }
+				change_variable = { which = autofab_energy_avail value = -3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_energy_queue value = 3 }
-			change_variable = { which = autofab_energy_avail value = -3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_generator_queue_4
-				check_variable = { which = autofab_energy_avail value > 3 }
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_generator_queue_4
+					check_variable = { which = autofab_energy_avail value > 3 }
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_energy_queue value = 4 }
+				change_variable = { which = autofab_energy_avail value = -4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_energy_queue value = 4 }
-			change_variable = { which = autofab_energy_avail value = -4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_generator_queue_5
-				check_variable = { which = autofab_energy_avail value > 4 }
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_generator_queue_5
+					check_variable = { which = autofab_energy_avail value > 4 }
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_energy_queue value = 5 }
+				change_variable = { which = autofab_energy_avail value = -5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_energy_queue value = 5 }
-			change_variable = { which = autofab_energy_avail value = -5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -728,35 +744,38 @@ planet_factory_generator_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_generator_queue_1
+		custom_tooltip = "factory_generator_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_generator_queue_1
+				}
+				change_variable = { which = autofab_energy_queue value = -1 }
 			}
-			change_variable = { which = autofab_energy_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_generator_queue_2
+			else_if = {
+				limit = {
+					has_planet_flag = factory_generator_queue_2
+				}
+				change_variable = { which = autofab_energy_queue value = -2 }
 			}
-			change_variable = { which = autofab_energy_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_generator_queue_3
+			else_if = {
+				limit = {
+					has_planet_flag = factory_generator_queue_3
+				}
+				change_variable = { which = autofab_energy_queue value = -3 }
 			}
-			change_variable = { which = autofab_energy_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_generator_queue_4
+			else_if = {
+				limit = {
+					has_planet_flag = factory_generator_queue_4
+				}
+				change_variable = { which = autofab_energy_queue value = -4 }
 			}
-			change_variable = { which = autofab_energy_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_generator_queue_5
+			else_if = {
+				limit = {
+					has_planet_flag = factory_generator_queue_5
+				}
+				change_variable = { which = autofab_energy_queue value = -5 }
 			}
-			change_variable = { which = autofab_energy_queue value = -5 }
 		}
 	}
 }
@@ -793,55 +812,58 @@ planet_factory_mine_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_mine_queue_1
-				check_variable = { which = autofab_minerals_avail value > 0 }
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_mine_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_mine_queue_1
+					check_variable = { which = autofab_minerals_avail value > 0 }
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_mineral_queue value = 1 }
+				change_variable = { which = autofab_minerals_avail value = -1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_mineral_queue value = 1 }
-			change_variable = { which = autofab_minerals_avail value = -1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_mine_queue_2
-				check_variable = { which = autofab_minerals_avail value > 1 }
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_mine_queue_2
+					check_variable = { which = autofab_minerals_avail value > 1 }
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_mineral_queue value = 2 }
+				change_variable = { which = autofab_minerals_avail value = -2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_mineral_queue value = 2 }
-			change_variable = { which = autofab_minerals_avail value = -2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_mine_queue_3
-				check_variable = { which = autofab_minerals_avail value > 2 }
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_mine_queue_3
+					check_variable = { which = autofab_minerals_avail value > 2 }
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_mineral_queue value = 3 }
+				change_variable = { which = autofab_minerals_avail value = -3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_mineral_queue value = 3 }
-			change_variable = { which = autofab_minerals_avail value = -3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_mine_queue_4
-				check_variable = { which = autofab_minerals_avail value > 3 }
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_mine_queue_4
+					check_variable = { which = autofab_minerals_avail value > 3 }
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_mineral_queue value = 4 }
+				change_variable = { which = autofab_minerals_avail value = -4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_mineral_queue value = 4 }
-			change_variable = { which = autofab_minerals_avail value = -4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_mine_queue_5
-				check_variable = { which = autofab_minerals_avail value > 4 }
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_mine_queue_5
+					check_variable = { which = autofab_minerals_avail value > 4 }
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_mineral_queue value = 5 }
+				change_variable = { which = autofab_minerals_avail value = -5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_mineral_queue value = 5 }
-			change_variable = { which = autofab_minerals_avail value = -5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -931,35 +953,38 @@ planet_factory_mine_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_mine_queue_1
+		custom_tooltip = "factory_mine_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_mine_queue_1
+				}
+				change_variable = { which = autofab_mineral_queue value = -1 }
 			}
-			change_variable = { which = autofab_mineral_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_mine_queue_2
+			else_if = {
+				limit = {
+					has_planet_flag = factory_mine_queue_2
+				}
+				change_variable = { which = autofab_mineral_queue value = -2 }
 			}
-			change_variable = { which = autofab_mineral_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_mine_queue_3
+			else_if = {
+				limit = {
+					has_planet_flag = factory_mine_queue_3
+				}
+				change_variable = { which = autofab_mineral_queue value = -3 }
 			}
-			change_variable = { which = autofab_mineral_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_mine_queue_4
+			else_if = {
+				limit = {
+					has_planet_flag = factory_mine_queue_4
+				}
+				change_variable = { which = autofab_mineral_queue value = -4 }
 			}
-			change_variable = { which = autofab_mineral_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_mine_queue_5
+			else_if = {
+				limit = {
+					has_planet_flag = factory_mine_queue_5
+				}
+				change_variable = { which = autofab_mineral_queue value = -5 }
 			}
-			change_variable = { which = autofab_mineral_queue value = -5 }
 		}
 	}
 }
@@ -996,55 +1021,58 @@ planet_factory_farm_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_farm_queue_1
-				check_variable = { which = autofab_food_avail value > 0 }
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_farm_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_farm_queue_1
+					check_variable = { which = autofab_food_avail value > 0 }
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_food_queue value = 1 }
+				change_variable = { which = autofab_food_avail value = -1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_food_queue value = 1 }
-			change_variable = { which = autofab_food_avail value = -1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_farm_queue_2
-				check_variable = { which = autofab_food_avail value > 1 }
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_farm_queue_2
+					check_variable = { which = autofab_food_avail value > 1 }
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_food_queue value = 2 }
+				change_variable = { which = autofab_food_avail value = -2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_food_queue value = 2 }
-			change_variable = { which = autofab_food_avail value = -2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_farm_queue_3
-				check_variable = { which = autofab_food_avail value > 2 }
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_farm_queue_3
+					check_variable = { which = autofab_food_avail value > 2 }
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_food_queue value = 3 }
+				change_variable = { which = autofab_food_avail value = -3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_food_queue value = 3 }
-			change_variable = { which = autofab_food_avail value = -3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_farm_queue_4
-				check_variable = { which = autofab_food_avail value > 3 }
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_farm_queue_4
+					check_variable = { which = autofab_food_avail value > 3 }
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_food_queue value = 4 }
+				change_variable = { which = autofab_food_avail value = -4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_food_queue value = 4 }
-			change_variable = { which = autofab_food_avail value = -4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_farm_queue_5
-				check_variable = { which = autofab_food_avail value > 4 }
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_farm_queue_5
+					check_variable = { which = autofab_food_avail value > 4 }
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_food_queue value = 5 }
+				change_variable = { which = autofab_food_avail value = -5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_food_queue value = 5 }
-			change_variable = { which = autofab_food_avail value = -5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -1134,35 +1162,38 @@ planet_factory_farm_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_farm_queue_1
+		custom_tooltip = "factory_farm_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_farm_queue_1
+				}
+				change_variable = { which = autofab_food_queue value = -1 }
 			}
-			change_variable = { which = autofab_food_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_farm_queue_2
+			else_if = {
+				limit = {
+					has_planet_flag = factory_farm_queue_2
+				}
+				change_variable = { which = autofab_food_queue value = -2 }
 			}
-			change_variable = { which = autofab_food_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_farm_queue_3
+			else_if = {
+				limit = {
+					has_planet_flag = factory_farm_queue_3
+				}
+				change_variable = { which = autofab_food_queue value = -3 }
 			}
-			change_variable = { which = autofab_food_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_farm_queue_4
+			else_if = {
+				limit = {
+					has_planet_flag = factory_farm_queue_4
+				}
+				change_variable = { which = autofab_food_queue value = -4 }
 			}
-			change_variable = { which = autofab_food_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_farm_queue_5
+			else_if = {
+				limit = {
+					has_planet_flag = factory_farm_queue_5
+				}
+				change_variable = { which = autofab_food_queue value = -5 }
 			}
-			change_variable = { which = autofab_food_queue value = -5 }
 		}
 	}
 }
@@ -1194,50 +1225,53 @@ planet_factory_foundry_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_foundry_queue_1
-				check_variable = { which = autofab_foundry_available value > 0 }
+		custom_tooltip = "factory_foundry_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_foundry_queue_1
+					check_variable = { which = autofab_foundry_available value > 0 }
+				}
+				change_variable = { which = autofab_alloys_queue value = 1 }
+				change_variable = { which = autofab_foundry_available value = -1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_alloys_queue value = 1 }
-			change_variable = { which = autofab_foundry_available value = -1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_foundry_queue_2
-				check_variable = { which = autofab_foundry_available value > 1 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_foundry_queue_2
+					check_variable = { which = autofab_foundry_available value > 1 }
+				}
+				change_variable = { which = autofab_alloys_queue value = 2 }
+				change_variable = { which = autofab_foundry_available value = -2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_alloys_queue value = 2 }
-			change_variable = { which = autofab_foundry_available value = -2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_foundry_queue_3
-				check_variable = { which = autofab_foundry_available value > 2 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_foundry_queue_3
+					check_variable = { which = autofab_foundry_available value > 2 }
+				}
+				change_variable = { which = autofab_alloys_queue value = 3 }
+				change_variable = { which = autofab_foundry_available value = -3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_alloys_queue value = 3 }
-			change_variable = { which = autofab_foundry_available value = -3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_foundry_queue_4
-				check_variable = { which = autofab_foundry_available value > 3 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_foundry_queue_4
+					check_variable = { which = autofab_foundry_available value > 3 }
+				}
+				change_variable = { which = autofab_alloys_queue value = 4 }
+				change_variable = { which = autofab_foundry_available value = -4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_alloys_queue value = 4 }
-			change_variable = { which = autofab_foundry_available value = -4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_foundry_queue_5
-				check_variable = { which = autofab_foundry_available value > 4 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_foundry_queue_5
+					check_variable = { which = autofab_foundry_available value > 4 }
+				}
+				change_variable = { which = autofab_alloys_queue value = 5 }
+				change_variable = { which = autofab_foundry_available value = -5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_alloys_queue value = 5 }
-			change_variable = { which = autofab_foundry_available value = -5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -1327,35 +1361,38 @@ planet_factory_foundry_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_foundry_queue_1
+		custom_tooltip = "factory_foundry_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_foundry_queue_1
+				}
+				change_variable = { which = autofab_alloys_queue value = -1 }
 			}
-			change_variable = { which = autofab_alloys_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_foundry_queue_2
+			else_if = {
+				limit = {
+					has_planet_flag = factory_foundry_queue_2
+				}
+				change_variable = { which = autofab_alloys_queue value = -2 }
 			}
-			change_variable = { which = autofab_alloys_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_foundry_queue_3
+			else_if = {
+				limit = {
+					has_planet_flag = factory_foundry_queue_3
+				}
+				change_variable = { which = autofab_alloys_queue value = -3 }
 			}
-			change_variable = { which = autofab_alloys_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_foundry_queue_4
+			else_if = {
+				limit = {
+					has_planet_flag = factory_foundry_queue_4
+				}
+				change_variable = { which = autofab_alloys_queue value = -4 }
 			}
-			change_variable = { which = autofab_alloys_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_foundry_queue_5
+			else_if = {
+				limit = {
+					has_planet_flag = factory_foundry_queue_5
+				}
+				change_variable = { which = autofab_alloys_queue value = -5 }
 			}
-			change_variable = { which = autofab_alloys_queue value = -5 }
 		}
 	}
 }
@@ -1387,50 +1424,53 @@ planet_factory_factory_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_factory_queue_1
-				check_variable = { which = autofab_factory_available value > 0 }
+		custom_tooltip = "factory_factory_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_factory_queue_1
+					check_variable = { which = autofab_factory_available value > 0 }
+				}
+				change_variable = { which = autofab_congoods_queue value = 1 }
+				change_variable = { which = autofab_factory_available value = -1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_congoods_queue value = 1 }
-			change_variable = { which = autofab_factory_available value = -1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_factory_queue_2
-				check_variable = { which = autofab_factory_available value > 1 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_factory_queue_2
+					check_variable = { which = autofab_factory_available value > 1 }
+				}
+				change_variable = { which = autofab_congoods_queue value = 2 }
+				change_variable = { which = autofab_factory_available value = -2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_congoods_queue value = 2 }
-			change_variable = { which = autofab_factory_available value = -2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_factory_queue_3
-				check_variable = { which = autofab_factory_available value > 2 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_factory_queue_3
+					check_variable = { which = autofab_factory_available value > 2 }
+				}
+				change_variable = { which = autofab_congoods_queue value = 3 }
+				change_variable = { which = autofab_factory_available value = -3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_congoods_queue value = 3 }
-			change_variable = { which = autofab_factory_available value = -3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_factory_queue_4
-				check_variable = { which = autofab_factory_available value > 3 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_factory_queue_4
+					check_variable = { which = autofab_factory_available value > 3 }
+				}
+				change_variable = { which = autofab_congoods_queue value = 4 }
+				change_variable = { which = autofab_factory_available value = -4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_congoods_queue value = 4 }
-			change_variable = { which = autofab_factory_available value = -4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_factory_queue_5
-				check_variable = { which = autofab_factory_available value > 4 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_factory_queue_5
+					check_variable = { which = autofab_factory_available value > 4 }
+				}
+				change_variable = { which = autofab_congoods_queue value = 5 }
+				change_variable = { which = autofab_factory_available value = -5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_congoods_queue value = 5 }
-			change_variable = { which = autofab_factory_available value = -5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -1520,35 +1560,38 @@ planet_factory_factory_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_factory_queue_1
+		custom_tooltip = "factory_factory_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_factory_queue_1
+				}
+				change_variable = { which = autofab_congoods_queue value = -1 }
 			}
-			change_variable = { which = autofab_congoods_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_factory_queue_2
+			else_if = {
+				limit = {
+					has_planet_flag = factory_factory_queue_2
+				}
+				change_variable = { which = autofab_congoods_queue value = -2 }
 			}
-			change_variable = { which = autofab_congoods_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_factory_queue_3
+			else_if = {
+				limit = {
+					has_planet_flag = factory_factory_queue_3
+				}
+				change_variable = { which = autofab_congoods_queue value = -3 }
 			}
-			change_variable = { which = autofab_congoods_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_factory_queue_4
+			else_if = {
+				limit = {
+					has_planet_flag = factory_factory_queue_4
+				}
+				change_variable = { which = autofab_congoods_queue value = -4 }
 			}
-			change_variable = { which = autofab_congoods_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_factory_queue_5
+			else_if = {
+				limit = {
+					has_planet_flag = factory_factory_queue_5
+				}
+				change_variable = { which = autofab_congoods_queue value = -5 }
 			}
-			change_variable = { which = autofab_congoods_queue value = -5 }
 		}
 	}
 }
@@ -1581,45 +1624,48 @@ planet_factory_motes_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_motes_queue_1
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_chemical_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_motes_queue_1
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_motes_queue value = 1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_motes_queue value = 1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_motes_queue_2
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_motes_queue_2
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_motes_queue value = 2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_motes_queue value = 2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_motes_queue_3
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_motes_queue_3
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_motes_queue value = 3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_motes_queue value = 3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_motes_queue_4
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_motes_queue_4
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_motes_queue value = 4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_motes_queue value = 4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_motes_queue_5
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_motes_queue_5
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_motes_queue value = 5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_motes_queue value = 5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -1709,35 +1755,38 @@ planet_factory_motes_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_motes_queue_1
+		custom_tooltip = "factory_chemical_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_motes_queue_1
+				}
+				change_variable = { which = autofab_motes_queue value = -1 }
 			}
-			change_variable = { which = autofab_motes_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_motes_queue_2
+			else_if = {
+				limit = {
+					has_planet_flag = factory_motes_queue_2
+				}
+				change_variable = { which = autofab_motes_queue value = -2 }
 			}
-			change_variable = { which = autofab_motes_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_motes_queue_3
+			else_if = {
+				limit = {
+					has_planet_flag = factory_motes_queue_3
+				}
+				change_variable = { which = autofab_motes_queue value = -3 }
 			}
-			change_variable = { which = autofab_motes_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_motes_queue_4
+			else_if = {
+				limit = {
+					has_planet_flag = factory_motes_queue_4
+				}
+				change_variable = { which = autofab_motes_queue value = -4 }
 			}
-			change_variable = { which = autofab_motes_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_motes_queue_5
+			else_if = {
+				limit = {
+					has_planet_flag = factory_motes_queue_5
+				}
+				change_variable = { which = autofab_motes_queue value = -5 }
 			}
-			change_variable = { which = autofab_motes_queue value = -5 }
 		}
 	}
 }
@@ -1769,45 +1818,48 @@ planet_factory_gases_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_gases_queue_1
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_refinery_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_gases_queue_1
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_gases_queue value = 1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_gases_queue value = 1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_gases_queue_2
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_gases_queue_2
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_gases_queue value = 2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_gases_queue value = 2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_gases_queue_3
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_gases_queue_3
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_gases_queue value = 3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_gases_queue value = 3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_gases_queue_4
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_gases_queue_4
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_gases_queue value = 4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_gases_queue value = 4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_gases_queue_5
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_gases_queue_5
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_gases_queue value = 5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_gases_queue value = 5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -1897,35 +1949,38 @@ planet_factory_gases_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_gases_queue_1
+		custom_tooltip = "factory_refinery_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_gases_queue_1
+				}
+				change_variable = { which = autofab_gases_queue value = -1 }
 			}
-			change_variable = { which = autofab_gases_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_gases_queue_2
+			else_if = {
+				limit = {
+					has_planet_flag = factory_gases_queue_2
+				}
+				change_variable = { which = autofab_gases_queue value = -2 }
 			}
-			change_variable = { which = autofab_gases_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_gases_queue_3
+			else_if = {
+				limit = {
+					has_planet_flag = factory_gases_queue_3
+				}
+				change_variable = { which = autofab_gases_queue value = -3 }
 			}
-			change_variable = { which = autofab_gases_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_gases_queue_4
+			else_if = {
+				limit = {
+					has_planet_flag = factory_gases_queue_4
+				}
+				change_variable = { which = autofab_gases_queue value = -4 }
 			}
-			change_variable = { which = autofab_gases_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_gases_queue_5
+			else_if = {
+				limit = {
+					has_planet_flag = factory_gases_queue_5
+				}
+				change_variable = { which = autofab_gases_queue value = -5 }
 			}
-			change_variable = { which = autofab_gases_queue value = -5 }
 		}
 	}
 }
@@ -1957,45 +2012,48 @@ planet_factory_crystals_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_crystals_queue_1
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_translucer_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_crystals_queue_1
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_crystals_queue value = 1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_crystals_queue value = 1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_crystals_queue_2
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_crystals_queue_2
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_crystals_queue value = 2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_crystals_queue value = 2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_crystals_queue_3
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_crystals_queue_3
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_crystals_queue value = 3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_crystals_queue value = 3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_crystals_queue_4
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_crystals_queue_4
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_crystals_queue value = 4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_crystals_queue value = 4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_crystals_queue_5
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_crystals_queue_5
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_crystals_queue value = 5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_crystals_queue value = 5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -2085,35 +2143,38 @@ planet_factory_crystals_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_crystals_queue_1
+		custom_tooltip = "factory_translucer_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_crystals_queue_1
+				}
+				change_variable = { which = autofab_crystals_queue value = -1 }
 			}
-			change_variable = { which = autofab_crystals_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_crystals_queue_2
+			else_if = {
+				limit = {
+					has_planet_flag = factory_crystals_queue_2
+				}
+				change_variable = { which = autofab_crystals_queue value = -2 }
 			}
-			change_variable = { which = autofab_crystals_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_crystals_queue_3
+			else_if = {
+				limit = {
+					has_planet_flag = factory_crystals_queue_3
+				}
+				change_variable = { which = autofab_crystals_queue value = -3 }
 			}
-			change_variable = { which = autofab_crystals_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_crystals_queue_4
+			else_if = {
+				limit = {
+					has_planet_flag = factory_crystals_queue_4
+				}
+				change_variable = { which = autofab_crystals_queue value = -4 }
 			}
-			change_variable = { which = autofab_crystals_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_crystals_queue_5
+			else_if = {
+				limit = {
+					has_planet_flag = factory_crystals_queue_5
+				}
+				change_variable = { which = autofab_crystals_queue value = -5 }
 			}
-			change_variable = { which = autofab_crystals_queue value = -5 }
 		}
 	}
 }
@@ -2150,45 +2211,48 @@ planet_factory_extractor_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_extractor_queue_1
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_extractor_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_extractor_queue_1
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_extractor_queue value = 1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_extractor_queue value = 1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_extractor_queue_2
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_extractor_queue_2
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_extractor_queue value = 2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_extractor_queue value = 2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_extractor_queue_3
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_extractor_queue_3
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_extractor_queue value = 3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_extractor_queue value = 3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_extractor_queue_4
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_extractor_queue_4
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_extractor_queue value = 4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_extractor_queue value = 4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_extractor_queue_5
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_planet_flag = factory_extractor_queue_5
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_extractor_queue value = 5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_extractor_queue value = 5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -2199,17 +2263,17 @@ planet_factory_extractor_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_extractor_queue_1
 				OR = {
-					check_variable = { which = autofab_districts_available value > 0 }
+					check_variable = { which = autofab_extractor_queue value > 0 }
 					check_variable = { which = autofab_extractor value > 0 }
 				}
 			}
 			AND = {
 				has_planet_flag = factory_extractor_queue_2
 				OR = {
-					check_variable = { which = autofab_districts_available value > 1 }
+					check_variable = { which = autofab_extractor_queue value > 1 }
 					check_variable = { which = autofab_extractor value > 1 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_extractor_queue value > 0 }
 						check_variable = { which = autofab_extractor value > 0 }
 					}
 				}
@@ -2217,14 +2281,14 @@ planet_factory_extractor_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_extractor_queue_3
 				OR = {
-					check_variable = { which = autofab_districts_available value > 2 }
+					check_variable = { which = autofab_extractor_queue value > 2 }
 					check_variable = { which = autofab_extractor value > 2 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_extractor_queue value > 1 }
 						check_variable = { which = autofab_extractor value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_extractor_queue value > 0 }
 						check_variable = { which = autofab_extractor value > 1 }
 					}
 				}
@@ -2232,22 +2296,22 @@ planet_factory_extractor_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_extractor_queue_4
 				OR = {
-					check_variable = { which = autofab_districts_available value > 3 }
+					check_variable = { which = autofab_extractor_queue value > 3 }
 					check_variable = { which = autofab_extractor value > 3 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_extractor_queue value > 1 }
 						check_variable = { which = autofab_extractor value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_extractor_queue value > 1 }
 						check_variable = { which = autofab_extractor value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 2 }
+						check_variable = { which = autofab_extractor_queue value > 2 }
 						check_variable = { which = autofab_extractor value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_extractor_queue value > 0 }
 						check_variable = { which = autofab_extractor value > 2 }
 					}
 				}
@@ -2255,22 +2319,22 @@ planet_factory_extractor_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_extractor_queue_5
 				OR = {
-					check_variable = { which = autofab_districts_available value > 4 }
+					check_variable = { which = autofab_extractor_queue value > 4 }
 					check_variable = { which = autofab_extractor value > 4 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 2 }
+						check_variable = { which = autofab_extractor_queue value > 2 }
 						check_variable = { which = autofab_extractor value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_extractor_queue value > 1 }
 						check_variable = { which = autofab_extractor value > 2 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 3 }
+						check_variable = { which = autofab_extractor_queue value > 3 }
 						check_variable = { which = autofab_extractor value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_extractor_queue value > 0 }
 						check_variable = { which = autofab_extractor value > 3 }
 					}
 				}
@@ -2278,35 +2342,38 @@ planet_factory_extractor_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_planet_flag = factory_extractor_queue_1
+		custom_tooltip = "factory_extractor_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_planet_flag = factory_extractor_queue_1
+				}
+				change_variable = { which = autofab_extractor_queue value = -1 }
 			}
-			change_variable = { which = autofab_extractor_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_extractor_queue_2
+			else_if = {
+				limit = {
+					has_planet_flag = factory_extractor_queue_2
+				}
+				change_variable = { which = autofab_extractor_queue value = -2 }
 			}
-			change_variable = { which = autofab_extractor_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_extractor_queue_3
+			else_if = {
+				limit = {
+					has_planet_flag = factory_extractor_queue_3
+				}
+				change_variable = { which = autofab_extractor_queue value = -3 }
 			}
-			change_variable = { which = autofab_extractor_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_extractor_queue_4
+			else_if = {
+				limit = {
+					has_planet_flag = factory_extractor_queue_4
+				}
+				change_variable = { which = autofab_extractor_queue value = -4 }
 			}
-			change_variable = { which = autofab_extractor_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_planet_flag = factory_extractor_queue_5
+			else_if = {
+				limit = {
+					has_planet_flag = factory_extractor_queue_5
+				}
+				change_variable = { which = autofab_extractor_queue value = -5 }
 			}
-			change_variable = { which = autofab_extractor_queue value = -5 }
 		}
 	}
 }

@@ -10,9 +10,8 @@ clear_queue = {
 	set_variable = { which = autofab_crystals_queue value = 0 }
 	set_variable = { which = autofab_extractor_queue value = 0 }
 }
-
 pay_for_swapping = {
-	export_resource_income_to_variable = { resource = alloys variable = autofab_alloys_tracking }
+	export_resource_stockpile_to_variable = { resource = alloys variable = autofab_alloys_tracking }
 	if = {
 		limit = {
 			check_variable = { which = autofab_alloys_tracking value > autofab_alloy_debt }
@@ -443,85 +442,6 @@ add_autofab_extractor = {
 	}
 }
 
-start_autofab_foundry_upgrade = {
-	if = {
-		limit = {
-			exists = owner
-			owner = { has_technology = tech_alloys_2 }
-			has_deposit = autofab_foundry_2
-		}
-		pay_for_building_t3_foundry = yes
-	}
-	else = {
-		pay_for_building_t2_foundry = yes
-	}
-	set_planet_flag = factory_expanding
-	set_planet_flag = factory_building_foundry
-	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
-	planet_event = { id = autofab_queue.39 days = @factory_construction_time }
-	owner = { change_variable = { which = autofab_alloys_queue value = -1 } }
-}
-upgrade_foundry = {
-	if = {
-		limit = {
-			exists = owner
-			owner = { has_technology = tech_alloys_2 }
-			has_deposit = autofab_foundry_2
-		}
-		add_deposit = autofab_foundry_3
-		remove_deposit = autofab_foundry_2
-		change_variable = { which = autofab_foundry_3 value = 1 }
-		change_variable = { which = autofab_foundry_2 value = -1 }
-	}
-	else = {
-		add_deposit = autofab_foundry_2
-		change_variable = { which = autofab_foundry_2 value = 1 }
-		change_variable = { which = autofab_foundry value = -1 }
-	}
-	remove_planet_flag = factory_expanding
-	remove_planet_flag = factory_building_foundry
-}
-
-start_autofab_factory_upgrade = {
-	if = {
-		limit = {
-			exists = owner
-			owner = { has_technology = tech_luxuries_2 }
-			has_deposit = autofab_factory_2
-		}
-		pay_for_building_t3_factory = yes
-	}
-	else = {
-		pay_for_building_t2_factory = yes
-	}
-	set_planet_flag = factory_expanding
-	set_planet_flag = factory_building_factory
-	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
-	planet_event = { id = autofab_queue.41 days = @factory_construction_time }
-	owner = { change_variable = { which = autofab_congoods_queue value = -1 } }
-}
-upgrade_factory = {
-	if = {
-		limit = {
-			exists = owner
-			owner = { has_technology = tech_luxuries_2 }
-			has_deposit = autofab_factory_2
-		}
-		add_deposit = autofab_factory_3
-		remove_deposit = autofab_factory_2
-		change_variable = { which = autofab_factory_3 value = 1 }
-		change_variable = { which = autofab_factory_2 value = -1 }
-	}
-	else = {
-		add_deposit = autofab_factory_2
-		remove_deposit = autofab_factory
-		change_variable = { which = autofab_factory_2 value = 1 }
-		change_variable = { which = autofab_factory value = -1 }
-	}
-	remove_planet_flag = factory_expanding
-	remove_planet_flag = factory_building_factory
-}
-
 retooling_bonus = {
 	owner = {
 		add_resource = {
@@ -579,28 +499,8 @@ start_autofab_foundry_retool = {
 	planet_event = { id = autofab_queue.68 days = @factory_retool_time }
 }
 retool_autofab_foundry = {
-	if = {
-		limit = {
-			has_deposit = autofab_foundry
-		}
-		remove_deposit = autofab_foundry
-		change_variable = { which = autofab_foundry value = -1 }
-	}
-	else_if = {
-		limit = {
-			has_deposit = autofab_foundry_2
-		}
-		remove_deposit = autofab_foundry_2
-		add_deposit = autofab_foundry
-		change_variable = { which = autofab_foundry value = 1 }
-		change_variable = { which = autofab_foundry_2 value = -1 }
-	}
-	else = {
-		remove_deposit = autofab_foundry_3
-		add_deposit = autofab_foundry_2
-		change_variable = { which = autofab_foundry_3 value = -1 }
-		change_variable = { which = autofab_foundry_2 value = 1 }
-	}
+	remove_deposit = autofab_foundry
+	change_variable = { which = autofab_foundry value = -1 }
 	remove_planet_flag = factory_expanding
 	remove_planet_flag = factory_retooling_foundry
 	retooling_bonus = yes
@@ -613,28 +513,8 @@ start_autofab_factory_retool = {
 	planet_event = { id = autofab_queue.70 days = @factory_retool_time }
 }
 retool_autofab_factory = {
-	if = {
-		limit = {
-			has_deposit = autofab_factory
-		}
-		remove_deposit = autofab_factory
-		change_variable = { which = autofab_factory value = -1 }
-	}
-	else_if = {
-		limit = {
-			has_deposit = autofab_factory_2
-		}
-		remove_deposit = autofab_factory_2
-		add_deposit = autofab_factory
-		change_variable = { which = autofab_factory value = 1 }
-		change_variable = { which = autofab_factory_2 value = -1 }
-	}
-	else = {
-		remove_deposit = autofab_factory_3
-		add_deposit = autofab_factory_2
-		change_variable = { which = autofab_factory_3 value = -1 }
-		change_variable = { which = autofab_factory_2 value = 1 }
-	}
+	remove_deposit = autofab_factory
+	change_variable = { which = autofab_factory value = -1 }
 	remove_planet_flag = factory_expanding
 	remove_planet_flag = factory_retooling_factory
 	retooling_bonus = yes

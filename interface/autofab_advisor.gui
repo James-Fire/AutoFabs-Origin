@@ -46,31 +46,6 @@ guiTypes = {
 		origo = center
 		moveable = yes
 		size = { width = 724 height = 680 }
-		containerWindowType = {
-			name = "portrait"
-			position = { x = -95 y = 325 }
-			size = { width = 384 height = 400 }
-			clipping = yes
-			iconType = {
-				name = "black_frame"
-				spriteType = "GFX_autofab_portrait_bg"
-				position = { x = 95 y = -90 }
-				alwaysTransparent = yes
-			}
-			iconType = {
-				name = "portrait"
-				spriteType = "GFX_portrait_character"
-				position = { x = 0 y = 15 }
-				scale = 0.70
-				alwaysTransparent = yes
-			}
-			iconType = {
-				name = "city_frame"
-				spriteType = "GFX_diplomacy_portrait_frame_curator"
-				position = { x = -6 y = -5000 }
-				alwaysTransparent = yes
-			}
-		}
 		iconType = {
             name = "advisor_image"
             quadTextureSprite = "GFX_advisor_autofab"
@@ -236,31 +211,28 @@ guiTypes = {
 				spriteType = "GFX_portrait_character"
 			}	
 		}
-		containerWindowType = {#Hide this thing.
+		containerWindowType = {
 			name = "portrait"
-			position = { x = 11 y = 20000 }
-			size = { width = 964 height = 350 }
+			position = { x = -95 y = 325 }
+			size = { width = 384 height = 400 }
 			clipping = yes
 			iconType = {
-				name = "portrait"
-				spriteType = "GFX_portrait_gamesetup_mask"
-				alwaysTransparent = yes
-			}
-			iconType = {
 				name = "black_frame"
-				spriteType = "GFX_diplomacy_portrait_shadow_frame"
-				position = { x = -4 y = -5}
+				spriteType = "GFX_autofab_portrait_bg"
+				position = { x = 95 y = -90 }
 				alwaysTransparent = yes
 			}
 			iconType = {
-				name = "stripes_1"
-				spriteType = "GFX_diplomacy_stripes_2"
+				name = "portrait"
+				spriteType = "GFX_portrait_character"
+				position = { x = 0 y = 15 }
+				scale = 0.70
 				alwaysTransparent = yes
 			}
 			iconType = {
 				name = "city_frame"
 				spriteType = "GFX_diplomacy_portrait_frame_curator"
-				position = { x = -6 y = -5 }
+				position = { x = -6 y = -5000 }
 				alwaysTransparent = yes
 			}
 		}

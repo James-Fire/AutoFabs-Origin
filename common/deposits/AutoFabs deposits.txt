@@ -21,7 +21,7 @@ autofab = {
 			}
 		}
 		modifier = {
-			planet_autofab_produces_mult = 0.1
+			planet_autofab_produces_mult = 0.4
 		}
 	}
 	

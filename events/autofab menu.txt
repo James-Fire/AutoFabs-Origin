@@ -63,18 +63,16 @@ planet_event = { ###Planet Terminal
 	}
 	option = {
 		name = "autofab_menu.10.confirm"
-		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_tooltip = "Open the Country Terminal"
 		custom_gui = "autofab_planet_menu_confirm"
 		hidden_effect = {
 			owner = {
 				factory_reset_all_country_flags = yes
 				document_factory_country = yes
 				factory_set_default_queue = yes
+				country_event = { id = autofab_menu.1 }
 			}
-		}
-		owner = {
-			country_event = { id = autofab_menu.1 }
-		}
+		}	
 	}
 }
 

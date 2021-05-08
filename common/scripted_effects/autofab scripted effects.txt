@@ -86,43 +86,11 @@ advanced_resource_swap = {
 	}
 	while = {
 		limit = {
-			has_building = building_foundry_2
-		}
-		remove_building = building_foundry_2
-		add_deposit = autofab_foundry_2
-		change_variable = { which = autofab_foundry_2 value = 1 }
-	}
-	while = {
-		limit = {
-			has_building = building_foundry_3
-		}
-		remove_building = building_foundry_3
-		add_deposit = autofab_foundry_3
-		change_variable = { which = autofab_foundry_3 value = 1 }
-	}
-	while = {
-		limit = {
 			has_building = building_factory_1
 		}
 		remove_building = building_factory_1
 		add_deposit = autofab_factory
 		change_variable = { which = autofab_factory value = 1 }
-	}
-	while = {
-		limit = {
-			has_building = building_factory_2
-		}
-		remove_building = building_factory_2
-		add_deposit = autofab_factory_2
-		change_variable = { which = autofab_factory_2 value = 1 }
-	}
-	while = {
-		limit = {
-			has_building = building_factory_3
-		}
-		remove_building = building_factory_3
-		add_deposit = autofab_factory_3
-		change_variable = { which = autofab_factory_3 value = 1 }
 	}
 }
 
@@ -133,7 +101,7 @@ reset_variables = {
 	set_variable = { which = autofabs_available value = 0 }
 	set_variable = { which = autofabs_building value = 0 }
 	set_variable = { which = autofab_districts_available value = 0 }
-	set_variable = { which = autofab_distrcits_building value = 0 }
+	set_variable = { which = autofab_districts_building value = 0 }
 	
 	set_variable = { which = autofab_energy_avail value = 0 }
 	set_variable = { which = autofab_minerals_avail value = 0 }
@@ -226,7 +194,7 @@ document_factory_country = {
 			change_variable = { which = autofab_crystals_building value = PREV }
 			change_variable = { which = autofab_extractor_building value = PREV }
 			
-			change_variable = { which = autofab_distrcits_building value = PREV }
+			change_variable = { which = autofab_districts_building value = PREV }
 		}
 	}
 	change_variable = { which = autofab_distrcits_queued value = autofab_energy_queue }
@@ -403,15 +371,15 @@ document_factory_planet = {
 				change_variable = { which = autofab_extractor_building value = 1 }
 			}
 		}
-		change_variable = { which = autofab_distrcits_building value = autofab_energy_building }
-		change_variable = { which = autofab_distrcits_building value = autofab_minerals_building }
-		change_variable = { which = autofab_distrcits_building value = autofab_food_building }
-		change_variable = { which = autofab_distrcits_building value = autofab_foundry_building }
-		change_variable = { which = autofab_distrcits_building value = autofab_factory_building }
-		change_variable = { which = autofab_distrcits_building value = autofab_motes_building }
-		change_variable = { which = autofab_distrcits_building value = autofab_gases_building }
-		change_variable = { which = autofab_distrcits_building value = autofab_crystals_building }
-		change_variable = { which = autofab_distrcits_building value = autofab_extractor_building }
+		change_variable = { which = autofab_districts_building value = autofab_energy_building }
+		change_variable = { which = autofab_districts_building value = autofab_minerals_building }
+		change_variable = { which = autofab_districts_building value = autofab_food_building }
+		change_variable = { which = autofab_districts_building value = autofab_foundry_building }
+		change_variable = { which = autofab_districts_building value = autofab_factory_building }
+		change_variable = { which = autofab_districts_building value = autofab_motes_building }
+		change_variable = { which = autofab_districts_building value = autofab_gases_building }
+		change_variable = { which = autofab_districts_building value = autofab_crystals_building }
+		change_variable = { which = autofab_districts_building value = autofab_extractor_building }
 		
 		while = {
 			count = 100
@@ -470,88 +438,67 @@ document_factory_planet = {
 			change_variable = { which = autofab_food_avail_temp value = -1 }
 		}
 		reset_district_counts = yes
-		if = {
-			limit = {
-				has_deposit = autofab_factory
-				exists = owner
-				owner = { has_technology = tech_luxuries_1 }
-			}
-			every_deposit = {
-				limit = {
-					OR = {
-						is_deposit_type = autofab_factory
-					}
-				}
-				PREV = {
-					change_variable = { which = autofab_factory_available value = 1 }
-				}
-			}
-			if = {
-				limit = {
-					OR = {
-						has_deposit = autofab_factory_2
-						has_deposit = autofab_factory
-					}
-					exists = owner
-					owner = { has_technology = tech_luxuries_2 }
-				}
-				every_deposit = {
-					limit = {
-						OR = {
-							is_deposit_type = autofab_factory_2
-							is_deposit_type = autofab_factory
-						}
-					}
-					PREV = {
-						change_variable = { which = autofab_factory_available value = 1 }
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				has_deposit = autofab_foundry
-				exists = owner
-				owner = { has_technology = tech_alloys_1 }
-			}
-			every_deposit = {
-				limit = {
-					OR = {
-						is_deposit_type = autofab_foundry
-					}
-				}
-				PREV = {
-					change_variable = { which = autofab_foundry_available value = 1 }
-				}
-			}
-			if = {
-				limit = {
-					OR = {
-						has_deposit = autofab_foundry_2
-						has_deposit = autofab_foundry
-					}
-					exists = owner
-					owner = { has_technology = tech_alloys_2 }
-				}
-				every_deposit = {
-					limit = {
-						OR = {
-							is_deposit_type = autofab_foundry_2
-							is_deposit_type = autofab_foundry
-						}
-					}
-					PREV = {
-						change_variable = { which = autofab_foundry_available value = 1 }
-					}
-				}
-			}
-		}
+		#count_unused_districts = yes
 		while = {
 			count = 100
 			limit = {
-				free_district_slots >= 1
+				num_free_districts = { type = any value > 0 }
 			}
-			add_district = district_city
+			switch = {
+				trigger = uses_district_set
+				standard = {
+					if = {
+						limit = {
+							owner = { is_machine_empire = yes }
+						}
+						add_district = district_nexus
+					}
+					else_if = {
+						limit = {
+							owner = { is_regular_empire = yes }
+						}
+						add_district = district_city
+					}
+					else_if = {
+						limit = {
+							owner = { is_hive_empire = yes }
+						}
+						add_district = district_hive
+					}
+				}
+				hive_world = {
+					add_district = district_hive
+				}
+				machine_world = {
+					add_district = district_nexus
+				}
+				ring_world = {
+					if = {
+						limit = {
+							owner = { is_machine_empire = yes }
+						}
+						add_district = district_rw_nexus
+					}
+					else_if = {
+						limit = {
+							owner = { is_regular_empire = yes }
+						}
+						add_district = district_rw_city
+					}
+					else_if = {
+						limit = {
+							owner = { is_hive_empire = yes }
+						}
+						add_district = district_rw_hive
+					}
+				}
+				habitat = {
+					add_district = district_hab_housing
+				}
+				city_world = {
+					add_district = district_arcology_housing
+				}
+			}
 			change_variable = { which = autofab_districts_available value = 1 }
 		}
 		set_variable = { which = autofab_districts_available_temp value = autofab_districts_available }
@@ -560,9 +507,65 @@ document_factory_planet = {
 			limit = {
 				check_variable = { which = autofab_districts_available_temp value > 0 }
 			}
-			remove_district = district_city
+			switch = {
+				trigger = uses_district_set
+				standard = {
+					if = {
+						limit = {
+							owner = { is_machine_empire = yes }
+						}
+						remove_district = district_nexus
+					}
+					else_if = {
+						limit = {
+							owner = { is_regular_empire = yes }
+						}
+						remove_district = district_city
+					}
+					else_if = {
+						limit = {
+							owner = { is_hive_empire = yes }
+						}
+						remove_district = district_hive
+					}
+				}
+				hive_world = {
+					remove_district = district_hive
+				}
+				machine_world = {
+					remove_district = district_nexus
+				}
+				ring_world = {
+					if = {
+						limit = {
+							owner = { is_machine_empire = yes }
+						}
+						remove_district = district_rw_nexus
+					}
+					else_if = {
+						limit = {
+							owner = { is_regular_empire = yes }
+						}
+						remove_district = district_rw_city
+					}
+					else_if = {
+						limit = {
+							owner = { is_hive_empire = yes }
+						}
+						remove_district = district_rw_hive
+					}
+				}
+				habitat = {
+					remove_district = district_hab_housing
+				}
+				city_world = {
+					remove_district = district_arcology_housing
+				}
+			}
 			change_variable = { which = autofab_districts_available_temp value = -1 }
 		}
+		reset_district_counts = yes
+		#export_trigger_value_to_variable = { trigger = free_district_slots variable = autofab_districts_available }
 		
 		change_variable = { which = autofab_distrcits_queued value = autofab_energy_queue }
 		change_variable = { which = autofab_distrcits_queued value = autofab_mineral_queue }
@@ -574,6 +577,7 @@ document_factory_planet = {
 		change_variable = { which = autofab_distrcits_queued value = autofab_crystals_queue }
 		change_variable = { which = autofab_distrcits_queued value = autofab_extractor_queue }
 		subtract_variable = { which = autofab_districts_available value = autofab_distrcits_queued }
+		subtract_variable = { which = autofab_districts_available value = autofab_districts_building }
 	
 		change_variable = { which = autofab_motes_available value = autofab_districts_available }
 		change_variable = { which = autofab_gases_available value = autofab_districts_available }
@@ -704,16 +708,115 @@ reset_district_counts = {
 	}
 }
 
+count_unused_districts = {
+	if = { limit = { free_district_slots =  1 } set_variable = { which = autofab_districts_available value = 1 } }
+	else if = { limit = { free_district_slots =  2 } set_variable = { which = autofab_districts_available value = 2 } }
+	else if = { limit = { free_district_slots =  3 } set_variable = { which = autofab_districts_available value = 3 } }
+	else if = { limit = { free_district_slots =  4 } set_variable = { which = autofab_districts_available value = 4 } }
+	else if = { limit = { free_district_slots =  5 } set_variable = { which = autofab_districts_available value = 5 } }
+	else if = { limit = { free_district_slots =  6 } set_variable = { which = autofab_districts_available value = 6 } }
+	else if = { limit = { free_district_slots =  7 } set_variable = { which = autofab_districts_available value = 7 } }
+	else if = { limit = { free_district_slots =  8 } set_variable = { which = autofab_districts_available value = 8 } }
+	else if = { limit = { free_district_slots =  9 } set_variable = { which = autofab_districts_available value = 9 } }
+	else if = { limit = { free_district_slots =  10 } set_variable = { which = autofab_districts_available value = 10 } }
+	else if = { limit = { free_district_slots =  11 } set_variable = { which = autofab_districts_available value = 11 } }
+	else if = { limit = { free_district_slots =  12 } set_variable = { which = autofab_districts_available value = 12 } }
+	else if = { limit = { free_district_slots =  13 } set_variable = { which = autofab_districts_available value = 13 } }
+	else if = { limit = { free_district_slots =  14 } set_variable = { which = autofab_districts_available value = 14 } }
+	else if = { limit = { free_district_slots =  15 } set_variable = { which = autofab_districts_available value = 15 } }
+	else if = { limit = { free_district_slots =  16 } set_variable = { which = autofab_districts_available value = 16 } }
+	else if = { limit = { free_district_slots =  17 } set_variable = { which = autofab_districts_available value = 17 } }
+	else if = { limit = { free_district_slots =  18 } set_variable = { which = autofab_districts_available value = 18 } }
+	else if = { limit = { free_district_slots =  19 } set_variable = { which = autofab_districts_available value = 19 } }
+	else if = { limit = { free_district_slots =  20 } set_variable = { which = autofab_districts_available value = 20 } }
+	else if = { limit = { free_district_slots =  21 } set_variable = { which = autofab_districts_available value = 21 } }
+	else if = { limit = { free_district_slots =  22 } set_variable = { which = autofab_districts_available value = 22 } }
+	else if = { limit = { free_district_slots =  23 } set_variable = { which = autofab_districts_available value = 23 } }
+	else if = { limit = { free_district_slots =  24 } set_variable = { which = autofab_districts_available value = 24 } }
+	else if = { limit = { free_district_slots =  25 } set_variable = { which = autofab_districts_available value = 25 } }
+	else if = { limit = { free_district_slots =  26 } set_variable = { which = autofab_districts_available value = 26 } }
+	else if = { limit = { free_district_slots =  27 } set_variable = { which = autofab_districts_available value = 27 } }
+	else if = { limit = { free_district_slots =  28 } set_variable = { which = autofab_districts_available value = 28 } }
+	else if = { limit = { free_district_slots =  29 } set_variable = { which = autofab_districts_available value = 29 } }
+	else if = { limit = { free_district_slots =  30 } set_variable = { which = autofab_districts_available value = 30 } }
+	else if = { limit = { free_district_slots =  31 } set_variable = { which = autofab_districts_available value = 31 } }
+	else if = { limit = { free_district_slots =  32 } set_variable = { which = autofab_districts_available value = 32 } }
+	else if = { limit = { free_district_slots =  33 } set_variable = { which = autofab_districts_available value = 33 } }
+	else if = { limit = { free_district_slots =  34 } set_variable = { which = autofab_districts_available value = 34 } }
+	else if = { limit = { free_district_slots =  35 } set_variable = { which = autofab_districts_available value = 35 } }
+	else if = { limit = { free_district_slots =  36 } set_variable = { which = autofab_districts_available value = 36 } }
+	else if = { limit = { free_district_slots =  37 } set_variable = { which = autofab_districts_available value = 37 } }
+	else if = { limit = { free_district_slots =  38 } set_variable = { which = autofab_districts_available value = 38 } }
+	else if = { limit = { free_district_slots =  39 } set_variable = { which = autofab_districts_available value = 39 } }
+	else if = { limit = { free_district_slots =  40 } set_variable = { which = autofab_districts_available value = 40 } }
+	else if = { limit = { free_district_slots =  41 } set_variable = { which = autofab_districts_available value = 41 } }
+	else if = { limit = { free_district_slots =  42 } set_variable = { which = autofab_districts_available value = 42 } }
+	else if = { limit = { free_district_slots =  43 } set_variable = { which = autofab_districts_available value = 43 } }
+	else if = { limit = { free_district_slots =  44 } set_variable = { which = autofab_districts_available value = 44 } }
+	else if = { limit = { free_district_slots =  45 } set_variable = { which = autofab_districts_available value = 45 } }
+	else if = { limit = { free_district_slots =  46 } set_variable = { which = autofab_districts_available value = 46 } }
+	else if = { limit = { free_district_slots =  47 } set_variable = { which = autofab_districts_available value = 47 } }
+	else if = { limit = { free_district_slots =  48 } set_variable = { which = autofab_districts_available value = 48 } }
+	else if = { limit = { free_district_slots =  49 } set_variable = { which = autofab_districts_available value = 49 } }
+	else if = { limit = { free_district_slots =  50 } set_variable = { which = autofab_districts_available value = 50 } }
+	else if = { limit = { free_district_slots =  51 } set_variable = { which = autofab_districts_available value = 51 } }
+	else if = { limit = { free_district_slots =  52 } set_variable = { which = autofab_districts_available value = 52 } }
+	else if = { limit = { free_district_slots =  53 } set_variable = { which = autofab_districts_available value = 53 } }
+	else if = { limit = { free_district_slots =  54 } set_variable = { which = autofab_districts_available value = 54 } }
+	else if = { limit = { free_district_slots =  55 } set_variable = { which = autofab_districts_available value = 55 } }
+	else if = { limit = { free_district_slots =  56 } set_variable = { which = autofab_districts_available value = 56 } }
+	else if = { limit = { free_district_slots =  57 } set_variable = { which = autofab_districts_available value = 57 } }
+	else if = { limit = { free_district_slots =  58 } set_variable = { which = autofab_districts_available value = 58 } }
+	else if = { limit = { free_district_slots =  59 } set_variable = { which = autofab_districts_available value = 59 } }
+	else if = { limit = { free_district_slots =  60 } set_variable = { which = autofab_districts_available value = 60 } }
+	else if = { limit = { free_district_slots =  61 } set_variable = { which = autofab_districts_available value = 61 } }
+	else if = { limit = { free_district_slots =  62 } set_variable = { which = autofab_districts_available value = 62 } }
+	else if = { limit = { free_district_slots =  63 } set_variable = { which = autofab_districts_available value = 63 } }
+	else if = { limit = { free_district_slots =  64 } set_variable = { which = autofab_districts_available value = 64 } }
+	else if = { limit = { free_district_slots =  65 } set_variable = { which = autofab_districts_available value = 65 } }
+	else if = { limit = { free_district_slots =  66 } set_variable = { which = autofab_districts_available value = 66 } }
+	else if = { limit = { free_district_slots =  67 } set_variable = { which = autofab_districts_available value = 67 } }
+	else if = { limit = { free_district_slots =  68 } set_variable = { which = autofab_districts_available value = 68 } }
+	else if = { limit = { free_district_slots =  69 } set_variable = { which = autofab_districts_available value = 69 } }
+	else if = { limit = { free_district_slots =  70 } set_variable = { which = autofab_districts_available value = 70 } }
+	else if = { limit = { free_district_slots =  71 } set_variable = { which = autofab_districts_available value = 71 } }
+	else if = { limit = { free_district_slots =  72 } set_variable = { which = autofab_districts_available value = 72 } }
+	else if = { limit = { free_district_slots =  73 } set_variable = { which = autofab_districts_available value = 73 } }
+	else if = { limit = { free_district_slots =  74 } set_variable = { which = autofab_districts_available value = 74 } }
+	else if = { limit = { free_district_slots =  75 } set_variable = { which = autofab_districts_available value = 75 } }
+	else if = { limit = { free_district_slots =  76 } set_variable = { which = autofab_districts_available value = 76 } }
+	else if = { limit = { free_district_slots =  77 } set_variable = { which = autofab_districts_available value = 77 } }
+	else if = { limit = { free_district_slots =  78 } set_variable = { which = autofab_districts_available value = 78 } }
+	else if = { limit = { free_district_slots =  79 } set_variable = { which = autofab_districts_available value = 79 } }
+	else if = { limit = { free_district_slots =  80 } set_variable = { which = autofab_districts_available value = 80 } }
+	else if = { limit = { free_district_slots =  81 } set_variable = { which = autofab_districts_available value = 81 } }
+	else if = { limit = { free_district_slots =  82 } set_variable = { which = autofab_districts_available value = 82 } }
+	else if = { limit = { free_district_slots =  83 } set_variable = { which = autofab_districts_available value = 83 } }
+	else if = { limit = { free_district_slots =  84 } set_variable = { which = autofab_districts_available value = 84 } }
+	else if = { limit = { free_district_slots =  85 } set_variable = { which = autofab_districts_available value = 85 } }
+	else if = { limit = { free_district_slots =  86 } set_variable = { which = autofab_districts_available value = 86 } }
+	else if = { limit = { free_district_slots =  87 } set_variable = { which = autofab_districts_available value = 87 } }
+	else if = { limit = { free_district_slots =  88 } set_variable = { which = autofab_districts_available value = 88 } }
+	else if = { limit = { free_district_slots =  89 } set_variable = { which = autofab_districts_available value = 89 } }
+	else if = { limit = { free_district_slots =  90 } set_variable = { which = autofab_districts_available value = 90 } }
+	else if = { limit = { free_district_slots =  91 } set_variable = { which = autofab_districts_available value = 91 } }
+	else if = { limit = { free_district_slots =  92 } set_variable = { which = autofab_districts_available value = 92 } }
+	else if = { limit = { free_district_slots =  93 } set_variable = { which = autofab_districts_available value = 93 } }
+	else if = { limit = { free_district_slots =  94 } set_variable = { which = autofab_districts_available value = 94 } }
+	else if = { limit = { free_district_slots =  95 } set_variable = { which = autofab_districts_available value = 95 } }
+	else if = { limit = { free_district_slots =  96 } set_variable = { which = autofab_districts_available value = 96 } }
+	else if = { limit = { free_district_slots =  97 } set_variable = { which = autofab_districts_available value = 97 } }
+	else if = { limit = { free_district_slots =  98 } set_variable = { which = autofab_districts_available value = 98 } }
+	else if = { limit = { free_district_slots =  99 } set_variable = { which = autofab_districts_available value = 99 } }
+	else if = { limit = { free_district_slots =  100 } set_variable = { which = autofab_districts_available value = 100 } }
+}
+
 reset_factory_part_1 = {
 	set_variable = { which = autofab_farm_temp value = autofab_farm }
 	set_variable = { which = autofab_mine_temp value = autofab_mine }
 	set_variable = { which = autofab_power_temp value = autofab_power }
 	set_variable = { which = autofab_foundry_temp value = autofab_foundry }
-	set_variable = { which = autofab_foundry_temp_2 value = autofab_foundry_2 }
-	set_variable = { which = autofab_foundry_temp_3 value = autofab_foundry_3 }
 	set_variable = { which = autofab_factory_temp value = autofab_factory }
-	set_variable = { which = autofab_factory_temp_2 value = autofab_factory_2 }
-	set_variable = { which = autofab_factory_temp_3 value = autofab_factory_3 }
 	set_variable = { which = autofab_refinery_temp value = autofab_refinery }
 	set_variable = { which = autofab_chemical_temp value = autofab_chemical }
 	set_variable = { which = autofab_translucer_temp value = autofab_translucer }
@@ -748,11 +851,7 @@ reset_factory_part_2 = {
 				is_deposit_type = autofab_mine
 				is_deposit_type = autofab_power
 				is_deposit_type = autofab_foundry
-				is_deposit_type = autofab_foundry_2
-				is_deposit_type = autofab_foundry_3
 				is_deposit_type = autofab_factory
-				is_deposit_type = autofab_factory_2
-				is_deposit_type = autofab_factory_3
 				is_deposit_type = autofab_gases_refinery
 				is_deposit_type = autofab_motes_refinery
 				is_deposit_type = autofab_crystals_refinery
@@ -797,38 +896,10 @@ reset_factory_part_3 = {
 	}
 	while = {
 		limit = {
-			check_variable = { which = autofab_foundry_temp_2 value > 0 }
-		}
-		add_deposit = autofab_foundry_2
-		change_variable = { which = autofab_foundry_temp_2 value = -1 }
-	}
-	while = {
-		limit = {
-			check_variable = { which = autofab_foundry_temp_3 value > 0 }
-		}
-		add_deposit = autofab_foundry_3
-		change_variable = { which = autofab_foundry_temp_3 value = -1 }
-	}
-	while = {
-		limit = {
 			check_variable = { which = autofab_factory_temp value > 0 }
 		}
 		add_deposit = autofab_factory
 		change_variable = { which = autofab_factory_temp value = -1 }
-	}
-	while = {
-		limit = {
-			check_variable = { which = autofab_factory_temp_2 value > 0 }
-		}
-		add_deposit = autofab_factory_2
-		change_variable = { which = autofab_factory_temp_2 value = -1 }
-	}
-	while = {
-		limit = {
-			check_variable = { which = autofab_factory_temp_3 value > 0 }
-		}
-		add_deposit = autofab_factory_3
-		change_variable = { which = autofab_factory_temp_3 value = -1 }
 	}
 	while = {
 		limit = {

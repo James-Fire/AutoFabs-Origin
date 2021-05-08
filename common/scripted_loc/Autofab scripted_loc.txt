@@ -9,39 +9,37 @@
 # that'll be used if trigger passes
 
 
-defined_text = { #Planet scope
-	name = GetAutofabConstruction
+defined_text = { #Country scope
+	name = GetAutofabQueueValue
 	text = {
 		trigger = {
-			#has_planet_flag = foundry_expanding
+			has_country_flag = factory_queue_1
 		}
-		localization_key = Zero
+		localization_key = 1
 	}
 	text = {
 		trigger = {
-			NOT = {
-				has_planet_flag = autofab_automation
-			}
+			has_country_flag = factory_queue_2
 		}
-		localization_key = automation_off
-	}
-}
-
-defined_text = { #Planet scope
-	name = GetAutofabConvFlag
-	text = {
-		trigger = {
-			has_planet_flag = autofab_ignore_vanilla
-		}
-		localization_key = ignoring
+		localization_key = 2
 	}
 	text = {
 		trigger = {
-			NOT = {
-				has_planet_flag = autofab_ignore_vanilla
-			}
+			has_country_flag = factory_queue_3
 		}
-		localization_key = not_ignoring
+		localization_key = 3
+	}
+	text = {
+		trigger = {
+			has_country_flag = factory_queue_4
+		}
+		localization_key = 4
+	}
+	text = {
+		trigger = {
+			has_country_flag = factory_queue_5
+		}
+		localization_key = 5
 	}
 }
 

@@ -91,6 +91,7 @@
     #Resource Production
      
      planet_autofab:0 "Automatic Factory"
+     mod_planet_autofab_produces_mult:0 "Factory Production"
      mod_planet_autofab_food_produces_add:0 "Factory Food Production"
      mod_planet_autofab_minerals_produces_add:0 "Factory Minerals Production"
      mod_planet_autofab_energy_produces_add:0 "Factory Energy Production"
@@ -99,6 +100,7 @@
      mod_planet_autofab_volatile_motes_produces_add:0 "Factory Volatile Motes Production"
      mod_planet_autofab_exotic_gases_produces_add:0 "Factory Exotic Gases Production"
      mod_planet_autofab_rare_crystals_produces_add:0 "Factory Rare Crystals Production"
+     mod_planet_autofab_sr_living_metal_produces_add:0 "Factory Living Metal Production"
      
      mod_planet_autofab_food_produces_mult:0 "Factory Food Production"
      mod_planet_autofab_minerals_produces_mult:0 "Factory Minerals Production"
@@ -109,6 +111,7 @@
      mod_planet_autofab_energy_upkeep_add:0 "Factory Energy Requirement"
      mod_planet_autofab_minerals_upkeep_add:0 "Factory Minerals Requirement"
      mod_planet_autofab_upkeep_mult:0 "Factory Upkeep"
+     mod_planet_autofab_volatile_motes_upkeep_add:0 "Factory Volatile Motes Requirement"
  
     #Deposits
      autofab:0 "Automatic Factory"
@@ -154,7 +157,7 @@
     #Origin
      origin_autofab_tooltip_1:0 "The living standards of your main species will be set to a high standard. Ethic specific ones are used first, then Social Welfare."
      origin_autofab_tooltip_2:0 "You start with an Automatic Factory deposit, that replaces physical resource production."
-     origin_autofab_tooltip_3:0 "You start with less £pop£ Pops, those that would have been working physical resource jobs removed. To compensate for needing more district space, your homeworld minimum size is £planetsize£ §Y20§!."
+     origin_autofab_tooltip_3:0 "You start with less £pop£ Pops, those that would have been working physical resource jobs removed. To compensate for needing more district space, your homeworld minimum size is £planetsize£ §Y25§!."
      origin_autofab_tooltip_4:0 "£pop£ Pop Growth is slower, due to everyone having full comfort, and a general lack of motivation for procreation."
      origin_autofab:0 "Factory Automation"
      origin_autofab_desc:0 "Ever since the Industrial Revolution, this species has been obsessed with increasing automation in their factories. Achieving fully automatic factories, in operation and expansion, has allowed them to greatly reduce the labour required by their species, and catapult themselves to spacefaring before the expected population levels."
@@ -163,7 +166,7 @@
      ap_autofab:0 "Automation Revolution"
      ap_autofab_desc:0 "Our society has progressed to the point where our population expects certain things, and is unwilling to do it themselves. Automated Factories can handle the required tasks."
      
-     can_use_autofab:0 "Unlock the ability to build Automated Factories on your planets, reducing your reliance on labour from people and machines. \nIf you have the Origin, this gives +10% factory production instead."
+     can_use_autofab:0 "Unlock the ability to build Automated Factories on your planets, reducing your reliance on labour from people and machines. \nIf you have the Origin, this gives +40% factory production instead."
      
     #Events
      
@@ -185,7 +188,7 @@
     #Advisor
      ADVISOR:0 "Advisor"
      autofab_0_desc_1:0 "Welcome [Root.GetRulerTitle]. The Automatic Factory is a special deposit on your planets, allowing automated production of key resources without the use of pops."
-     autofab_0_desc_2:0 "After colonization, you can use a decision to build it. Once the base factory is built, you have several options to expand it, or let it handle its own expansion."
+     autofab_0_desc_2:0 "After colonization, you can use either the Planet or Country Terminal to order construction. Once the base factory is built, you have several options to expand it, or let it handle its own expansion."
      autofab_0_desc_3:0 ""
      autofab_0_desc_4:0 "To the left is a list of key concepts present in the mod, which you can read at your leisure. You can bring up this advisor at any time from either the Country or Planet Terminal."
      autofab_menu.0.name:0 "The [Root.GetRulerTitle]'s Factory Advisor"
@@ -206,8 +209,8 @@
      autofab.2.desc_1:0 "The Factory Queue is a script-based application of user-input build orders, placing constructions in locations based on a set of triggers. It is capable of building Factory Deposits."
      autofab.2.desc_2:0 "In both the Planet and Country Terminal, you have controls to increase or decrease the queue, which is then utilized by this script every 3 months to build factory modules on Factory planets that don't have a construction going on."
      autofab.2.desc_3:0 "The Queue applies constructions from all of one Factory module first, and then moves on to the next one in the list. This order is the same order of the modules in the Terminal."
-     autofab.2.desc_4:0 ""
-     autofab.2.desc_5:0 ""
+     autofab.2.desc_4:0 "The time it takes to finish a factory module is 1 year. The time it takes to build the Factory itself is 2 years. Costs, except for the flat 50 alloy cost per module, are based on the planet, being specific to any planets using a specific supported district set. The following is mineral £minerals£ costs:"
+     autofab.2.desc_5:0 "Standard: 300\nHabitat:500\nEcumenopolis:1000\nRingworld:2000\nHive/Machine Worlds:300"
      
      autofab.3.name:0 "Factory Terminal"
      autofab.3.desc:0 "$autofab.3.desc_1$ \n\n$autofab.3.desc_2$ \n\n$autofab.3.desc_3$ \n\n$autofab.3.desc_4$ \n\n$autofab.3.desc_5$"
@@ -238,8 +241,13 @@
      
      
     #Menu
+     autofab_menu_name:0 "AutoFactory Terminal"
      decision_manage_autofab:0 "Factory Terminal"
      decision_manage_autofab_desc:0 "Open up the factory terminal for this planet, where we can make changes, talk to the Advisor, or go to the country terminal."
+     swapping_country_tooltip:0 "Any planet you own must have districts that can be swapped."
+     swapping_planet_tooltip:0 "The planet must have districts that can be swapped."
+     swapping_country_effects_tooltip:0 "All Districts in you empire that can be swapped will be."
+     swapping_planet_effects_tooltip:0 "All Districts on this planet that can be swapped will be."
      
      Zero:0 "0"
      blank:0 ""
@@ -277,13 +285,13 @@
      factory_construction:0 "Factory Stats"
      
      factory_planets:0 "£autofab_planet£ Current:[This.autofabs]|Queued:[This.autofab_queue]|Available:[This.autofabs_available]"
-     factory_available_space:0 "£district£ Available:[This.autofab_districts_available]|Building:[This.autofab_distrcits_building]|Queued:[This.autofab_distrcits_queued]"
+     factory_available_space:0 "£district£ Available:[This.autofab_districts_available]|Building:[This.autofab_districts_building]|Queued:[This.autofab_distrcits_queued]"
      
      factory_construction_extender:0 "$factory_generator$\n\n$factory_mine$\n\n$factory_farm$\n\n$factory_foundry$\n\n$factory_factory$\n\n$factory_motes$\n\n$factory_gases$\n\n$factory_crystals$\n\n$factory_extractor$"
-     factory_generator:0 "£energy£ $factory_generator_current$|$factory_generator_building$|$factory_generator_queue$|$factory_generator_available$"
+     factory_generator:0 "£energy£ $factory_generator_current$|$factory_generator_building$|$factory_generator_queued$|$factory_generator_available$"
      factory_generator_current:0 "Current:[This.autofab_power]"
      factory_generator_building:0 "Building:[This.autofab_energy_building]"
-     factory_generator_queue:0 "Queued:[This.autofab_energy_queue]"
+     factory_generator_queued:0 "Queued:[This.autofab_energy_queue]"
      factory_generator_available:0 "Available:[This.autofab_energy_avail]"
      factory_mine:0 "£minerals£ Current:[This.autofab_mine]|Building:[This.autofab_minerals_building]|Queued:[This.autofab_mineral_queue]|Available:[This.autofab_minerals_avail]"
      factory_farm:0 "£food£ Current:[This.autofab_farm]|Building:[This.autofab_food_building]|Queued:[This.autofab_food_queue]|Available:[This.autofab_food_avail]"
@@ -294,9 +302,26 @@
      factory_crystals:0 "£rare_crystals£ Current:[This.autofab_translucer]|Building:[This.autofab_crystals_building]|Queued:[This.autofab_crystals_queue]|Available:[This.autofab_districts_available]"
      factory_extractor:0 "£autofab_extractor£ Current:[This.autofab_extractor]|Building:[This.autofab_extractor_building]|Queued:[This.autofab_extractor_queue]|Available:[This.autofab_extractor_avail]"
      
-     
-     
-     
+     factory_autofab_queue:0 "Add specified number of Autofabs to the Queue."
+     factory_autofab_unqueue:0 "Remove specified number of Autofabs from the Queue."
+     factory_generator_queue:0 "Add specified number of Generators to the Queue."
+     factory_generator_unqueue:0 "Remove specified number of Generators from the Queue."
+     factory_mine_queue:0 "Add specified number of Mines to the Queue."
+     factory_mine_unqueue:0 "Remove specified number of Mines from the Queue."
+     factory_farm_queue:0 "Add specified number of Farms to the Queue."
+     factory_farm_unqueue:0 "Remove specified number of Farms from the Queue."
+     factory_foundry_queue:0 "Add specified number of Foundries to the Queue."
+     factory_foundry_unqueue:0 "Remove specified number of Foundries from the Queue."
+     factory_factory_queue:0 "Add specified number of Factories to the Queue."
+     factory_factory_unqueue:0 "Remove specified number of Factories from the Queue."
+     factory_chemical_queue:0 "Add specified number of Chemical Plants to the Queue."
+     factory_chemical_unqueue:0 "Remove specified number of Chemical Plants from the Queue."
+     factory_refinery_queue:0 "Add specified number of Refinerys to the Queue."
+     factory_refinery_unqueue:0 "Remove specified number of Refinerys from the Queue."
+     factory_translucer_queue:0 "Add specified number of Translucers to the Queue."
+     factory_translucer_unqueue:0 "Remove specified number of Translucers from the Queue."
+     factory_extractor_queue:0 "Add specified number of Extractors to the Queue."
+     factory_extractor_unqueue:0 "Remove specified number of Extractors from the Queue."
      
      
      edict_autofab_manage_desc:0 ""

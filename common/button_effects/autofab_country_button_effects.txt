@@ -5,7 +5,7 @@ blank_effect = {
 }
 
 open_autofab_manager = {
-	potential = { hidden_trigger = { has_exploit_mod = yes can_use_autofab = yes } }
+	potential = { hidden_trigger = { can_use_autofab = yes } } #has_exploit_mod = yes
 	allow = { hidden_trigger = { always = yes } }
 	effect = {
 		country_event = { id = autofab_menu.1 }
@@ -18,7 +18,7 @@ open_autofab_manager = {
 }
 
 open_autofab_manager_side = {
-	potential = { hidden_trigger = { has_exploit_mod = no can_use_autofab = yes } }
+	potential = { hidden_trigger = { can_use_autofab = yes } } #has_exploit_mod = no
 	allow = { hidden_trigger = { always = yes } }
 	effect = {
 		country_event = { id = autofab_menu.1 }
@@ -54,21 +54,28 @@ factory_automation_off = {
 }
 factory_automation_on = {
 	potential = { has_country_flag = autofab_automation_off }
-	allow = { hidden_trigger = { always = no } }
+	allow = { hidden_trigger = { always = yes } }
 	effect = {
 		custom_tooltip = "Automation is not available right now."
-		set_country_flag = autofab_automation remove_country_flag = autofab_automation_off
+		#set_country_flag = autofab_automation remove_country_flag = autofab_automation_off
 	}
 }
 factory_vanilla_swapping_fire_country = {
 	potential = { has_country_flag = factory_vanilla_swapping }
-	allow = { hidden_trigger = { always = yes } }
+	allow = {
+		custom_tooltip = "swapping_country_tooltip"
+		hidden_trigger = { any_owned_planet = { has_vanilla_swap_candidate = yes } }
+	}
 	effect = {
-		every_owned_planet = {
-			limit = {
-				has_vanilla_swap_candidate = yes
+		custom_tooltip = "swapping_country_effects_tooltip"
+		hidden_effect = {
+			every_owned_planet = {
+				limit = {
+					has_vanilla_swap_candidate = yes
+				}
+				planet_event = { id = autofab.21 }
 			}
-			planet_event = { id = autofab.21 }
+		}
 	}
 }
 factory_vanilla_swapping_off = {
@@ -393,45 +400,48 @@ factory_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_queue_1
-				check_variable = { which = autofabs_available value > 0 }
+		custom_tooltip = "factory_autofab_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_queue_1
+					check_variable = { which = autofabs_available value > 0 }
+				}
+				change_variable = { which = autofab_queue value = 1 }
+				change_variable = { which = autofabs_available value = -1 }
 			}
-			change_variable = { which = autofab_queue value = 1 }
-			change_variable = { which = autofabs_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_queue_2
-				check_variable = { which = autofabs_available value > 1 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_queue_2
+					check_variable = { which = autofabs_available value > 1 }
+				}
+				change_variable = { which = autofab_queue value = 2 }
+				change_variable = { which = autofabs_available value = -2 }
 			}
-			change_variable = { which = autofab_queue value = 2 }
-			change_variable = { which = autofabs_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_queue_3
-				check_variable = { which = autofabs_available value > 2 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_queue_3
+					check_variable = { which = autofabs_available value > 2 }
+				}
+				change_variable = { which = autofab_queue value = 3 }
+				change_variable = { which = autofabs_available value = -3 }
 			}
-			change_variable = { which = autofab_queue value = 3 }
-			change_variable = { which = autofabs_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_queue_4
-				check_variable = { which = autofabs_available value > 3 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_queue_4
+					check_variable = { which = autofabs_available value > 3 }
+				}
+				change_variable = { which = autofab_queue value = 4 }
+				change_variable = { which = autofabs_available value = -4 }
 			}
-			change_variable = { which = autofab_queue value = 4 }
-			change_variable = { which = autofabs_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_queue_5
-				check_variable = { which = autofabs_available value > 4 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_queue_5
+					check_variable = { which = autofabs_available value > 4 }
+				}
+				change_variable = { which = autofab_queue value = 5 }
+				change_variable = { which = autofabs_available value = -5 }
 			}
-			change_variable = { which = autofab_queue value = 5 }
-			change_variable = { which = autofabs_available value = -5 }
 		}
 	}
 }
@@ -521,35 +531,38 @@ factory_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_queue_1
+		custom_tooltip = "factory_autofab_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_queue_1
+				}
+				change_variable = { which = autofab_queue value = -1 }
 			}
-			change_variable = { which = autofab_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_queue_2
+			else_if = {
+				limit = {
+					has_country_flag = factory_queue_2
+				}
+				change_variable = { which = autofab_queue value = -2 }
 			}
-			change_variable = { which = autofab_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_queue_3
+			else_if = {
+				limit = {
+					has_country_flag = factory_queue_3
+				}
+				change_variable = { which = autofab_queue value = -3 }
 			}
-			change_variable = { which = autofab_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_queue_4
+			else_if = {
+				limit = {
+					has_country_flag = factory_queue_4
+				}
+				change_variable = { which = autofab_queue value = -4 }
 			}
-			change_variable = { which = autofab_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_queue_5
+			else_if = {
+				limit = {
+					has_country_flag = factory_queue_5
+				}
+				change_variable = { which = autofab_queue value = -5 }
 			}
-			change_variable = { which = autofab_queue value = -5 }
 		}
 	}
 }
@@ -586,55 +599,58 @@ factory_generator_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_generator_queue_1
-				check_variable = { which = autofab_energy_avail value > 0 }
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_generator_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_generator_queue_1
+					check_variable = { which = autofab_energy_avail value > 0 }
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_energy_queue value = 1 }
+				change_variable = { which = autofab_energy_avail value = -1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_energy_queue value = 1 }
-			change_variable = { which = autofab_energy_avail value = -1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_generator_queue_2
-				check_variable = { which = autofab_energy_avail value > 1 }
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_generator_queue_2
+					check_variable = { which = autofab_energy_avail value > 1 }
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_energy_queue value = 2 }
+				change_variable = { which = autofab_energy_avail value = -2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_energy_queue value = 2 }
-			change_variable = { which = autofab_energy_avail value = -2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_generator_queue_3
-				check_variable = { which = autofab_energy_avail value > 2 }
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_generator_queue_3
+					check_variable = { which = autofab_energy_avail value > 2 }
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_energy_queue value = 3 }
+				change_variable = { which = autofab_energy_avail value = -3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_energy_queue value = 3 }
-			change_variable = { which = autofab_energy_avail value = -3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_generator_queue_4
-				check_variable = { which = autofab_energy_avail value > 3 }
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_generator_queue_4
+					check_variable = { which = autofab_energy_avail value > 3 }
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_energy_queue value = 4 }
+				change_variable = { which = autofab_energy_avail value = -4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_energy_queue value = 4 }
-			change_variable = { which = autofab_energy_avail value = -4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_generator_queue_5
-				check_variable = { which = autofab_energy_avail value > 4 }
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_generator_queue_5
+					check_variable = { which = autofab_energy_avail value > 4 }
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_energy_queue value = 5 }
+				change_variable = { which = autofab_energy_avail value = -5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_energy_queue value = 5 }
-			change_variable = { which = autofab_energy_avail value = -5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -724,35 +740,38 @@ factory_generator_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_generator_queue_1
+		custom_tooltip = "factory_generator_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_generator_queue_1
+				}
+				change_variable = { which = autofab_energy_queue value = -1 }
 			}
-			change_variable = { which = autofab_energy_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_generator_queue_2
+			else_if = {
+				limit = {
+					has_country_flag = factory_generator_queue_2
+				}
+				change_variable = { which = autofab_energy_queue value = -2 }
 			}
-			change_variable = { which = autofab_energy_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_generator_queue_3
+			else_if = {
+				limit = {
+					has_country_flag = factory_generator_queue_3
+				}
+				change_variable = { which = autofab_energy_queue value = -3 }
 			}
-			change_variable = { which = autofab_energy_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_generator_queue_4
+			else_if = {
+				limit = {
+					has_country_flag = factory_generator_queue_4
+				}
+				change_variable = { which = autofab_energy_queue value = -4 }
 			}
-			change_variable = { which = autofab_energy_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_generator_queue_5
+			else_if = {
+				limit = {
+					has_country_flag = factory_generator_queue_5
+				}
+				change_variable = { which = autofab_energy_queue value = -5 }
 			}
-			change_variable = { which = autofab_energy_queue value = -5 }
 		}
 	}
 }
@@ -789,55 +808,58 @@ factory_mine_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_mine_queue_1
-				check_variable = { which = autofab_minerals_avail value > 0 }
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_mine_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_mine_queue_1
+					check_variable = { which = autofab_minerals_avail value > 0 }
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_mineral_queue value = 1 }
+				change_variable = { which = autofab_minerals_avail value = -1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_mineral_queue value = 1 }
-			change_variable = { which = autofab_minerals_avail value = -1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_mine_queue_2
-				check_variable = { which = autofab_minerals_avail value > 1 }
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_mine_queue_2
+					check_variable = { which = autofab_minerals_avail value > 1 }
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_mineral_queue value = 2 }
+				change_variable = { which = autofab_minerals_avail value = -2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_mineral_queue value = 2 }
-			change_variable = { which = autofab_minerals_avail value = -2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_mine_queue_3
-				check_variable = { which = autofab_minerals_avail value > 2 }
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_mine_queue_3
+					check_variable = { which = autofab_minerals_avail value > 2 }
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_mineral_queue value = 3 }
+				change_variable = { which = autofab_minerals_avail value = -3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_mineral_queue value = 3 }
-			change_variable = { which = autofab_minerals_avail value = -3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_mine_queue_4
-				check_variable = { which = autofab_minerals_avail value > 3 }
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_mine_queue_4
+					check_variable = { which = autofab_minerals_avail value > 3 }
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_mineral_queue value = 4 }
+				change_variable = { which = autofab_minerals_avail value = -4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_mineral_queue value = 4 }
-			change_variable = { which = autofab_minerals_avail value = -4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_mine_queue_5
-				check_variable = { which = autofab_minerals_avail value > 4 }
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_mine_queue_5
+					check_variable = { which = autofab_minerals_avail value > 4 }
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_mineral_queue value = 5 }
+				change_variable = { which = autofab_minerals_avail value = -5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_mineral_queue value = 5 }
-			change_variable = { which = autofab_minerals_avail value = -5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -927,35 +949,38 @@ factory_mine_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_mine_queue_1
+		custom_tooltip = "factory_mine_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_mine_queue_1
+				}
+				change_variable = { which = autofab_mineral_queue value = -1 }
 			}
-			change_variable = { which = autofab_mineral_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_mine_queue_2
+			else_if = {
+				limit = {
+					has_country_flag = factory_mine_queue_2
+				}
+				change_variable = { which = autofab_mineral_queue value = -2 }
 			}
-			change_variable = { which = autofab_mineral_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_mine_queue_3
+			else_if = {
+				limit = {
+					has_country_flag = factory_mine_queue_3
+				}
+				change_variable = { which = autofab_mineral_queue value = -3 }
 			}
-			change_variable = { which = autofab_mineral_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_mine_queue_4
+			else_if = {
+				limit = {
+					has_country_flag = factory_mine_queue_4
+				}
+				change_variable = { which = autofab_mineral_queue value = -4 }
 			}
-			change_variable = { which = autofab_mineral_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_mine_queue_5
+			else_if = {
+				limit = {
+					has_country_flag = factory_mine_queue_5
+				}
+				change_variable = { which = autofab_mineral_queue value = -5 }
 			}
-			change_variable = { which = autofab_mineral_queue value = -5 }
 		}
 	}
 }
@@ -992,55 +1017,58 @@ factory_farm_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_farm_queue_1
-				check_variable = { which = autofab_food_avail value > 0 }
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_farm_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_farm_queue_1
+					check_variable = { which = autofab_food_avail value > 0 }
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_food_queue value = 1 }
+				change_variable = { which = autofab_food_avail value = -1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_food_queue value = 1 }
-			change_variable = { which = autofab_food_avail value = -1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_farm_queue_2
-				check_variable = { which = autofab_food_avail value > 1 }
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_farm_queue_2
+					check_variable = { which = autofab_food_avail value > 1 }
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_food_queue value = 2 }
+				change_variable = { which = autofab_food_avail value = -2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_food_queue value = 2 }
-			change_variable = { which = autofab_food_avail value = -2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_farm_queue_3
-				check_variable = { which = autofab_food_avail value > 2 }
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_farm_queue_3
+					check_variable = { which = autofab_food_avail value > 2 }
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_food_queue value = 3 }
+				change_variable = { which = autofab_food_avail value = -3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_food_queue value = 3 }
-			change_variable = { which = autofab_food_avail value = -3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_farm_queue_4
-				check_variable = { which = autofab_food_avail value > 3 }
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_farm_queue_4
+					check_variable = { which = autofab_food_avail value > 3 }
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_food_queue value = 4 }
+				change_variable = { which = autofab_food_avail value = -4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_food_queue value = 4 }
-			change_variable = { which = autofab_food_avail value = -4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_farm_queue_5
-				check_variable = { which = autofab_food_avail value > 4 }
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_farm_queue_5
+					check_variable = { which = autofab_food_avail value > 4 }
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_food_queue value = 5 }
+				change_variable = { which = autofab_food_avail value = -5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_food_queue value = 5 }
-			change_variable = { which = autofab_food_avail value = -5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -1130,35 +1158,38 @@ factory_farm_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_farm_queue_1
+		custom_tooltip = "factory_farm_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_farm_queue_1
+				}
+				change_variable = { which = autofab_food_queue value = -1 }
 			}
-			change_variable = { which = autofab_food_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_farm_queue_2
+			else_if = {
+				limit = {
+					has_country_flag = factory_farm_queue_2
+				}
+				change_variable = { which = autofab_food_queue value = -2 }
 			}
-			change_variable = { which = autofab_food_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_farm_queue_3
+			else_if = {
+				limit = {
+					has_country_flag = factory_farm_queue_3
+				}
+				change_variable = { which = autofab_food_queue value = -3 }
 			}
-			change_variable = { which = autofab_food_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_farm_queue_4
+			else_if = {
+				limit = {
+					has_country_flag = factory_farm_queue_4
+				}
+				change_variable = { which = autofab_food_queue value = -4 }
 			}
-			change_variable = { which = autofab_food_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_farm_queue_5
+			else_if = {
+				limit = {
+					has_country_flag = factory_farm_queue_5
+				}
+				change_variable = { which = autofab_food_queue value = -5 }
 			}
-			change_variable = { which = autofab_food_queue value = -5 }
 		}
 	}
 }
@@ -1190,50 +1221,53 @@ factory_foundry_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_foundry_queue_1
-				check_variable = { which = autofab_foundry_available value > 0 }
+		custom_tooltip = "factory_foundry_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_foundry_queue_1
+					check_variable = { which = autofab_foundry_available value > 0 }
+				}
+				change_variable = { which = autofab_alloys_queue value = 1 }
+				change_variable = { which = autofab_foundry_available value = -1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_alloys_queue value = 1 }
-			change_variable = { which = autofab_foundry_available value = -1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_foundry_queue_2
-				check_variable = { which = autofab_foundry_available value > 1 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_foundry_queue_2
+					check_variable = { which = autofab_foundry_available value > 1 }
+				}
+				change_variable = { which = autofab_alloys_queue value = 2 }
+				change_variable = { which = autofab_foundry_available value = -2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_alloys_queue value = 2 }
-			change_variable = { which = autofab_foundry_available value = -2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_foundry_queue_3
-				check_variable = { which = autofab_foundry_available value > 2 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_foundry_queue_3
+					check_variable = { which = autofab_foundry_available value > 2 }
+				}
+				change_variable = { which = autofab_alloys_queue value = 3 }
+				change_variable = { which = autofab_foundry_available value = -3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_alloys_queue value = 3 }
-			change_variable = { which = autofab_foundry_available value = -3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_foundry_queue_4
-				check_variable = { which = autofab_foundry_available value > 3 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_foundry_queue_4
+					check_variable = { which = autofab_foundry_available value > 3 }
+				}
+				change_variable = { which = autofab_alloys_queue value = 4 }
+				change_variable = { which = autofab_foundry_available value = -4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_alloys_queue value = 4 }
-			change_variable = { which = autofab_foundry_available value = -4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_foundry_queue_5
-				check_variable = { which = autofab_foundry_available value > 4 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_foundry_queue_5
+					check_variable = { which = autofab_foundry_available value > 4 }
+				}
+				change_variable = { which = autofab_alloys_queue value = 5 }
+				change_variable = { which = autofab_foundry_available value = -5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_alloys_queue value = 5 }
-			change_variable = { which = autofab_foundry_available value = -5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -1323,35 +1357,38 @@ factory_foundry_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_foundry_queue_1
+		custom_tooltip = "factory_foundry_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_foundry_queue_1
+				}
+				change_variable = { which = autofab_alloys_queue value = -1 }
 			}
-			change_variable = { which = autofab_alloys_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_foundry_queue_2
+			else_if = {
+				limit = {
+					has_country_flag = factory_foundry_queue_2
+				}
+				change_variable = { which = autofab_alloys_queue value = -2 }
 			}
-			change_variable = { which = autofab_alloys_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_foundry_queue_3
+			else_if = {
+				limit = {
+					has_country_flag = factory_foundry_queue_3
+				}
+				change_variable = { which = autofab_alloys_queue value = -3 }
 			}
-			change_variable = { which = autofab_alloys_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_foundry_queue_4
+			else_if = {
+				limit = {
+					has_country_flag = factory_foundry_queue_4
+				}
+				change_variable = { which = autofab_alloys_queue value = -4 }
 			}
-			change_variable = { which = autofab_alloys_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_foundry_queue_5
+			else_if = {
+				limit = {
+					has_country_flag = factory_foundry_queue_5
+				}
+				change_variable = { which = autofab_alloys_queue value = -5 }
 			}
-			change_variable = { which = autofab_alloys_queue value = -5 }
 		}
 	}
 }
@@ -1383,50 +1420,53 @@ factory_factory_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_factory_queue_1
-				check_variable = { which = autofab_factory_available value > 0 }
+		custom_tooltip = "factory_factory_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_factory_queue_1
+					check_variable = { which = autofab_factory_available value > 0 }
+				}
+				change_variable = { which = autofab_congoods_queue value = 1 }
+				change_variable = { which = autofab_factory_available value = -1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_congoods_queue value = 1 }
-			change_variable = { which = autofab_factory_available value = -1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_factory_queue_2
-				check_variable = { which = autofab_factory_available value > 1 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_factory_queue_2
+					check_variable = { which = autofab_factory_available value > 1 }
+				}
+				change_variable = { which = autofab_congoods_queue value = 2 }
+				change_variable = { which = autofab_factory_available value = -2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_congoods_queue value = 2 }
-			change_variable = { which = autofab_factory_available value = -2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_factory_queue_3
-				check_variable = { which = autofab_factory_available value > 2 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_factory_queue_3
+					check_variable = { which = autofab_factory_available value > 2 }
+				}
+				change_variable = { which = autofab_congoods_queue value = 3 }
+				change_variable = { which = autofab_factory_available value = -3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_congoods_queue value = 3 }
-			change_variable = { which = autofab_factory_available value = -3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_factory_queue_4
-				check_variable = { which = autofab_factory_available value > 3 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_factory_queue_4
+					check_variable = { which = autofab_factory_available value > 3 }
+				}
+				change_variable = { which = autofab_congoods_queue value = 4 }
+				change_variable = { which = autofab_factory_available value = -4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_congoods_queue value = 4 }
-			change_variable = { which = autofab_factory_available value = -4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_factory_queue_5
-				check_variable = { which = autofab_factory_available value > 4 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_factory_queue_5
+					check_variable = { which = autofab_factory_available value > 4 }
+				}
+				change_variable = { which = autofab_congoods_queue value = 5 }
+				change_variable = { which = autofab_factory_available value = -5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_congoods_queue value = 5 }
-			change_variable = { which = autofab_factory_available value = -5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -1516,35 +1556,38 @@ factory_factory_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_factory_queue_1
+		custom_tooltip = "factory_factory_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_factory_queue_1
+				}
+				change_variable = { which = autofab_congoods_queue value = -1 }
 			}
-			change_variable = { which = autofab_congoods_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_factory_queue_2
+			else_if = {
+				limit = {
+					has_country_flag = factory_factory_queue_2
+				}
+				change_variable = { which = autofab_congoods_queue value = -2 }
 			}
-			change_variable = { which = autofab_congoods_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_factory_queue_3
+			else_if = {
+				limit = {
+					has_country_flag = factory_factory_queue_3
+				}
+				change_variable = { which = autofab_congoods_queue value = -3 }
 			}
-			change_variable = { which = autofab_congoods_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_factory_queue_4
+			else_if = {
+				limit = {
+					has_country_flag = factory_factory_queue_4
+				}
+				change_variable = { which = autofab_congoods_queue value = -4 }
 			}
-			change_variable = { which = autofab_congoods_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_factory_queue_5
+			else_if = {
+				limit = {
+					has_country_flag = factory_factory_queue_5
+				}
+				change_variable = { which = autofab_congoods_queue value = -5 }
 			}
-			change_variable = { which = autofab_congoods_queue value = -5 }
 		}
 	}
 }
@@ -1577,45 +1620,48 @@ factory_motes_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_motes_queue_1
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_chemical_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_motes_queue_1
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_motes_queue value = 1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_motes_queue value = 1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_motes_queue_2
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_motes_queue_2
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_motes_queue value = 2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_motes_queue value = 2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_motes_queue_3
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_motes_queue_3
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_motes_queue value = 3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_motes_queue value = 3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_motes_queue_4
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_motes_queue_4
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_motes_queue value = 4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_motes_queue value = 4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_motes_queue_5
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_motes_queue_5
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_motes_queue value = 5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_motes_queue value = 5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -1705,35 +1751,38 @@ factory_motes_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_motes_queue_1
+		custom_tooltip = "factory_chemical_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_motes_queue_1
+				}
+				change_variable = { which = autofab_motes_queue value = -1 }
 			}
-			change_variable = { which = autofab_motes_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_motes_queue_2
+			else_if = {
+				limit = {
+					has_country_flag = factory_motes_queue_2
+				}
+				change_variable = { which = autofab_motes_queue value = -2 }
 			}
-			change_variable = { which = autofab_motes_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_motes_queue_3
+			else_if = {
+				limit = {
+					has_country_flag = factory_motes_queue_3
+				}
+				change_variable = { which = autofab_motes_queue value = -3 }
 			}
-			change_variable = { which = autofab_motes_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_motes_queue_4
+			else_if = {
+				limit = {
+					has_country_flag = factory_motes_queue_4
+				}
+				change_variable = { which = autofab_motes_queue value = -4 }
 			}
-			change_variable = { which = autofab_motes_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_motes_queue_5
+			else_if = {
+				limit = {
+					has_country_flag = factory_motes_queue_5
+				}
+				change_variable = { which = autofab_motes_queue value = -5 }
 			}
-			change_variable = { which = autofab_motes_queue value = -5 }
 		}
 	}
 }
@@ -1765,45 +1814,48 @@ factory_gases_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_gases_queue_1
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_refinery_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_gases_queue_1
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_gases_queue value = 1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_gases_queue value = 1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_gases_queue_2
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_gases_queue_2
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_gases_queue value = 2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_gases_queue value = 2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_gases_queue_3
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_gases_queue_3
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_gases_queue value = 3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_gases_queue value = 3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_gases_queue_4
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_gases_queue_4
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_gases_queue value = 4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_gases_queue value = 4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_gases_queue_5
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_gases_queue_5
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_gases_queue value = 5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_gases_queue value = 5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -1893,35 +1945,38 @@ factory_gases_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_gases_queue_1
+		custom_tooltip = "factory_refinery_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_gases_queue_1
+				}
+				change_variable = { which = autofab_gases_queue value = -1 }
 			}
-			change_variable = { which = autofab_gases_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_gases_queue_2
+			else_if = {
+				limit = {
+					has_country_flag = factory_gases_queue_2
+				}
+				change_variable = { which = autofab_gases_queue value = -2 }
 			}
-			change_variable = { which = autofab_gases_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_gases_queue_3
+			else_if = {
+				limit = {
+					has_country_flag = factory_gases_queue_3
+				}
+				change_variable = { which = autofab_gases_queue value = -3 }
 			}
-			change_variable = { which = autofab_gases_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_gases_queue_4
+			else_if = {
+				limit = {
+					has_country_flag = factory_gases_queue_4
+				}
+				change_variable = { which = autofab_gases_queue value = -4 }
 			}
-			change_variable = { which = autofab_gases_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_gases_queue_5
+			else_if = {
+				limit = {
+					has_country_flag = factory_gases_queue_5
+				}
+				change_variable = { which = autofab_gases_queue value = -5 }
 			}
-			change_variable = { which = autofab_gases_queue value = -5 }
 		}
 	}
 }
@@ -1953,45 +2008,48 @@ factory_crystals_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_crystals_queue_1
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_translucer_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_crystals_queue_1
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_crystals_queue value = 1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_crystals_queue value = 1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_crystals_queue_2
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_crystals_queue_2
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_crystals_queue value = 2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_crystals_queue value = 2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_crystals_queue_3
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_crystals_queue_3
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_crystals_queue value = 3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_crystals_queue value = 3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_crystals_queue_4
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_crystals_queue_4
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_crystals_queue value = 4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_crystals_queue value = 4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_crystals_queue_5
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_crystals_queue_5
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_crystals_queue value = 5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_crystals_queue value = 5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -2081,35 +2139,38 @@ factory_crystals_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_crystals_queue_1
+		custom_tooltip = "factory_translucer_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_crystals_queue_1
+				}
+				change_variable = { which = autofab_crystals_queue value = -1 }
 			}
-			change_variable = { which = autofab_crystals_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_crystals_queue_2
+			else_if = {
+				limit = {
+					has_country_flag = factory_crystals_queue_2
+				}
+				change_variable = { which = autofab_crystals_queue value = -2 }
 			}
-			change_variable = { which = autofab_crystals_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_crystals_queue_3
+			else_if = {
+				limit = {
+					has_country_flag = factory_crystals_queue_3
+				}
+				change_variable = { which = autofab_crystals_queue value = -3 }
 			}
-			change_variable = { which = autofab_crystals_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_crystals_queue_4
+			else_if = {
+				limit = {
+					has_country_flag = factory_crystals_queue_4
+				}
+				change_variable = { which = autofab_crystals_queue value = -4 }
 			}
-			change_variable = { which = autofab_crystals_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_crystals_queue_5
+			else_if = {
+				limit = {
+					has_country_flag = factory_crystals_queue_5
+				}
+				change_variable = { which = autofab_crystals_queue value = -5 }
 			}
-			change_variable = { which = autofab_crystals_queue value = -5 }
 		}
 	}
 }
@@ -2146,45 +2207,48 @@ factory_extractor_increase_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_extractor_queue_1
-				check_variable = { which = autofab_districts_available value > 0 }
+		custom_tooltip = "factory_extractor_queue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_extractor_queue_1
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				change_variable = { which = autofab_extractor_queue value = 1 }
+				change_variable = { which = autofab_districts_available value = -1 }
 			}
-			change_variable = { which = autofab_extractor_queue value = 1 }
-			change_variable = { which = autofab_districts_available value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_extractor_queue_2
-				check_variable = { which = autofab_districts_available value > 1 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_extractor_queue_2
+					check_variable = { which = autofab_districts_available value > 1 }
+				}
+				change_variable = { which = autofab_extractor_queue value = 2 }
+				change_variable = { which = autofab_districts_available value = -2 }
 			}
-			change_variable = { which = autofab_extractor_queue value = 2 }
-			change_variable = { which = autofab_districts_available value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_extractor_queue_3
-				check_variable = { which = autofab_districts_available value > 2 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_extractor_queue_3
+					check_variable = { which = autofab_districts_available value > 2 }
+				}
+				change_variable = { which = autofab_extractor_queue value = 3 }
+				change_variable = { which = autofab_districts_available value = -3 }
 			}
-			change_variable = { which = autofab_extractor_queue value = 3 }
-			change_variable = { which = autofab_districts_available value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_extractor_queue_4
-				check_variable = { which = autofab_districts_available value > 3 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_extractor_queue_4
+					check_variable = { which = autofab_districts_available value > 3 }
+				}
+				change_variable = { which = autofab_extractor_queue value = 4 }
+				change_variable = { which = autofab_districts_available value = -4 }
 			}
-			change_variable = { which = autofab_extractor_queue value = 4 }
-			change_variable = { which = autofab_districts_available value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_extractor_queue_5
-				check_variable = { which = autofab_districts_available value > 4 }
+			else_if = {
+				limit = {
+					has_country_flag = factory_extractor_queue_5
+					check_variable = { which = autofab_districts_available value > 4 }
+				}
+				change_variable = { which = autofab_extractor_queue value = 5 }
+				change_variable = { which = autofab_districts_available value = -5 }
 			}
-			change_variable = { which = autofab_extractor_queue value = 5 }
-			change_variable = { which = autofab_districts_available value = -5 }
 		}
 	}
 }
@@ -2274,35 +2338,38 @@ factory_extractor_decrease_queue = {
 		}
 	}
 	effect = {
-		if = {
-			limit = {
-				has_country_flag = factory_extractor_queue_1
+		custom_tooltip = "factory_extractor_unqueue"
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = factory_extractor_queue_1
+				}
+				change_variable = { which = autofab_extractor_queue value = -1 }
 			}
-			change_variable = { which = autofab_extractor_queue value = -1 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_extractor_queue_2
+			else_if = {
+				limit = {
+					has_country_flag = factory_extractor_queue_2
+				}
+				change_variable = { which = autofab_extractor_queue value = -2 }
 			}
-			change_variable = { which = autofab_extractor_queue value = -2 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_extractor_queue_3
+			else_if = {
+				limit = {
+					has_country_flag = factory_extractor_queue_3
+				}
+				change_variable = { which = autofab_extractor_queue value = -3 }
 			}
-			change_variable = { which = autofab_extractor_queue value = -3 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_extractor_queue_4
+			else_if = {
+				limit = {
+					has_country_flag = factory_extractor_queue_4
+				}
+				change_variable = { which = autofab_extractor_queue value = -4 }
 			}
-			change_variable = { which = autofab_extractor_queue value = -4 }
-		}
-		else_if = {
-			limit = {
-				has_country_flag = factory_extractor_queue_5
+			else_if = {
+				limit = {
+					has_country_flag = factory_extractor_queue_5
+				}
+				change_variable = { which = autofab_extractor_queue value = -5 }
 			}
-			change_variable = { which = autofab_extractor_queue value = -5 }
 		}
 	}
 }

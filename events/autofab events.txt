@@ -217,9 +217,11 @@ country_event = {
 							has_job = mining_drone
 							has_job = agri_drone
 							has_job = technician_drone
-							has_job = fabricator
-							has_job = alloy_drone
-							has_job = foundry
+							has_job = artisan
+							has_job = artisan_drone
+							#has_job = fabricator
+							#has_job = alloy_drone
+							#has_job = foundry
 							
 							#artisan
 							#artisan_drone
@@ -229,7 +231,7 @@ country_event = {
 				}
 				while = {
 					limit = {
-						planet_size < 20
+						planet_size < 25
 					}
 					change_planet_size = 1
 				}
@@ -399,9 +401,9 @@ planet_event = {
 					remove_district = district_industrial
 					if = {
 						limit = {
-							resource_income_compare = {
-								resource = consumer_goods
-								value < 10
+							owner = {
+								resource_income_compare = { resource = consumer_goods value < 10 }
+								country_uses_consumer_goods = yes
 							}
 						}
 						add_deposit = autofab_factory
@@ -418,9 +420,9 @@ planet_event = {
 					remove_district = district_rw_industrial
 					if = {
 						limit = {
-							resource_income_compare = {
-								resource = consumer_goods
-								value < 10
+							owner = {
+								resource_income_compare = { resource = consumer_goods value < 10 }
+								country_uses_consumer_goods = yes
 							}
 						}
 						add_deposit = autofab_factory
@@ -437,9 +439,9 @@ planet_event = {
 					remove_district = district_hab_industrial
 					if = {
 						limit = {
-							resource_income_compare = {
-								resource = consumer_goods
-								value < 10
+							owner = {
+								resource_income_compare = { resource = consumer_goods value < 10 }
+								country_uses_consumer_goods = yes
 							}
 						}
 						add_deposit = autofab_factory
@@ -545,10 +547,7 @@ planet_event = {
 					remove_district = district_industrial
 					if = {
 						limit = {
-							resource_income_compare = {
-								resource = consumer_goods
-								value < 10
-							}
+							owner = { resource_income_compare = { resource = consumer_goods value < 10 } }
 						}
 						add_deposit = autofab_factory
 						change_variable = { which = autofab_factory value = 1 }
@@ -564,10 +563,7 @@ planet_event = {
 					remove_district = district_rw_industrial
 					if = {
 						limit = {
-							resource_income_compare = {
-								resource = consumer_goods
-								value < 10
-							}
+							owner = { resource_income_compare = { resource = consumer_goods value < 10 } }
 						}
 						add_deposit = autofab_factory
 						change_variable = { which = autofab_factory value = 1 }
@@ -583,10 +579,7 @@ planet_event = {
 					remove_district = district_hab_industrial
 					if = {
 						limit = {
-							resource_income_compare = {
-								resource = consumer_goods
-								value < 10
-							}
+							owner = { resource_income_compare = { resource = consumer_goods value < 10 } }
 						}
 						add_deposit = autofab_factory
 						change_variable = { which = autofab_factory value = 1 }

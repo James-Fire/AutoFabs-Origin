@@ -16,9 +16,11 @@ can_expand_factory = {
 	can_queue_factory = yes
 }
 
-can_upgrade_autofab = {
-	has_deposit = autofab
-	has_planet_flag = has_autofab
+has_autofab = {
+	OR = {
+		has_deposit = autofab
+		has_planet_flag = has_autofab
+	}
 }
 
 can_queue_factory = {
@@ -40,6 +42,7 @@ has_supported_district_set = {
 }
 
 has_vanilla_swap_candidate = {
+	has_autofab = yes
 	OR = {
 		has_district = district_generator
 		has_district = district_generator_uncapped
@@ -143,26 +146,28 @@ has_rare_resource_deposit = {
 }
 
 has_energy_factory = {
-	has_deposit = autofab_power
+	OR = {
+		has_deposit = autofab_power
+	}
 }
 has_minerals_factory = {
-	has_deposit = autofab_mine
+	OR = {
+		has_deposit = autofab_mine
+	}
 }
 has_food_factory = {
-	has_deposit = autofab_farm
+	OR = {
+		has_deposit = autofab_farm
+	}
 }
 has_alloys_factory = {
 	OR = {
 		has_deposit = autofab_foundry
-		has_deposit = autofab_foundry_2
-		has_deposit = autofab_foundry_3
 	}
 }
 has_congoods_factory = {
 	OR = {
 		has_deposit = autofab_factory
-		has_deposit = autofab_factory_2
-		has_deposit = autofab_factory_3
 	}
 }
 has_motes_factory = {
