@@ -213,3 +213,43 @@ Upped the minimum size for your home planet to 25, since vanilla upped normal pl
 Fixed loc for the AP to properly say what it actually gives.
 
 Fixed district space counting breaking stuff because Stellaris has a fit.
+
+_________________________
+
+Fixed overlap for some portraits in my UIs.
+
+Fixed an error in the Order of Operations that caused some weird things to happen.
+
+_________________________
+
+Fixed motes and gases being swapped in which thing they build.
+
+Made closing the Country Terminal attempt to apply the Queue immediately, if it hasn't been done in the past 30 days.
+
+Fixed available Basic districts calc on planets that use the uncapped version. Or on planets that use something else, like Ringworlds.
+
+Fixed a typo in my variable name.
+
+Made Betharian power bonus require the betharian tech.
+
+Fixed button triggers so you can Minus from the Queue value.
+
+Increased the construction time of the Factory, and the Factory Modules, to 3 years and 480 days, respectively.
+
+Added a button to each UI to refresh it.
+
+Gave machine empires their proper bonus base production.
+
+Updated production to account for vanilla buildings giving bonus production rather than extra jobs.
+
+Updated production values for ringworlds, as their districts have been changed.
+
+Fixed Foundry Modules not increasing production on Ringworlds.
+
+Hives get their bonus production from having more jobs now, at the cost of housing.
+
+Included support for the Machine civic for more minerals from miners.
+
+_________________________
+
+Split planet queue from the country queue, so that closing the planet terminal can properly attempt a queue application.

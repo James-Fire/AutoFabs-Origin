@@ -8,7 +8,7 @@ event = {
 	immediate = {
 		every_country = {
 			limit = {
-				is_ai = no
+				#is_ai = no
 				can_use_autofab = yes
 				OR = {
 					has_queue = yes
@@ -34,7 +34,7 @@ event = {
 					}
 				}
 			}
-			fire_on_action = { on_action = exploit_queue_apply }
+			fire_on_action = { on_action = autofab_apply_queue }
 		}
 	}
 }
@@ -188,6 +188,165 @@ planet_event = {
 	}
 }
 
+#Planet Queue Event
+planet_event = {
+	id = autofab_queue.8
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				has_global_flag = autofab_logging
+			}
+			log = "Planet Autofab has Autofab Queue and space on [This.GetName] for [PREV.GetName]"
+		}
+		if = {
+			limit = {
+				check_variable = { which = autofab_queue value > 0 }
+			}
+			planet_event = { id = autofab_queue.4 days = -1 }
+			change_variable = { which = autofab_queue value = -1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_energy_queue value > 0 }
+				can_expand_factory = yes
+			}
+			planet_event = { id = autofab_queue.20 days = -1 }
+			change_variable = { which = autofab_energy_queue value = -1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_mineral_queue value > 0 }
+				can_expand_factory = yes
+			}
+			planet_event = { id = autofab_queue.22 days = -1 }
+			change_variable = { which = autofab_mineral_queue value = -1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_food_queue value > 0 }
+				can_expand_factory = yes
+			}
+			planet_event = { id = autofab_queue.24 days = -1 }
+			change_variable = { which = autofab_food_queue value = -1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_alloys_queue value > 0 }
+				can_expand_factory = yes
+			}
+			planet_event = { id = autofab_queue.26 days = -1 }
+			change_variable = { which = autofab_alloys_queue value = -1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_congoods_queue value > 0 }
+				can_expand_factory = yes
+			}
+			planet_event = { id = autofab_queue.28 days = -1 }
+			change_variable = { which = autofab_congoods_queue value = -1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_motes_queue value > 0 }
+				can_expand_factory = yes
+			}
+			planet_event = { id = autofab_queue.30 days = -1 }
+			change_variable = { which = autofab_motes_queue value = -1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_gases_queue value > 0 }
+				can_expand_factory = yes
+			}
+			planet_event = { id = autofab_queue.32 days = -1 }
+			change_variable = { which = autofab_gases_queue value = -1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_crystals_queue value > 0 }
+				can_expand_factory = yes
+			}
+			planet_event = { id = autofab_queue.34 days = -1 }
+			change_variable = { which = autofab_crystals_queue value = -1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_extractor_queue value > 0 }
+				can_expand_factory = yes
+			}
+			planet_event = { id = autofab_queue.36 days = -1 }
+			change_variable = { which = autofab_extractor_queue value = -1 }
+		}
+		###Retooling
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_energy_queue value < 0 }
+			}
+			planet_event = { id = autofab_queue.61 days = -1 }
+			change_variable = { which = autofab_energy_queue value = 1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_mineral_queue value < 0 }
+			}
+			planet_event = { id = autofab_queue.63 days = -1 }
+			change_variable = { which = autofab_mineral_queue value = 1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_food_queue value < 0 }
+			}
+			planet_event = { id = autofab_queue.65 days = -1 }
+			change_variable = { which = autofab_food_queue value = 1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_alloys_queue value < 0 }
+			}
+			planet_event = { id = autofab_queue.67 days = -1 }
+			change_variable = { which = autofab_alloys_queue value = 1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_congoods_queue value < 0 }
+			}
+			planet_event = { id = autofab_queue.69 days = -1 }
+			change_variable = { which = autofab_congoods_queue value = 1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_motes_queue value < 0 }
+			}
+			planet_event = { id = autofab_queue.71 days = -1 }
+			change_variable = { which = autofab_motes_queue value = 1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_gases_queue value < 0 }
+			}
+			planet_event = { id = autofab_queue.73 days = -1 }
+			change_variable = { which = autofab_gases_queue value = 1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_crystals_queue value < 0 }
+			}
+			planet_event = { id = autofab_queue.75 days = -1 }
+			change_variable = { which = autofab_crystals_queue value = 1 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { which = autofab_extractor_queue value < 0 }
+			}
+			planet_event = { id = autofab_queue.77 days = -1 }
+			change_variable = { which = autofab_extractor_queue value = 1 }
+		}
+	}
+}
+
 #Distribution Queue
 country_event = {
 	id = autofab_queue.10
@@ -207,158 +366,7 @@ country_event = {
 					automation_active = no
 					can_queue_factory = yes
 				}
-				if = {
-					limit = {
-						has_global_flag = autofab_logging
-					}
-					log = "Planet Autofab has Autofab Queue and space on [This.GetName] for [PREV.GetName]"
-				}
-				if = {
-					limit = {
-						check_variable = { which = autofab_queue value > 0 }
-					}
-					planet_event = { id = autofab_queue.4 days = -1 }
-					change_variable = { which = autofab_queue value = -1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_energy_queue value > 0 }
-						can_expand_factory = yes
-					}
-					planet_event = { id = autofab_queue.20 days = -1 }
-					change_variable = { which = autofab_energy_queue value = -1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_mineral_queue value > 0 }
-						can_expand_factory = yes
-					}
-					planet_event = { id = autofab_queue.22 days = -1 }
-					change_variable = { which = autofab_mineral_queue value = -1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_food_queue value > 0 }
-						can_expand_factory = yes
-					}
-					planet_event = { id = autofab_queue.24 days = -1 }
-					change_variable = { which = autofab_food_queue value = -1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_alloys_queue value > 0 }
-						can_expand_factory = yes
-					}
-					planet_event = { id = autofab_queue.26 days = -1 }
-					change_variable = { which = autofab_alloys_queue value = -1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_congoods_queue value > 0 }
-						can_expand_factory = yes
-					}
-					planet_event = { id = autofab_queue.28 days = -1 }
-					change_variable = { which = autofab_congoods_queue value = -1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_motes_queue value > 0 }
-						can_expand_factory = yes
-					}
-					planet_event = { id = autofab_queue.30 days = -1 }
-					change_variable = { which = autofab_motes_queue value = -1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_gases_queue value > 0 }
-						can_expand_factory = yes
-					}
-					planet_event = { id = autofab_queue.32 days = -1 }
-					change_variable = { which = autofab_gases_queue value = -1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_crystals_queue value > 0 }
-						can_expand_factory = yes
-					}
-					planet_event = { id = autofab_queue.34 days = -1 }
-					change_variable = { which = autofab_crystals_queue value = -1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_extractor_queue value > 0 }
-						can_expand_factory = yes
-					}
-					planet_event = { id = autofab_queue.36 days = -1 }
-					change_variable = { which = autofab_extractor_queue value = -1 }
-				}
-				###Retooling
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_energy_queue value < 0 }
-					}
-					planet_event = { id = autofab_queue.61 days = -1 }
-					change_variable = { which = autofab_energy_queue value = 1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_mineral_queue value < 0 }
-					}
-					planet_event = { id = autofab_queue.63 days = -1 }
-					change_variable = { which = autofab_mineral_queue value = 1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_food_queue value < 0 }
-					}
-					planet_event = { id = autofab_queue.65 days = -1 }
-					change_variable = { which = autofab_food_queue value = 1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_alloys_queue value < 0 }
-					}
-					planet_event = { id = autofab_queue.67 days = -1 }
-					change_variable = { which = autofab_alloys_queue value = 1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_congoods_queue value < 0 }
-					}
-					planet_event = { id = autofab_queue.69 days = -1 }
-					change_variable = { which = autofab_congoods_queue value = 1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_motes_queue value < 0 }
-					}
-					planet_event = { id = autofab_queue.71 days = -1 }
-					change_variable = { which = autofab_motes_queue value = 1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_gases_queue value < 0 }
-					}
-					planet_event = { id = autofab_queue.73 days = -1 }
-					change_variable = { which = autofab_gases_queue value = 1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_crystals_queue value < 0 }
-					}
-					planet_event = { id = autofab_queue.75 days = -1 }
-					change_variable = { which = autofab_crystals_queue value = 1 }
-				}
-				else_if = {
-					limit = {
-						check_variable = { which = autofab_extractor_queue value < 0 }
-					}
-					planet_event = { id = autofab_queue.77 days = -1 }
-					change_variable = { which = autofab_extractor_queue value = 1 }
-				}
-			}
-			else = {
-				clear_queue = yes
+				fire_on_action = { on_action = autofab_apply_planet_queue scopes = { from = owner } }
 			}
 		}
 		###Building
@@ -552,6 +560,7 @@ country_event = {
 				check_variable = { which = autofab_energy_queue value > 0 }
 				any_owned_planet = {
 					can_afford_district = yes
+					can_queue_factory = yes
 				}
 				OR = {
 					AND = {
@@ -629,6 +638,7 @@ country_event = {
 				check_variable = { which = autofab_mineral_queue value > 0 }
 				any_owned_planet = {
 					can_afford_district = yes
+					can_queue_factory = yes
 				}
 				OR = {
 					AND = {
@@ -703,6 +713,7 @@ country_event = {
 				check_variable = { which = autofab_food_queue value > 0 }
 				any_owned_planet = {
 					can_afford_district = yes
+					can_queue_factory = yes
 				}
 				OR = {
 					AND = {
@@ -777,13 +788,11 @@ country_event = {
 				check_variable = { which = autofab_alloys_queue value > 0 }
 				any_owned_planet = {
 					can_afford_district = yes
+					can_queue_factory = yes
 				}
 				OR = {
 					any_owned_planet = {
-						OR = {
-							can_expand_factory = yes
-							can_upgrade_foundry = yes
-						}
+						can_expand_factory = yes
 						is_alloys_colony = yes
 					}
 					can_build_fallback = yes
@@ -863,13 +872,11 @@ country_event = {
 				check_variable = { which = autofab_congoods_queue value > 0 }
 				any_owned_planet = {
 					can_afford_district = yes
+					can_queue_factory = yes
 				}
 				OR = {
 					any_owned_planet = {
-						OR = {
-							can_expand_factory = yes
-							can_upgrade_factory = yes
-						}
+						can_expand_factory = yes
 						is_congood_colony = yes
 					}
 					can_build_fallback = yes
@@ -937,13 +944,12 @@ country_event = {
 				check_variable = { which = autofab_motes_queue value > 0 }
 				any_owned_planet = {
 					can_afford_building = yes
+					can_queue_factory = yes
 				}
 				OR = {
-					AND = {
-						any_owned_planet = {
-							can_expand_factory = yes
-							is_refinery_colony = yes
-						}
+					any_owned_planet = {
+						can_expand_factory = yes
+						is_refinery_colony = yes
 					}
 					can_build_fallback = yes
 				}
@@ -1010,13 +1016,12 @@ country_event = {
 				check_variable = { which = autofab_gases_queue value > 0 }
 				any_owned_planet = {
 					can_afford_building = yes
+					can_queue_factory = yes
 				}
 				OR = {
-					AND = {
-						any_owned_planet = {
-							can_expand_factory = yes
-							is_refinery_colony = yes
-						}
+					any_owned_planet = {
+						can_expand_factory = yes
+						is_refinery_colony = yes
 					}
 					can_build_fallback = yes
 				}
@@ -1083,13 +1088,12 @@ country_event = {
 				check_variable = { which = autofab_crystals_queue value > 0 }
 				any_owned_planet = {
 					can_afford_building = yes
+					can_queue_factory = yes
 				}
 				OR = {
-					AND = {
-						any_owned_planet = {
-							can_expand_factory = yes
-							is_refinery_colony = yes
-						}
+					any_owned_planet = {
+						can_expand_factory = yes
+						is_refinery_colony = yes
 					}
 					can_build_fallback = yes
 				}
@@ -1154,10 +1158,11 @@ country_event = {
 		while = {
 			limit = {
 				check_variable = { which = autofab_extractor_queue value > 0 }
-				can_afford_building = yes
 				any_owned_planet = {
 					NOT = { has_planet_flag = has_autofab_extractor }
 					has_rare_resource_deposit = yes
+					can_queue_factory = yes
+					can_afford_building = yes
 				}
 			}
 			if = {

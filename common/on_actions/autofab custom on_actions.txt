@@ -5,8 +5,8 @@ autofab_apply_queue = {
 	}
 }
 #Planet Scope, no predefined scopes
-autofab_apply_queue_planet = {
+autofab_apply_planet_queue = {
 	events = {
-	
+		autofab_queue.8
 	}
 }

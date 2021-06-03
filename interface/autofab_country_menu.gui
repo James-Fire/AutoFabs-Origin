@@ -48,8 +48,8 @@ guiTypes = {
 		size = { width = 704 height = 720 }	
 		containerWindowType = {
 			name = "portrait"
-			position = { x = -95 y = 315 }
-			size = { width = 384 height = 400 }
+			position = { x = -95 y = 285 }
+			size = { width = 314 height = 400 }
 			clipping = yes
 			iconType = {
 				name = "black_frame"

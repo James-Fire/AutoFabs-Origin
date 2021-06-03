@@ -1,348 +1,50 @@
+export_to_autofab_variables = {
+	export_resource_income_to_variable = { resource = energy variable = autofab_energy_tracking }
+	export_resource_income_to_variable = { resource = minerals variable = autofab_minerals_tracking }
+	export_resource_income_to_variable = { resource = food variable = autofab_food_tracking }
+	export_resource_income_to_variable = { resource = consumer_goods variable = autofab_consumer_goods_tracking }
+	export_resource_income_to_variable = { resource = volatile_motes variable = autofab_volatile_motes_tracking }
+	export_resource_income_to_variable = { resource = exotic_gases variable = autofab_exotic_gases_tracking }
+	export_resource_income_to_variable = { resource = rare_crystals variable = autofab_rare_crystals_tracking }
+	
+	
+	set_variable = { which = autofab_energy_ratio value = autofab_energy_tracking }
+	set_variable = { which = autofab_minerals_ratio value = autofab_minerals_tracking }
+	set_variable = { which = autofab_food_ratio value = autofab_food_tracking }
+	set_variable = { which = autofab_consumer_goods_ratio value = autofab_consumer_goods_tracking }
+	set_variable = { which = autofab_volatile_motes_ratio value = autofab_volatile_motes_tracking }
+	set_variable = { which = autofab_exotic_gases_ratio value = autofab_exotic_gases_tracking }
+	set_variable = { which = autofab_rare_crystals_ratio value = autofab_rare_crystals_tracking }
+}
+
+country_resources_ratio_calc = {
+	country_energy_check = yes
+	country_minerals_check = yes
+	country_food_check = yes
+	country_consumer_goods_check = yes
+	country_motes_check = yes
+	country_gases_check = yes
+	country_crystals_check = yes
+}
+
 country_energy_check = {
-	if = {
-		limit = {
-			has_global_flag = autofab_logging
-		}
-		log = "Check [This.GetName] Energy"
-	}
-	if = {
-		limit = {
-			num_owned_planets > 2
-			resource_income_compare = { resource = energy  value < 50 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_energy_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			num_owned_planets > 2
-			resource_income_compare = { resource = energy  value < 40 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_energy_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			num_owned_planets > 1
-			resource_income_compare = { resource = energy  value < 30 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_energy_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = energy  value < 20 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_energy_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = energy  value < 10 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_energy_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = energy  value < 0 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_energy_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = energy  value < -10 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_energy_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
+	divide_variable = { which = autofab_energy_ratio value = autofab_planet_count }
 }
-
-country_food_check = {
-	if = {
-		limit = {
-			has_global_flag = autofab_logging
-		}
-		log = "Check [This.GetName] Food"
-	}
-	country_uses_food = yes
-	if = {
-		limit = {
-			resource_income_compare = { resource = food  value > 100 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_food_need value = -1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = food  value > 90 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_food_need value = -1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = food  value > 80 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_food_need value = -1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = food  value > 70 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_food_need value = -1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = food  value > 60 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_food_need value = -1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = food  value < 20 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_food_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = food  value < 10 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_food_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = food  value < 0 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_food_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = food  value < -10 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_food_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-}
-
 country_minerals_check = {
-	if = {
-		limit = {
-			has_global_flag = autofab_logging
-		}
-		log = "Check [This.GetName] Minerals"
-	}
-	if = {
-		limit = {
-			num_owned_planets > 4
-			resource_income_compare = { resource = minerals  value < 90 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_minerals_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			num_owned_planets > 4
-			resource_income_compare = { resource = minerals  value < 80 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_minerals_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			num_owned_planets > 3
-			resource_income_compare = { resource = minerals  value < 70 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_minerals_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			num_owned_planets > 3
-			resource_income_compare = { resource = minerals  value < 60 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_minerals_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			num_owned_planets > 2
-			resource_income_compare = { resource = minerals  value < 50 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_minerals_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			num_owned_planets > 2
-			resource_income_compare = { resource = minerals  value < 40 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_minerals_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = minerals  value < 30 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_minerals_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = minerals  value < 20 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_minerals_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = minerals  value < 10 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_minerals_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = minerals  value < 0 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_minerals_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = minerals  value < -10 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_minerals_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
+	divide_variable = { which = autofab_minerals_ratio value = autofab_planet_count }
 }
-
+country_food_check = {
+	divide_variable = { which = autofab_food_ratio value = autofab_planet_count }
+}
 country_consumer_goods_check = {
-	if = {
-		limit = {
-			has_global_flag = autofab_logging
-		}
-		log = "Check [This.GetName] CGs"
-	}
-	country_uses_consumer_goods = yes
-	if = {
-		limit = {
-			num_owned_planets < 3
-			resource_income_compare = { resource = consumer_goods  value > 100 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_consumer_goods_need value = -1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			num_owned_planets < 3
-			resource_income_compare = { resource = consumer_goods  value > 90 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_consumer_goods_need value = -1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			num_owned_planets < 3
-			resource_income_compare = { resource = consumer_goods  value > 80 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_consumer_goods_need value = -1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			num_owned_planets > 2
-			resource_income_compare = { resource = consumer_goods  value < 50 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_consumer_goods_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			num_owned_planets > 2
-			resource_income_compare = { resource = consumer_goods  value < 40 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_consumer_goods_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			num_owned_planets > 1
-			resource_income_compare = { resource = consumer_goods  value < 30 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_consumer_goods_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = consumer_goods  value < 20 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_consumer_goods_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = consumer_goods  value < 10 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_consumer_goods_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = consumer_goods  value < 0 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_consumer_goods_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
-	if = {
-		limit = {
-			resource_income_compare = { resource = consumer_goods  value < -10 }
-			check_variable = { which = autofab_auto_planets value > 0 }
-		}
-		change_variable = { which = country_consumer_goods_need value = 1 }
-		change_variable = { which = autofab_auto_planets value = -1 }
-	}
+	divide_variable = { which = autofab_consumer_goods_ratio value = autofab_planet_count }
+}
+country_motes_check = {
+	divide_variable = { which = autofab_volatile_motes_ratio value = autofab_planet_count }
+}
+country_gases_check = {
+	divide_variable = { which = autofab_exotic_gases_ratio value = autofab_planet_count }
+}
+country_crystals_check = {
+	divide_variable = { which = autofab_rare_crystals_ratio value = autofab_planet_count }
 }

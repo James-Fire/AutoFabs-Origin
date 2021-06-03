@@ -18,16 +18,66 @@ country_event = { ###Country Terminal
 	
 	# Confirm
 	option = {
-		name = "autofab_menu.1.confirm"
-		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
-		custom_gui = "autofab_main_menu_YEET"
-		default_hide_option = yes
+		name = "autofab_menu.1.refresh"
+		#custom_tooltip = "autofab_menu.1.refresh.tooltip"
+		custom_gui = "autofab_main_menu_confirm"
+		country_event = { id = autofab_menu.1 }
 	}
 	option = {
 		name = "autofab_menu.1.confirm"
 		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
 		custom_gui = "autofab_main_menu_confirm"
 		country_event = { id = autofab_menu.20 }
+	}
+	option = {
+		name = "autofab_menu.1.confirm"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_main_menu_YEET"
+		default_hide_option = yes
+	}
+	
+	after = {
+		fire_on_action = { on_action = autofab_apply_queue }
+	}
+}
+country_event = { ###Country Automation Controls
+	id = autofab_menu.2
+	title = "autofab_menu.2.name"
+	desc = "autofab_menu.2.desc"
+	diplomatic = yes
+	custom_gui = "autofab_automation_window"
+	is_triggered_only = yes
+	
+	picture_event_data = {
+		portrait = ROOT.ruler
+		room = ethic_spaceship_room
+	}
+	
+	immediate = {
+	}
+	
+	# Confirm
+	option = {
+		name = "autofab_menu.1.refresh"
+		#custom_tooltip = "autofab_menu.1.refresh.tooltip"
+		custom_gui = "autofab_main_menu_confirm"
+		country_event = { id = autofab_menu.1 }
+	}
+	option = {
+		name = "autofab_menu.1.confirm"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_main_menu_confirm"
+		country_event = { id = autofab_menu.20 }
+	}
+	option = {
+		name = "autofab_menu.1.confirm"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_main_menu_YEET"
+		default_hide_option = yes
+	}
+	
+	after = {
+		#fire_on_action = { on_action = autofab_apply_queue }
 	}
 }
 
@@ -48,18 +98,18 @@ planet_event = { ###Planet Terminal
 	}
 	
 	# Confirm
-	option = {
-		name = "autofab_menu.1.confirm"
-		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
-		custom_gui = "autofab_planet_menu_YEET"
-		default_hide_option = yes
-	}
 	# Confirm
 	option = {
 		name = "autofab_menu.1.confirm"
 		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
 		custom_gui = "autofab_planet_menu_confirm"
 		owner = { country_event = { id = autofab_menu.20 } }
+	}
+	option = {
+		name = "autofab_menu.1.refresh"
+		#custom_tooltip = "autofab_menu.1.refresh.tooltip"
+		custom_gui = "autofab_planet_menu_confirm"
+		planet_event = { id = autofab_menu.10 }
 	}
 	option = {
 		name = "autofab_menu.10.confirm"
@@ -73,6 +123,16 @@ planet_event = { ###Planet Terminal
 				country_event = { id = autofab_menu.1 }
 			}
 		}	
+	}
+	option = {
+		name = "autofab_menu.1.confirm"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_planet_menu_YEET"
+		default_hide_option = yes
+	}
+	
+	after = {
+		fire_on_action = { on_action = autofab_apply_planet_queue scopes = { from = owner } }
 	}
 }
 

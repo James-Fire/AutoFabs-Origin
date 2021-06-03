@@ -701,10 +701,6 @@ factory_generator_decrease_queue = {
 						check_variable = { which = autofab_power value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_energy_queue value > 1 }
-						check_variable = { which = autofab_power value > 1 }
-					}
-					AND = {
 						check_variable = { which = autofab_energy_queue value > 2 }
 						check_variable = { which = autofab_power value > 0 }
 					}
@@ -870,17 +866,17 @@ factory_mine_decrease_queue = {
 			AND = {
 				has_country_flag = factory_mine_queue_1
 				OR = {
-					check_variable = { which = autofab_minerals_queue value > 0 }
+					check_variable = { which = autofab_mineral_queue value > 0 }
 					check_variable = { which = autofab_mine value > 0 }
 				}
 			}
 			AND = {
 				has_country_flag = factory_mine_queue_2
 				OR = {
-					check_variable = { which = autofab_minerals_queue value > 1 }
+					check_variable = { which = autofab_mineral_queue value > 1 }
 					check_variable = { which = autofab_mine value > 1 }
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 0 }
+						check_variable = { which = autofab_mineral_queue value > 0 }
 						check_variable = { which = autofab_mine value > 0 }
 					}
 				}
@@ -888,14 +884,14 @@ factory_mine_decrease_queue = {
 			AND = {
 				has_country_flag = factory_mine_queue_3
 				OR = {
-					check_variable = { which = autofab_minerals_queue value > 2 }
+					check_variable = { which = autofab_mineral_queue value > 2 }
 					check_variable = { which = autofab_mine value > 2 }
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 1 }
+						check_variable = { which = autofab_mineral_queue value > 1 }
 						check_variable = { which = autofab_mine value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 0 }
+						check_variable = { which = autofab_mineral_queue value > 0 }
 						check_variable = { which = autofab_mine value > 1 }
 					}
 				}
@@ -903,22 +899,18 @@ factory_mine_decrease_queue = {
 			AND = {
 				has_country_flag = factory_mine_queue_4
 				OR = {
-					check_variable = { which = autofab_minerals_queue value > 3 }
+					check_variable = { which = autofab_mineral_queue value > 3 }
 					check_variable = { which = autofab_mine value > 3 }
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 1 }
+						check_variable = { which = autofab_mineral_queue value > 1 }
 						check_variable = { which = autofab_mine value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 1 }
-						check_variable = { which = autofab_mine value > 1 }
-					}
-					AND = {
-						check_variable = { which = autofab_minerals_queue value > 2 }
+						check_variable = { which = autofab_mineral_queue value > 2 }
 						check_variable = { which = autofab_mine value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 0 }
+						check_variable = { which = autofab_mineral_queue value > 0 }
 						check_variable = { which = autofab_mine value > 2 }
 					}
 				}
@@ -926,22 +918,22 @@ factory_mine_decrease_queue = {
 			AND = {
 				has_country_flag = factory_mine_queue_5
 				OR = {
-					check_variable = { which = autofab_minerals_queue value > 4 }
+					check_variable = { which = autofab_mineral_queue value > 4 }
 					check_variable = { which = autofab_mine value > 4 }
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 2 }
+						check_variable = { which = autofab_mineral_queue value > 2 }
 						check_variable = { which = autofab_mine value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 1 }
+						check_variable = { which = autofab_mineral_queue value > 1 }
 						check_variable = { which = autofab_mine value > 2 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 3 }
+						check_variable = { which = autofab_mineral_queue value > 3 }
 						check_variable = { which = autofab_mine value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 0 }
+						check_variable = { which = autofab_mineral_queue value > 0 }
 						check_variable = { which = autofab_mine value > 3 }
 					}
 				}
@@ -1119,10 +1111,6 @@ factory_farm_decrease_queue = {
 						check_variable = { which = autofab_farm value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_food_queue value > 1 }
-						check_variable = { which = autofab_farm value > 1 }
-					}
-					AND = {
 						check_variable = { which = autofab_food_queue value > 2 }
 						check_variable = { which = autofab_farm value > 0 }
 					}
@@ -1278,17 +1266,17 @@ factory_foundry_decrease_queue = {
 			AND = {
 				has_country_flag = factory_foundry_queue_1
 				OR = {
-					check_variable = { which = autofab_foundry_queue value > 0 }
+					check_variable = { which = autofab_alloys_queue value > 0 }
 					check_variable = { which = autofab_foundry value > 0 }
 				}
 			}
 			AND = {
 				has_country_flag = factory_foundry_queue_2
 				OR = {
-					check_variable = { which = autofab_foundry_queue value > 1 }
+					check_variable = { which = autofab_alloys_queue value > 1 }
 					check_variable = { which = autofab_foundry value > 1 }
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 0 }
+						check_variable = { which = autofab_alloys_queue value > 0 }
 						check_variable = { which = autofab_foundry value > 0 }
 					}
 				}
@@ -1296,14 +1284,14 @@ factory_foundry_decrease_queue = {
 			AND = {
 				has_country_flag = factory_foundry_queue_3
 				OR = {
-					check_variable = { which = autofab_foundry_queue value > 2 }
+					check_variable = { which = autofab_alloys_queue value > 2 }
 					check_variable = { which = autofab_foundry value > 2 }
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 1 }
+						check_variable = { which = autofab_alloys_queue value > 1 }
 						check_variable = { which = autofab_foundry value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 0 }
+						check_variable = { which = autofab_alloys_queue value > 0 }
 						check_variable = { which = autofab_foundry value > 1 }
 					}
 				}
@@ -1311,22 +1299,18 @@ factory_foundry_decrease_queue = {
 			AND = {
 				has_country_flag = factory_foundry_queue_4
 				OR = {
-					check_variable = { which = autofab_foundry_queue value > 3 }
+					check_variable = { which = autofab_alloys_queue value > 3 }
 					check_variable = { which = autofab_foundry value > 3 }
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 1 }
+						check_variable = { which = autofab_alloys_queue value > 1 }
 						check_variable = { which = autofab_foundry value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 1 }
-						check_variable = { which = autofab_foundry value > 1 }
-					}
-					AND = {
-						check_variable = { which = autofab_foundry_queue value > 2 }
+						check_variable = { which = autofab_alloys_queue value > 2 }
 						check_variable = { which = autofab_foundry value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 0 }
+						check_variable = { which = autofab_alloys_queue value > 0 }
 						check_variable = { which = autofab_foundry value > 2 }
 					}
 				}
@@ -1334,22 +1318,22 @@ factory_foundry_decrease_queue = {
 			AND = {
 				has_country_flag = factory_foundry_queue_5
 				OR = {
-					check_variable = { which = autofab_foundry_queue value > 4 }
+					check_variable = { which = autofab_alloys_queue value > 4 }
 					check_variable = { which = autofab_foundry value > 4 }
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 2 }
+						check_variable = { which = autofab_alloys_queue value > 2 }
 						check_variable = { which = autofab_foundry value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 1 }
+						check_variable = { which = autofab_alloys_queue value > 1 }
 						check_variable = { which = autofab_foundry value > 2 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 3 }
+						check_variable = { which = autofab_alloys_queue value > 3 }
 						check_variable = { which = autofab_foundry value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 0 }
+						check_variable = { which = autofab_alloys_queue value > 0 }
 						check_variable = { which = autofab_foundry value > 3 }
 					}
 				}
@@ -1477,17 +1461,17 @@ factory_factory_decrease_queue = {
 			AND = {
 				has_country_flag = factory_factory_queue_1
 				OR = {
-					check_variable = { which = autofab_factory_queue value > 0 }
+					check_variable = { which = autofab_congoods_queue value > 0 }
 					check_variable = { which = autofab_factory value > 0 }
 				}
 			}
 			AND = {
 				has_country_flag = factory_factory_queue_2
 				OR = {
-					check_variable = { which = autofab_factory_queue value > 1 }
+					check_variable = { which = autofab_congoods_queue value > 1 }
 					check_variable = { which = autofab_factory value > 1 }
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 0 }
+						check_variable = { which = autofab_congoods_queue value > 0 }
 						check_variable = { which = autofab_factory value > 0 }
 					}
 				}
@@ -1495,14 +1479,14 @@ factory_factory_decrease_queue = {
 			AND = {
 				has_country_flag = factory_factory_queue_3
 				OR = {
-					check_variable = { which = autofab_factory_queue value > 2 }
+					check_variable = { which = autofab_congoods_queue value > 2 }
 					check_variable = { which = autofab_factory value > 2 }
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 1 }
+						check_variable = { which = autofab_congoods_queue value > 1 }
 						check_variable = { which = autofab_factory value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 0 }
+						check_variable = { which = autofab_congoods_queue value > 0 }
 						check_variable = { which = autofab_factory value > 1 }
 					}
 				}
@@ -1510,22 +1494,18 @@ factory_factory_decrease_queue = {
 			AND = {
 				has_country_flag = factory_factory_queue_4
 				OR = {
-					check_variable = { which = autofab_factory_queue value > 3 }
+					check_variable = { which = autofab_congoods_queue value > 3 }
 					check_variable = { which = autofab_factory value > 3 }
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 1 }
+						check_variable = { which = autofab_congoods_queue value > 1 }
 						check_variable = { which = autofab_factory value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 1 }
-						check_variable = { which = autofab_factory value > 1 }
-					}
-					AND = {
-						check_variable = { which = autofab_factory_queue value > 2 }
+						check_variable = { which = autofab_congoods_queue value > 2 }
 						check_variable = { which = autofab_factory value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 0 }
+						check_variable = { which = autofab_congoods_queue value > 0 }
 						check_variable = { which = autofab_factory value > 2 }
 					}
 				}
@@ -1533,22 +1513,22 @@ factory_factory_decrease_queue = {
 			AND = {
 				has_country_flag = factory_factory_queue_5
 				OR = {
-					check_variable = { which = autofab_factory_queue value > 4 }
+					check_variable = { which = autofab_congoods_queue value > 4 }
 					check_variable = { which = autofab_factory value > 4 }
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 2 }
+						check_variable = { which = autofab_congoods_queue value > 2 }
 						check_variable = { which = autofab_factory value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 1 }
+						check_variable = { which = autofab_congoods_queue value > 1 }
 						check_variable = { which = autofab_factory value > 2 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 3 }
+						check_variable = { which = autofab_congoods_queue value > 3 }
 						check_variable = { which = autofab_factory value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 0 }
+						check_variable = { which = autofab_congoods_queue value > 0 }
 						check_variable = { which = autofab_factory value > 3 }
 					}
 				}
@@ -1672,17 +1652,17 @@ factory_motes_decrease_queue = {
 			AND = {
 				has_country_flag = factory_motes_queue_1
 				OR = {
-					check_variable = { which = autofab_districts_available value > 0 }
+					check_variable = { which = autofab_motes_queue value > 0 }
 					check_variable = { which = autofab_chemical value > 0 }
 				}
 			}
 			AND = {
 				has_country_flag = factory_motes_queue_2
 				OR = {
-					check_variable = { which = autofab_districts_available value > 1 }
+					check_variable = { which = autofab_motes_queue value > 1 }
 					check_variable = { which = autofab_chemical value > 1 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_motes_queue value > 0 }
 						check_variable = { which = autofab_chemical value > 0 }
 					}
 				}
@@ -1690,14 +1670,14 @@ factory_motes_decrease_queue = {
 			AND = {
 				has_country_flag = factory_motes_queue_3
 				OR = {
-					check_variable = { which = autofab_districts_available value > 2 }
+					check_variable = { which = autofab_motes_queue value > 2 }
 					check_variable = { which = autofab_chemical value > 2 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_motes_queue value > 1 }
 						check_variable = { which = autofab_chemical value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_motes_queue value > 0 }
 						check_variable = { which = autofab_chemical value > 1 }
 					}
 				}
@@ -1705,22 +1685,22 @@ factory_motes_decrease_queue = {
 			AND = {
 				has_country_flag = factory_motes_queue_4
 				OR = {
-					check_variable = { which = autofab_districts_available value > 3 }
+					check_variable = { which = autofab_motes_queue value > 3 }
 					check_variable = { which = autofab_chemical value > 3 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_motes_queue value > 1 }
 						check_variable = { which = autofab_chemical value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_motes_queue value > 1 }
 						check_variable = { which = autofab_chemical value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 2 }
+						check_variable = { which = autofab_motes_queue value > 2 }
 						check_variable = { which = autofab_chemical value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_motes_queue value > 0 }
 						check_variable = { which = autofab_chemical value > 2 }
 					}
 				}
@@ -1728,22 +1708,22 @@ factory_motes_decrease_queue = {
 			AND = {
 				has_country_flag = factory_motes_queue_5
 				OR = {
-					check_variable = { which = autofab_districts_available value > 4 }
+					check_variable = { which = autofab_motes_queue value > 4 }
 					check_variable = { which = autofab_chemical value > 4 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 2 }
+						check_variable = { which = autofab_motes_queue value > 2 }
 						check_variable = { which = autofab_chemical value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_motes_queue value > 1 }
 						check_variable = { which = autofab_chemical value > 2 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 3 }
+						check_variable = { which = autofab_motes_queue value > 3 }
 						check_variable = { which = autofab_chemical value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_motes_queue value > 0 }
 						check_variable = { which = autofab_chemical value > 3 }
 					}
 				}
@@ -1866,17 +1846,17 @@ factory_gases_decrease_queue = {
 			AND = {
 				has_country_flag = factory_gases_queue_1
 				OR = {
-					check_variable = { which = autofab_districts_available value > 0 }
+					check_variable = { which = autofab_gases_queue value > 0 }
 					check_variable = { which = autofab_refinery value > 0 }
 				}
 			}
 			AND = {
 				has_country_flag = factory_gases_queue_2
 				OR = {
-					check_variable = { which = autofab_districts_available value > 1 }
+					check_variable = { which = autofab_gases_queue value > 1 }
 					check_variable = { which = autofab_refinery value > 1 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_gases_queue value > 0 }
 						check_variable = { which = autofab_refinery value > 0 }
 					}
 				}
@@ -1884,14 +1864,14 @@ factory_gases_decrease_queue = {
 			AND = {
 				has_country_flag = factory_gases_queue_3
 				OR = {
-					check_variable = { which = autofab_districts_available value > 2 }
+					check_variable = { which = autofab_gases_queue value > 2 }
 					check_variable = { which = autofab_refinery value > 2 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_gases_queue value > 1 }
 						check_variable = { which = autofab_refinery value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_gases_queue value > 0 }
 						check_variable = { which = autofab_refinery value > 1 }
 					}
 				}
@@ -1899,22 +1879,22 @@ factory_gases_decrease_queue = {
 			AND = {
 				has_country_flag = factory_gases_queue_4
 				OR = {
-					check_variable = { which = autofab_districts_available value > 3 }
+					check_variable = { which = autofab_gases_queue value > 3 }
 					check_variable = { which = autofab_refinery value > 3 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_gases_queue value > 1 }
 						check_variable = { which = autofab_refinery value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_gases_queue value > 1 }
 						check_variable = { which = autofab_refinery value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 2 }
+						check_variable = { which = autofab_gases_queue value > 2 }
 						check_variable = { which = autofab_refinery value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_gases_queue value > 0 }
 						check_variable = { which = autofab_refinery value > 2 }
 					}
 				}
@@ -1922,22 +1902,22 @@ factory_gases_decrease_queue = {
 			AND = {
 				has_country_flag = factory_gases_queue_5
 				OR = {
-					check_variable = { which = autofab_districts_available value > 4 }
+					check_variable = { which = autofab_gases_queue value > 4 }
 					check_variable = { which = autofab_refinery value > 4 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 2 }
+						check_variable = { which = autofab_gases_queue value > 2 }
 						check_variable = { which = autofab_refinery value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_gases_queue value > 1 }
 						check_variable = { which = autofab_refinery value > 2 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 3 }
+						check_variable = { which = autofab_gases_queue value > 3 }
 						check_variable = { which = autofab_refinery value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_gases_queue value > 0 }
 						check_variable = { which = autofab_refinery value > 3 }
 					}
 				}
@@ -2060,17 +2040,17 @@ factory_crystals_decrease_queue = {
 			AND = {
 				has_country_flag = factory_crystals_queue_1
 				OR = {
-					check_variable = { which = autofab_districts_available value > 0 }
+					check_variable = { which = autofab_crystals_queue value > 0 }
 					check_variable = { which = autofab_translucer value > 0 }
 				}
 			}
 			AND = {
 				has_country_flag = factory_crystals_queue_2
 				OR = {
-					check_variable = { which = autofab_districts_available value > 1 }
+					check_variable = { which = autofab_crystals_queue value > 1 }
 					check_variable = { which = autofab_translucer value > 1 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_crystals_queue value > 0 }
 						check_variable = { which = autofab_translucer value > 0 }
 					}
 				}
@@ -2078,14 +2058,14 @@ factory_crystals_decrease_queue = {
 			AND = {
 				has_country_flag = factory_crystals_queue_3
 				OR = {
-					check_variable = { which = autofab_districts_available value > 2 }
+					check_variable = { which = autofab_crystals_queue value > 2 }
 					check_variable = { which = autofab_translucer value > 2 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_crystals_queue value > 1 }
 						check_variable = { which = autofab_translucer value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_crystals_queue value > 0 }
 						check_variable = { which = autofab_translucer value > 1 }
 					}
 				}
@@ -2093,22 +2073,22 @@ factory_crystals_decrease_queue = {
 			AND = {
 				has_country_flag = factory_crystals_queue_4
 				OR = {
-					check_variable = { which = autofab_districts_available value > 3 }
+					check_variable = { which = autofab_crystals_queue value > 3 }
 					check_variable = { which = autofab_translucer value > 3 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_crystals_queue value > 1 }
 						check_variable = { which = autofab_translucer value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_crystals_queue value > 1 }
 						check_variable = { which = autofab_translucer value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 2 }
+						check_variable = { which = autofab_crystals_queue value > 2 }
 						check_variable = { which = autofab_translucer value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_crystals_queue value > 0 }
 						check_variable = { which = autofab_translucer value > 2 }
 					}
 				}
@@ -2116,22 +2096,22 @@ factory_crystals_decrease_queue = {
 			AND = {
 				has_country_flag = factory_crystals_queue_5
 				OR = {
-					check_variable = { which = autofab_districts_available value > 4 }
+					check_variable = { which = autofab_crystals_queue value > 4 }
 					check_variable = { which = autofab_translucer value > 4 }
 					AND = {
-						check_variable = { which = autofab_districts_available value > 2 }
+						check_variable = { which = autofab_crystals_queue value > 2 }
 						check_variable = { which = autofab_translucer value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 1 }
+						check_variable = { which = autofab_crystals_queue value > 1 }
 						check_variable = { which = autofab_translucer value > 2 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 3 }
+						check_variable = { which = autofab_crystals_queue value > 3 }
 						check_variable = { which = autofab_translucer value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_districts_available value > 0 }
+						check_variable = { which = autofab_crystals_queue value > 0 }
 						check_variable = { which = autofab_translucer value > 3 }
 					}
 				}

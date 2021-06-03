@@ -38,19 +38,29 @@ country_event = {
 	
 	immediate = {
 		set_variable = { which = autofab_auto_planets value = 0 }
+		set_variable = { which = autofab_planet_count value = 0 }
 		every_owned_planet = {
 			limit = {
 				NOT = {
 					has_planet_flag = factory_expanding
 				}
-				automation_active = yes
+				OR = {
+					owner = {
+						is_ai = yes
+					}
+					automation_active = yes
+				}
 				can_expand_factory = yes
 			}
 			PREV = {
 				change_variable = { which = autofab_auto_planets value = 1 }
 			}
 		}
-		set_variable = { which = autofab_auto_planets_debug value = autofab_auto_planets }
+		every_owned_planet = {
+			PREV = {
+				change_variable = { which = autofab_planet_count value = 1 }
+			}
+		}
 		if = {
 			limit = {
 				has_global_flag = autofab_logging
@@ -70,7 +80,7 @@ country_event = {
 			}
 			set_variable = { which = autofabs_busy value = 0 }
 			change_variable = { which = autofabs_busy value = autofab_districts_building }
-			change_variable = { which = autofabs_busy value = autofab_distrcits_queued }
+			change_variable = { which = autofabs_busy value = autofab_districts_queued }
 			subtract_variable = { which = autofabs_busy value = autofabs }
 			if = {
 				limit = {
@@ -78,39 +88,141 @@ country_event = {
 				}
 				multiply_variable = { which = autofabs_busy value = -1 }
 			}
-			export_resource_income_to_variable = { resource = energy variable = autofab_energy_tracking }
-			export_resource_income_to_variable = { resource = minerals variable = autofab_minerals_tracking }
-			export_resource_income_to_variable = { resource = volatile_motes variable = autofab_volatile_motes_tracking }
-			export_resource_income_to_variable = { resource = exotic_gases variable = autofab_exotic_gases_tracking }
-			export_resource_income_to_variable = { resource = rare_crystals variable = autofab_rare_crystals_tracking }
-			country_energy_check = yes
-			country_food_check = yes
-			country_minerals_check = yes
-			country_consumer_goods_check = yes
+			export_to_autofab_variables = yes
+			country_resources_ratio_calc = yes
 			country_event = { id = autofab_automation.1001 days = 1 }
 		}
 	}
 }
 
-#Automation add to queue based on income.
+#Automation add to planet queues based on income, taking into account production and upkeep of queued modules
 country_event = {
 	id = autofab_automation.1001
 	is_triggered_only = yes
 	hide_window = yes
 	
 	immediate = {
-		while = {
+		set_variable = { which = autofab_done_today value = 0 }
+		if = {
 			limit = {
 				check_variable = { which = autofab_auto_planets value > 0 }
 				any_owned_planet = {
-					can_expand_factory = yes
-					owner = {
-						is_ai = yes
-					}
 					automation_active = yes
+					check_variable = { which = autofab_districts_available value > 0 }
 				}
 			}
-			
+			change_variable = { which = autofab_auto_planets value = -1 }
+			if = { #Autofab construction
+				limit = {
+					OR = {
+						check_variable = { which = autofab_districts_available value < 10 }
+						check_variable = { which = autofab_energy_avail value < 10 }
+						check_variable = { which = autofab_food_avail value < 10 }
+						check_variable = { which = autofab_minerals_avail value < 10 }
+					}
+				}
+				change_variable = { which = autofab_queue value = 1 }
+			}
+			#can_build_fallback = yes
+			if = { #Energy
+				limit = {
+					check_variable = { which = autofab_energy_ratio value < 0 }
+					check_variable = { which = autofab_energy_avail value > 0 }
+				}
+				if = {
+					limit = {
+						any_owned_planet = {
+							automation_active = yes
+							check_variable = { which = autofab_districts_available value > 0 }
+							check_variable = { which = autofab_energy_avail value > 0 }
+						}
+					}
+					
+				}
+				else = {
+				
+				}
+				change_variable = { which = autofab_energy_queue value = 1 }
+			}
+			else_if = { #Strategic Resources
+				limit = {
+					OR = {
+						check_variable = { which = autofab_volatile_motes_ratio value < 0 }
+						check_variable = { which = autofab_exotic_gases_ratio value < 0 }
+						check_variable = { which = autofab_rare_crystals_ratio value < 0 }
+					}
+					check_variable = { which = autofab_districts_available value > 0 }
+				}
+				if = {
+					limit = {
+						check_variable = { which = autofab_extractor_avail value > 0 }
+					}
+					change_variable = { which = autofab_extractor_queue value = 1 }
+				}
+				change_variable = { which = autofab_motes_queue value = 1 }
+				change_variable = { which = autofab_gases_queue value = 1 }
+				change_variable = { which = autofab_crystals_queue value = 1 }
+			}
+			else_if = { #Food
+				limit = {
+					OR = {
+						AND = {
+							country_uses_food = yes
+							check_variable = { which = autofab_food_ratio value < 0 }
+						}
+						check_variable = { which = autofab_food_ratio value < 0 }
+					}
+					check_variable = { which = autofab_food_avail value > 0 }
+				}
+				change_variable = { which = autofab_food_queue value = 1 }
+			}
+			else_if = { #Consumer Goods
+				limit = {
+					OR = {
+						AND = {
+							country_uses_consumer_goods = yes
+							check_variable = { which = autofab_consumer_goods_ratio value < 0 }
+						}
+						check_variable = { which = autofab_consumer_goods_ratio value < 0 }
+					}
+					check_variable = { which = autofab_minerals_tracking value > 10 }
+					check_variable = { which = autofab_factory_available value > 0 }
+				}
+				change_variable = { which = autofab_congoods_queue value = 1 }
+			}
+			else_if = { #Minerals
+				limit = {
+					check_variable = { which = autofab_minerals_ratio value < 0 }
+					check_variable = { which = autofab_energy_tracking value < 0 }
+					check_variable = { which = autofab_minerals_avail value > 0 }
+				}
+				change_variable = { which = autofab_mineral_queue value = 1 }
+			}
+			else_if = { #Alloys
+				limit = {
+					check_variable = { which = autofab_minerals_tracking value > 0 }
+					check_variable = { which = autofab_energy_tracking value > 0 }
+					check_variable = { which = autofab_foundry_available value > 0 }
+				}
+				change_variable = { which = autofab_alloys_queue value = 1 }
+			}
+			if = {
+				limit = {
+					check_variable = { which = autofab_auto_planets value > 0 }
+					check_variable = { which = autofab_done_today value < 6 }
+				}
+				change_variable = { which = autofab_done_today value = 1 }
+				country_event = { id = autofab_automation.1001 days = -1 }
+			}
+			else_if = {
+				limit = {
+					check_variable = { which = autofab_auto_planets value > 0 }
+				}
+				country_event = { id = autofab_automation.1001 days = 1 }
+			}
+		}
+		else = {
+			fire_on_action = { on_action = autofab_apply_queue } #Immediately attempt to apply the queue after automation is fully calced.
 		}
 	}
 	

@@ -874,17 +874,17 @@ planet_factory_mine_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_mine_queue_1
 				OR = {
-					check_variable = { which = autofab_minerals_queue value > 0 }
+					check_variable = { which = autofab_mineral_queue value > 0 }
 					check_variable = { which = autofab_mine value > 0 }
 				}
 			}
 			AND = {
 				has_planet_flag = factory_mine_queue_2
 				OR = {
-					check_variable = { which = autofab_minerals_queue value > 1 }
+					check_variable = { which = autofab_mineral_queue value > 1 }
 					check_variable = { which = autofab_mine value > 1 }
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 0 }
+						check_variable = { which = autofab_mineral_queue value > 0 }
 						check_variable = { which = autofab_mine value > 0 }
 					}
 				}
@@ -892,14 +892,14 @@ planet_factory_mine_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_mine_queue_3
 				OR = {
-					check_variable = { which = autofab_minerals_queue value > 2 }
+					check_variable = { which = autofab_mineral_queue value > 2 }
 					check_variable = { which = autofab_mine value > 2 }
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 1 }
+						check_variable = { which = autofab_mineral_queue value > 1 }
 						check_variable = { which = autofab_mine value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 0 }
+						check_variable = { which = autofab_mineral_queue value > 0 }
 						check_variable = { which = autofab_mine value > 1 }
 					}
 				}
@@ -907,22 +907,22 @@ planet_factory_mine_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_mine_queue_4
 				OR = {
-					check_variable = { which = autofab_minerals_queue value > 3 }
+					check_variable = { which = autofab_mineral_queue value > 3 }
 					check_variable = { which = autofab_mine value > 3 }
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 1 }
+						check_variable = { which = autofab_mineral_queue value > 1 }
 						check_variable = { which = autofab_mine value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 1 }
+						check_variable = { which = autofab_mineral_queue value > 1 }
 						check_variable = { which = autofab_mine value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 2 }
+						check_variable = { which = autofab_mineral_queue value > 2 }
 						check_variable = { which = autofab_mine value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 0 }
+						check_variable = { which = autofab_mineral_queue value > 0 }
 						check_variable = { which = autofab_mine value > 2 }
 					}
 				}
@@ -930,22 +930,22 @@ planet_factory_mine_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_mine_queue_5
 				OR = {
-					check_variable = { which = autofab_minerals_queue value > 4 }
+					check_variable = { which = autofab_mineral_queue value > 4 }
 					check_variable = { which = autofab_mine value > 4 }
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 2 }
+						check_variable = { which = autofab_mineral_queue value > 2 }
 						check_variable = { which = autofab_mine value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 1 }
+						check_variable = { which = autofab_mineral_queue value > 1 }
 						check_variable = { which = autofab_mine value > 2 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 3 }
+						check_variable = { which = autofab_mineral_queue value > 3 }
 						check_variable = { which = autofab_mine value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_minerals_queue value > 0 }
+						check_variable = { which = autofab_mineral_queue value > 0 }
 						check_variable = { which = autofab_mine value > 3 }
 					}
 				}
@@ -1282,17 +1282,17 @@ planet_factory_foundry_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_foundry_queue_1
 				OR = {
-					check_variable = { which = autofab_foundry_queue value > 0 }
+					check_variable = { which = autofab_alloys_queue value > 0 }
 					check_variable = { which = autofab_foundry value > 0 }
 				}
 			}
 			AND = {
 				has_planet_flag = factory_foundry_queue_2
 				OR = {
-					check_variable = { which = autofab_foundry_queue value > 1 }
+					check_variable = { which = autofab_alloys_queue value > 1 }
 					check_variable = { which = autofab_foundry value > 1 }
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 0 }
+						check_variable = { which = autofab_alloys_queue value > 0 }
 						check_variable = { which = autofab_foundry value > 0 }
 					}
 				}
@@ -1300,14 +1300,14 @@ planet_factory_foundry_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_foundry_queue_3
 				OR = {
-					check_variable = { which = autofab_foundry_queue value > 2 }
+					check_variable = { which = autofab_alloys_queue value > 2 }
 					check_variable = { which = autofab_foundry value > 2 }
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 1 }
+						check_variable = { which = autofab_alloys_queue value > 1 }
 						check_variable = { which = autofab_foundry value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 0 }
+						check_variable = { which = autofab_alloys_queue value > 0 }
 						check_variable = { which = autofab_foundry value > 1 }
 					}
 				}
@@ -1315,22 +1315,22 @@ planet_factory_foundry_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_foundry_queue_4
 				OR = {
-					check_variable = { which = autofab_foundry_queue value > 3 }
+					check_variable = { which = autofab_alloys_queue value > 3 }
 					check_variable = { which = autofab_foundry value > 3 }
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 1 }
+						check_variable = { which = autofab_alloys_queue value > 1 }
 						check_variable = { which = autofab_foundry value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 1 }
+						check_variable = { which = autofab_alloys_queue value > 1 }
 						check_variable = { which = autofab_foundry value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 2 }
+						check_variable = { which = autofab_alloys_queue value > 2 }
 						check_variable = { which = autofab_foundry value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 0 }
+						check_variable = { which = autofab_alloys_queue value > 0 }
 						check_variable = { which = autofab_foundry value > 2 }
 					}
 				}
@@ -1338,22 +1338,22 @@ planet_factory_foundry_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_foundry_queue_5
 				OR = {
-					check_variable = { which = autofab_foundry_queue value > 4 }
+					check_variable = { which = autofab_alloys_queue value > 4 }
 					check_variable = { which = autofab_foundry value > 4 }
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 2 }
+						check_variable = { which = autofab_alloys_queue value > 2 }
 						check_variable = { which = autofab_foundry value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 1 }
+						check_variable = { which = autofab_alloys_queue value > 1 }
 						check_variable = { which = autofab_foundry value > 2 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 3 }
+						check_variable = { which = autofab_alloys_queue value > 3 }
 						check_variable = { which = autofab_foundry value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_foundry_queue value > 0 }
+						check_variable = { which = autofab_alloys_queue value > 0 }
 						check_variable = { which = autofab_foundry value > 3 }
 					}
 				}
@@ -1481,17 +1481,17 @@ planet_factory_factory_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_factory_queue_1
 				OR = {
-					check_variable = { which = autofab_factory_queue value > 0 }
+					check_variable = { which = autofab_congoods_queue value > 0 }
 					check_variable = { which = autofab_factory value > 0 }
 				}
 			}
 			AND = {
 				has_planet_flag = factory_factory_queue_2
 				OR = {
-					check_variable = { which = autofab_factory_queue value > 1 }
+					check_variable = { which = autofab_congoods_queue value > 1 }
 					check_variable = { which = autofab_factory value > 1 }
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 0 }
+						check_variable = { which = autofab_congoods_queue value > 0 }
 						check_variable = { which = autofab_factory value > 0 }
 					}
 				}
@@ -1499,14 +1499,14 @@ planet_factory_factory_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_factory_queue_3
 				OR = {
-					check_variable = { which = autofab_factory_queue value > 2 }
+					check_variable = { which = autofab_congoods_queue value > 2 }
 					check_variable = { which = autofab_factory value > 2 }
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 1 }
+						check_variable = { which = autofab_congoods_queue value > 1 }
 						check_variable = { which = autofab_factory value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 0 }
+						check_variable = { which = autofab_congoods_queue value > 0 }
 						check_variable = { which = autofab_factory value > 1 }
 					}
 				}
@@ -1514,22 +1514,22 @@ planet_factory_factory_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_factory_queue_4
 				OR = {
-					check_variable = { which = autofab_factory_queue value > 3 }
+					check_variable = { which = autofab_congoods_queue value > 3 }
 					check_variable = { which = autofab_factory value > 3 }
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 1 }
+						check_variable = { which = autofab_congoods_queue value > 1 }
 						check_variable = { which = autofab_factory value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 1 }
+						check_variable = { which = autofab_congoods_queue value > 1 }
 						check_variable = { which = autofab_factory value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 2 }
+						check_variable = { which = autofab_congoods_queue value > 2 }
 						check_variable = { which = autofab_factory value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 0 }
+						check_variable = { which = autofab_congoods_queue value > 0 }
 						check_variable = { which = autofab_factory value > 2 }
 					}
 				}
@@ -1537,22 +1537,22 @@ planet_factory_factory_decrease_queue = {
 			AND = {
 				has_planet_flag = factory_factory_queue_5
 				OR = {
-					check_variable = { which = autofab_factory_queue value > 4 }
+					check_variable = { which = autofab_congoods_queue value > 4 }
 					check_variable = { which = autofab_factory value > 4 }
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 2 }
+						check_variable = { which = autofab_congoods_queue value > 2 }
 						check_variable = { which = autofab_factory value > 1 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 1 }
+						check_variable = { which = autofab_congoods_queue value > 1 }
 						check_variable = { which = autofab_factory value > 2 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 3 }
+						check_variable = { which = autofab_congoods_queue value > 3 }
 						check_variable = { which = autofab_factory value > 0 }
 					}
 					AND = {
-						check_variable = { which = autofab_factory_queue value > 0 }
+						check_variable = { which = autofab_congoods_queue value > 0 }
 						check_variable = { which = autofab_factory value > 3 }
 					}
 				}

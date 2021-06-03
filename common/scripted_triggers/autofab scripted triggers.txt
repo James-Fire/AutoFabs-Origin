@@ -11,9 +11,8 @@ can_use_autofab = {
 
 can_expand_factory = {
 	free_district_slots > 0
-	has_deposit = autofab
-	has_planet_flag = has_autofab
-	can_queue_factory = yes
+	has_autofab = yes
+	NOT = { has_planet_flag = factory_expanding }
 }
 
 has_autofab = {
@@ -24,10 +23,7 @@ has_autofab = {
 }
 
 can_queue_factory = {
-	NOR = {
-		has_planet_flag = factory_expanding
-		automation_active = yes
-	}
+	NOT = { automation_active = yes }
 }
 
 has_supported_district_set = {

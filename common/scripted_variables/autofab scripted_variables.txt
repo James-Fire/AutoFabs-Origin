@@ -5,8 +5,8 @@
 @ringdistrictcost = 2000
 @factoryalloycost = 50
 
-@autofab_construction_time = 720
-@factory_construction_time = 360
+@autofab_construction_time = 1080
+@factory_construction_time = 480
 @factory_retool_time = 180
 @autofaballoycost = 150
 

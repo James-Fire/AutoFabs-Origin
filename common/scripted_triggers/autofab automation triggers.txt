@@ -16,177 +16,75 @@ automation_active = {
 	}
 }
 
-automation_building_upkeep_check = {
+can_afford_district = {
 	OR = {
 		AND = {
-			resource_income_compare = { resource = energy  value > 105 }
-			check_variable = { which = autofab_upkeep_building value >= 1 }
+			uses_district_set = standard
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @districtcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @factoryalloycost
+				}
+			}
 		}
 		AND = {
-			resource_income_compare = { resource = energy  value > 100 }
-			check_variable = { which = autofab_upkeep_building value >= 2 }
+			uses_district_set = habitat
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @habdistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @factoryalloycost
+				}
+			}
 		}
 		AND = {
-			resource_income_compare = { resource = energy  value > 95 }
-			check_variable = { which = autofab_upkeep_building value >= 3 }
+			uses_district_set = city_world
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @citydistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @factoryalloycost
+				}
+			}
 		}
 		AND = {
-			resource_income_compare = { resource = energy  value > 90 }
-			check_variable = { which = autofab_upkeep_building value >= 4 }
+			OR = {
+				uses_district_set = hive_world
+				uses_district_set = machine_world
+			}
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @specialdistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @factoryalloycost
+				}
+			}
 		}
 		AND = {
-			resource_income_compare = { resource = energy  value > 85 }
-			check_variable = { which = autofab_upkeep_building value >= 5 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 80 }
-			check_variable = { which = autofab_upkeep_building value >= 6 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 75 }
-			check_variable = { which = autofab_upkeep_building value >= 7 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 70 }
-			check_variable = { which = autofab_upkeep_building value >= 8 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 65 }
-			check_variable = { which = autofab_upkeep_building value >= 9 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 60 }
-			check_variable = { which = autofab_upkeep_building value >= 10 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 55 }
-			check_variable = { which = autofab_upkeep_building value >= 11 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 50 }
-			check_variable = { which = autofab_upkeep_building value >= 12 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 45 }
-			check_variable = { which = autofab_upkeep_building value >= 13 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 40 }
-			check_variable = { which = autofab_upkeep_building value >= 14 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 35 }
-			check_variable = { which = autofab_upkeep_building value >= 15 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 30 }
-			check_variable = { which = autofab_upkeep_building value >= 16 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 25 }
-			check_variable = { which = autofab_upkeep_building value >= 17 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 20 }
-			check_variable = { which = autofab_upkeep_building value >= 18 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 15 }
-			check_variable = { which = autofab_upkeep_building value >= 19 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 10 }
-			check_variable = { which = autofab_upkeep_building value >= 20 }
+			uses_district_set = ring_world
+			owner = {
+				resource_stockpile_compare = {
+					resource = minerals
+					value >= @ringdistrictcost
+				}
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= @factoryalloycost
+				}
+			}
 		}
 	}
 }
-
-minerals_building_upkeep_check = {
-	OR = {
-		AND = {
-			resource_income_compare = { resource = energy  value > 30 }
-			check_variable = { which = autofab_minerals_building value = 1 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 25 }
-			check_variable = { which = autofab_minerals_building value = 2 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 20 }
-			check_variable = { which = autofab_minerals_building value = 3 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 15 }
-			check_variable = { which = autofab_minerals_building value = 4 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 10 }
-			check_variable = { which = autofab_minerals_building value = 5 }
-		}
-	}
-}
-
-food_building_upkeep_check = {
-	OR = {
-		AND = {
-			resource_income_compare = { resource = energy  value > 30 }
-			check_variable = { which = autofab_food_building value = 1 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 25 }
-			check_variable = { which = autofab_food_building value = 2 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 20 }
-			check_variable = { which = autofab_food_building value = 3 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 15 }
-			check_variable = { which = autofab_food_building value = 4 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 10 }
-			check_variable = { which = autofab_food_building value = 5 }
-		}
-	}
-}
-
-congoods_building_upkeep_check = {
-	OR = {
-		AND = {
-			resource_income_compare = { resource = energy  value > 30 }
-			check_variable = { which = autofab_congoods_building value = 1 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 25 }
-			check_variable = { which = autofab_congoods_building value = 2 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 20 }
-			check_variable = { which = autofab_congoods_building value = 3 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 15 }
-			check_variable = { which = autofab_congoods_building value = 4 }
-		}
-		AND = {
-			resource_income_compare = { resource = energy  value > 10 }
-			check_variable = { which = autofab_congoods_building value = 5 }
-		}
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

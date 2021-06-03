@@ -262,6 +262,10 @@
      autofab_menu.1.name:0 "[This.GetName] Factory Terminal"
      autofab_menu.1.desc:0 "$factory_planets$\n\n$factory_available_space$\n\n$factory_construction_extender$"
      autofab_menu.1.confirm:0 "Open the Advisor"
+     autofab_menu.1.refresh:0 "Terminal Refresh"
+     
+     autofab_menu.plus_tooltip:0 "You must have enough available slots for this Module type."
+     autofab_menu.minus_tooltip:0 "You must have enough Queued and Built Modules of this type."
      
      
      autofab_easter.desc:0 ""
@@ -285,7 +289,7 @@
      factory_construction:0 "Factory Stats"
      
      factory_planets:0 "£autofab_planet£ Current:[This.autofabs]|Queued:[This.autofab_queue]|Available:[This.autofabs_available]"
-     factory_available_space:0 "£district£ Available:[This.autofab_districts_available]|Building:[This.autofab_districts_building]|Queued:[This.autofab_distrcits_queued]"
+     factory_available_space:0 "£district£ Available:[This.autofab_districts_available]|Building:[This.autofab_districts_building]|Queued:[This.autofab_districts_queued]"
      
      factory_construction_extender:0 "$factory_generator$\n\n$factory_mine$\n\n$factory_farm$\n\n$factory_foundry$\n\n$factory_factory$\n\n$factory_motes$\n\n$factory_gases$\n\n$factory_crystals$\n\n$factory_extractor$"
      factory_generator:0 "£energy£ $factory_generator_current$|$factory_generator_building$|$factory_generator_queued$|$factory_generator_available$"

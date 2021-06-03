@@ -367,7 +367,7 @@ start_autofab_chemical = {
 	set_planet_flag = factory_expanding
 	set_planet_flag = factory_building_chemical
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
-	planet_event = { id = autofab_queue.33 days = @factory_construction_time }
+	planet_event = { id = autofab_queue.31 days = @factory_construction_time }
 }
 add_autofab_chemical = {
 	remove_planet_flag = factory_expanding
@@ -387,7 +387,7 @@ start_autofab_refinery = {
 	set_planet_flag = factory_expanding
 	set_planet_flag = factory_building_refinery
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
-	planet_event = { id = autofab_queue.31 days = @factory_construction_time }
+	planet_event = { id = autofab_queue.33 days = @factory_construction_time }
 }
 add_autofab_refinery = {
 	remove_planet_flag = factory_expanding

@@ -1,0 +1,84 @@
+
+autofab_account_energy_module = {
+	if = {
+		limit = {
+			uses_district_set = standard
+		}
+		owner = {
+			add_resource = {
+				energy = @Negdistrictcost
+			}
+			add_resource = {
+				minerals = @Negdistrictcost
+			}
+			add_resource = {
+				alloys = @Negautofaballoycost
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			uses_district_set = habitat
+		}
+		owner = {
+			add_resource = {
+				energy = @Neghabdistrictcost
+			}
+			add_resource = {
+				minerals = @Neghabdistrictcost
+			}
+			add_resource = {
+				alloys = @Negautofaballoycost
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			uses_district_set = city_world
+		}
+		owner = {
+			add_resource = {
+				energy = @Negcitydistrictcost
+			}
+			add_resource = {
+				minerals = @Negcitydistrictcost
+			}
+			add_resource = {
+				alloys = @Negautofaballoycost
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+		owner = {
+			add_resource = {
+				energy = @Negspecialdistrictcost
+			}
+			add_resource = {
+				minerals = @Negspecialdistrictcost
+			}
+			add_resource = {
+				alloys = @Negautofaballoycost
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			uses_district_set = ring_world
+		}
+		owner = {
+			add_resource = {
+				energy = @Negringdistrictcost
+			}
+			add_resource = {
+				minerals = @Negringdistrictcost
+			}
+			add_resource = {
+				alloys = @Negautofaballoycost
+			}
+		}
+	}
+}
