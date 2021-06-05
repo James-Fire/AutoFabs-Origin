@@ -253,3 +253,7 @@ Included support for the Machine civic for more minerals from miners.
 _________________________
 
 Split planet queue from the country queue, so that closing the planet terminal can properly attempt a queue application.
+
+_________________________
+
+Fixed motes checking for food availability.

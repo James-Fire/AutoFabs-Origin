@@ -98,10 +98,7 @@ country_event = {
 			limit = {
 				can_use_autofab = yes
 			}
-			set_country_flag = autofab_automation_off
-			set_country_flag = factory_vanilla_swapping
-			set_country_flag = factory_fallback
-			set_country_flag = factory_autofab_construction_on
+			autofab_game_start = yes
 			country_event = { id = autofab_menu.20 }
 			switch = {
 				trigger = has_ethic

@@ -34,6 +34,19 @@ can_build_fallback = {
 }
 
 #Planet Scope
+can_build_fallback_planet = {
+	OR = {
+		AND = {
+			owner = {
+				has_country_flag = factory_fallback
+			}
+			NOT = {	has_planet_flag = factory_fallback_off }
+		}
+		has_planet_flag = factory_fallback
+	}
+}
+
+#Planet Scope
 can_afford_autofab = {
 	OR = {
 		AND = {

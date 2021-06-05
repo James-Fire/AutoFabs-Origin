@@ -60,6 +60,58 @@ factory_automation_on = {
 		#set_country_flag = autofab_automation remove_country_flag = autofab_automation_off
 	}
 }
+factory_automation_settings = {
+	potential = { always = yes }
+	allow = { hidden_trigger = { always = no } }
+	effect = {
+		custom_tooltip = "Automation is not available right now."
+		hidden_effect = {
+			country_event = { id = autofab_menu.2 }
+			if = {
+				limit = {
+					NOT = { is_variable_set = factory_energy_mult }
+				}
+				set_variable = { which = factory_energy_mult value = 0 }
+			}
+			if = {
+				limit = {
+					NOT = { is_variable_set = factory_minerals_mult }
+				}
+				set_variable = { which = factory_minerals_mult value = 0 }
+			}
+			if = {
+				limit = {
+					NOT = { is_variable_set = factory_food_mult }
+				}
+				set_variable = { which = factory_food_mult value = 0 }
+			}
+			if = {
+				limit = {
+					NOT = { is_variable_set = factory_consumer_goods_mult }
+				}
+				set_variable = { which = factory_consumer_goods_mult value = 0 }
+			}
+			if = {
+				limit = {
+					NOT = { is_variable_set = factory_motes_mult }
+				}
+				set_variable = { which = factory_motes_mult value = 0 }
+			}
+			if = {
+				limit = {
+					NOT = { is_variable_set = factory_gases_mult }
+				}
+				set_variable = { which = factory_gases_mult value = 0 }
+			}
+			if = {
+				limit = {
+					NOT = { is_variable_set = factory_crystals_mult }
+				}
+				set_variable = { which = factory_crystals_mult value = 0 }
+			}
+		}
+	}
+}
 factory_vanilla_swapping_fire_country = {
 	potential = { has_country_flag = factory_vanilla_swapping }
 	allow = {
@@ -1578,7 +1630,6 @@ factory_motes_increase_queue = {
 		OR = {
 			AND = {
 				has_country_flag = factory_motes_queue_1
-				check_variable = { which = autofab_food_avail value > 0 }
 				check_variable = { which = autofab_districts_available value > 0 }
 			}
 			AND = {

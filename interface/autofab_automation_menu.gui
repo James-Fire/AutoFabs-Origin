@@ -1,68 +1,106 @@
 guiTypes = {
 	containerWindowType = {
 		name = "autofab_automation_menu_confirm"
-		position = { x=0 y=0 }
-		size = { width = 388 height = 35 }
+		position = { x= 0 y= 0 }
+		size = { width = 35 height = 35 }
 		moveable = no
 		
 		buttonType = {
 			name = "option_button"
 			quadTextureSprite = "GFX_half_menu_button_bg" 
-			position = { x=-15 y=165 }
+			position = { x= -15 y= 393 }
 			font = "cg_16b"
 			text = "OPTION_TEXT"
-		}
-
-		OverlappingElementsBoxType = {
-			name = "trigger_icons"
-			position = { x = 0  y = 10 }
-			size = { x=65 y= 28 }
 		}
 	}
 	containerWindowType = {
-		name = "autofab_automation_menu_plus"
-		position = { x=0 y=0 }
-		size = { width = 388 height = 35 }
+		name = "autofab_automation_menu_column1"
+		position = { x = 0 y = 0 }
+		size = { width = 32 height = 32 }
 		moveable = no
 		
 		buttonType = {
 			name = "option_button"
-			quadTextureSprite = "GFX_half_menu_button_bg" 
-			position = { x=-15 y=165 }
+			quadTextureSprite = "GFX_autofab_100" 
+			position = { x= 250 y= 24 }
 			font = "cg_16b"
-			text = "OPTION_TEXT"
-		}
-
-		OverlappingElementsBoxType = {
-			name = "trigger_icons"
-			position = { x = 0  y = 10 }
-			size = { x=65 y= 28 }
+			text = ""
 		}
 	}
 	containerWindowType = {
-		name = "autofab_automation_menu_minus"
-		position = { x=0 y=0 }
-		size = { width = 388 height = 35 }
+		name = "autofab_automation_menu_column2"
+		position = { x= 0 y= 0 }
+		size = { width = 32 height = 32 }
 		moveable = no
 		
 		buttonType = {
 			name = "option_button"
-			quadTextureSprite = "GFX_half_menu_button_bg" 
-			position = { x=-15 y=165 }
+			quadTextureSprite = "GFX_autofab_10" 
+			position = { x= 310 y= -200 }
 			font = "cg_16b"
 			text = "OPTION_TEXT"
 		}
-
-		OverlappingElementsBoxType = {
-			name = "trigger_icons"
-			position = { x = 0  y = 10 }
-			size = { x=65 y= 28 }
+	}
+	containerWindowType = {
+		name = "autofab_automation_menu_column3"
+		position = { x= 0 y= 0 }
+		size = { width = 32 height = 32 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_autofab_1" 
+			position = { x= 370 y= -424 }
+			font = "cg_16b"
+			text = "OPTION_TEXT"
+		}
+	}
+	containerWindowType = {
+		name = "autofab_automation_menu_column4"
+		position = { x= 0 y= 0 }
+		size = { width = 32 height = 32 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_autofab_1_neg" 
+			position = { x= 430 y= -649 }
+			font = "cg_16b"
+			text = "OPTION_TEXT"
+		}
+	}
+	containerWindowType = {
+		name = "autofab_automation_menu_column5"
+		position = { x= 0 y= 0 }
+		size = { width = 32 height = 32 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_autofab_10_neg" 
+			position = { x= 490 y = -872 }
+			font = "cg_16b"
+			text = "OPTION_TEXT"
+		}
+	}
+	containerWindowType = {
+		name = "autofab_automation_menu_column6"
+		position = { x= 0 y= 0 }
+		size = { width = 32 height = 32 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_autofab_100_neg" 
+			position = { x= 550 y = -1096 }
+			font = "cg_16b"
+			text = "OPTION_TEXT"
 		}
 	}
 	containerWindowType = {
 		name = "autofab_automation_menu_YEET"
 		position = { x=0 y=0 }
-		size = { width = 388 height = 35 }
+		size = { width = 0 height = 0 }
 		moveable = no
 		
 		buttonType = {
@@ -72,12 +110,6 @@ guiTypes = {
 			font = "cg_16b"
 			text = "OPTION_TEXT"
 		}
-
-		OverlappingElementsBoxType = {
-			name = "trigger_icons"
-			position = { x = 0  y = 10 }
-			size = { x=65 y= 28 }
-		}
 	}
 
 	containerWindowType = {
@@ -85,10 +117,10 @@ guiTypes = {
 		orientation = center
 		origo = center
 		moveable = yes
-		size = { width = 704 height = 720 }	
+		size = { width = 635 height = 535 }	
 		containerWindowType = {
 			name = "portrait"
-			position = { x = -95 y = 285 }
+			position = { x = -95 y = 110}
 			size = { width = 314 height = 400 }
 			clipping = yes
 			iconType = {
@@ -113,14 +145,14 @@ guiTypes = {
 		}
 		iconType = {#Gear Dongs
 			name = "gearwrench_dongs"
-			spriteType = "GFX_flipped_gearwrench_dongs"
+			spriteType = "GFX_horflip_gears_dongs"
 			position = { x = -23 y = 30 }
 			alwaysTransparent = yes
 		}
 		iconType = {#Gear Dongs
 			name = "gearwrench_dongs_2"
-			spriteType = "GFX_lower_gearwrench_dongs"
-			position = { x = -48 y = 620 }
+			spriteType = "GFX_gears_dongs"
+			position = { x = -23 y = 450 }
 			alwaysTransparent = yes
 		}
 		iconType = {#Hexagon fade in
@@ -155,8 +187,8 @@ guiTypes = {
 			}
 			listboxType = {
 				name = "option_list"
-				position = { x = 0 y = 400 }
-				size = { x=450 y=240 }
+				position = { x = 0 y = 0 }
+				size = { x=1000 y=3000 }
 				spacing = 1
 				scrollbartype = "standardlistbox_slider"
 				borderSize = { x = 0 y = 0 }
@@ -194,79 +226,36 @@ guiTypes = {
 			effect = "blank_effect"
 		}
 		containerWindowType = {
-			name = "factory_options_contain"
-			position = { x = 5 y = 105 }
-			size = { width = 410 height = 102 }
+			name = "factory_mult_setting_contain"
+			position = { x = 220 y = 70 }
+			size = { width = 610 height = 102 }
 			orientation = upper_left
 
 			effectButtonType = {
-				name = "factory_options"
-				position = { x = 0 y = -80 }
+				name = "factory_automation_settings"
+				position = { x = -45 y = 40 }
+				size = { x = 470 y = -65 }
 				no_clicksound = yes
 				alwaysTransparent = yes
 				font = "large_title_font_28"
-				text = "factory_options"
+				text = "factory_automation_settings"
 				effect = "blank_effect"
 			}
 			effectButtonType = {
-				name = "factory_automation"
-				spriteType = "GFX_half_menu_button_bg"
-				position = { x = 0 y = 35 }
-				format = left
+				name = "factory_automation_target"
+				position = { x = -45 y = 290 }
+				size = { x = 470 y = -65 }
 				no_clicksound = yes
-				borderSize = { x = 10 y = 0 }
-				font = "cg_16b"
-				text = "factory_automation"
+				alwaysTransparent = yes
+				font = "large_title_font_28"
+				text = "factory_automation_target"
 				effect = "blank_effect"
 			}
-				effectButtonType = { name = "factory_automation_on" spriteType = "GFX_giga_menu_enabled" position = { x = 175 y = 40 } clicksound = interface effect = "factory_automation_off" }
-				effectButtonType = { name = "factory_automation_off" spriteType = "GFX_giga_menu_disabled" position = { x = 175 y = 40 } clicksound = interface effect = "factory_automation_on" }
-			effectButtonType = {
-				name = "factory_vanilla_swapping"
-				spriteType = "GFX_half_menu_button_bg"
-				position = { x = 0 y = 70 }
-				format = left
-				no_clicksound = yes
-				borderSize = { x = 10 y = 0 }
-				font = "cg_16b"
-				text = "factory_vanilla_swapping"
-				effect = "blank_effect"
-			}
-				effectButtonType = { name = "factory_vanilla_swapping_fire_country" spriteType = "GFX_autofab_menu_swap" position = { x = 145 y = 75 } clicksound = interface effect = "factory_vanilla_swapping_fire_country" }
-				effectButtonType = { name = "factory_vanilla_swapping_on" spriteType = "GFX_giga_menu_enabled" position = { x = 175 y = 75 } clicksound = interface effect = "factory_vanilla_swapping_off" }
-				effectButtonType = { name = "factory_vanilla_swapping_off" spriteType = "GFX_giga_menu_disabled" position = { x = 175 y = 75 } clicksound = interface effect = "factory_vanilla_swapping_on" }
-			effectButtonType = {
-				name = "factory_fallback"
-				spriteType = "GFX_half_menu_button_bg"
-				position = { x = 0 y = 105 }
-				format = left
-				no_clicksound = yes
-				borderSize = { x = 10 y = 0 }
-				font = "cg_16b"
-				text = "factory_fallback"
-				effect = "blank_effect"
-			}
-				effectButtonType = { name = "factory_fallback_on" spriteType = "GFX_giga_menu_enabled" position = { x = 175 y = 110 } clicksound = interface effect = "factory_fallback_off" }
-				effectButtonType = { name = "factory_fallback_off" spriteType = "GFX_giga_menu_disabled" position = { x = 175 y = 110 } clicksound = interface effect = "factory_fallback_on" }
-			effectButtonType = {
-				name = "factory_autofab_construction"
-				spriteType = "GFX_half_menu_button_bg"
-				position = { x = 0 y = 140 }
-				format = left
-				no_clicksound = yes
-				borderSize = { x = 10 y = 0 }
-				font = "cg_16b"
-				text = "factory_autofab_construction"
-				effect = "blank_effect"
-			}
-				effectButtonType = { name = "factory_autofab_construction_on" spriteType = "GFX_giga_menu_enabled" position = { x = 175 y = 145 } clicksound = interface effect = "factory_autofab_construction_off" }
-				effectButtonType = { name = "factory_autofab_construction_off" spriteType = "GFX_giga_menu_disabled" position = { x = 175 y = 145 } clicksound = interface effect = "factory_autofab_construction_on" }
 		}
-		
 		instantTextBoxType = {
 			name = "alien_message"
 			font = "cg_16b"
-			position = { x = 225 y = 370 }
+			position = { x = 225 y = 100 }
 			maxWidth = 350
 			maxHeight = 620
 			format = left

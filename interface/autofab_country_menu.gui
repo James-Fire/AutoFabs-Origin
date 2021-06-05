@@ -185,6 +185,7 @@ guiTypes = {
 				text = "factory_automation"
 				effect = "blank_effect"
 			}
+				effectButtonType = { name = "factory_automation_settings" spriteType = "GFX_autofab_settings" position = { x = 145 y = 40 } clicksound = interface effect = "factory_automation_settings" }
 				effectButtonType = { name = "factory_automation_on" spriteType = "GFX_giga_menu_enabled" position = { x = 175 y = 40 } clicksound = interface effect = "factory_automation_off" }
 				effectButtonType = { name = "factory_automation_off" spriteType = "GFX_giga_menu_disabled" position = { x = 175 y = 40 } clicksound = interface effect = "factory_automation_on" }
 			effectButtonType = {

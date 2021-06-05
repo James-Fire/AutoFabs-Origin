@@ -560,17 +560,12 @@ country_event = {
 				check_variable = { which = autofab_energy_queue value > 0 }
 				any_owned_planet = {
 					can_afford_district = yes
+					can_expand_factory = yes
 					can_queue_factory = yes
-				}
-				OR = {
-					AND = {
-						any_owned_planet = {
-							can_afford_district = yes
-							can_expand_factory = yes
-							is_energy_colony = yes
-						}
+					OR = {
+						is_energy_colony = yes
+						can_build_fallback_planet = yes
 					}
-					can_build_fallback = yes
 				}
 			}
 			if = {
@@ -584,6 +579,7 @@ country_event = {
 					any_owned_planet = {
 						can_afford_district = yes
 						can_expand_factory = yes
+						can_queue_factory = yes
 						is_energy_colony = yes
 					}
 				}
@@ -591,6 +587,7 @@ country_event = {
 					limit = {
 						can_afford_district = yes
 						can_expand_factory = yes
+						can_queue_factory = yes
 						is_energy_colony = yes
 					}
 					if = {
@@ -608,10 +605,8 @@ country_event = {
 					limit = {
 						can_afford_district = yes
 						can_expand_factory = yes
-						OR = {
-							ROOT = { has_country_flag = factory_fallback }
-							has_planet_flag = factory_fallback
-						}
+						can_queue_factory = yes
+						can_build_fallback_planet = yes
 					}
 					if = {
 						limit = {
@@ -638,17 +633,12 @@ country_event = {
 				check_variable = { which = autofab_mineral_queue value > 0 }
 				any_owned_planet = {
 					can_afford_district = yes
+					can_expand_factory = yes
 					can_queue_factory = yes
-				}
-				OR = {
-					AND = {
-						any_owned_planet = {
-							can_afford_district = yes
-							can_expand_factory = yes
-							is_mining_colony = yes
-						}
+					OR = {
+						can_build_fallback_planet = yes
+						is_mining_colony = yes
 					}
-					can_build_fallback = yes
 				}
 			}
 			if = {
@@ -713,17 +703,12 @@ country_event = {
 				check_variable = { which = autofab_food_queue value > 0 }
 				any_owned_planet = {
 					can_afford_district = yes
+					can_expand_factory = yes
 					can_queue_factory = yes
-				}
-				OR = {
-					AND = {
-						any_owned_planet = {
-							can_afford_district = yes
-							can_expand_factory = yes
-							is_farming_colony = yes
-						}
+					OR = {
+						can_build_fallback_planet = yes
+						is_farming_colony = yes
 					}
-					can_build_fallback = yes
 				}
 			}
 			if = {
@@ -788,14 +773,12 @@ country_event = {
 				check_variable = { which = autofab_alloys_queue value > 0 }
 				any_owned_planet = {
 					can_afford_district = yes
+					can_expand_factory = yes
 					can_queue_factory = yes
-				}
-				OR = {
-					any_owned_planet = {
-						can_expand_factory = yes
+					OR = {
+						can_build_fallback_planet = yes
 						is_alloys_colony = yes
 					}
-					can_build_fallback = yes
 				}
 			}
 			if = {
@@ -872,14 +855,12 @@ country_event = {
 				check_variable = { which = autofab_congoods_queue value > 0 }
 				any_owned_planet = {
 					can_afford_district = yes
+					can_expand_factory = yes
 					can_queue_factory = yes
-				}
-				OR = {
-					any_owned_planet = {
-						can_expand_factory = yes
+					OR = {
+						can_build_fallback_planet = yes
 						is_congood_colony = yes
 					}
-					can_build_fallback = yes
 				}
 			}
 			if = {
@@ -944,14 +925,12 @@ country_event = {
 				check_variable = { which = autofab_motes_queue value > 0 }
 				any_owned_planet = {
 					can_afford_building = yes
+					can_expand_factory = yes
 					can_queue_factory = yes
-				}
-				OR = {
-					any_owned_planet = {
-						can_expand_factory = yes
+					OR = {
+						can_build_fallback_planet = yes
 						is_refinery_colony = yes
 					}
-					can_build_fallback = yes
 				}
 			}
 			if = {
@@ -1016,14 +995,12 @@ country_event = {
 				check_variable = { which = autofab_gases_queue value > 0 }
 				any_owned_planet = {
 					can_afford_building = yes
+					can_expand_factory = yes
 					can_queue_factory = yes
-				}
-				OR = {
-					any_owned_planet = {
-						can_expand_factory = yes
+					OR = {
+						can_build_fallback_planet = yes
 						is_refinery_colony = yes
 					}
-					can_build_fallback = yes
 				}
 			}
 			if = {
@@ -1088,14 +1065,12 @@ country_event = {
 				check_variable = { which = autofab_crystals_queue value > 0 }
 				any_owned_planet = {
 					can_afford_building = yes
+					can_expand_factory = yes
 					can_queue_factory = yes
-				}
-				OR = {
-					any_owned_planet = {
-						can_expand_factory = yes
+					OR = {
+						can_build_fallback_planet = yes
 						is_refinery_colony = yes
 					}
-					can_build_fallback = yes
 				}
 			}
 			if = {

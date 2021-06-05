@@ -60,21 +60,289 @@ country_event = { ###Country Automation Controls
 	option = {
 		name = "autofab_menu.1.refresh"
 		#custom_tooltip = "autofab_menu.1.refresh.tooltip"
-		custom_gui = "autofab_main_menu_confirm"
-		country_event = { id = autofab_menu.1 }
+		custom_gui = "autofab_automation_menu_confirm"
+		country_event = { id = autofab_menu.2 }
 	}
 	option = {
 		name = "autofab_menu.1.confirm"
 		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
-		custom_gui = "autofab_main_menu_confirm"
+		custom_gui = "autofab_automation_menu_confirm"
 		country_event = { id = autofab_menu.20 }
 	}
 	option = {
 		name = "autofab_menu.1.confirm"
 		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
-		custom_gui = "autofab_main_menu_YEET"
+		custom_gui = "autofab_automation_menu_YEET"
 		default_hide_option = yes
 	}
+	
+	#First column of controls
+	option = {
+		name = "autofab_menu.1.energy"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column1"
+		is_dialog_only = yes
+		hidden_effect = {
+			#Add variable stuff, then copy/paste
+		}
+	}
+	option = {
+		name = "autofab_menu.1.minerals"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column1"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.1.food"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column1"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.1.congoods"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column1"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.1.motes"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column1"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.1.gases"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column1"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.1.crystals"
+		#custom_tooltip = "autofab_menu.1.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column1"
+		is_dialog_only = yes
+	}
+	
+	#Second column of controls
+	option = {
+		name = "autofab_menu.2.energy"
+		#custom_tooltip = "autofab_menu.2.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column2"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.2.minerals"
+		#custom_tooltip = "autofab_menu.2.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column2"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.2.food"
+		#custom_tooltip = "autofab_menu.2.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column2"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.2.congoods"
+		#custom_tooltip = "autofab_menu.2.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column2"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.2.motes"
+		#custom_tooltip = "autofab_menu.2.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column2"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.2.gases"
+		#custom_tooltip = "autofab_menu.2.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column2"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.2.crystals"
+		#custom_tooltip = "autofab_menu.2.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column2"
+		is_dialog_only = yes
+	}
+	
+	#Third column of controls
+	option = {
+		name = "autofab_menu.3.energy"
+		#custom_tooltip = "autofab_menu.3.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column3"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.3.minerals"
+		#custom_tooltip = "autofab_menu.3.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column3"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.3.food"
+		#custom_tooltip = "autofab_menu.3.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column3"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.3.congoods"
+		#custom_tooltip = "autofab_menu.3.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column3"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.3.motes"
+		#custom_tooltip = "autofab_menu.3.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column3"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.3.gases"
+		#custom_tooltip = "autofab_menu.3.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column3"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.3.crystals"
+		#custom_tooltip = "autofab_menu.3.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column3"
+		is_dialog_only = yes
+	}
+	
+	#Fourth column of controls
+	option = {
+		name = "autofab_menu.4.energy"
+		#custom_tooltip = "autofab_menu.4.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column4"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.4.minerals"
+		#custom_tooltip = "autofab_menu.4.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column4"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.4.food"
+		#custom_tooltip = "autofab_menu.4.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column4"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.4.congoods"
+		#custom_tooltip = "autofab_menu.4.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column4"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.4.motes"
+		#custom_tooltip = "autofab_menu.4.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column4"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.4.gases"
+		#custom_tooltip = "autofab_menu.4.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column4"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.4.crystals"
+		#custom_tooltip = "autofab_menu.4.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column4"
+		is_dialog_only = yes
+	}
+	
+	#Fifth column of controls
+	option = {
+		name = "autofab_menu.5.energy"
+		#custom_tooltip = "autofab_menu.5.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column5"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.5.minerals"
+		#custom_tooltip = "autofab_menu.5.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column5"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.5.food"
+		#custom_tooltip = "autofab_menu.5.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column5"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.5.congoods"
+		#custom_tooltip = "autofab_menu.5.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column5"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.5.motes"
+		#custom_tooltip = "autofab_menu.5.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column5"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.5.gases"
+		#custom_tooltip = "autofab_menu.5.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column5"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.5.crystals"
+		#custom_tooltip = "autofab_menu.5.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column5"
+		is_dialog_only = yes
+	}
+	
+	#Sixth column of controls
+	option = {
+		name = "autofab_menu.6.energy"
+		#custom_tooltip = "autofab_menu.6.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column6"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.6.minerals"
+		#custom_tooltip = "autofab_menu.6.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column6"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.6.food"
+		#custom_tooltip = "autofab_menu.6.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column6"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.6.congoods"
+		#custom_tooltip = "autofab_menu.6.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column6"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.6.motes"
+		#custom_tooltip = "autofab_menu.6.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column6"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.6.gases"
+		#custom_tooltip = "autofab_menu.6.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column6"
+		is_dialog_only = yes
+	}
+	option = {
+		name = "autofab_menu.6.crystals"
+		#custom_tooltip = "autofab_menu.6.confirm.tooltip"
+		custom_gui = "autofab_automation_menu_column6"
+		is_dialog_only = yes
+	}
+	
 	
 	after = {
 		#fire_on_action = { on_action = autofab_apply_queue }

@@ -1602,7 +1602,6 @@ planet_factory_motes_increase_queue = {
 		OR = {
 			AND = {
 				has_planet_flag = factory_motes_queue_1
-				check_variable = { which = autofab_food_avail value > 0 }
 				check_variable = { which = autofab_districts_available value > 0 }
 			}
 			AND = {

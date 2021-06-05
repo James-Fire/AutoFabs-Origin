@@ -91,6 +91,7 @@ country_event = {
 			export_to_autofab_variables = yes
 			country_resources_ratio_calc = yes
 			country_event = { id = autofab_automation.1001 days = 1 }
+			set_variable = { which = autofab_done_today value = 0 }
 		}
 	}
 }
@@ -102,7 +103,6 @@ country_event = {
 	hide_window = yes
 	
 	immediate = {
-		set_variable = { which = autofab_done_today value = 0 }
 		if = {
 			limit = {
 				check_variable = { which = autofab_auto_planets value > 0 }
@@ -123,10 +123,10 @@ country_event = {
 				}
 				change_variable = { which = autofab_queue value = 1 }
 			}
-			#can_build_fallback = yes
+			
 			if = { #Energy
 				limit = {
-					check_variable = { which = autofab_energy_ratio value < 0 }
+					check_variable = { which = autofab_energy_ratio value < factory_energy_mult }
 					check_variable = { which = autofab_energy_avail value > 0 }
 				}
 				if = {
@@ -135,21 +135,32 @@ country_event = {
 							automation_active = yes
 							check_variable = { which = autofab_districts_available value > 0 }
 							check_variable = { which = autofab_energy_avail value > 0 }
+							OR = {
+								can_build_fallback = yes
+								is_energy_colony = yes
+							}
 						}
 					}
-					
+					random_owned_planet = {
+						limit = {
+							automation_active = yes
+							check_variable = { which = autofab_districts_available value > 0 }
+							check_variable = { which = autofab_energy_avail value > 0 }
+							OR = {
+								can_build_fallback = yes
+								is_energy_colony = yes
+							}
+						}
+						change_variable = { which = autofab_energy_queue value = 1 }
+					}
 				}
-				else = {
-				
-				}
-				change_variable = { which = autofab_energy_queue value = 1 }
 			}
 			else_if = { #Strategic Resources
 				limit = {
 					OR = {
-						check_variable = { which = autofab_volatile_motes_ratio value < 0 }
-						check_variable = { which = autofab_exotic_gases_ratio value < 0 }
-						check_variable = { which = autofab_rare_crystals_ratio value < 0 }
+						check_variable = { which = autofab_volatile_motes_ratio value < factory_motes_mult }
+						check_variable = { which = autofab_exotic_gases_ratio value < factory_gases_mult }
+						check_variable = { which = autofab_rare_crystals_ratio value < factory_crystals_mult }
 					}
 					check_variable = { which = autofab_districts_available value > 0 }
 				}
@@ -165,26 +176,16 @@ country_event = {
 			}
 			else_if = { #Food
 				limit = {
-					OR = {
-						AND = {
-							country_uses_food = yes
-							check_variable = { which = autofab_food_ratio value < 0 }
-						}
-						check_variable = { which = autofab_food_ratio value < 0 }
-					}
+					country_uses_food = yes
+					check_variable = { which = autofab_food_ratio value < factory_food_mult }
 					check_variable = { which = autofab_food_avail value > 0 }
 				}
 				change_variable = { which = autofab_food_queue value = 1 }
 			}
 			else_if = { #Consumer Goods
 				limit = {
-					OR = {
-						AND = {
-							country_uses_consumer_goods = yes
-							check_variable = { which = autofab_consumer_goods_ratio value < 0 }
-						}
-						check_variable = { which = autofab_consumer_goods_ratio value < 0 }
-					}
+					country_uses_consumer_goods = yes
+					check_variable = { which = autofab_consumer_goods_ratio value < factory_consumer_goods_mult }
 					check_variable = { which = autofab_minerals_tracking value > 10 }
 					check_variable = { which = autofab_factory_available value > 0 }
 				}
@@ -192,7 +193,7 @@ country_event = {
 			}
 			else_if = { #Minerals
 				limit = {
-					check_variable = { which = autofab_minerals_ratio value < 0 }
+					check_variable = { which = autofab_minerals_ratio value < factory_minerals_mult }
 					check_variable = { which = autofab_energy_tracking value < 0 }
 					check_variable = { which = autofab_minerals_avail value > 0 }
 				}
