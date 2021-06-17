@@ -191,9 +191,7 @@ country_event = {
 						}
 					}
 					if = {
-						limit = {
-							check_variable = { which = autofab_volatile_motes_ratio value < factory_motes_mult }
-						}
+						limit = { check_variable = { which = autofab_volatile_motes_ratio value < factory_motes_mult } }
 						random_owned_planet = {
 							limit = {
 								automation_active = yes
@@ -204,9 +202,7 @@ country_event = {
 						}
 					}
 					else_if = {
-						limit = {
-							check_variable = { which = autofab_exotic_gases_ratio value < factory_gases_mult }
-						}
+						limit = { check_variable = { which = autofab_exotic_gases_ratio value < factory_gases_mult } }
 						random_owned_planet = {
 							limit = {
 								automation_active = yes
@@ -217,9 +213,7 @@ country_event = {
 						}
 					}
 					else_if = {
-						limit = {
-							check_variable = { which = autofab_rare_crystals_ratio value < factory_crystals_mult }
-						}
+						limit = { check_variable = { which = autofab_rare_crystals_ratio value < factory_crystals_mult } }
 						random_owned_planet = {
 							limit = {
 								automation_active = yes
@@ -239,9 +233,7 @@ country_event = {
 						}
 					}
 					if = {
-						limit = {
-							check_variable = { which = autofab_volatile_motes_ratio value < factory_motes_mult }
-						}
+						limit = { check_variable = { which = autofab_volatile_motes_ratio value < factory_motes_mult } }
 						random_owned_planet = {
 							limit = {
 								automation_active = yes
@@ -252,9 +244,7 @@ country_event = {
 						}
 					}
 					else_if = {
-						limit = {
-							check_variable = { which = autofab_exotic_gases_ratio value < factory_gases_mult }
-						}
+						limit = { check_variable = { which = autofab_exotic_gases_ratio value < factory_gases_mult } }
 						random_owned_planet = {
 							limit = {
 								automation_active = yes
@@ -265,9 +255,7 @@ country_event = {
 						}
 					}
 					else_if = {
-						limit = {
-							check_variable = { which = autofab_rare_crystals_ratio value < factory_crystals_mult }
-						}
+						limit = { check_variable = { which = autofab_rare_crystals_ratio value < factory_crystals_mult } }
 						random_owned_planet = {
 							limit = {
 								automation_active = yes
@@ -514,8 +502,5 @@ country_event = {
 		else = {
 			fire_on_action = { on_action = autofab_apply_queue } #Immediately attempt to apply the queue after automation is fully calced.
 		}
-	}
-	
-	after = {
 	}
 }
