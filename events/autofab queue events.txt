@@ -128,18 +128,15 @@ country_event = {
 	immediate = {
 		while = {
 			limit = {
-				has_country_flag = factory_autofab_construction_on
-				OR = {
-					check_variable = { which = autofab_queue value > 0 }
-					is_ai = yes
-				}
 				any_owned_planet = {
-					NOT = {
-						has_planet_flag = has_autofab
-						has_planet_flag = building_autofab
-						has_planet_flag = factory_autofab_construction_off
+					OR = {
+						owner = { is_ai = yes }
+						owner = {
+							check_variable = { which = autofab_queue value > 0 }
+						}
+						check_variable = { which = autofab_queue value > 0 }
 					}
-					has_supported_district_set = yes
+					can_build_autofab = yes
 				}
 			}
 			if = {
@@ -150,12 +147,7 @@ country_event = {
 			}
 			random_owned_planet = {
 				limit = {
-					NOT = {
-						has_planet_flag = has_autofab
-						has_planet_flag = building_autofab
-						has_planet_flag = factory_autofab_construction_off
-					}
-					has_supported_district_set = yes
+					can_build_autofab = yes
 				}
 				if = {
 					limit = {

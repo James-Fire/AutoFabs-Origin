@@ -48,6 +48,12 @@ can_build_fallback_planet = {
 
 #Planet Scope
 can_afford_autofab = {
+	owner = {
+		resource_stockpile_compare = {
+			resource = alloys
+			value >= @autofaballoycost
+		}
+	}
 	OR = {
 		AND = {
 			uses_district_set = standard
@@ -59,10 +65,6 @@ can_afford_autofab = {
 				resource_stockpile_compare = {
 					resource = minerals
 					value >= @districtcost
-				}
-				resource_stockpile_compare = {
-					resource = alloys
-					value >= @autofaballoycost
 				}
 			}
 		}
@@ -77,10 +79,6 @@ can_afford_autofab = {
 					resource = minerals
 					value >= @habdistrictcost
 				}
-				resource_stockpile_compare = {
-					resource = alloys
-					value >= @autofaballoycost
-				}
 			}
 		}
 		AND = {
@@ -93,10 +91,6 @@ can_afford_autofab = {
 				resource_stockpile_compare = {
 					resource = minerals
 					value >= @citydistrictcost
-				}
-				resource_stockpile_compare = {
-					resource = alloys
-					value >= @autofaballoycost
 				}
 			}
 		}
@@ -114,10 +108,6 @@ can_afford_autofab = {
 					resource = minerals
 					value >= @specialdistrictcost
 				}
-				resource_stockpile_compare = {
-					resource = alloys
-					value >= @autofaballoycost
-				}
 			}
 		}
 		AND = {
@@ -130,10 +120,6 @@ can_afford_autofab = {
 				resource_stockpile_compare = {
 					resource = minerals
 					value >= @ringdistrictcost
-				}
-				resource_stockpile_compare = {
-					resource = alloys
-					value >= @autofaballoycost
 				}
 			}
 		}

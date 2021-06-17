@@ -62,11 +62,7 @@ factory_automation_on = {
 }
 factory_automation_settings = {
 	potential = { always = yes }
-<<<<<<< Updated upstream
-	allow = { hidden_trigger = { always = no } }
-=======
 	allow = { hidden_trigger = { always = yes } }
->>>>>>> Stashed changes
 	effect = {
 		custom_tooltip = "Automation is not available right now."
 		hidden_effect = {

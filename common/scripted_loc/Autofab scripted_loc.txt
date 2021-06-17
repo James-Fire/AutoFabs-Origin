@@ -8,6 +8,237 @@
 # localization_key -> points to the localization key
 # that'll be used if trigger passes
 
+defined_text = { #Country scope
+	name = factory_energy_mult_spacing
+	text = {
+		trigger = {
+			check_variable = { which = factory_energy_mult value < 10 }
+		}
+		localization_key = space_3
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_energy_mult value > 9 }
+			check_variable = { which = factory_energy_mult value < 100 }
+		}
+		localization_key = space_2
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_energy_mult value > 99 }
+			check_variable = { which = factory_energy_mult value < 1000 }
+		}
+		localization_key = space_1
+	}
+}
+defined_text = { #Country scope
+	name = factory_minerals_mult_spacing
+	text = {
+		trigger = {
+			check_variable = { which = factory_minerals_mult value < 10 }
+		}
+		localization_key = space_3
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_minerals_mult value > 9 }
+			check_variable = { which = factory_minerals_mult value < 100 }
+		}
+		localization_key = space_2
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_minerals_mult value > 99 }
+			check_variable = { which = factory_minerals_mult value < 1000 }
+		}
+		localization_key = space_1
+	}
+}
+defined_text = { #Country scope
+	name = factory_food_mult_spacing
+	text = {
+		trigger = {
+			check_variable = { which = factory_food_mult value < 10 }
+		}
+		localization_key = space_3
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_food_mult value > 9 }
+			check_variable = { which = factory_food_mult value < 100 }
+		}
+		localization_key = space_2
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_food_mult value > 99 }
+			check_variable = { which = factory_food_mult value < 1000 }
+		}
+		localization_key = space_1
+	}
+}
+defined_text = { #Country scope
+	name = factory_consumer_goods_mult_spacing
+	text = {
+		trigger = {
+			check_variable = { which = factory_consumer_goods_mult value < 10 }
+		}
+		localization_key = space_3
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_consumer_goods_mult value > 9 }
+			check_variable = { which = factory_consumer_goods_mult value < 100 }
+		}
+		localization_key = space_2
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_consumer_goods_mult value > 99 }
+			check_variable = { which = factory_consumer_goods_mult value < 1000 }
+		}
+		localization_key = space_1
+	}
+}
+defined_text = { #Country scope
+	name = factory_motes_mult_spacing
+	text = {
+		trigger = {
+			check_variable = { which = factory_motes_mult value < 10 }
+		}
+		localization_key = space_3
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_motes_mult value > 9 }
+			check_variable = { which = factory_motes_mult value < 100 }
+		}
+		localization_key = space_2
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_motes_mult value > 99 }
+			check_variable = { which = factory_motes_mult value < 1000 }
+		}
+		localization_key = space_1
+	}
+}
+defined_text = { #Country scope
+	name = factory_gases_mult_spacing
+	text = {
+		trigger = {
+			check_variable = { which = factory_gases_mult value < 10 }
+		}
+		localization_key = space_3
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_gases_mult value > 9 }
+			check_variable = { which = factory_gases_mult value < 100 }
+		}
+		localization_key = space_2
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_gases_mult value > 99 }
+			check_variable = { which = factory_gases_mult value < 1000 }
+		}
+		localization_key = space_1
+	}
+}
+defined_text = { #Country scope
+	name = factory_crystals_mult_spacing
+	text = {
+		trigger = {
+			check_variable = { which = factory_crystals_mult value < 10 }
+		}
+		localization_key = space_3
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_crystals_mult value > 9 }
+			check_variable = { which = factory_crystals_mult value < 100 }
+		}
+		localization_key = space_2
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_crystals_mult value > 99 }
+			check_variable = { which = factory_crystals_mult value < 1000 }
+		}
+		localization_key = space_1
+	}
+}
+
+defined_text = { #Country scope
+	name = factory_energy_stockpile_min_spacing
+	text = {
+		trigger = {
+			check_variable = { which = factory_energy_stockpile_min value < 10 }
+		}
+		localization_key = space_3
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_energy_stockpile_min value > 9 }
+			check_variable = { which = factory_energy_stockpile_min value < 100 }
+		}
+		localization_key = space_2
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_energy_stockpile_min value > 99 }
+			check_variable = { which = factory_energy_stockpile_min value < 1000 }
+		}
+		localization_key = space_1
+	}
+}
+defined_text = { #Country scope
+	name = factory_minerals_stockpile_min_spacing
+	text = {
+		trigger = {
+			check_variable = { which = factory_minerals_stockpile_min value < 10 }
+		}
+		localization_key = space_3
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_minerals_stockpile_min value > 9 }
+			check_variable = { which = factory_minerals_stockpile_min value < 100 }
+		}
+		localization_key = space_2
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_minerals_stockpile_min value > 99 }
+			check_variable = { which = factory_minerals_stockpile_min value < 1000 }
+		}
+		localization_key = space_1
+	}
+}
+defined_text = { #Country scope
+	name = factory_alloys_stockpile_min_spacing
+	text = {
+		trigger = {
+			check_variable = { which = factory_alloys_stockpile_min value < 10 }
+		}
+		localization_key = space_3
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_alloys_stockpile_min value > 9 }
+			check_variable = { which = factory_alloys_stockpile_min value < 100 }
+		}
+		localization_key = space_2
+	}
+	text = {
+		trigger = {
+			check_variable = { which = factory_alloys_stockpile_min value > 99 }
+			check_variable = { which = factory_alloys_stockpile_min value < 1000 }
+		}
+		localization_key = space_1
+	}
+}
 
 defined_text = { #Country scope
 	name = GetAutofabQueueValue

@@ -419,7 +419,7 @@ autofab_power = {
 		modifier = {
 			planet_autofab_energy_produces_add = 48
 			planet_autofab_energy_upkeep_add = 4
-			planet_autofab_exotic_gases_upkeep_add = 2
+			planet_autofab_rare_crystals_upkeep_add = 2
 		}
 	}
 	

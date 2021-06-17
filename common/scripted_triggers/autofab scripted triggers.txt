@@ -9,6 +9,19 @@ can_use_autofab = {
 	}
 }
 
+can_build_autofab = { #Planet Scope
+	owner = {
+		has_country_flag = factory_autofab_construction_on
+	}
+	NOT = {
+		has_planet_flag = has_autofab
+		has_planet_flag = building_autofab
+		has_planet_flag = factory_autofab_construction_off
+	}
+	has_supported_district_set = yes
+	can_afford_autofab = yes
+}
+
 can_expand_factory = {
 	free_district_slots > 0
 	has_autofab = yes

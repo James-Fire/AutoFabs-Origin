@@ -1,5 +1,6 @@
 #Planet Scope
 automation_active = {
+	has_autofab = yes
 	OR = {
 		owner = {
 			is_ai = yes
@@ -17,6 +18,13 @@ automation_active = {
 }
 
 can_afford_district = {
+	has_supported_district_set = yes
+	owner = {
+		resource_stockpile_compare = {
+			resource = alloys
+			value >= @factoryalloycost
+		}
+	}
 	OR = {
 		AND = {
 			uses_district_set = standard
@@ -24,10 +32,6 @@ can_afford_district = {
 				resource_stockpile_compare = {
 					resource = minerals
 					value >= @districtcost
-				}
-				resource_stockpile_compare = {
-					resource = alloys
-					value >= @factoryalloycost
 				}
 			}
 		}
@@ -38,10 +42,6 @@ can_afford_district = {
 					resource = minerals
 					value >= @habdistrictcost
 				}
-				resource_stockpile_compare = {
-					resource = alloys
-					value >= @factoryalloycost
-				}
 			}
 		}
 		AND = {
@@ -50,10 +50,6 @@ can_afford_district = {
 				resource_stockpile_compare = {
 					resource = minerals
 					value >= @citydistrictcost
-				}
-				resource_stockpile_compare = {
-					resource = alloys
-					value >= @factoryalloycost
 				}
 			}
 		}
@@ -67,10 +63,6 @@ can_afford_district = {
 					resource = minerals
 					value >= @specialdistrictcost
 				}
-				resource_stockpile_compare = {
-					resource = alloys
-					value >= @factoryalloycost
-				}
 			}
 		}
 		AND = {
@@ -80,10 +72,97 @@ can_afford_district = {
 					resource = minerals
 					value >= @ringdistrictcost
 				}
-				resource_stockpile_compare = {
-					resource = alloys
-					value >= @factoryalloycost
-				}
+			}
+		}
+	}
+}
+
+#Planet Scope
+can_afford_automation_autofab = {
+	has_supported_district_set = yes
+	owner = {
+		check_variable = { which = autofab_alloys_tracking value > @autofaballoycost }
+	}
+	OR = {
+		AND = {
+			uses_district_set = standard
+			owner = {
+				check_variable = { which = autofab_minerals_tracking value > @districtcost }
+				check_variable = { which = autofab_energy_tracking value > @districtcost }
+			}
+		}
+		AND = {
+			uses_district_set = habitat
+			owner = {
+				check_variable = { which = autofab_minerals_tracking value > @habdistrictcost }
+				check_variable = { which = autofab_energy_tracking value > @habdistrictcost }
+			}
+		}
+		AND = {
+			uses_district_set = city_world
+			owner = {
+				check_variable = { which = autofab_minerals_tracking value > @citydistrictcost }
+				check_variable = { which = autofab_energy_tracking value > @citydistrictcost }
+			}
+		}
+		AND = {
+			OR = {
+				uses_district_set = hive_world
+				uses_district_set = machine_world
+			}
+			owner = {
+				check_variable = { which = autofab_minerals_tracking value > @specialdistrictcost }
+				check_variable = { which = autofab_energy_tracking value > @specialdistrictcost }
+			}
+		}
+		AND = {
+			uses_district_set = ring_world
+			owner = {
+				check_variable = { which = autofab_minerals_tracking value > @ringdistrictcost }
+				check_variable = { which = autofab_energy_tracking value > @ringdistrictcost }
+			}
+		}
+	}
+	
+}
+
+can_afford_automation_district = {
+	has_supported_district_set = yes
+	owner = {
+		check_variable = { which = autofab_alloys_tracking value > @factoryalloycost }
+	}
+	OR = {
+		AND = {
+			uses_district_set = standard
+			owner = {
+				check_variable = { which = autofab_minerals_tracking value > @districtcost }
+			}
+		}
+		AND = {
+			uses_district_set = habitat
+			owner = {
+				check_variable = { which = autofab_minerals_tracking value > @habdistrictcost }
+			}
+		}
+		AND = {
+			uses_district_set = city_world
+			owner = {
+				check_variable = { which = autofab_minerals_tracking value > @citydistrictcost }
+			}
+		}
+		AND = {
+			OR = {
+				uses_district_set = hive_world
+				uses_district_set = machine_world
+			}
+			owner = {
+				check_variable = { which = autofab_minerals_tracking value > @specialdistrictcost }
+			}
+		}
+		AND = {
+			uses_district_set = ring_world
+			owner = {
+				check_variable = { which = autofab_minerals_tracking value > @ringdistrictcost }
 			}
 		}
 	}

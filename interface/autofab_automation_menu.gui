@@ -38,7 +38,7 @@ guiTypes = {
 			quadTextureSprite = "GFX_autofab_10" 
 			position = { x= 310 y= -200 }
 			font = "cg_16b"
-			text = "OPTION_TEXT"
+			text = ""
 		}
 	}
 	containerWindowType = {
@@ -52,7 +52,7 @@ guiTypes = {
 			quadTextureSprite = "GFX_autofab_1" 
 			position = { x= 370 y= -424 }
 			font = "cg_16b"
-			text = "OPTION_TEXT"
+			text = ""
 		}
 	}
 	containerWindowType = {
@@ -64,9 +64,9 @@ guiTypes = {
 		buttonType = {
 			name = "option_button"
 			quadTextureSprite = "GFX_autofab_1_neg" 
-			position = { x= 430 y= -649 }
+			position = { x= 472 y= -648 }
 			font = "cg_16b"
-			text = "OPTION_TEXT"
+			text = ""
 		}
 	}
 	containerWindowType = {
@@ -78,9 +78,9 @@ guiTypes = {
 		buttonType = {
 			name = "option_button"
 			quadTextureSprite = "GFX_autofab_10_neg" 
-			position = { x= 490 y = -872 }
+			position = { x= 532 y = -872 }
 			font = "cg_16b"
-			text = "OPTION_TEXT"
+			text = ""
 		}
 	}
 	containerWindowType = {
@@ -92,9 +92,93 @@ guiTypes = {
 		buttonType = {
 			name = "option_button"
 			quadTextureSprite = "GFX_autofab_100_neg" 
-			position = { x= 550 y = -1096 }
+			position = { x= 592 y = -1096 }
 			font = "cg_16b"
-			text = "OPTION_TEXT"
+			text = ""
+		}
+	}
+	containerWindowType = {
+		name = "autofab_automation_stockpile_column1"
+		position = { x = 0 y = 0 }
+		size = { width = 32 height = 32 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_autofab_100" 
+			position = { x= 250 y= -1064 }
+			font = "cg_16b"
+			text = ""
+		}
+	}
+	containerWindowType = {
+		name = "autofab_automation_stockpile_column2"
+		position = { x= 0 y= 0 }
+		size = { width = 32 height = 32 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_autofab_10" 
+			position = { x= 310 y= -1160 }
+			font = "cg_16b"
+			text = ""
+		}
+	}
+	containerWindowType = {
+		name = "autofab_automation_stockpile_column3"
+		position = { x= 0 y= 0 }
+		size = { width = 32 height = 32 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_autofab_1" 
+			position = { x= 370 y= -1256 }
+			font = "cg_16b"
+			text = ""
+		}
+	}
+	containerWindowType = {
+		name = "autofab_automation_stockpile_column4"
+		position = { x= 0 y= 0 }
+		size = { width = 32 height = 32 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_autofab_1_neg" 
+			position = { x= 472 y= -1352 }
+			font = "cg_16b"
+			text = ""
+		}
+	}
+	containerWindowType = {
+		name = "autofab_automation_stockpile_column5"
+		position = { x= 0 y= 0 }
+		size = { width = 32 height = 32 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_autofab_10_neg" 
+			position = { x= 532 y = -1448 }
+			font = "cg_16b"
+			text = ""
+		}
+	}
+	containerWindowType = {
+		name = "autofab_automation_stockpile_column6"
+		position = { x= 0 y= 0 }
+		size = { width = 32 height = 32 }
+		moveable = no
+		
+		buttonType = {
+			name = "option_button"
+			quadTextureSprite = "GFX_autofab_100_neg" 
+			position = { x= 592 y = -1544 }
+			font = "cg_16b"
+			text = ""
 		}
 	}
 	containerWindowType = {
@@ -117,7 +201,7 @@ guiTypes = {
 		orientation = center
 		origo = center
 		moveable = yes
-		size = { width = 635 height = 535 }	
+		size = { width = 680 height = 540 }	
 		containerWindowType = {
 			name = "portrait"
 			position = { x = -95 y = 110}
@@ -195,6 +279,192 @@ guiTypes = {
 				Orientation = "UPPER_LEFT"
 			}
 		}
+		containerWindowType = {
+			name = "factory_mult_setting_contain"
+			position = { x = 213 y = 7 }
+			size = { width = 610 height = 102 }
+			orientation = upper_left
+
+			effectButtonType = {
+				name = "factory_automation_settings"
+				position = { x = 20 y = 105 }
+				size = { x = 470 y = -65 }
+				no_clicksound = yes
+				alwaysTransparent = yes
+				font = "large_title_font_28"
+				text = "factory_automation_settings"
+				effect = "blank_effect"
+			}
+
+			effectButtonType = {
+				name = "factory_energy_icons"
+				spriteType = "GFX_blank_tiny_menu_button_bg"
+				position = { x = 0 y = 0 }
+				format = left
+				no_clicksound = yes
+				borderSize = { x = 10 y = 0 }
+				font = "cg_16b"
+				text = "factory_energy_icons"
+				effect = "blank_effect"
+			}
+			effectButtonType = {
+				name = "factory_minerals_icons"
+				spriteType = "GFX_blank_tiny_menu_button_bg"
+				position = { x = 0 y = 32 }
+				format = left
+				no_clicksound = yes
+				borderSize = { x = 10 y = 0 }
+				font = "cg_16b"
+				text = "factory_minerals_icons"
+				effect = "blank_effect"
+			}
+			effectButtonType = {
+				name = "factory_food_icons"
+				spriteType = "GFX_blank_tiny_menu_button_bg"
+				position = { x = 0 y = 64 }
+				format = left
+				no_clicksound = yes
+				borderSize = { x = 10 y = 0 }
+				font = "cg_16b"
+				text = "factory_food_icons"
+				effect = "blank_effect"
+			}
+			effectButtonType = {
+				name = "factory_consumer_goods_icons"
+				spriteType = "GFX_blank_tiny_menu_button_bg"
+				position = { x = 0 y = 96 }
+				format = left
+				no_clicksound = yes
+				borderSize = { x = 10 y = 0 }
+				font = "cg_16b"
+				text = "factory_consumer_goods_icons"
+				effect = "blank_effect"
+			}
+			effectButtonType = {
+				name = "factory_motes_icons"
+				spriteType = "GFX_blank_tiny_menu_button_bg"
+				position = { x = 0 y = 128 }
+				format = left
+				no_clicksound = yes
+				borderSize = { x = 10 y = 0 }
+				font = "cg_16b"
+				text = "factory_motes_icons"
+				effect = "blank_effect"
+			}
+			effectButtonType = {
+				name = "factory_gases_icons"
+				spriteType = "GFX_blank_tiny_menu_button_bg"
+				position = { x = 0 y = 160 }
+				format = left
+				no_clicksound = yes
+				borderSize = { x = 10 y = 0 }
+				font = "cg_16b"
+				text = "factory_gases_icons"
+				effect = "blank_effect"
+			}
+			effectButtonType = {
+				name = "factory_crystals_icons"
+				spriteType = "GFX_blank_tiny_menu_button_bg"
+				position = { x = 0 y = 192 }
+				format = left
+				no_clicksound = yes
+				borderSize = { x = 10 y = 0 }
+				font = "cg_16b"
+				text = "factory_crystals_icons"
+				effect = "blank_effect"
+			}
+		}
+		containerWindowType = {
+			name = "factory_stockpile_contain"
+			position = { x = 217 y = 264 }
+			size = { width = 500 height = 102 }
+			orientation = upper_left
+
+			effectButtonType = {
+				name = "factory_stockpile"
+				position = { x = 20 y = 62 }
+				size = { x = 470 y = 20 }
+				no_clicksound = yes
+				alwaysTransparent = yes
+				font = "large_title_font_28"
+				text = "factory_stockpile"
+				effect = "blank_effect"
+			}
+
+			effectButtonType = {
+				name = "factory_energy_stockpile"
+				spriteType = "GFX_blank_tiny_menu_button_bg"
+				position = { x = 10 y = 0 }
+				format = left
+				no_clicksound = yes
+				borderSize = { x = 10 y = 0 }
+				font = "cg_16b"
+				text = "factory_energy_stockpile"
+				effect = "blank_effect"
+			}
+			effectButtonType = {
+				name = "factory_mineral_stockpile"
+				spriteType = "GFX_blank_tiny_menu_button_bg"
+				position = { x = 10 y = 32 }
+				format = left
+				no_clicksound = yes
+				borderSize = { x = 10 y = 0 }
+				font = "cg_16b"
+				text = "factory_mineral_stockpile"
+				effect = "blank_effect"
+			}
+			effectButtonType = {
+				name = "factory_alloy_stockpile"
+				spriteType = "GFX_blank_tiny_menu_button_bg"
+				position = { x = 10 y = 64 }
+				format = left
+				no_clicksound = yes
+				borderSize = { x = 10 y = 0 }
+				font = "cg_16b"
+				text = "factory_alloy_stockpile"
+				effect = "blank_effect"
+			}
+		}
+		containerWindowType = {
+			name = "factory_automation_options_contain"
+			position = { x = 228 y = 440 }
+			size = { width = 410 height = 102 }
+			orientation = upper_left
+
+			effectButtonType = {
+				name = "factory_automation_options"
+				position = { x = 145 y = -80 }
+				no_clicksound = yes
+				alwaysTransparent = yes
+				font = "large_title_font_28"
+				text = "factory_options"
+				effect = "blank_effect"
+			}
+		
+			effectButtonType = {
+				name = "factory_expansion_always"
+				spriteType = "GFX_extend_menu_button"
+				position = { x = 0 y = 40 }
+				format = left
+				no_clicksound = yes
+				borderSize = { x = 10 y = 0 }
+				font = "cg_16b"
+				text = "factory_expansion_always"
+				effect = "factory_expansion_always"
+			}
+			effectButtonType = {
+				name = "factory_expansion_space"
+				spriteType = "GFX_extend_menu_button"
+				position = { x = 0 y = 40 }
+				format = left
+				no_clicksound = yes
+				borderSize = { x = 10 y = 0 }
+				font = "cg_16b"
+				text = "factory_expansion_space"
+				effect = "factory_expansion_space"
+			}
+				effectButtonType = { name = "factory_expansion_swap" spriteType = "GFX_autofab_menu_swap" position = { x = 5 y = 45 } clicksound = interface effect = "factory_expansion_swap" }
+		}
 		background = {
 			name = "background"
 			quadTextureSprite ="GFX_tile_large_bg_curator" 
@@ -217,7 +487,7 @@ guiTypes = {
 			alwaysTransparent = yes
 		}
 		
-		effectButtonType = {
+		effectButtonType = {#Yeet
 			name = "alien_message_background"
 			size = { x = 735 y = 120 }
 			position = { x = 225 y = 20000 }
@@ -225,39 +495,12 @@ guiTypes = {
 			alwaysTransparent = yes
 			effect = "blank_effect"
 		}
-		containerWindowType = {
-			name = "factory_mult_setting_contain"
-			position = { x = 220 y = 70 }
-			size = { width = 610 height = 102 }
-			orientation = upper_left
-
-			effectButtonType = {
-				name = "factory_automation_settings"
-				position = { x = -45 y = 40 }
-				size = { x = 470 y = -65 }
-				no_clicksound = yes
-				alwaysTransparent = yes
-				font = "large_title_font_28"
-				text = "factory_automation_settings"
-				effect = "blank_effect"
-			}
-			effectButtonType = {
-				name = "factory_automation_target"
-				position = { x = -45 y = 290 }
-				size = { x = 470 y = -65 }
-				no_clicksound = yes
-				alwaysTransparent = yes
-				font = "large_title_font_28"
-				text = "factory_automation_target"
-				effect = "blank_effect"
-			}
-		}
 		instantTextBoxType = {
 			name = "alien_message"
 			font = "cg_16b"
-			position = { x = 225 y = 100 }
-			maxWidth = 350
-			maxHeight = 620
+			position = { x = 450 y = 100 }
+			maxWidth = 50
+			maxHeight = 360
 			format = left
 			scrollbartype = "standardtext_slider"
 		}

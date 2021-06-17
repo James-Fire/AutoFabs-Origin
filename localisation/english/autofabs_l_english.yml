@@ -170,9 +170,6 @@
      
     #Events
      
-     
-     
-     
      autofab.25.name:0 "Factory Stats"
      autofab.25.desc:0 "$autofab.25.desc_0$\n$autofab.25.desc_1$\n$autofab.25.desc_2$\n$autofab.25.desc_3$\n$autofab.25.desc_4$\n$autofab.25.desc_5$\n$autofab.25.desc_6$\n$autofab.25.desc_7$\n$autofab.25.desc_8$\n$autofab.25.desc_9$"
      autofab.25.desc_0:0 "We have [This.autofabs] Factory Planets"
@@ -223,13 +220,13 @@
      
      autofab.4.name:0 "Factory Automation"
      autofab.4.desc:0 "$autofab.4.desc_1$ \n\n$autofab.4.desc_2$ \n\n$autofab.4.desc_3$ \n\n$autofab.4.desc_4$ \n\n$autofab.4.desc_5$ \n\n$autofab.4.desc_6$ \n\n$autofab.4.desc_7$"
-     autofab.4.desc_1:0 "Our factories are capable of limited logical processing, allowing them to decide what to build next based on our current resource situation. This feature must be turned on for each factory, however. Planning is done on the country level, including reducing overproduction of specific resources."
-     autofab.4.desc_2:0 "The first parameter for this automation is it checks if there is enough resources and space to do an expansion. If we do not have the required resources or space, it does not check further."
-     autofab.4.desc_3:0 "It then checks designated Maintenance Resources: Energy, Food, Consumer Goods, in that order."
+     autofab.4.desc_1:0 "Our factories are capable of limited logical processing, allowing them to decide what to build next based on our current resource situation. This feature must be turned on for each factory, however. Planning is done on the country level."
+     autofab.4.desc_2:0 "Automation adds Modules to planet queued based on the settings for income per planet. It takes into account upkeep and production of the queued modules."
+     autofab.4.desc_3:0 ""
      autofab.4.desc_4:0 "It then checks designated Rare Resources: Volatile Motes, Exotic Gases, Rare Crystals, in that order. It also checks whether the planet has any Rare Resource deposits. These are exploited before artifical production is built, on a per planet basis."
      autofab.4.desc_5:0 "It then checks designated Construction Resources: Minerals, Alloys, in that order."
-     autofab.4.desc_6:0 "It takes into account whether there is enough income to pay for upkeep as well."
-     autofab.4.desc_7:0 "You can still order the Factory to build something, provided it is not already building."
+     autofab.4.desc_6:0 ""
+     autofab.4.desc_7:0 ""
      
      autofab_back:0 "Back to the beginning."
      autofab_next:0 "Next."
@@ -338,14 +335,28 @@
      factory_automation_settings:0 "Automation Targets"
      factory_automation_target:0 "Current Targets"
      
-     autofab_menu.2.desc:0 "$factory_energy_mult$\n\n$factory_minerals_mult$\n\n$factory_food_mult$\n\n$factory_consumer_goods_mult$\n\n$factory_motes_mult$\n\n$factory_gases_mult$\n\n$factory_crystals_mult$\n\n\n\n$autofab_menu.2.desc2$"
-     factory_energy_mult:0 "£energy£/£autofab_planet£"
-     factory_minerals_mult:0 "£minerals£/£autofab_planet£"
-     factory_food_mult:0 "£food£/£autofab_planet£"
-     factory_consumer_goods_mult:0 "£consumer_goods£/£autofab_planet£"
-     factory_motes_mult:0 "£volatile_motes£/£autofab_planet£"
-     factory_gases_mult:0 "£exotic_gases£/£autofab_planet£"
-     factory_crystals_mult:0 "£rare_crystals£/£autofab_planet£"
+     factory_expansion_space:0 "       Autofab Construction: Space Required"
+     factory_expansion_always:0 "       Autofab Construction: Planets Available"
+     
+     autofab_automation_space:0 "Automation will only build new Autofabs if space for new modules is running low."
+     autofab_automation_always:0 "Automation will always build new Autofabs, to expand the potential production of the Factory."
+     
+     factory_energy_icons:0 "£energy£/£autofab_planet£"
+     factory_minerals_icons:0 "£minerals£/£autofab_planet£"
+     factory_food_icons:0 "£food£/£autofab_planet£"
+     factory_consumer_goods_icons:0 "£consumer_goods£/£autofab_planet£"
+     factory_motes_icons:0 "£volatile_motes£/£autofab_planet£"
+     factory_gases_icons:0 "£exotic_gases£/£autofab_planet£"
+     factory_crystals_icons:0 "£rare_crystals£/£autofab_planet£"
+     
+     autofab_menu.2.desc:0 "$factory_energy_mult$\n\n$factory_minerals_mult$\n\n$factory_food_mult$\n\n$factory_consumer_goods_mult$\n\n$factory_motes_mult$\n\n$factory_gases_mult$\n\n$factory_crystals_mult$\n\n\n\n$autofab_automation_stockpile$"
+     factory_energy_mult:0 " [This.factory_energy_mult_spacing][This.factory_energy_mult]"
+     factory_minerals_mult:0 " [This.factory_minerals_mult_spacing][This.factory_minerals_mult]"
+     factory_food_mult:0 " [This.factory_food_mult_spacing][This.factory_food_mult]"
+     factory_consumer_goods_mult:0 " [This.factory_consumer_goods_mult_spacing][This.factory_consumer_goods_mult]"
+     factory_motes_mult:0 " [This.factory_motes_mult_spacing][This.factory_motes_mult]"
+     factory_gases_mult:0 " [This.factory_gases_mult_spacing][This.factory_gases_mult]"
+     factory_crystals_mult:0 " [This.factory_crystals_mult_spacing][This.factory_crystals_mult]"
      
      autofab_menu.2.desc2:0 "$factory_energy_current_mult$\n$factory_minerals_current_mult$\n$factory_food_current_mult$\n$factory_consumer_goods_current_mult$\n$factory_motes_current_mult$\n$factory_gases_current_mult$\n$factory_crystals_current_mult$"
      factory_energy_current_mult:0 "£energy£/£autofab_planet£ [This.factory_energy_mult]"
@@ -356,6 +367,40 @@
      factory_gases_current_mult:0 "£exotic_gases£/£autofab_planet£ [This.factory_gases_mult]"
      factory_crystals_current_mult:0 "£rare_crystals£/£autofab_planet£ [This.factory_crystals_mult]"
      
+     autofab_automation_stockpile:0 "$autofab_energy_stockpile$\n\n$autofab_mineral_stockpile$\n\n$autofab_alloy_stockpile$"
+     autofab_energy_stockpile:0 " [This.factory_energy_stockpile_min_spacing][This.factory_energy_stockpile_min]"
+     autofab_mineral_stockpile:0 " [This.factory_minerals_stockpile_min_spacing][This.factory_minerals_stockpile_min]"
+     autofab_alloy_stockpile:0 " [This.factory_alloys_stockpile_min_spacing][This.factory_alloys_stockpile_min]"
+     
+     
+     factory_stockpile:0 "Minimum Stockpile"
+     factory_energy_stockpile:0 "£energy£"
+     factory_mineral_stockpile:0 "£minerals£"
+     factory_alloy_stockpile:0 "£alloys£"
+     
+     1:0 "1"
+     2:0 "2"
+     3:0 "3"
+     4:0 "4"
+     5:0 "5"
+     autofab_stockpile.1.energy:0 ""
+     autofab_stockpile.1.minerals:0 ""
+     autofab_stockpile.1.alloys:0 ""
+     autofab_stockpile.2.energy:0 ""
+     autofab_stockpile.2.minerals:0 ""
+     autofab_stockpile.2.alloys:0 ""
+     autofab_stockpile.3.energy:0 ""
+     autofab_stockpile.3.minerals:0 ""
+     autofab_stockpile.3.alloys:0 ""
+     autofab_stockpile.4.energy:0 ""
+     autofab_stockpile.4.minerals:0 ""
+     autofab_stockpile.4.alloys:0 ""
+     autofab_stockpile.5.energy:0 ""
+     autofab_stockpile.5.minerals:0 ""
+     autofab_stockpile.5.alloys:0 ""
+     autofab_stockpile.6.energy:0 ""
+     autofab_stockpile.6.minerals:0 ""
+     autofab_stockpile.6.alloys:0 ""
      
      autofab_menu.1.energy:0 ""
      autofab_menu.1.minerals:0 ""
@@ -401,4 +446,6 @@
      autofab_menu.6.crystals:0 ""
      
      
-     
+     space_1:0 " "
+     space_2:0 "  "
+     space_3:0 "   "

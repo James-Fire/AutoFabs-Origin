@@ -257,3 +257,17 @@ Split planet queue from the country queue, so that closing the planet terminal c
 _________________________
 
 Fixed motes checking for food availability.
+
+_________________________
+
+Fixed the Origin not affecting Bio Pop Assembly.
+
+_________________________
+
+Fixed the Ringworld Energy Module taking Exotic Gases instead of Rare Crystals, because Paradox.
+
+Converted the Factory Module deposits to provide resources directly instead of adding production to the Autofab.*
+
+Automation has been enabled, with a new Automation Settings window that contains options specific to Automation.
+
+Rewrote the Automation section of the advisor to be in line with the new functionality.*

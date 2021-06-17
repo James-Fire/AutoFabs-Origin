@@ -10,6 +10,9 @@ autofab_game_start = {
 	set_variable = { which = factory_motes_mult value = 0 }
 	set_variable = { which = factory_gases_mult value = 0 }
 	set_variable = { which = factory_crystals_mult value = 0 }
+	set_variable = { which = factory_energy_stockpile_min value = 0 }
+	set_variable = { which = factory_minerals_stockpile_min value = 0 }
+	set_variable = { which = factory_alloys_stockpile_min value = 0 }
 }
 
 basic_resource_swap = {
@@ -394,133 +397,7 @@ document_factory_planet = {
 		change_variable = { which = autofab_districts_building value = autofab_extractor_building }
 		
 		
-		#count_unused_districts = yes
-		while = {
-			count = 100
-			limit = {
-				num_free_districts = { type = any value > 0 }
-			}
-			switch = {
-				trigger = uses_district_set
-				standard = {
-					if = {
-						limit = {
-							owner = { is_machine_empire = yes }
-						}
-						add_district = district_nexus
-					}
-					else_if = {
-						limit = {
-							owner = { is_regular_empire = yes }
-						}
-						add_district = district_city
-					}
-					else_if = {
-						limit = {
-							owner = { is_hive_empire = yes }
-						}
-						add_district = district_hive
-					}
-				}
-				hive_world = {
-					add_district = district_hive
-				}
-				machine_world = {
-					add_district = district_nexus
-				}
-				ring_world = {
-					if = {
-						limit = {
-							owner = { is_machine_empire = yes }
-						}
-						add_district = district_rw_nexus
-					}
-					else_if = {
-						limit = {
-							owner = { is_regular_empire = yes }
-						}
-						add_district = district_rw_city
-					}
-					else_if = {
-						limit = {
-							owner = { is_hive_empire = yes }
-						}
-						add_district = district_rw_hive
-					}
-				}
-				habitat = {
-					add_district = district_hab_housing
-				}
-				city_world = {
-					add_district = district_arcology_housing
-				}
-			}
-			change_variable = { which = autofab_districts_available value = 1 }
-		}
-		set_variable = { which = autofab_districts_available_temp value = autofab_districts_available }
-		while = {
-			count = 100
-			limit = {
-				check_variable = { which = autofab_districts_available_temp value > 0 }
-			}
-			switch = {
-				trigger = uses_district_set
-				standard = {
-					if = {
-						limit = {
-							owner = { is_machine_empire = yes }
-						}
-						remove_district = district_nexus
-					}
-					else_if = {
-						limit = {
-							owner = { is_regular_empire = yes }
-						}
-						remove_district = district_city
-					}
-					else_if = {
-						limit = {
-							owner = { is_hive_empire = yes }
-						}
-						remove_district = district_hive
-					}
-				}
-				hive_world = {
-					remove_district = district_hive
-				}
-				machine_world = {
-					remove_district = district_nexus
-				}
-				ring_world = {
-					if = {
-						limit = {
-							owner = { is_machine_empire = yes }
-						}
-						remove_district = district_rw_nexus
-					}
-					else_if = {
-						limit = {
-							owner = { is_regular_empire = yes }
-						}
-						remove_district = district_rw_city
-					}
-					else_if = {
-						limit = {
-							owner = { is_hive_empire = yes }
-						}
-						remove_district = district_rw_hive
-					}
-				}
-				habitat = {
-					remove_district = district_hab_housing
-				}
-				city_world = {
-					remove_district = district_arcology_housing
-				}
-			}
-			change_variable = { which = autofab_districts_available_temp value = -1 }
-		}
-		reset_district_counts = yes
+		count_unused_districts = yes
 		switch = {
 			trigger = uses_district_set
 			standard = {
