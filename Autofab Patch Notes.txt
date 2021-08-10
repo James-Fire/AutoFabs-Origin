@@ -266,8 +266,48 @@ _________________________
 
 Fixed the Ringworld Energy Module taking Exotic Gases instead of Rare Crystals, because Paradox.
 
-Converted the Factory Module deposits to provide resources directly instead of adding production to the Autofab.*
+Converted the Factory Module deposits to provide resources directly instead of adding production to the Autofab. Except for the Extractor. It's a PITA.
 
 Automation has been enabled, with a new Automation Settings window that contains options specific to Automation.
 
-Rewrote the Automation section of the advisor to be in line with the new functionality.*
+Rewrote the Automation section of the advisor to be in line with the new functionality.
+
+Added checks to Queue functionality for Automation stuff.
+
+Fixed vanilla swapping working on newly-built stuff even after you turn it off.
+
+Fixed vanilla swapping working through the button to trigger it after your turn it off.
+
+Fixed the Immediate Swap button being able to be clicked if vanilla swapping is off, and it would thus do nothing.
+
+Made all Autofab Modules cost an Admin cap. Test to see if this helps balance.
+
+Moved the Betharian bonus effect to the Extractor Module. It is also now +1 energy per Generator Module, and +25% energy from all Generator Modules, per betharian deposit, up to 3.
+
+_________________________
+
+Fixed the AP not doing stuff it needs to. This will not fix existing games, you can do that by typing into the console `effect autofab_game_start = yes` with nothing selected.
+
+_________________________
+
+Changed documenting the Factory to respect Fallback settings.
+
+Changed Alloys, Congoods, Motes, Gases, and Crystals to be their own tracking variable, instead of just using Available Districts, so they can respect Fallback.
+
+Changed Automation building logic for Autofab to use the new tracking variables on everything.
+
+Automation now ignores resources if their Production Target is 0(Except Alloys, because you can't set a target for it).
+
+Added a whole bunch of logging to my Automation scripts, so hopefully I might actually be able to diagnose what's actually happening sometimes.
+
+_________________________
+
+Added a check to automation so it doesn't queue multiple modules on the same planet in the same Automation Cycle.
+
+You can now queue Autofab Modules after the Autofab is queued. They will start building after the Autofab is built.
+
+Fixed being able to remove from the queue when the queue is 0 for some modules.
+
+Added a tooltip to the Gray planet buttons about how those settings default to the country settings.
+
+Fixed some wonkiness with the Planet Terminal.

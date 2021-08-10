@@ -679,11 +679,12 @@ planet_event = { ###Planet Terminal
 		name = "autofab_menu.1.refresh"
 		#custom_tooltip = "autofab_menu.1.refresh.tooltip"
 		custom_gui = "autofab_planet_menu_confirm"
+		document_factory_planet = yes
 		planet_event = { id = autofab_menu.10 }
 	}
 	option = {
 		name = "autofab_menu.10.confirm"
-		custom_tooltip = "Open the Country Terminal\n\n You must unselect the planet first, for this to work."
+		custom_tooltip = "Open the Country Terminal- You must unselect the planet for this to work."
 		custom_gui = "autofab_planet_menu_confirm"
 		hidden_effect = {
 			owner = {

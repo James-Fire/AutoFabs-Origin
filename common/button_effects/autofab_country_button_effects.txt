@@ -56,59 +56,18 @@ factory_automation_on = {
 	potential = { has_country_flag = autofab_automation_off }
 	allow = { hidden_trigger = { always = yes } }
 	effect = {
-		custom_tooltip = "Automation is not available right now."
-		#set_country_flag = autofab_automation remove_country_flag = autofab_automation_off
+		#custom_tooltip = "Automation is not available right now."
+		set_country_flag = autofab_automation remove_country_flag = autofab_automation_off
 	}
 }
 factory_automation_settings = {
 	potential = { always = yes }
 	allow = { hidden_trigger = { always = yes } }
 	effect = {
-		custom_tooltip = "Automation is not available right now."
+		#custom_tooltip = "Automation is not available right now."
 		hidden_effect = {
 			country_event = { id = autofab_menu.2 }
-			if = {
-				limit = {
-					NOT = { is_variable_set = factory_energy_mult }
-				}
-				set_variable = { which = factory_energy_mult value = 0 }
-			}
-			if = {
-				limit = {
-					NOT = { is_variable_set = factory_minerals_mult }
-				}
-				set_variable = { which = factory_minerals_mult value = 0 }
-			}
-			if = {
-				limit = {
-					NOT = { is_variable_set = factory_food_mult }
-				}
-				set_variable = { which = factory_food_mult value = 0 }
-			}
-			if = {
-				limit = {
-					NOT = { is_variable_set = factory_consumer_goods_mult }
-				}
-				set_variable = { which = factory_consumer_goods_mult value = 0 }
-			}
-			if = {
-				limit = {
-					NOT = { is_variable_set = factory_motes_mult }
-				}
-				set_variable = { which = factory_motes_mult value = 0 }
-			}
-			if = {
-				limit = {
-					NOT = { is_variable_set = factory_gases_mult }
-				}
-				set_variable = { which = factory_gases_mult value = 0 }
-			}
-			if = {
-				limit = {
-					NOT = { is_variable_set = factory_crystals_mult }
-				}
-				set_variable = { which = factory_crystals_mult value = 0 }
-			}
+			autofab_floor_automation_variables = yes
 		}
 	}
 }
@@ -116,7 +75,7 @@ factory_vanilla_swapping_fire_country = {
 	potential = { has_country_flag = factory_vanilla_swapping }
 	allow = {
 		custom_tooltip = "swapping_country_tooltip"
-		hidden_trigger = { any_owned_planet = { has_vanilla_swap_candidate = yes } }
+		hidden_trigger = { any_owned_planet = { has_vanilla_swap_candidate = yes NOT = { has_planet_flag = autofab_ignore_vanilla } } }
 	}
 	effect = {
 		custom_tooltip = "swapping_country_effects_tooltip"
@@ -124,6 +83,7 @@ factory_vanilla_swapping_fire_country = {
 			every_owned_planet = {
 				limit = {
 					has_vanilla_swap_candidate = yes
+					NOT = { has_planet_flag = autofab_ignore_vanilla }
 				}
 				planet_event = { id = autofab.21 }
 			}

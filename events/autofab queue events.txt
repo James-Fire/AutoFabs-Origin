@@ -355,8 +355,7 @@ country_event = {
 					NOT = {
 						has_planet_flag = factory_expanding
 					}
-					automation_active = no
-					can_queue_factory = yes
+					#can_queue_factory = yes
 				}
 				fire_on_action = { on_action = autofab_apply_planet_queue scopes = { from = owner } }
 			}
@@ -880,7 +879,7 @@ country_event = {
 						log = "Autofab Consumer Goods Queue found planet [This.GetName] for [PREV.GetName]"
 					}
 					planet_event = { id = autofab_queue.28 days = -1 } #ConGoods
-					owner = { change_variable = { which = autofab_energy_queue value = -1 } }
+					owner = { change_variable = { which = autofab_congoods_queue value = -1 } }
 				}
 			}
 			else = {
@@ -899,7 +898,7 @@ country_event = {
 						log = "Autofab Consumer Goods Queue found planet [This.GetName] for [PREV.GetName]"
 					}
 					planet_event = { id = autofab_queue.28 days = -1 } #ConGoods
-					owner = { change_variable = { which = autofab_energy_queue value = -1 } }
+					owner = { change_variable = { which = autofab_congoods_queue value = -1 } }
 				}
 			}
 		}

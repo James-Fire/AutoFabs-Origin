@@ -106,3 +106,15 @@ planet_autofab_crystals = {
 		upkeep
 	}
 }
+planet_autofab_srs = {
+	parent = planet_miners
+
+	generate_mult_modifiers = {
+		produces
+		upkeep
+	}
+	generate_add_modifiers = {
+		produces
+		upkeep
+	}
+}

@@ -323,12 +323,10 @@ planet_event = {
 							has_planet_flag = autofab_ignore_vanilla
 						}
 					}
-					NOT = {
-						owner = { has_country_flag = autofab_ignore_vanilla }
-					}
-					NOT = {
-						has_planet_flag = autofab_ignore_vanilla
-					}
+				}
+				NOT = {
+					owner = { has_country_flag = autofab_ignore_vanilla }
+					has_planet_flag = autofab_ignore_vanilla
 				}
 				has_planet_flag = has_autofab
 			}
