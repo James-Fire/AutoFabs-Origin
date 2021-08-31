@@ -87,6 +87,16 @@ country_event = {
 	}
 }
 
+country_event = {
+	id = autofab.9
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		country_event = { id = autofab.10 days = 1 }
+	}
+}
+
 #Game Start Setup
 country_event = {
 	id = autofab.10
@@ -97,6 +107,9 @@ country_event = {
 		if = {
 			limit = {
 				can_use_autofab = yes
+				NOR = {
+					has_origin = origin_shattered_ring
+				}
 			}
 			autofab_game_start = yes
 			country_event = { id = autofab_menu.20 }
@@ -183,123 +196,286 @@ country_event = {
 					}
 				}
 				ethic_gestalt_consciousness = { }
-				
 			}
-			capital_scope = {
-				if = {
-					limit = {
-						owner = {
-							is_hive_empire = yes
-						}
-					}
-					remove_building = building_hive_node
-					remove_building = building_hive_warren
-					remove_building = building_spawning_pool
+			if = {
+				limit = {
+					has_origin = origin_void_dwellers
 				}
-				if = {
-					limit = {
-						owner = {
-							is_machine_empire = yes
-						}
-					}
-					remove_building = building_uplink_node
-					add_district = district_nexus
-				}
-				every_owned_pop = {
-					limit = {
-						OR = {
-							has_job = miner
-							has_job = farmer
-							has_job = technician
-							has_job = mining_drone
-							has_job = agri_drone
-							has_job = technician_drone
-							has_job = artisan
-							has_job = artisan_drone
-							#has_job = fabricator
-							#has_job = alloy_drone
-							#has_job = foundry
-							
-							#artisan
-							#artisan_drone
-						}
-					}
-					kill_pop = yes
-				}
-				while = {
-					limit = {
-						planet_size < 25
-					}
-					change_planet_size = 1
-				}
-				add_deposit = autofab
-				set_planet_flag = has_autofab
-				add_deposit = autofab_mine
-				add_deposit = autofab_power
-				add_deposit = autofab_power
-				remove_district = district_city
-				remove_district = district_farming
-				change_variable = { which = autofab_mine value = 1 }
-				change_variable = { which = autofab_power value = 2 }
-				if = {
-					limit = {
-						owner = {
-							OR = {
-								NOT = {
-									has_ethic = ethic_gestalt_consciousness
-								}
-								has_civic = civic_machine_servitor
+				capital_scope = {
+					solar_system = {
+						every_system_planet = {
+							limit = {
+								is_colony = yes
 							}
+							every_owned_pop = {
+								limit = {
+									OR = {
+										has_job = clerk
+										has_job = miner
+										#has_job = farmer
+										has_job = technician
+										has_job = mining_drone
+										has_job = agri_drone
+										has_job = technician_drone
+										#has_job = artisan
+										has_job = artisan_drone
+										has_job = fabricator
+										has_job = alloy_drone
+										has_job = foundry
+									}
+								}
+								kill_pop = yes
+							}
+							remove_district = district_hab_commercial
+							add_deposit = autofab
+							set_planet_flag = has_autofab
+						}
+						every_system_planet = {
+							limit = {
+								has_planet_flag = energy_habitat
+							}
+							add_deposit = autofab_power
+							change_variable = { which = autofab_power value = 1 }
+							while = {
+								limit = {
+									#always = no
+									OR = {
+										num_districts = { type = district_hab_energy value > 0 }
+									}
+								}
+								remove_district = district_hab_energy
+								add_deposit = autofab_power
+								change_variable = { which = autofab_power value = 1 }
+							}
+							
+						}
+						every_system_planet = {
+							limit = {
+								has_planet_flag = mining_habitat
+							}
+							while = {
+								limit = {
+									#always = no
+									OR = {
+										num_districts = { type = district_hab_mining value > 0 }
+									}
+								}
+								remove_district = district_hab_mining
+								add_deposit = autofab_mine
+								change_variable = { which = autofab_mine value = 1 }
+							}
+							
+						}
+						every_system_planet = {
+							limit = {
+								has_planet_flag = research_habitat
+							}
+							if = {
+								limit = {
+									owner = {
+										OR = {
+											NOT = {
+												has_ethic = ethic_gestalt_consciousness
+											}
+											has_civic = civic_machine_servitor
+										}
+									}
+								}
+								while = {
+									limit = {
+										#always = no
+										num_districts = { type = district_hab_industrial value > 1 }
+									}
+									remove_district = district_hab_industrial
+									remove_district = district_hab_industrial
+									add_deposit = autofab_foundry
+									change_variable = { which = autofab_foundry value = 1 }
+									add_deposit = autofab_factory
+									change_variable = { which = autofab_factory value = 1 }
+								}
+							}
+							while = {
+								limit = {
+									#always = no
+									num_districts = { type = district_hab_industrial value > 0 }
+								}
+								remove_district = district_hab_industrial
+								add_deposit = autofab_foundry
+								change_variable = { which = autofab_foundry value = 1 }
+							}
+
 						}
 					}
-					add_deposit = autofab_factory
-					change_variable = { which = autofab_factory value = 1 }
 				}
-				while = {
-					limit = {
-						num_districts = { type = district_mining value > 0 }
-					}
-					remove_district = district_mining
-					add_deposit = autofab_mine
-					change_variable = { which = autofab_mine value = 1 }
+			}
+			else_if = {
+				limit = {
+					has_origin = origin_birch
 				}
-				while = {
-					limit = {
-						num_districts = { type = district_farming value > 0 }
-					}
-					remove_district = district_farming
-					add_deposit = autofab_farm
-					change_variable = { which = autofab_farm value = 1 }
+				capital_scope = {
+					add_deposit = autofab
+					set_planet_flag = has_autofab
 				}
-				while = {
-					limit = {
-						num_districts = { type = district_generator value > 0 }
-					}
-					remove_district = district_generator
-					add_deposit = autofab_power
-					change_variable = { which = autofab_power value = 1 }
-				}
-				while = {
-					limit = {
-						num_districts = { type = district_industrial value > 0 }
-					}
-					remove_district = district_industrial
-					add_deposit = autofab_foundry
-					change_variable = { which = autofab_foundry value = 1 }
-				}
-				if = {
-					limit = {
-						owner = {
-							is_hive_empire = yes
+			}
+			else = {
+				capital_scope = {
+					if = {
+						limit = {
+							has_supported_district_set = yes
 						}
+						while = {
+							limit = {
+								planet_size < 25
+							}
+							change_planet_size = 1
+						}
+						if = {
+							limit = {
+								owner = {
+									is_hive_empire = yes
+								}
+							}
+							remove_building = building_hive_node
+							remove_building = building_hive_warren
+							remove_building = building_spawning_pool
+						}
+						if = {
+							limit = {
+								owner = { is_machine_empire = yes }
+							}
+							remove_building = building_uplink_node
+							add_district = district_nexus
+						}
+						every_owned_pop = {
+							limit = {
+								OR = {
+									has_job = miner
+									has_job = farmer
+									has_job = technician
+									has_job = mining_drone
+									has_job = agri_drone
+									has_job = technician_drone
+									has_job = artisan
+									has_job = artisan_drone
+									has_job = fabricator
+									has_job = alloy_drone
+									has_job = foundry
+								}
+							}
+							kill_pop = yes
+						}
+						add_deposit = autofab
+						set_planet_flag = has_autofab
+						while = {
+							count = 1
+							add_deposit = autofab_mine
+							change_variable = { which = autofab_mine value = 1 }
+						}
+						while = {
+							count = 2
+							add_deposit = autofab_power
+							change_variable = { which = autofab_power value = 1 }
+						}
+						while = {
+							limit = {
+								owner = { is_machine_empire = yes }
+							}
+							count = 1
+							add_deposit = autofab_foundry
+							change_variable = { which = autofab_foundry value = 1 }
+						}
+						if = {
+							limit = {
+								owner = {
+									OR = {
+										NOT = {
+											has_ethic = ethic_gestalt_consciousness
+										}
+										has_civic = civic_machine_servitor
+									}
+								}
+							}
+							add_deposit = autofab_factory
+							change_variable = { which = autofab_factory value = 1 }
+						}
+						while = {
+							limit = {
+								#always = no
+								OR = {
+									num_districts = { type = district_mining value > 0 }
+									num_districts = { type = district_mining_uncapped value > 0 }
+								}
+							}
+							remove_district = district_mining
+							remove_district = district_mining_uncapped
+							add_deposit = autofab_mine
+							change_variable = { which = autofab_mine value = 1 }
+						}
+						while = {
+							limit = {
+								#always = no
+								OR = {
+									num_districts = { type = district_farming value > 0 }
+									num_districts = { type = district_farming_uncapped value > 0 }
+								}
+							}
+							remove_district = district_farming
+							remove_district = district_farming_uncapped
+							add_deposit = autofab_farm
+							change_variable = { which = autofab_farm value = 1 }
+						}
+						while = {
+							limit = {
+								#always = no
+								OR = {
+									num_districts = { type = district_generator value > 0 }
+									num_districts = { type = district_generator_uncapped value > 0 }
+								}
+							}
+							remove_district = district_generator
+							remove_district = district_generator_uncapped
+							add_deposit = autofab_power
+							change_variable = { which = autofab_power value = 1 }
+						}
+						while = {
+							limit = {
+								#always = no
+								num_districts = { type = district_industrial value > 0 }
+							}
+							remove_district = district_industrial
+							add_deposit = autofab_foundry
+							change_variable = { which = autofab_foundry value = 1 }
+						}
+						if = {
+							limit = {
+								owner = {
+									is_hive_empire = yes
+								}
+							}
+							add_building = building_spawning_pool
+						}
+						planet_event = { id = autofab.31 days = 2 }
+						every_owned_pop = { clear_pop_category = yes }
 					}
-					add_building = building_spawning_pool
+					else = {
+						planet_event = { id = autofab.11 }
+					}
 				}
-				planet_event = { id = autofab.31 days = 2 }
 			}
 		}
-		
 	}	
+}
+planet_event = {
+	id = autofab.11
+	is_triggered_only = yes
+	title = "autofab.11.name"
+	desc = "autofab.11.desc"
+	picture = GFX_evt_ai_planet
+
+	option = {
+		name = Understood
+	}
+	
 }
 
 #Vanilla Swapping

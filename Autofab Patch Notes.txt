@@ -311,3 +311,29 @@ Fixed being able to remove from the queue when the queue is 0 for some modules.
 Added a tooltip to the Gray planet buttons about how those settings default to the country settings.
 
 Fixed some wonkiness with the Planet Terminal.
+
+_________________________
+
+Fixed Functional Architecture and Constructobot civics not providing the upkeep reduction they should.
+
+Turned the Origin into a permanent civic that grants access to the factory, so you can use it with any origin.
+
+The bonus production from the AP is now ties to having both the civic and AP.
+
+The civic works with all non-special planet origins.
+
+The civic works with the Resource Consolidation origin.
+
+The civic works with the Remnants origin.
+
+The civic works with the Life-Seeded origin.
+
+The civic works with the Void Dweller origin.
+
+Fixed some construction projects using the wrong cost.
+
+The factory works with Gigas Birch world.
+
+The civic works with the Gigas Birch World origin.*
+
+Fixed a logic issue in determining whether the Autofab can be built.

@@ -7,7 +7,7 @@ on_yearly_pulse = {
 }
 on_game_start = {
 	events = {
-		autofab.30
+		#autofab.30
 		autofab_dmm.1		# New Dynamic Mod Menu support.
 	}
 }
@@ -25,7 +25,7 @@ dmm_mod_selected = {
 }
 on_game_start_country = {
 	events = {
-		autofab.10
+		autofab.9
 	}
 }
 on_tech_increased = {

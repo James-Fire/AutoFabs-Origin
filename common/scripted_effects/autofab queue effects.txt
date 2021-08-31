@@ -37,7 +37,7 @@ pay_for_swapping = {
 pay_for_autofab = {
 	if = {
 		limit = {
-			uses_district_set = standard
+			uses_base_district_set = yes
 		}
 		owner = {
 			add_resource = {
@@ -53,7 +53,7 @@ pay_for_autofab = {
 	}
 	else_if = {
 		limit = {
-			uses_district_set = habitat
+			uses_habitat_district_set = yes
 		}
 		owner = {
 			add_resource = {
@@ -69,7 +69,7 @@ pay_for_autofab = {
 	}
 	else_if = {
 		limit = {
-			uses_district_set = city_world
+			uses_city_district_set = yes
 		}
 		owner = {
 			add_resource = {
@@ -85,24 +85,7 @@ pay_for_autofab = {
 	}
 	else_if = {
 		limit = {
-			uses_district_set = hive_world
-			uses_district_set = machine_world
-		}
-		owner = {
-			add_resource = {
-				energy = @Negspecialdistrictcost
-			}
-			add_resource = {
-				minerals = @Negspecialdistrictcost
-			}
-			add_resource = {
-				alloys = @Negautofaballoycost
-			}
-		}
-	}
-	else_if = {
-		limit = {
-			uses_district_set = ring_world
+			uses_ringworld_district_set = yes
 		}
 		owner = {
 			add_resource = {
@@ -120,7 +103,7 @@ pay_for_autofab = {
 pay_for_district = {
 	if = {
 		limit = {
-			uses_district_set = standard
+			uses_base_district_set = yes
 		}
 		owner = {
 			add_resource = {
@@ -133,7 +116,7 @@ pay_for_district = {
 	}
 	else_if = {
 		limit = {
-			uses_district_set = habitat
+			uses_habitat_district_set = yes
 		}
 		owner = {
 			add_resource = {
@@ -146,7 +129,7 @@ pay_for_district = {
 	}
 	else_if = {
 		limit = {
-			uses_district_set = city_world
+			uses_city_district_set = yes
 		}
 		owner = {
 			add_resource = {
@@ -159,21 +142,7 @@ pay_for_district = {
 	}
 	else_if = {
 		limit = {
-			uses_district_set = hive_world
-			uses_district_set = machine_world
-		}
-		owner = {
-			add_resource = {
-				minerals = @Negspecialdistrictcost
-			}
-			add_resource = {
-				alloys = @Negfactoryalloycost
-			}
-		}
-	}
-	else_if = {
-		limit = {
-			uses_district_set = ring_world
+			uses_ringworld_district_set = yes
 		}
 		owner = {
 			add_resource = {
@@ -182,68 +151,6 @@ pay_for_district = {
 			add_resource = {
 				alloys = @Negfactoryalloycost
 			}
-		}
-	}
-}
-pay_for_building = {
-	owner = {
-		add_resource = {
-			minerals = @Negb1_minerals
-		}
-		add_resource = {
-			alloys = @Negfactoryalloycost
-		}
-	}
-}
-pay_for_building_t2_foundry = {
-	owner = {
-		add_resource = {
-			minerals = @Negb2_minerals
-		}
-		add_resource = {
-			volatile_motes = @Negb2_rare_cost
-		}
-		add_resource = {
-			alloys = @Negfactoryalloycost
-		}
-	}
-}
-pay_for_building_t3_foundry = {
-	owner = {
-		add_resource = {
-			minerals = @Negb3_minerals
-		}
-		add_resource = {
-			volatile_motes = @Negb3_rare_cost
-		}
-		add_resource = {
-			alloys = @Negfactoryalloycost
-		}
-	}
-}
-pay_for_building_t2_factory = {
-	owner = {
-		add_resource = {
-			minerals = @Negb2_minerals
-		}
-		add_resource = {
-			rare_crystals = @Negb2_rare_cost
-		}
-		add_resource = {
-			alloys = @Negfactoryalloycost
-		}
-	}
-}
-pay_for_building_t3_factory = {
-	owner = {
-		add_resource = {
-			minerals = @Negb3_minerals
-		}
-		add_resource = {
-			rare_crystals = @Negb3_rare_cost
-		}
-		add_resource = {
-			alloys = @Negfactoryalloycost
 		}
 	}
 }
@@ -323,7 +230,7 @@ add_autofab_farm = {
 }
 
 start_autofab_foundry = {
-	pay_for_building = yes
+	pay_for_district = yes
 	set_planet_flag = factory_expanding
 	set_planet_flag = factory_building_foundry
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
@@ -343,7 +250,7 @@ add_autofab_foundry = {
 }
 
 start_autofab_factory = {
-	pay_for_building = yes
+	pay_for_district = yes
 	set_planet_flag = factory_expanding
 	set_planet_flag = factory_building_factory
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
@@ -363,7 +270,7 @@ add_autofab_factory = {
 }
 
 start_autofab_chemical = {
-	pay_for_building = yes
+	pay_for_district = yes
 	set_planet_flag = factory_expanding
 	set_planet_flag = factory_building_chemical
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
@@ -383,7 +290,7 @@ add_autofab_chemical = {
 }
 
 start_autofab_refinery = {
-	pay_for_building = yes
+	pay_for_district = yes
 	set_planet_flag = factory_expanding
 	set_planet_flag = factory_building_refinery
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
@@ -403,7 +310,7 @@ add_autofab_refinery = {
 }
 
 start_autofab_translucer = {
-	pay_for_building = yes
+	pay_for_district = yes
 	set_planet_flag = factory_expanding
 	set_planet_flag = factory_building_translucer
 	add_modifier = { modifier = factory_expansion days = @factory_construction_time }
@@ -429,7 +336,7 @@ start_autofab_extractor = {
 	planet_event = { id = autofab_queue.37 days = @factory_construction_time }
 }
 add_autofab_extractor = {
-	pay_for_building = yes
+	pay_for_district = yes
 	add_deposit = autofab_refinery_extractor
 	remove_planet_flag = factory_expanding
 	remove_planet_flag = factory_building_extractor

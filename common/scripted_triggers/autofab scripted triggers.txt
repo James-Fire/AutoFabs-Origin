@@ -6,17 +6,24 @@ can_use_autofab = {
 	OR = {
 		has_origin = origin_autofab
 		has_ascension_perk = ap_autofab
+		has_valid_civic = civic_autofab
+		has_global_flag = autofab_for_all
 	}
 }
 
 can_build_autofab = { #Planet Scope
-	owner = {
-		has_country_flag = factory_autofab_construction_on
+	OR = {
+		has_planet_flag = factory_autofab_construction_on
+		AND = {
+			owner = {
+				has_country_flag = factory_autofab_construction_on
+			}
+			NOT = { has_planet_flag = factory_autofab_construction_off }
+		}
 	}
 	NOT = {
 		has_planet_flag = has_autofab
 		has_planet_flag = building_autofab
-		has_planet_flag = factory_autofab_construction_off
 	}
 	has_supported_district_set = yes
 	can_afford_autofab = yes
@@ -41,11 +48,45 @@ can_queue_factory = {
 
 has_supported_district_set = {
 	OR = {
+		##Vanilla District Sets
 		uses_district_set = standard
 		uses_district_set = habitat
 		uses_district_set = city_world
 		uses_district_set = hive_world
 		uses_district_set = machine_world
+		uses_district_set = ring_world
+		
+		##Gigas District Sets
+		uses_district_set = giga_birch
+		#uses_district_set = giga_alderson
+		#uses_district_set = giga_alderson_ecu
+		#uses_district_set = giga_alderson_hive
+		#uses_district_set = giga_alderson_machine
+		#uses_district_set = giga_alderson_pc
+		#uses_district_set = giga_habitat
+	}
+}
+
+uses_base_district_set = {
+	OR = {
+		uses_district_set = standard
+		uses_district_set = hive_world
+		uses_district_set = machine_world
+		uses_district_set = giga_birch
+	}
+}
+uses_habitat_district_set = {
+	OR = {
+		uses_district_set = habitat
+	}
+}
+uses_city_district_set = {
+	OR = {
+		uses_district_set = city_world
+	}
+}
+uses_ringworld_district_set = {
+	OR = {
 		uses_district_set = ring_world
 	}
 }
@@ -53,6 +94,7 @@ has_supported_district_set = {
 has_vanilla_swap_candidate = {
 	has_autofab = yes
 	OR = {
+		##Vanilla Districts
 		has_district = district_generator
 		has_district = district_generator_uncapped
 		has_district = district_rw_generator
@@ -68,11 +110,14 @@ has_vanilla_swap_candidate = {
 		has_district = district_hab_industrial
 		has_district = district_arcology_arms_industry
 		has_district = district_arcology_civilian_industry
+		
+		##Gigas Districts
 	}
 }
 
 has_energy_available = {
 	OR = {
+		uses_district_set = giga_birch
 		AND = {	
 			uses_district_set = standard
 			num_free_districts = { type = district_generator value > 0 }
@@ -94,6 +139,7 @@ has_energy_available = {
 }
 has_minerals_available = {
 	OR = {
+		uses_district_set = giga_birch
 		AND = {	
 			uses_district_set = standard
 			num_free_districts = { type = district_mining value > 0 }
@@ -112,6 +158,7 @@ has_minerals_available = {
 }
 has_food_available = {
 	OR = {
+		uses_district_set = giga_birch
 		AND = {	
 			uses_district_set = standard
 			num_free_districts = { type = district_farming value > 0 }

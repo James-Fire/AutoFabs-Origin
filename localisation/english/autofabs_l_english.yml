@@ -111,6 +111,15 @@
      mod_planet_autofab_energy_upkeep_add:0 "Factory Energy Requirement"
      mod_planet_autofab_minerals_upkeep_add:0 "Factory Minerals Requirement"
      mod_planet_autofab_upkeep_mult:0 "Factory Upkeep"
+     mod_planet_autofab_generator_upkeep_mult:0 "Factory Generator Upkeep"
+     mod_planet_autofab_farm_upkeep_mult:0 "Factory Farm Upkeep"
+     mod_planet_autofab_mine_upkeep_mult:0 "Factory Mine Upkeep"
+     mod_planet_autofab_foundry_upkeep_mult:0 "Factory Foundry Upkeep"
+     mod_planet_autofab_factory_upkeep_mult:0 "Factory Factory Upkeep"
+     mod_planet_autofab_motes_upkeep_mult:0 "Factory Chemical Upkeep"
+     mod_planet_autofab_gases_upkeep_mult:0 "Factory Refinery Upkeep"
+     mod_planet_autofab_crystals_upkeep_mult:0 "Factory Translucer Upkeep"
+     mod_planet_autofab_srs_upkeep_mult:0 "Factory Extractor_Upkeep"
      mod_planet_autofab_volatile_motes_upkeep_add:0 "Factory Volatile Motes Requirement"
  
     #Deposits
@@ -163,12 +172,17 @@
      origin_autofab_desc:0 "Ever since the Industrial Revolution, this species has been obsessed with increasing automation in their factories. Achieving fully automatic factories, in operation and expansion, has allowed them to greatly reduce the labour required by their species, and catapult themselves to spacefaring before the expected population levels."
      origin_tooltip_autofab_effects:0 "- $origin_autofab_tooltip_1$ \n- $origin_autofab_tooltip_2$ \n- $origin_autofab_tooltip_3$ \n- $origin_autofab_tooltip_4$"
      
+     civic_autofab:0 "Factory Automation"
+     
      ap_autofab:0 "Automation Revolution"
      ap_autofab_desc:0 "Our society has progressed to the point where our population expects certain things, and is unwilling to do it themselves. Automated Factories can handle the required tasks."
      
      can_use_autofab:0 "Unlock the ability to build Automated Factories on your planets, reducing your reliance on labour from people and machines. \nIf you have the Origin, this gives +40% factory production instead."
      
     #Events
+    
+     autofab.11.name:0 "Factory Unable to Initialize"
+     autofab.11.desc:0 "The planet you have started on does not use a district set that is supported by the mod. This could be because of your origin, or just a mod adding a planet that uses a special district set. \nYou still have access to the factory, but your home planet does not have it, and has not been changed."
      
      autofab.25.name:0 "Factory Stats"
      autofab.25.desc:0 "$autofab.25.desc_0$\n$autofab.25.desc_1$\n$autofab.25.desc_2$\n$autofab.25.desc_3$\n$autofab.25.desc_4$\n$autofab.25.desc_5$\n$autofab.25.desc_6$\n$autofab.25.desc_7$\n$autofab.25.desc_8$\n$autofab.25.desc_9$"

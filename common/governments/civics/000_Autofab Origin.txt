@@ -5,6 +5,43 @@ origin_autofab = {
 	description = "origin_tooltip_autofab_effects"
 
 	playable = {
+		always = no
+	}
+	
+	potential = {
+		always = no
+	}
+	possible = {
+		always = no
+		civics = {
+			NOT = {
+				value = civic_agrarian_idyll
+			}
+		}
+	}
+	random_weight = { base = 0 }
+	modifier = {
+		pop_growth_speed_reduction = 0.3
+		planet_pop_assembly_reduction = 0.3
+		planet_pop_assembly_organic_reduction = 0.3
+		planet_autofab_upkeep_mult = -0.1
+		planet_autofab_generator_upkeep_mult = -0.1
+		planet_autofab_farm_upkeep_mult = -0.1
+		planet_autofab_mine_upkeep_mult = -0.1
+		planet_autofab_foundry_upkeep_mult = -0.1
+		planet_autofab_factory_upkeep_mult = -0.1
+		planet_autofab_motes_upkeep_mult = -0.1
+		planet_autofab_gases_upkeep_mult = -0.1
+		planet_autofab_crystals_upkeep_mult = -0.1
+		planet_autofab_srs_upkeep_mult = -0.1
+	}
+}
+
+civic_autofab = {
+	description = "origin_tooltip_autofab_effects"
+	modification = no
+	
+	playable = {
 		always = yes
 	}
 	
@@ -24,12 +61,4 @@ origin_autofab = {
 		planet_pop_assembly_reduction = 0.4
 		planet_pop_assembly_organic_reduction = 0.4
 	}
-	#swap_type = {
-	#	name = origin_autofab_machine
-	#	description = "origin_autofab_machine_effects"
-#
-#		trigger = {
-#			is_machine_empire = yes
-#		}
-#	}	
 }

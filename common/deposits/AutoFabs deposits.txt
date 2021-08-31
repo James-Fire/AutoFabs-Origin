@@ -16,8 +16,11 @@ autofab = {
 	triggered_planet_modifier = {
 		potential = {
 			owner = {
-				has_origin = origin_autofab
 				has_ascension_perk = ap_autofab
+				OR = {
+					has_origin = origin_autofab
+					has_active_civic = civic_autofab
+				}
 			}
 		}
 		modifier = {
@@ -33,6 +36,27 @@ autofab = {
 			planet_autofab_srs_produces_mult = 0.4
 		}
 	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				has_origin = origin_autofab
+				has_active_civic = civic_autofab
+			}
+		}
+		modifier = {
+			planet_autofab_produces_mult = 0.2
+			planet_autofab_generator_produces_mult = 0.2
+			planet_autofab_farm_produces_mult = 0.2
+			planet_autofab_mine_produces_mult = 0.2
+			planet_autofab_foundry_produces_mult = 0.2
+			planet_autofab_factory_produces_mult = 0.2
+			planet_autofab_motes_produces_mult = 0.2
+			planet_autofab_gases_produces_mult = 0.2
+			planet_autofab_crystals_produces_mult = 0.2
+			planet_autofab_srs_produces_mult = 0.2
+		}
+	}
+	
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -60,6 +84,15 @@ autofab = {
 		}
 		modifier = {
 			planet_autofab_upkeep_mult = -0.1
+			planet_autofab_generator_upkeep_mult = -0.1
+			planet_autofab_farm_upkeep_mult = -0.1
+			planet_autofab_mine_upkeep_mult = -0.1
+			planet_autofab_foundry_upkeep_mult = -0.1
+			planet_autofab_factory_upkeep_mult = -0.1
+			planet_autofab_motes_upkeep_mult = -0.1
+			planet_autofab_gases_upkeep_mult = -0.1
+			planet_autofab_crystals_upkeep_mult = -0.1
+			planet_autofab_srs_upkeep_mult = -0.1
 		}
 	}
 	triggered_planet_modifier = {
@@ -95,8 +128,13 @@ autofab_power = {
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_energy
 	
-	planet_modifier = {
-		planet_max_districts_add = -1
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { uses_district_set = giga_birch }
+		}
+		modifier = {
+			planet_max_districts_add = -1
+		}
 	}
 	
 	resources = {
@@ -316,8 +354,13 @@ autofab_farm = {
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_food
 	
-	planet_modifier = {
-		planet_max_districts_add = -1
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { uses_district_set = giga_birch }
+		}
+		modifier = {
+			planet_max_districts_add = -1
+		}
 	}
 	
 	resources = {
@@ -516,8 +559,13 @@ autofab_mine = {
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_minerals
 	
-	planet_modifier = {
-		planet_max_districts_add = -1
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { uses_district_set = giga_birch }
+		}
+		modifier = {
+			planet_max_districts_add = -1
+		}
 	}
 	
 	resources = {
@@ -696,8 +744,13 @@ autofab_foundry = {
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_alloys
 	
-	planet_modifier = {
-		planet_max_districts_add = -1
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { uses_district_set = giga_birch }
+		}
+		modifier = {
+			planet_max_districts_add = -1
+		}
 	}
 	
 	resources = {
@@ -1225,8 +1278,13 @@ autofab_motes_refinery = {
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_rare_resources
 	
-	planet_modifier = {
-		planet_max_districts_add = -1
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { uses_district_set = giga_birch }
+		}
+		modifier = {
+			planet_max_districts_add = -1
+		}
 	}
 	
 	resources = {
@@ -1271,8 +1329,13 @@ autofab_gases_refinery = {
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_rare_resources
 	
-	planet_modifier = {
-		planet_max_districts_add = -1
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { uses_district_set = giga_birch }
+		}
+		modifier = {
+			planet_max_districts_add = -1
+		}
 	}
 	
 	resources = {
@@ -1317,8 +1380,13 @@ autofab_crystals_refinery = {
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_rare_resources
 	
-	planet_modifier = {
-		planet_max_districts_add = -1
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { uses_district_set = giga_birch }
+		}
+		modifier = {
+			planet_max_districts_add = -1
+		}
 	}
 	
 	resources = {
@@ -1363,8 +1431,13 @@ autofab_refinery_extractor = {
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_rare_resources
 	
-	planet_modifier = {
-		planet_max_districts_add = -1
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { uses_district_set = giga_birch }
+		}
+		modifier = {
+			planet_max_districts_add = -1
+		}
 	}
 	
 	triggered_planet_modifier = {
