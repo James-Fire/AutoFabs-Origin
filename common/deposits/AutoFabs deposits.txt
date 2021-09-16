@@ -1,5 +1,4 @@
 autofab = {
-	is_for_colonizeable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_rare
 	
@@ -16,10 +15,32 @@ autofab = {
 	triggered_planet_modifier = {
 		potential = {
 			owner = {
+				has_tradition = tr_autofab_pride
+			}
+		}
+		modifier = {
+			pop_happiness = 0.05
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				has_tradition = tr_autofab_services
+			}
+		}
+		modifier = {
+			planet_amenities_no_happiness_mult = 0.05
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
 				has_ascension_perk = ap_autofab
 				OR = {
 					has_origin = origin_autofab
-					has_active_civic = civic_autofab
+					has_valid_civic = civic_autofab
+					has_global_flag = autofab_for_all
 				}
 			}
 		}
@@ -40,20 +61,20 @@ autofab = {
 		potential = {
 			owner = {
 				has_origin = origin_autofab
-				has_active_civic = civic_autofab
+				has_valid_civic = civic_autofab
 			}
 		}
 		modifier = {
-			planet_autofab_produces_mult = 0.2
-			planet_autofab_generator_produces_mult = 0.2
-			planet_autofab_farm_produces_mult = 0.2
-			planet_autofab_mine_produces_mult = 0.2
-			planet_autofab_foundry_produces_mult = 0.2
-			planet_autofab_factory_produces_mult = 0.2
-			planet_autofab_motes_produces_mult = 0.2
-			planet_autofab_gases_produces_mult = 0.2
-			planet_autofab_crystals_produces_mult = 0.2
-			planet_autofab_srs_produces_mult = 0.2
+			planet_autofab_upkeep_mult = -0.1
+			planet_autofab_generator_upkeep_mult = -0.1
+			planet_autofab_farm_upkeep_mult = -0.1
+			planet_autofab_mine_upkeep_mult = -0.1
+			planet_autofab_foundry_upkeep_mult = -0.1
+			planet_autofab_factory_upkeep_mult = -0.1
+			planet_autofab_motes_upkeep_mult = -0.1
+			planet_autofab_gases_upkeep_mult = -0.1
+			planet_autofab_crystals_upkeep_mult = -0.1
+			planet_autofab_srs_upkeep_mult = -0.1
 		}
 	}
 	
@@ -124,7 +145,6 @@ autofab = {
 }
 
 autofab_power = {
-	is_for_colonizeable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_energy
 	
@@ -301,6 +321,14 @@ autofab_power = {
 	
 	triggered_planet_modifier = {
 		potential = {
+			owner = { has_tradition = tr_autofab_commercial_connections }
+		}
+		modifier = {
+			trade_value_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
 			uses_district_set = standard
 		}
 		modifier = {
@@ -350,7 +378,6 @@ autofab_power = {
 }
 
 autofab_farm = {
-	is_for_colonizeable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_food
 	
@@ -503,6 +530,14 @@ autofab_farm = {
 	
 	triggered_planet_modifier = {
 		potential = {
+			owner = { has_tradition = tr_autofab_commercial_connections }
+		}
+		modifier = {
+			trade_value_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
 			exists = owner
 			owner = {
 				has_edict = farming_subsidies
@@ -555,7 +590,6 @@ autofab_farm = {
 }
 
 autofab_mine = {
-	is_for_colonizeable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_minerals
 	
@@ -570,7 +604,7 @@ autofab_mine = {
 	
 	resources = {
 		category = planet_autofab_mine
-		produces = {	
+		produces = {
 			minerals = 12
 		}
 		upkeep = {
@@ -598,6 +632,13 @@ autofab_mine = {
 				planet = { uses_district_set = habitat }
 			}
 			energy = 3
+		}
+		produces = {
+			trigger = {
+				planet = { uses_district_set = shattered_ring_world }
+			}
+			alloys = 4
+			minerals = -4
 		}
 		
 		#Boosting Building Stuff
@@ -698,6 +739,15 @@ autofab_mine = {
 			energy = 2
 		}
 	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_tradition = tr_autofab_commercial_connections }
+		}
+		modifier = {
+			trade_value_add = 2
+		}
+	}
 	triggered_planet_modifier = {
 		potential = {
 			uses_district_set = standard
@@ -740,7 +790,6 @@ autofab_mine = {
 }
 
 autofab_foundry = {
-	is_for_colonizeable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_alloys
 	
@@ -760,7 +809,19 @@ autofab_foundry = {
 		}
 		upkeep = {
 			energy = 6
+		}
+		
+		upkeep = {
+			trigger = {
+				NOT = { owner = { has_valid_civic = civic_catalytic_processing } }
+			}
 			minerals = 12
+		}
+		upkeep = {
+			trigger = {
+				owner = { has_valid_civic = civic_catalytic_processing }
+			}
+			food = 18
 		}
 		
 		#Different Planet Types
@@ -775,7 +836,20 @@ autofab_foundry = {
 				planet = { uses_district_set = city_world }
 			}
 			energy = 6
+		}
+		upkeep = {
+			trigger = {
+				NOT = { owner = { has_valid_civic = civic_catalytic_processing } }
+				planet = { uses_district_set = city_world }
+			}
 			minerals = 12
+		}
+		upkeep = {
+			trigger = {
+				owner = { has_valid_civic = civic_catalytic_processing }
+				planet = { uses_district_set = city_world }
+			}
+			food = 18
 		}
 		produces = {
 			trigger = {
@@ -788,8 +862,21 @@ autofab_foundry = {
 				planet = { uses_district_set = ring_world }
 			}
 			energy = 19
-			minerals = 108
 			volatile_motes = 2
+		}
+		upkeep = {
+			trigger = {
+				NOT = { owner = { has_valid_civic = civic_catalytic_processing } }
+				planet = { uses_district_set = ring_world }
+			}
+			minerals = 108
+		}
+		upkeep = {
+			trigger = {
+				owner = { has_valid_civic = civic_catalytic_processing }
+				planet = { uses_district_set = ring_world }
+			}
+			food = 162
 		}
 		
 		#Boosting Building Stuff
@@ -804,10 +891,20 @@ autofab_foundry = {
 		upkeep = {
 			trigger = {
 				planet = {
+					NOT = { owner = { has_valid_civic = civic_catalytic_processing } }
 					has_active_building = building_foundry_2
 				}
 			}
 			minerals = 4
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					owner = { has_valid_civic = civic_catalytic_processing }
+					has_active_building = building_foundry_2
+				}
+			}
+			food = 6
 		}
 		produces = {
 			trigger = {
@@ -820,10 +917,20 @@ autofab_foundry = {
 		upkeep = {
 			trigger = {
 				planet = {
+					NOT = { owner = { has_valid_civic = civic_catalytic_processing } }
 					has_active_building = building_foundry_3
 				}
 			}
 			minerals = 8
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					owner = { has_valid_civic = civic_catalytic_processing }
+					has_active_building = building_foundry_3
+				}
+			}
+			food = 12
 		}
 		produces = {
 			trigger = {
@@ -838,10 +945,21 @@ autofab_foundry = {
 			trigger = {
 				planet = {
 					uses_district_set = city_world
+					NOT = { owner = { has_valid_civic = civic_catalytic_processing } }
 					has_active_building = building_foundry_2
 				}
 			}
 			minerals = 4
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					uses_district_set = city_world
+					owner = { has_valid_civic = civic_catalytic_processing }
+					has_active_building = building_foundry_2
+				}
+			}
+			food = 6
 		}
 		produces = {
 			trigger = {
@@ -856,10 +974,21 @@ autofab_foundry = {
 			trigger = {
 				planet = {
 					uses_district_set = city_world
+					NOT = { owner = { has_valid_civic = civic_catalytic_processing } }
 					has_active_building = building_foundry_3
 				}
 			}
 			minerals = 8
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					uses_district_set = city_world
+					owner = { has_valid_civic = civic_catalytic_processing }
+					has_active_building = building_foundry_3
+				}
+			}
+			food = 12
 		}
 		produces = {
 			trigger = {
@@ -874,10 +1003,21 @@ autofab_foundry = {
 			trigger = {
 				planet = {
 					uses_district_set = ring_world
+					NOT = { owner = { has_valid_civic = civic_catalytic_processing } }
 					has_active_building = building_foundry_2
 				}
 			}
 			minerals = 16
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					uses_district_set = ring_world
+					owner = { has_valid_civic = civic_catalytic_processing }
+					has_active_building = building_foundry_2
+				}
+			}
+			food = 24
 		}
 		produces = {
 			trigger = {
@@ -892,10 +1032,21 @@ autofab_foundry = {
 			trigger = {
 				planet = {
 					uses_district_set = ring_world
+					NOT = { owner = { has_valid_civic = civic_catalytic_processing } }
 					has_active_building = building_foundry_3
 				}
 			}
 			minerals = 32
+		}
+		upkeep = {
+			trigger = {
+				planet = {
+					uses_district_set = ring_world
+					owner = { has_valid_civic = civic_catalytic_processing }
+					has_active_building = building_foundry_3
+				}
+			}
+			food = 48
 		}
 		
 		#Machine Stuff
@@ -908,8 +1059,16 @@ autofab_foundry = {
 		upkeep = {
 			trigger = {
 				owner = { is_machine_empire = yes }
+				NOT = { owner = { has_valid_civic = civic_catalytic_processing } }
 			}
-			minerals = 2
+			minerals = 4
+		}
+		upkeep = {
+			trigger = {
+				owner = { is_machine_empire = yes }
+				owner = { has_valid_civic = civic_catalytic_processing }
+			}
+			food = 6
 		}
 		produces = {
 			trigger = {
@@ -922,8 +1081,17 @@ autofab_foundry = {
 			trigger = {
 				owner = { is_machine_empire = yes }
 				planet = { uses_district_set = city_world }
+				NOT = { owner = { has_valid_civic = civic_catalytic_processing } }
 			}
-			minerals = 4
+			minerals = 8
+		}
+		upkeep = {
+			trigger = {
+				owner = { is_machine_empire = yes }
+				planet = { uses_district_set = city_world }
+				owner = { has_valid_civic = civic_catalytic_processing }
+			}
+			food = 12
 		}
 		produces = {
 			trigger = {
@@ -936,8 +1104,17 @@ autofab_foundry = {
 			trigger = {
 				owner = { is_machine_empire = yes }
 				planet = { uses_district_set = ring_world }
+				NOT = { owner = { has_valid_civic = civic_catalytic_processing } }
 			}
-			minerals = 8
+			minerals = 16
+		}
+		upkeep = {
+			trigger = {
+				owner = { is_machine_empire = yes }
+				planet = { uses_district_set = ring_world }
+				owner = { has_valid_civic = civic_catalytic_processing }
+			}
+			food = 24
 		}
 		
 		#FE Buildings Stuff
@@ -994,6 +1171,15 @@ autofab_foundry = {
 		}
 	}
 	
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_tradition = tr_autofab_commercial_connections }
+		}
+		modifier = {
+			trade_value_add = 2
+		}
+	}
+	
 	country_modifier = {
 		country_admin_cap_add = -1
 	}
@@ -1008,7 +1194,6 @@ autofab_foundry = {
 }
 
 autofab_factory = {
-	is_for_colonizeable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_consumer_goods
 	
@@ -1260,6 +1445,15 @@ autofab_factory = {
 		}
 	}
 	
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_tradition = tr_autofab_commercial_connections }
+		}
+		modifier = {
+			trade_value_add = 2
+		}
+	}
+	
 	country_modifier = {
 		country_admin_cap_add = -1
 	}
@@ -1274,7 +1468,6 @@ autofab_factory = {
 }
 
 autofab_motes_refinery = {
-	is_for_colonizeable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_rare_resources
 	
@@ -1311,6 +1504,15 @@ autofab_motes_refinery = {
 		}
 	}
 	
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_tradition = tr_autofab_commercial_connections }
+		}
+		modifier = {
+			trade_value_add = 2
+		}
+	}
+	
 	country_modifier = {
 		country_admin_cap_add = -1
 	}
@@ -1325,7 +1527,6 @@ autofab_motes_refinery = {
 }
 
 autofab_gases_refinery = {
-	is_for_colonizeable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_rare_resources
 	
@@ -1362,6 +1563,15 @@ autofab_gases_refinery = {
 		}
 	}
 	
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_tradition = tr_autofab_commercial_connections }
+		}
+		modifier = {
+			trade_value_add = 2
+		}
+	}
+	
 	country_modifier = {
 		country_admin_cap_add = -1
 	}
@@ -1376,7 +1586,6 @@ autofab_gases_refinery = {
 }
 
 autofab_crystals_refinery = {
-	is_for_colonizeable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_rare_resources
 	
@@ -1413,6 +1622,15 @@ autofab_crystals_refinery = {
 		}
 	}
 	
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_tradition = tr_autofab_commercial_connections }
+		}
+		modifier = {
+			trade_value_add = 2
+		}
+	}
+	
 	country_modifier = {
 		country_admin_cap_add = -1
 	}
@@ -1427,7 +1645,6 @@ autofab_crystals_refinery = {
 }
 
 autofab_refinery_extractor = {
-	is_for_colonizeable = yes
 	use_for_min_max_adjustments = yes
 	category = deposit_cat_rare_resources
 	
@@ -1446,8 +1663,8 @@ autofab_refinery_extractor = {
 			owner = { has_technology = tech_mine_betharian }
 		}
 		modifier = {
-			planet_autofab_generator_produces_mult = 0.25
-			planet_autofab_generator_produces_add = 1
+			planet_autofab_generator_energy_produces_mult = 0.25
+			planet_autofab_generator_energy_produces_add = 1
 			building_betharian_power_plant_max = -1
 		}
 	}
@@ -1458,8 +1675,8 @@ autofab_refinery_extractor = {
 			owner = { has_technology = tech_mine_betharian }
 		}
 		modifier = {
-			planet_autofab_generator_produces_mult = 0.25
-			planet_autofab_generator_produces_add = 1
+			planet_autofab_generator_energy_produces_mult = 0.25
+			planet_autofab_generator_energy_produces_add = 1
 			building_betharian_power_plant_max = -1
 		}
 	}
@@ -1470,8 +1687,8 @@ autofab_refinery_extractor = {
 			owner = { has_technology = tech_mine_betharian }
 		}
 		modifier = {
-			planet_autofab_generator_produces_mult = 0.25
-			planet_autofab_generator_produces_add = 1
+			planet_autofab_generator_energy_produces_mult = 0.25
+			planet_autofab_generator_energy_produces_add = 1
 			building_betharian_power_plant_max = -1
 		}
 	}
@@ -1480,6 +1697,15 @@ autofab_refinery_extractor = {
 		category = planet_autofab_srs
 		produces = {
 		}		
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_tradition = tr_autofab_commercial_connections }
+		}
+		modifier = {
+			trade_value_add = 2
+		}
 	}
 	
 	country_modifier = {

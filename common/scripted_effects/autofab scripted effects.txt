@@ -127,49 +127,41 @@ document_factory_country = {
 	every_owned_planet = {
 		document_factory_planet = yes
 		PREV = {
-			change_variable = { which = autofabs_available value = PREV }
-			change_variable = { which = autofabs value = PREV }
-			change_variable = { which = autofab_farm value = PREV }
-			change_variable = { which = autofab_mine value = PREV }
-			change_variable = { which = autofab_power value = PREV }
-			change_variable = { which = autofab_foundry value = PREV }
-			change_variable = { which = autofab_foundry_2 value = PREV }
-			change_variable = { which = autofab_foundry_3 value = PREV }
-			change_variable = { which = autofab_foundry value = autofab_foundry_2 }
-			change_variable = { which = autofab_foundry value = autofab_foundry_3 }
-			change_variable = { which = autofab_factory value = PREV }
-			change_variable = { which = autofab_factory_2 value = PREV }
-			change_variable = { which = autofab_factory_3 value = PREV }
-			change_variable = { which = autofab_factory value = autofab_factory_2 }
-			change_variable = { which = autofab_factory value = autofab_factory_3 }
-			change_variable = { which = autofab_refinery value = PREV }
-			change_variable = { which = autofab_chemical value = PREV }
-			change_variable = { which = autofab_translucer value = PREV }
-			change_variable = { which = autofab_extractor value = PREV }
-			change_variable = { which = autofab_districts_queued value = PREV }
-			change_variable = { which = autofab_districts_available value = PREV }
+			change_variable = { which = autofabs_available value = PREV.autofabs_available }
+			change_variable = { which = autofabs value = PREV.autofabs }
+			change_variable = { which = autofab_farm value = PREV.autofab_farm }
+			change_variable = { which = autofab_mine value = PREV.autofab_mine }
+			change_variable = { which = autofab_power value = PREV.autofab_power }
+			change_variable = { which = autofab_foundry value = PREV.autofab_foundry }
+			change_variable = { which = autofab_factory value = PREV.autofab_factory }
+			change_variable = { which = autofab_refinery value = PREV.autofab_refinery }
+			change_variable = { which = autofab_chemical value = PREV.autofab_chemical }
+			change_variable = { which = autofab_translucer value = PREV.autofab_translucer }
+			change_variable = { which = autofab_extractor value = PREV.autofab_extractor }
+			change_variable = { which = autofab_districts_queued value = PREV.autofab_districts_queued }
+			change_variable = { which = autofab_districts_available value = PREV.autofab_districts_available }
 			
-			change_variable = { which = autofab_energy_avail value = PREV }
-			change_variable = { which = autofab_minerals_avail value = PREV }
-			change_variable = { which = autofab_food_avail value = PREV }
-			change_variable = { which = autofab_foundry_available value = PREV }
-			change_variable = { which = autofab_factory_available value = PREV }
-			change_variable = { which = autofab_motes_available value = PREV }
-			change_variable = { which = autofab_gases_available value = PREV }
-			change_variable = { which = autofab_crystals_available value = PREV }
-			change_variable = { which = autofab_extractor_avail value = PREV }
+			change_variable = { which = autofab_energy_avail value = PREV.autofab_energy_avail }
+			change_variable = { which = autofab_minerals_avail value = PREV.autofab_minerals_avail }
+			change_variable = { which = autofab_food_avail value = PREV.autofab_food_avail }
+			change_variable = { which = autofab_foundry_available value = PREV.autofab_foundry_available }
+			change_variable = { which = autofab_factory_available value = PREV.autofab_factory_available }
+			change_variable = { which = autofab_motes_available value = PREV.autofab_motes_available }
+			change_variable = { which = autofab_gases_available value = PREV.autofab_gases_available }
+			change_variable = { which = autofab_crystals_available value = PREV.autofab_crystals_available }
+			change_variable = { which = autofab_extractor_avail value = PREV.autofab_extractor_avail }
 			
-			change_variable = { which = autofab_energy_building value = PREV }
-			change_variable = { which = autofab_minerals_building value = PREV }
-			change_variable = { which = autofab_food_building value = PREV }
-			change_variable = { which = autofab_foundry_building value = PREV }
-			change_variable = { which = autofab_factory_building value = PREV }
-			change_variable = { which = autofab_motes_building value = PREV }
-			change_variable = { which = autofab_gases_building value = PREV }
-			change_variable = { which = autofab_crystals_building value = PREV }
-			change_variable = { which = autofab_extractor_building value = PREV }
+			change_variable = { which = autofab_energy_building value = PREV.autofab_energy_building }
+			change_variable = { which = autofab_minerals_building value = PREV.autofab_minerals_building }
+			change_variable = { which = autofab_food_building value = PREV.autofab_food_building }
+			change_variable = { which = autofab_foundry_building value = PREV.autofab_foundry_building }
+			change_variable = { which = autofab_factory_building value = PREV.autofab_factory_building }
+			change_variable = { which = autofab_motes_building value = PREV.autofab_motes_building }
+			change_variable = { which = autofab_gases_building value = PREV.autofab_gases_building }
+			change_variable = { which = autofab_crystals_building value = PREV.autofab_crystals_building }
+			change_variable = { which = autofab_extractor_building value = PREV.autofab_extractor_building }
 			
-			change_variable = { which = autofab_districts_building value = PREV }
+			change_variable = { which = autofab_districts_building value = PREV.autofab_districts_building }
 		}
 	}
 	change_variable = { which = autofab_districts_queued value = autofab_energy_queue }
@@ -376,7 +368,7 @@ document_factory_planet = {
 		change_variable = { which = autofab_districts_building value = autofab_extractor_building }
 		
 		
-		count_unused_districts = yes
+		#count_unused_districts = yes
 		switch = {
 			trigger = uses_district_set
 			standard = {
@@ -664,7 +656,7 @@ document_factory_planet = {
 				}
 			}
 		}
-		#export_trigger_value_to_variable = { trigger = free_district_slots variable = autofab_districts_available }
+		export_trigger_value_to_variable = { trigger = free_district_slots variable = autofab_districts_available }
 		
 		change_variable = { which = autofab_districts_queued value = autofab_energy_queue }
 		change_variable = { which = autofab_districts_queued value = autofab_mineral_queue }

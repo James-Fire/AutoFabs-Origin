@@ -5,43 +5,6 @@ origin_autofab = {
 	description = "origin_tooltip_autofab_effects"
 
 	playable = {
-		always = no
-	}
-	
-	potential = {
-		always = no
-	}
-	possible = {
-		always = no
-		civics = {
-			NOT = {
-				value = civic_agrarian_idyll
-			}
-		}
-	}
-	random_weight = { base = 0 }
-	modifier = {
-		pop_growth_speed_reduction = 0.3
-		planet_pop_assembly_reduction = 0.3
-		planet_pop_assembly_organic_reduction = 0.3
-		planet_autofab_upkeep_mult = -0.1
-		planet_autofab_generator_upkeep_mult = -0.1
-		planet_autofab_farm_upkeep_mult = -0.1
-		planet_autofab_mine_upkeep_mult = -0.1
-		planet_autofab_foundry_upkeep_mult = -0.1
-		planet_autofab_factory_upkeep_mult = -0.1
-		planet_autofab_motes_upkeep_mult = -0.1
-		planet_autofab_gases_upkeep_mult = -0.1
-		planet_autofab_crystals_upkeep_mult = -0.1
-		planet_autofab_srs_upkeep_mult = -0.1
-	}
-}
-
-civic_autofab = {
-	description = "origin_tooltip_autofab_effects"
-	modification = no
-	
-	playable = {
 		always = yes
 	}
 	
@@ -49,6 +12,7 @@ civic_autofab = {
 		always = yes
 	}
 	possible = {
+		always = yes
 		civics = {
 			NOT = {
 				value = civic_agrarian_idyll
@@ -60,5 +24,144 @@ civic_autofab = {
 		pop_growth_speed_reduction = 0.4
 		planet_pop_assembly_reduction = 0.4
 		planet_pop_assembly_organic_reduction = 0.4
+	}
+}
+
+civic_autofab = {
+	description = "civic_tooltip_autofab_effects"
+	modification = no
+	
+	playable = {
+		always = yes
+	}
+	
+	potential = {
+		authority = { 
+			NOT = {
+				value = auth_corporate
+				value = auth_hive_mind
+				value = auth_machine_intelligence
+			}
+		}
+	}
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_agrarian_idyll
+			}
+		}
+	}
+	random_weight = { base = 0 }
+	modifier = {
+		planet_jobs_produces_mult = -0.4
+		planet_autofab_produces_mult = 0.4
+		planet_autofab_generator_produces_mult = 0.4
+		planet_autofab_farm_produces_mult = 0.4
+		planet_autofab_mine_produces_mult = 0.4
+		planet_autofab_foundry_produces_mult = 0.4
+		planet_autofab_factory_produces_mult = 0.4
+		planet_autofab_motes_produces_mult = 0.4
+		planet_autofab_gases_produces_mult = 0.4
+		planet_autofab_crystals_produces_mult = 0.4
+		planet_autofab_srs_produces_mult = 0.4
+	}
+}
+civic_autofab_machine = {
+	description = "civic_tooltip_autofab_effects"
+	modification = no
+	
+	playable = {
+		always = yes
+	}
+	
+	potential = {
+		authority = { value = auth_machine_intelligence	}
+	}
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_agrarian_idyll
+			}
+		}
+	}
+	random_weight = { base = 0 }
+	modifier = {
+		planet_jobs_produces_mult = -0.4
+		planet_autofab_produces_mult = 0.4
+		planet_autofab_generator_produces_mult = 0.4
+		planet_autofab_farm_produces_mult = 0.4
+		planet_autofab_mine_produces_mult = 0.4
+		planet_autofab_foundry_produces_mult = 0.4
+		planet_autofab_factory_produces_mult = 0.4
+		planet_autofab_motes_produces_mult = 0.4
+		planet_autofab_gases_produces_mult = 0.4
+		planet_autofab_crystals_produces_mult = 0.4
+		planet_autofab_srs_produces_mult = 0.4
+	}
+}
+civic_autofab_hive = {
+	description = "civic_tooltip_autofab_effects"
+	modification = no
+	
+	playable = {
+		always = yes
+	}
+	
+	potential = {
+		authority = { value = auth_hive_mind }
+	}
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_agrarian_idyll
+			}
+		}
+	}
+	random_weight = { base = 0 }
+	modifier = {
+		planet_jobs_produces_mult = -0.4
+		planet_autofab_produces_mult = 0.4
+		planet_autofab_generator_produces_mult = 0.4
+		planet_autofab_farm_produces_mult = 0.4
+		planet_autofab_mine_produces_mult = 0.4
+		planet_autofab_foundry_produces_mult = 0.4
+		planet_autofab_factory_produces_mult = 0.4
+		planet_autofab_motes_produces_mult = 0.4
+		planet_autofab_gases_produces_mult = 0.4
+		planet_autofab_crystals_produces_mult = 0.4
+		planet_autofab_srs_produces_mult = 0.4
+	}
+}
+civic_autofab_megacorp = {
+	description = "civic_tooltip_autofab_effects"
+	modification = no
+	
+	playable = {
+		always = yes
+	}
+	
+	potential = {
+		authority = { value = auth_corporate }
+	}
+	possible = {
+		civics = {
+			NOT = {
+				value = civic_agrarian_idyll
+			}
+		}
+	}
+	random_weight = { base = 0 }
+	modifier = {
+		planet_jobs_produces_mult = -0.4
+		planet_autofab_produces_mult = 0.4
+		planet_autofab_generator_produces_mult = 0.4
+		planet_autofab_farm_produces_mult = 0.4
+		planet_autofab_mine_produces_mult = 0.4
+		planet_autofab_foundry_produces_mult = 0.4
+		planet_autofab_factory_produces_mult = 0.4
+		planet_autofab_motes_produces_mult = 0.4
+		planet_autofab_gases_produces_mult = 0.4
+		planet_autofab_crystals_produces_mult = 0.4
+		planet_autofab_srs_produces_mult = 0.4
 	}
 }

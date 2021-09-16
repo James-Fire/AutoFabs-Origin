@@ -316,9 +316,11 @@ _________________________
 
 Fixed Functional Architecture and Constructobot civics not providing the upkeep reduction they should.
 
-Turned the Origin into a permanent civic that grants access to the factory, so you can use it with any origin.
+Added a civic that gives you the Autofab on your capital, and the ability to build more. It does not replace any pops with Modules. Instead of Pop growth maluses, it gives job output maluses.
 
-The bonus production from the AP is now ties to having both the civic and AP.
+Having both the Origin and Civic gives -10% upkeep.
+
+The bonus production from the AP is now ties to having both the Origin/civic and AP.
 
 The civic works with all non-special planet origins.
 
@@ -334,6 +336,18 @@ Fixed some construction projects using the wrong cost.
 
 The factory works with Gigas Birch world.
 
-The civic works with the Gigas Birch World origin.*
+The civic works with the Gigas Birch World origin.
 
 Fixed a logic issue in determining whether the Autofab can be built.
+
+_________________________
+
+The Factory now works with the Shattered Ring Origin.
+
+The Factory now works with the Catalytic Processing civic.
+
+There is now a tradition dealing with the factory available to everyone that can use the factory.*
+
+The civic now has an icon for each empire type.
+
+There is now an event on game start asking you if you want everyone to have the factory.

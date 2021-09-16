@@ -1,89 +1,37 @@
 namespace = autofab
 
-country_event = {
-	id = autofab.0
-	is_triggered_only = yes
-	title = "autofab.0.name"
-	desc = "autofab.0.desc"
-	picture = GFX_evt_ai_planet
-	
-	option = {
-		name = "autofab.0.option.1"
-		country_event = { id = autofab.1 }
-	}
-	option = {
-		name = "autofab.1.name"
-		country_event = { id = autofab.1 }
-	}
-	option = {
-		name = "autofab.2.name"
-		country_event = { id = autofab.2 }
-	}
-	option = {
-		name = "autofab.3.name"
-		country_event = { id = autofab.3 }
-	}
-	option = {
-		name = "autofab_know"
-	}
-}
-
-country_event = {
+event = {
 	id = autofab.1
+	hide_window = yes
 	is_triggered_only = yes
-	title = "autofab.1.name"
-	desc = "autofab.1.desc"
-	picture = GFX_evt_ai_planet
-	
-	option = {
-		name = "autofab_next"
-		country_event = { id = autofab.2 }
+	immediate = {
+		every_country = {
+			limit = {
+				NOT = {
+					has_global_flag = autofab_start
+				}
+			}
+			set_global_flag = autofab_start
+			country_event = { id = autofab.2 }
+		}
 	}
-	option = {
-		name = "autofab_back"
-		country_event = { id = autofab.0 }
-	}
-	option = {
-		name = "autofab_know"
+	after = {
 	}
 }
 
 country_event = {
+	###Country Terminal
 	id = autofab.2
-	is_triggered_only = yes
 	title = "autofab.2.name"
 	desc = "autofab.2.desc"
-	picture = GFX_evt_ai_planet
-	
-	option = {
-		name = "autofab_next"
-		country_event = { id = autofab.3 }
-	}
-	option = {
-		name = "autofab_back"
-		country_event = { id = autofab.0 }
-	}
-	option = {
-		name = "autofab_know"
-	}
-}
-
-country_event = {
-	id = autofab.3
 	is_triggered_only = yes
-	title = "autofab.3.name"
-	desc = "autofab.3.desc"
-	picture = GFX_evt_ai_planet
-	
+	# Confirm
 	option = {
-		name = "autofab_end"
+		name = "autofab.2.yes"
+		set_global_flag = autofab_for_all
 	}
 	option = {
-		name = "autofab_back"
-		country_event = { id = autofab.0 }
-	}
-	option = {
-		name = "autofab_know"
+		name = "autofab.2.no"
 	}
 }
 
@@ -317,7 +265,24 @@ country_event = {
 					set_planet_flag = has_autofab
 				}
 			}
-			else = {
+			else_if = {
+				limit = {
+					NOT = { has_origin = origin_autofab }
+				}
+				capital_scope = {
+					if = {
+						limit = {
+							has_supported_district_set = yes
+						}
+						add_deposit = autofab
+						set_planet_flag = has_autofab
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					has_origin = origin_autofab
+				}
 				capital_scope = {
 					if = {
 						limit = {
@@ -460,6 +425,15 @@ country_event = {
 					else = {
 						planet_event = { id = autofab.11 }
 					}
+				}
+			}
+			else_if = {
+				limit = {
+					has_valid_civic = civic_autofab
+				}
+				capital_scope = {
+					add_deposit = autofab
+					set_planet_flag = has_autofab
 				}
 			}
 		}

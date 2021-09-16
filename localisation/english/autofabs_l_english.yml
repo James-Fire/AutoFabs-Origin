@@ -1,4 +1,6 @@
 ﻿ l_english:
+     Understood: "Understood"
+ 
     #Decisions
      decision_build_autofab:0 " Build Factory"
      decision_build_autofab_desc:0 "Start construction of a Factory on this World."
@@ -91,7 +93,17 @@
     #Resource Production
      
      planet_autofab:0 "Automatic Factory"
-     mod_planet_autofab_produces_mult:0 "Factory Production"
+     mod_planet_autofab_produces_mult:0 "Autofab Production"
+     mod_planet_autofab_generator_produces_mult:0 "Factory Generator Production"
+     mod_planet_autofab_farm_produces_mult:0 "Factory Farm Production"
+     mod_planet_autofab_mine_produces_mult:0 "Factory Mine Production"
+     mod_planet_autofab_foundry_produces_mult:0 "Factory Foundry Production"
+     mod_planet_autofab_factory_produces_mult:0 "Factory Factory Production"
+     mod_planet_autofab_motes_produces_mult:0 "Factory Chemical Production"
+     mod_planet_autofab_gases_produces_mult:0 "Factory Refinery Production"
+     mod_planet_autofab_crystals_produces_mult:0 "Factory Translucer Production"
+     mod_planet_autofab_srs_produces_mult:0 "Factory Extractor Production"
+     
      mod_planet_autofab_food_produces_add:0 "Factory Food Production"
      mod_planet_autofab_minerals_produces_add:0 "Factory Minerals Production"
      mod_planet_autofab_energy_produces_add:0 "Factory Energy Production"
@@ -101,7 +113,7 @@
      mod_planet_autofab_exotic_gases_produces_add:0 "Factory Exotic Gases Production"
      mod_planet_autofab_rare_crystals_produces_add:0 "Factory Rare Crystals Production"
      mod_planet_autofab_sr_living_metal_produces_add:0 "Factory Living Metal Production"
-     
+	 
      mod_planet_autofab_food_produces_mult:0 "Factory Food Production"
      mod_planet_autofab_minerals_produces_mult:0 "Factory Minerals Production"
      mod_planet_autofab_energy_produces_mult:0 "Factory Energy Production"
@@ -110,7 +122,7 @@
      
      mod_planet_autofab_energy_upkeep_add:0 "Factory Energy Requirement"
      mod_planet_autofab_minerals_upkeep_add:0 "Factory Minerals Requirement"
-     mod_planet_autofab_upkeep_mult:0 "Factory Upkeep"
+     mod_planet_autofab_upkeep_mult:0 "Autofab Upkeep"
      mod_planet_autofab_generator_upkeep_mult:0 "Factory Generator Upkeep"
      mod_planet_autofab_farm_upkeep_mult:0 "Factory Farm Upkeep"
      mod_planet_autofab_mine_upkeep_mult:0 "Factory Mine Upkeep"
@@ -121,7 +133,50 @@
      mod_planet_autofab_crystals_upkeep_mult:0 "Factory Translucer Upkeep"
      mod_planet_autofab_srs_upkeep_mult:0 "Factory Extractor_Upkeep"
      mod_planet_autofab_volatile_motes_upkeep_add:0 "Factory Volatile Motes Requirement"
+     
+     mod_planet_autofab_generator_energy_produces_add: "Factory Generator Energy Production"
+     mod_planet_autofab_generator_energy_produces_mult: "Factory Generator Energy Production"
+     
+     mod_planet_autofab_energy_upkeep_mult:0 "Autofab Energy Upkeep"
+     mod_planet_autofab_generator_energy_upkeep_mult:0 "Factory Generator Energy Upkeep"
+     mod_planet_autofab_farm_energy_upkeep_mult:0 "Factory Farm Energy Upkeep"
+     mod_planet_autofab_mine_energy_upkeep_mult:0 "Factory Mine Energy Upkeep"
+     mod_planet_autofab_foundry_energy_upkeep_mult:0 "Factory Foundry Energy Upkeep"
+     mod_planet_autofab_factory_energy_upkeep_mult:0 "Factory Factory Energy Upkeep"
+     mod_planet_autofab_motes_energy_upkeep_mult:0 "Factory Chemical Energy Upkeep"
+     mod_planet_autofab_gases_energy_upkeep_mult:0 "Factory Refinery Energy Upkeep"
+     mod_planet_autofab_crystals_energy_upkeep_mult:0 "Factory Translucer Energy Upkeep"
+     mod_planet_autofab_srs_energy_upkeep_mult:0 "Factory Extractor Energy Upkeep"
+     
+     planet_autofab_Autofab: "Autofab"
+     planet_autofab_generator: "Autofab Generator"
+     planet_autofab_farm: "Autofab Farm"
+     planet_autofab_mine: "Autofab Mine"
+     planet_autofab_foundry: "Autofab Foundry"
+     planet_autofab_factory: "Autofab Factory"
+     planet_autofab_motes: "Autofab Chemical"
+     planet_autofab_gases: "Autofab Refinery"
+     planet_autofab_crystals: "Autofab Translucer"
+     planet_autofab_srs: "Autofab Extractor"
  
+    #Traditions
+     tradition_autofab: "Automation"
+     tradition_autofab_desc: "As our civilization grows, so too will the capability of our Factories."
+    
+     tr_autofab_infrastructure_support: "Infrastructure"
+     tr_autofab_infrastructure_support_desc: "The Factory is capable of supporting some critical colony infrastructure. We should use this."
+     tr_autofab_environmental_studies: "Environmentalist"
+     tr_autofab_environmental_studies_desc: "Keeping the environment in mind when constructing our Factories has made planets with a Factory more liveable than those without."
+     tr_autofab_commercial_connections: "Factory Commerce"
+     tr_autofab_commercial_connections_desc: "Using the Factory to produce luxury goods, and offering tours of the extensive Modules gives a small income stream on the side."
+     tr_autofab_factory_housing: "Housing Efficiency"
+     tr_autofab_factory_housing_desc: "The Factory is capable of making housing our population more efficient, through better methods that reduce the footprint of everyone."
+     tr_autofab_pride: "Pride"
+     tr_autofab_pride_desc: "Our people take pride in the achievement of the Factories, improving happiness where they exist."
+     tr_autofab_services: "Factory Services"
+     tr_autofab_services_desc: "Using the Factory to provide some essential services can relieve the burden of normal service providers."
+     tr_autofab_optimization: "Factory Optimization"
+     tr_autofab_optimization_desc: "Optimizing the input/output of the Factory can save large amounts of resources, and increase production."
     #Deposits
      autofab:0 "Automatic Factory"
      autofab_desc:0 "This planet's Automated factory, and all its production, is tracked here."
@@ -163,16 +218,29 @@
      
      foundry_expanding:0 "Foundry"
    
-    #Origin
+    #Origin and Civic
      origin_autofab_tooltip_1:0 "The living standards of your main species will be set to a high standard. Ethic specific ones are used first, then Social Welfare."
      origin_autofab_tooltip_2:0 "You start with an Automatic Factory deposit, that replaces physical resource production."
      origin_autofab_tooltip_3:0 "You start with less £pop£ Pops, those that would have been working physical resource jobs removed. To compensate for needing more district space, your homeworld minimum size is £planetsize£ §Y25§!."
-     origin_autofab_tooltip_4:0 "£pop£ Pop Growth is slower, due to everyone having full comfort, and a general lack of motivation for procreation."
+     origin_autofab_tooltip_4:0 "£pop£ Pop Growth is slower, due to massive societal changes from living a life of luxury."
+     origin_autofab_tooltip_5:0 "Using this in combination with the Civic gives a -10% upkeep cost to Factory Modules."
      origin_autofab:0 "Factory Automation"
      origin_autofab_desc:0 "Ever since the Industrial Revolution, this species has been obsessed with increasing automation in their factories. Achieving fully automatic factories, in operation and expansion, has allowed them to greatly reduce the labour required by their species, and catapult themselves to spacefaring before the expected population levels."
-     origin_tooltip_autofab_effects:0 "- $origin_autofab_tooltip_1$ \n- $origin_autofab_tooltip_2$ \n- $origin_autofab_tooltip_3$ \n- $origin_autofab_tooltip_4$"
+     origin_tooltip_autofab_effects:0 "- $origin_autofab_tooltip_1$ \n- $origin_autofab_tooltip_2$ \n- $origin_autofab_tooltip_3$ \n- $origin_autofab_tooltip_4$ \n- $origin_autofab_tooltip_5$"
      
+     civic_autofab_tooltip_1:0 "Normal jobs produce less, as the population is ready to transfer production over to Automatic Factory Modules."
+     civic_autofab_tooltip_2:0 "You start with an Automatic Factory deposit, and modules to make up for the -40% job production malus."
+     civic_autofab_tooltip_3:0 "Using this in combination with the Origin gives a -10% upkeep cost to Factory Modules."
+     civic_tooltip_autofab_effects:0 "- $civic_autofab_tooltip_1$ \n- $civic_autofab_tooltip_2$ \n- $civic_autofab_tooltip_3$"
+     civic_autofab_desc: "Habving recently achieved Automated Factory production, our society is read to give up their burden."
      civic_autofab:0 "Factory Automation"
+     
+     civic_autofab_machine: "$civic_autofab$"
+     civic_autofab_machine_desc: "$civic_autofab_desc$"
+     civic_autofab_hive: "$civic_autofab$"
+     civic_autofab_hive_desc: "$civic_autofab_desc$"
+     civic_autofab_megacorp: "$civic_autofab$"
+     civic_autofab_megacorp_desc: "$civic_autofab_desc$"
      
      ap_autofab:0 "Automation Revolution"
      ap_autofab_desc:0 "Our society has progressed to the point where our population expects certain things, and is unwilling to do it themselves. Automated Factories can handle the required tasks."
@@ -180,6 +248,10 @@
      can_use_autofab:0 "Unlock the ability to build Automated Factories on your planets, reducing your reliance on labour from people and machines. \nIf you have the Origin, this gives +40% factory production instead."
      
     #Events
+     autofab.2.name: "Factory For Everyone"
+     autofab.2.desc: "You can decide if you want everyone to have access to the factory here. Any benefits or drawbacks from using the civic or origin will still be in place. The AP will provide +40% factory output to everyone, rather than just those with the civic or origin."
+     autofab.2.yes: "Yes"
+     autofab.2.no: "No"
     
      autofab.11.name:0 "Factory Unable to Initialize"
      autofab.11.desc:0 "The planet you have started on does not use a district set that is supported by the mod. This could be because of your origin, or just a mod adding a planet that uses a special district set. \nYou still have access to the factory, but your home planet does not have it, and has not been changed."

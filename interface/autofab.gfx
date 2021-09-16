@@ -22,13 +22,24 @@ spriteTypes = {
 		textureFile = "gfx/interface/icons/text_icons/autofab_planet.dds"
 	}
 	
+	
+	spriteType = { name = "GFX_tradition_hex_bg_tradition_autofab"		textureFile = "gfx/interface/traditions/tradition_hex_bg_autofab.dds" }
+	spriteType = { name = "GFX_tr_autofab_infrastructure_support"		textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
+	spriteType = { name = "GFX_tr_autofab_environmental_studies"		textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
+	spriteType = { name = "GFX_tr_autofab_commercial_connections"		textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
+	spriteType = { name = "GFX_tr_autofab_factory_housing"				textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
+	spriteType = { name = "GFX_tr_autofab_infrastructure_support"		textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
+	spriteType = { name = "GFX_tr_autofab_pride"						textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
+	spriteType = { name = "GFX_tr_autofab_services"						textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
+	spriteType = { name = "GFX_tr_autofab_optimization"					textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
+
 
 	spriteType = { name = "GFX_autofab_1"						texturefile = "gfx/interface/menu_ui/1.dds" }
-	spriteType = { name = "GFX_autofab_1_neg"						texturefile = "gfx/interface/menu_ui/-1.dds" }
+	spriteType = { name = "GFX_autofab_1_neg"					texturefile = "gfx/interface/menu_ui/-1.dds" }
 	spriteType = { name = "GFX_autofab_10"						texturefile = "gfx/interface/menu_ui/10.dds" }
-	spriteType = { name = "GFX_autofab_10_neg"						texturefile = "gfx/interface/menu_ui/-10.dds" }
+	spriteType = { name = "GFX_autofab_10_neg"					texturefile = "gfx/interface/menu_ui/-10.dds" }
 	spriteType = { name = "GFX_autofab_100"						texturefile = "gfx/interface/menu_ui/100.dds" }
-	spriteType = { name = "GFX_autofab_100_neg"						texturefile = "gfx/interface/menu_ui/-100.dds" }
+	spriteType = { name = "GFX_autofab_100_neg"					texturefile = "gfx/interface/menu_ui/-100.dds" }
 	
 	spriteType = { name = "GFX_advisor_autofab"						texturefile = "gfx/event_pictures/custom_uis/Advisor-Room.dds" }
 	spriteType = { name = "GFX_terminal_autofab"					texturefile = "gfx/event_pictures/custom_uis/Terminal-Image.dds" }

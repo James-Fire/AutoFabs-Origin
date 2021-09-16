@@ -7,6 +7,9 @@ can_use_autofab = {
 		has_origin = origin_autofab
 		has_ascension_perk = ap_autofab
 		has_valid_civic = civic_autofab
+		has_valid_civic = civic_autofab_machine
+		has_valid_civic = civic_autofab_hive
+		has_valid_civic = civic_autofab_megacorp
 		has_global_flag = autofab_for_all
 	}
 }
@@ -32,7 +35,17 @@ can_build_autofab = { #Planet Scope
 can_expand_factory = {
 	free_district_slots > 0
 	has_autofab = yes
-	NOT = { has_planet_flag = factory_expanding }
+	OR = {
+		NOT = { has_planet_flag = factory_expanding }
+		AND = {
+			always = no
+			has_tradition = tr_autofab_finish
+			has_planet_flag = factory_expanding
+			NOT = { has_planet_flag = factory_expanding_2 }
+			NOT = { has_planet_flag = building_autofab }
+		}
+	}
+	can_afford_module = yes
 }
 
 has_autofab = {
@@ -55,6 +68,7 @@ has_supported_district_set = {
 		uses_district_set = hive_world
 		uses_district_set = machine_world
 		uses_district_set = ring_world
+		uses_district_set = shattered_ring_world
 		
 		##Gigas District Sets
 		uses_district_set = giga_birch
@@ -72,6 +86,7 @@ uses_base_district_set = {
 		uses_district_set = standard
 		uses_district_set = hive_world
 		uses_district_set = machine_world
+		uses_district_set = shattered_ring_world
 		uses_district_set = giga_birch
 	}
 }
