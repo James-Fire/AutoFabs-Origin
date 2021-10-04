@@ -1,4 +1,4 @@
-reset_automation_cycle = {
+reset_autofab_automation_cycle = {
 	set_variable = { which = autofab_done_today value = 0 }
 	set_variable = { which = autofab_done_cycle value = 0 }
 	every_owned_planet = {
@@ -69,7 +69,7 @@ autofab_floor_automation_variables = {
 	}
 }
 
-automation_variables_calc = {
+autofab_automation_variables_calc = {
 	country_resources_ratio_calc = yes
 	subtract_variable = { which = autofab_energy_tracking value = factory_energy_stockpile_min }
 	subtract_variable = { which = autofab_minerals_tracking value = factory_minerals_stockpile_min }

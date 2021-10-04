@@ -18,66 +18,6 @@ automation_active = {
 	NOT = { has_planet_flag = automation_queued_this_cycle }
 }
 
-can_afford_module = {
-	has_supported_district_set = yes
-	owner = {
-		resource_stockpile_compare = {
-			resource = alloys
-			value >= @factoryalloycost
-		}
-	}
-	OR = {
-		AND = {
-			uses_district_set = standard
-			owner = {
-				resource_stockpile_compare = {
-					resource = minerals
-					value >= @districtcost
-				}
-			}
-		}
-		AND = {
-			uses_district_set = habitat
-			owner = {
-				resource_stockpile_compare = {
-					resource = minerals
-					value >= @habdistrictcost
-				}
-			}
-		}
-		AND = {
-			uses_district_set = city_world
-			owner = {
-				resource_stockpile_compare = {
-					resource = minerals
-					value >= @citydistrictcost
-				}
-			}
-		}
-		AND = {
-			OR = {
-				uses_district_set = hive_world
-				uses_district_set = machine_world
-			}
-			owner = {
-				resource_stockpile_compare = {
-					resource = minerals
-					value >= @specialdistrictcost
-				}
-			}
-		}
-		AND = {
-			uses_district_set = ring_world
-			owner = {
-				resource_stockpile_compare = {
-					resource = minerals
-					value >= @ringdistrictcost
-				}
-			}
-		}
-	}
-}
-
 #Planet Scope
 can_afford_automation_autofab = {
 	has_supported_district_set = yes

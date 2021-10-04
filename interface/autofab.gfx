@@ -23,15 +23,24 @@ spriteTypes = {
 	}
 	
 	
-	spriteType = { name = "GFX_tradition_hex_bg_tradition_autofab"		textureFile = "gfx/interface/traditions/tradition_hex_bg_autofab.dds" }
-	spriteType = { name = "GFX_tr_autofab_infrastructure_support"		textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
-	spriteType = { name = "GFX_tr_autofab_environmental_studies"		textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
-	spriteType = { name = "GFX_tr_autofab_commercial_connections"		textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
-	spriteType = { name = "GFX_tr_autofab_factory_housing"				textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
-	spriteType = { name = "GFX_tr_autofab_infrastructure_support"		textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
-	spriteType = { name = "GFX_tr_autofab_pride"						textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
-	spriteType = { name = "GFX_tr_autofab_services"						textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
-	spriteType = { name = "GFX_tr_autofab_optimization"					textureFile = "gfx/interface/icons/traditions/tradition_adaptability_adaptive_ecology.dds" }
+	spriteType = { name = "GFX_tradition_hex_bg_tradition_autofab"				textureFile = "gfx/interface/traditions/tradition_hex_bg_autofab.dds" }
+	spriteType = { name = "GFX_tradition_category_icon_tradition_autofab"		textureFile = "gfx/interface/icons/traditions/tradition_icon_autofab.dds" }
+	
+	corneredTileSpriteType = {
+		name = "GFX_tradition_category_tile_tradition_autofab"
+		textureFile = "gfx/interface/tiles/tradition_category_tile_autofab.dds"
+		borderSize = { x=140 y=140 }
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+	}
+	spriteType = { name = "GFX_tradition_category_bg_tradition_autofab"		textureFile = "gfx/interface/tiles/tradition_category_tile_autofab.dds" }
+	
+	spriteType = { name = "GFX_tr_autofab_infrastructure_support"		textureFile = "gfx/interface/icons/traditions/tradition_autofab_infrastructure_support.dds" }
+	spriteType = { name = "GFX_tr_autofab_environmental_studies"		textureFile = "gfx/interface/icons/traditions/tradition_autofab_environmental_studies.dds" }
+	spriteType = { name = "GFX_tr_autofab_commercial_connections"		textureFile = "gfx/interface/icons/traditions/tradition_autofab_commerce_connections.dds" }
+	spriteType = { name = "GFX_tr_autofab_factory_housing"				textureFile = "gfx/interface/icons/traditions/tradition_autofab_factory_housing.dds" } 
+	spriteType = { name = "GFX_tr_autofab_pride"						textureFile = "gfx/interface/icons/traditions/tradition_autofab_pride.dds" }
+	spriteType = { name = "GFX_tr_autofab_services"						textureFile = "gfx/interface/icons/traditions/tradition_autofab_services.dds" }
+	spriteType = { name = "GFX_tr_autofab_optimization"					textureFile = "gfx/interface/icons/traditions/tradition_autofab_optimization.dds" }
 
 
 	spriteType = { name = "GFX_autofab_1"						texturefile = "gfx/interface/menu_ui/1.dds" }
@@ -42,8 +51,6 @@ spriteTypes = {
 	spriteType = { name = "GFX_autofab_100_neg"					texturefile = "gfx/interface/menu_ui/-100.dds" }
 	
 	spriteType = { name = "GFX_advisor_autofab"						texturefile = "gfx/event_pictures/custom_uis/Advisor-Room.dds" }
-	spriteType = { name = "GFX_terminal_autofab"					texturefile = "gfx/event_pictures/custom_uis/Terminal-Image.dds" }
-	spriteType = { name = "GFX_planet_terminal_autofab"					texturefile = "gfx/event_pictures/custom_uis/Planet Terminal.dds" }
 	spriteType = { name = "GFX_easter_egg_autofab"					texturefile = "gfx/event_pictures/custom_uis/easter_egg.dds" }
 	spriteType = { name = "GFX_gear_menu"							texturefile = "gfx/interface/menu_ui/3-2-Gear.dds" }
 	spriteType = { name = "GFX_empty_dongs"							texturefile = "gfx/event_pictures/custom_uis/empty_dongs.dds" }
@@ -54,7 +61,6 @@ spriteTypes = {
 	spriteType = { name = "GFX_flipped_gearwrench_dongs"					texturefile = "gfx/event_pictures/custom_uis/flipped_gearwrenchDongs.dds" }
 	spriteType = { name = "GFX_advisor_upper_dongs"					texturefile = "gfx/event_pictures/custom_uis/advisor_upper_dongs.dds" }
 	spriteType = { name = "GFX_advisor_lower_dongs"					texturefile = "gfx/event_pictures/custom_uis/advisor_lower_dongs.dds" }
-	spriteType = { name = "GFX_autofab_portrait_bg"					texturefile = "gfx/event_pictures/custom_uis/portrait_bg.dds" }
 	spriteType = { name = "GFX_autofab_side_button"					texturefile = "gfx/event_pictures/custom_uis/side_button_1.dds" }
 	spriteType = { name = "GFX_autofab_planet_dongs"				texturefile = "gfx/event_pictures/custom_uis/planet_button.dds" }
 	
@@ -74,6 +80,207 @@ spriteTypes = {
 	spriteType = { name = "GFX_half_menu_button_skinny"				texturefile = "gfx/interface/menu_ui/skinny_half_button_background.dds" }
 	spriteType = { name = "GFX_blank_menu_button_skinny"			texturefile = "gfx/interface/menu_ui/blank_skinny_button_background.dds" }
 	spriteType = { name = "GFX_blank_half_menu_button_skinny"		texturefile = "gfx/interface/menu_ui/blank_skinny_half_button_background.dds" }
+	
+	spriteType = {
+		name = "GFX_autofab_portrait_bg"
+		texturefile = "gfx/event_pictures/custom_uis/portrait_bg.dds" #The base image. Defines the size of the sprite.
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 1
+		animation = {
+			animationmaskfile = "gfx/event_pictures/custom_uis/portrait_bg.dds" #The shape of the animation. Whitespace appears to define where the animation can appear.
+			animationtexturefile = "gfx/event_pictures/custom_uis/portrait_bg.dds" #The image to animate.
+			animationrotation = 0.0
+			animationlooping = yes
+			animationtime = 5.0
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "pulsing"  #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 }
+		}
+		legacy_lazy_load = no
+	}
+	spriteType = {
+		name = "GFX_terminal_autofab"
+		texturefile = "gfx/event_pictures/custom_uis/Terminal-Image.dds" #The base image. Defines the size of the sprite.
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 1
+		animation = {
+			animationmaskfile = "gfx/event_pictures/custom_uis/image_border.dds" #The shape of the animation. Whitespace appears to define where the animation can appear.
+			animationtexturefile = "gfx/event_pictures/custom_uis/image_border.dds" #The image to animate.
+			animationrotation = 0.0
+			animationlooping = yes
+			animationtime = 5.0
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "pulsing"  #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 }
+		}
+		legacy_lazy_load = no
+	}
+	spriteType = {
+		name = "GFX_planet_terminal_autofab"
+		texturefile = "gfx/event_pictures/custom_uis/Planet Terminal.dds" #The base image. Defines the size of the sprite.
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 1
+		animation = {
+			animationmaskfile = "gfx/event_pictures/custom_uis/image_border.dds" #The shape of the animation. Whitespace appears to define where the animation can appear.
+			animationtexturefile = "gfx/event_pictures/custom_uis/image_border.dds" #The image to animate.
+			animationrotation = 0.0
+			animationlooping = yes
+			animationtime = 5.0
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "pulsing"  #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 }
+		}
+		legacy_lazy_load = no
+	}
+	spriteType = {
+		name = "GFX_empty_dongs_anim"
+		texturefile = "gfx/event_pictures/custom_uis/empty_dongs.dds" #The base image. Defines the size of the sprite.
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 1
+		animation = {
+			animationmaskfile = "gfx/event_pictures/custom_uis/empty_dongs.dds" #The shape of the animation. Whitespace appears to define where the animation can appear.
+			animationtexturefile = "gfx/event_pictures/custom_uis/empty_dongs.dds" #The image to animate.
+			animationrotation = 0.0
+			animationlooping = yes
+			animationtime = 5.0
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "pulsing"  #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 }
+		}
+		legacy_lazy_load = no
+	}
+	spriteType = {
+		name = "GFX_horflip_empty_dongs_anim"
+		texturefile = "gfx/event_pictures/custom_uis/horflip_empty_dongs.dds" #The base image. Defines the size of the sprite.
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 1
+		animation = {
+			animationmaskfile = "gfx/event_pictures/custom_uis/horflip_empty_dongs.dds" #The shape of the animation. Whitespace appears to define where the animation can appear.
+			animationtexturefile = "gfx/event_pictures/custom_uis/horflip_empty_dongs.dds" #The image to animate.
+			animationrotation = 0.0
+			animationlooping = yes
+			animationtime = 5.0
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "pulsing"  #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 }
+		}
+		legacy_lazy_load = no
+	}
+	spriteType = {
+		name = "GFX_horverflip_empty_dongs_anim"
+		texturefile = "gfx/event_pictures/custom_uis/horverflip_empty_dongs.dds" #The base image. Defines the size of the sprite.
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 1
+		animation = {
+			animationmaskfile = "gfx/event_pictures/custom_uis/horverflip_empty_dongs.dds" #The shape of the animation. Whitespace appears to define where the animation can appear.
+			animationtexturefile = "gfx/event_pictures/custom_uis/horverflip_empty_dongs.dds" #The image to animate.
+			animationrotation = 0.0
+			animationlooping = yes
+			animationtime = 5.0
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "pulsing"  #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 }
+		}
+		legacy_lazy_load = no
+	}
+	spriteType = {
+		name = "GFX_verflip_empty_dongs_anim"
+		texturefile = "gfx/event_pictures/custom_uis/verflip_empty_dongs.dds" #The base image. Defines the size of the sprite.
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 1
+		animation = {
+			animationmaskfile = "gfx/event_pictures/custom_uis/verflip_empty_dongs.dds" #The shape of the animation. Whitespace appears to define where the animation can appear.
+			animationtexturefile = "gfx/event_pictures/custom_uis/verflip_empty_dongs.dds" #The image to animate.
+			animationrotation = 0.0
+			animationlooping = yes
+			animationtime = 5.0
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "pulsing"  #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 }
+		}
+		legacy_lazy_load = no
+	}
+	spriteType = {
+		name = "GFX_autofab_wrench_anim"
+		texturefile = "gfx/interface/menu_ui/autofab_wrench.dds" #The base image. Defines the size of the sprite.
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 1
+		animation = {
+			animationmaskfile = "gfx/interface/menu_ui/autofab_wrench.dds" #The shape of the animation. Whitespace appears to define where the animation can appear.
+			animationtexturefile = "gfx/interface/menu_ui/autofab_wrench.dds" #The image to animate.
+			animationrotation = 0.0
+			animationlooping = yes
+			animationtime = 5.0
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "pulsing"  #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 }
+		}
+		legacy_lazy_load = no
+	}
+	spriteType = {
+		name = "GFX_dong_gear_anim"
+		texturefile = "gfx/interface/menu_ui/cog_big_blank.dds" #The base image. Defines the size of the sprite.
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 1
+		animation = {
+			animationmaskfile = "gfx/interface/menu_ui/box_test_mask.dds" #The shape of the animation. Whitespace appears to define where the animation can appear.
+			animationtexturefile = "gfx/interface/menu_ui/cog_big.dds" #The image to animate.
+			animationrotation = 0.0
+			animationlooping = yes
+			animationtime = 5.0
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "rotating"  #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 }
+		}
+		legacy_lazy_load = no
+	}
+	spriteType = {
+		name = "GFX_dong_gear_anim_2"
+		texturefile = "gfx/interface/menu_ui/cog_big_blank.dds" #The base image. Defines the size of the sprite.
+		effectFile = "gfx/FX/buttonstate_onlydisable.lua"
+		noOfFrames = 1
+		animation = {
+			animationmaskfile = "gfx/interface/menu_ui/box_test_mask.dds" #The shape of the animation. Whitespace appears to define where the animation can appear.
+			animationtexturefile = "gfx/interface/menu_ui/cog_big_2.dds" #The image to animate.
+			animationrotation = 0.0
+			animationlooping = yes
+			animationtime = 5.0
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "rotating"  #scrolling, rotating, pulsing
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 }
+			animationframes = { 1 }
+		}
+		legacy_lazy_load = no
+	}
 	spriteType = {
 		name = "GFX_autofab_settings"
 		texturefile = "gfx/interface/menu_ui/autofab_settings_button.dds"

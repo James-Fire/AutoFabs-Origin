@@ -4,7 +4,8 @@ autofab_apply_queue = {
 		autofab_queue.1
 	}
 }
-#Planet Scope, no predefined scopes
+#Planet Scope
+#from = owner
 autofab_apply_planet_queue = {
 	events = {
 		autofab_queue.8

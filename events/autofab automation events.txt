@@ -120,8 +120,8 @@ country_event = {
 			}
 			export_to_autofab_variables = yes
 			country_resources_ratio_calc = yes
-			automation_variables_calc = yes
-			reset_automation_cycle = yes
+			autofab_automation_variables_calc = yes
+			reset_autofab_automation_cycle = yes
 			country_event = { id = autofab_automation.1001 days = 1 }
 			if = {
 				limit = {
@@ -327,6 +327,12 @@ country_event = {
 			}
 			else_if = {
 				limit = {
+					OR = {
+						NOT = {
+							has_ethic = ethic_gestalt_consciousness
+						}
+						has_civic = civic_machine_servitor
+					}
 					check_variable = { which = autofab_factory_available value < 10 }
 				}
 				if = {

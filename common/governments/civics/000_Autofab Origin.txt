@@ -37,7 +37,7 @@ civic_autofab = {
 	
 	potential = {
 		authority = { 
-			NOT = {
+			NOR = {
 				value = auth_corporate
 				value = auth_hive_mind
 				value = auth_machine_intelligence
@@ -53,17 +53,17 @@ civic_autofab = {
 	}
 	random_weight = { base = 0 }
 	modifier = {
-		planet_jobs_produces_mult = -0.4
-		planet_autofab_produces_mult = 0.4
-		planet_autofab_generator_produces_mult = 0.4
-		planet_autofab_farm_produces_mult = 0.4
-		planet_autofab_mine_produces_mult = 0.4
-		planet_autofab_foundry_produces_mult = 0.4
-		planet_autofab_factory_produces_mult = 0.4
-		planet_autofab_motes_produces_mult = 0.4
-		planet_autofab_gases_produces_mult = 0.4
-		planet_autofab_crystals_produces_mult = 0.4
-		planet_autofab_srs_produces_mult = 0.4
+		planet_jobs_produces_mult = -0.3
+		planet_autofab_produces_mult = 0.5
+		planet_autofab_generator_produces_mult = 0.5
+		planet_autofab_farm_produces_mult = 0.5
+		planet_autofab_mine_produces_mult = 0.5
+		planet_autofab_foundry_produces_mult = 0.5
+		planet_autofab_factory_produces_mult = 0.5
+		planet_autofab_motes_produces_mult = 0.5
+		planet_autofab_gases_produces_mult = 0.5
+		planet_autofab_crystals_produces_mult = 0.5
+		planet_autofab_srs_produces_mult = 0.5
 	}
 }
 civic_autofab_machine = {
@@ -86,17 +86,17 @@ civic_autofab_machine = {
 	}
 	random_weight = { base = 0 }
 	modifier = {
-		planet_jobs_produces_mult = -0.4
-		planet_autofab_produces_mult = 0.4
-		planet_autofab_generator_produces_mult = 0.4
-		planet_autofab_farm_produces_mult = 0.4
-		planet_autofab_mine_produces_mult = 0.4
-		planet_autofab_foundry_produces_mult = 0.4
-		planet_autofab_factory_produces_mult = 0.4
-		planet_autofab_motes_produces_mult = 0.4
-		planet_autofab_gases_produces_mult = 0.4
-		planet_autofab_crystals_produces_mult = 0.4
-		planet_autofab_srs_produces_mult = 0.4
+		planet_jobs_produces_mult = -0.3
+		planet_autofab_produces_mult = 0.5
+		planet_autofab_generator_produces_mult = 0.5
+		planet_autofab_farm_produces_mult = 0.5
+		planet_autofab_mine_produces_mult = 0.5
+		planet_autofab_foundry_produces_mult = 0.5
+		planet_autofab_factory_produces_mult = 0.5
+		planet_autofab_motes_produces_mult = 0.5
+		planet_autofab_gases_produces_mult = 0.5
+		planet_autofab_crystals_produces_mult = 0.5
+		planet_autofab_srs_produces_mult = 0.5
 	}
 }
 civic_autofab_hive = {
@@ -119,17 +119,17 @@ civic_autofab_hive = {
 	}
 	random_weight = { base = 0 }
 	modifier = {
-		planet_jobs_produces_mult = -0.4
-		planet_autofab_produces_mult = 0.4
-		planet_autofab_generator_produces_mult = 0.4
-		planet_autofab_farm_produces_mult = 0.4
-		planet_autofab_mine_produces_mult = 0.4
-		planet_autofab_foundry_produces_mult = 0.4
-		planet_autofab_factory_produces_mult = 0.4
-		planet_autofab_motes_produces_mult = 0.4
-		planet_autofab_gases_produces_mult = 0.4
-		planet_autofab_crystals_produces_mult = 0.4
-		planet_autofab_srs_produces_mult = 0.4
+		planet_jobs_produces_mult = -0.3
+		planet_autofab_produces_mult = 0.5
+		planet_autofab_generator_produces_mult = 0.5
+		planet_autofab_farm_produces_mult = 0.5
+		planet_autofab_mine_produces_mult = 0.5
+		planet_autofab_foundry_produces_mult = 0.5
+		planet_autofab_factory_produces_mult = 0.5
+		planet_autofab_motes_produces_mult = 0.5
+		planet_autofab_gases_produces_mult = 0.5
+		planet_autofab_crystals_produces_mult = 0.5
+		planet_autofab_srs_produces_mult = 0.5
 	}
 }
 civic_autofab_megacorp = {
@@ -141,7 +141,10 @@ civic_autofab_megacorp = {
 	}
 	
 	potential = {
-		authority = { value = auth_corporate }
+		OR = {
+            authority = { OR = { value = auth_corporate_democratic value = auth_corporate value = auth_corporate_imperial } }
+            civics = { value = civic_galactic_sovereign_megacorp }
+        }
 	}
 	possible = {
 		civics = {
@@ -152,16 +155,16 @@ civic_autofab_megacorp = {
 	}
 	random_weight = { base = 0 }
 	modifier = {
-		planet_jobs_produces_mult = -0.4
-		planet_autofab_produces_mult = 0.4
-		planet_autofab_generator_produces_mult = 0.4
-		planet_autofab_farm_produces_mult = 0.4
-		planet_autofab_mine_produces_mult = 0.4
-		planet_autofab_foundry_produces_mult = 0.4
-		planet_autofab_factory_produces_mult = 0.4
-		planet_autofab_motes_produces_mult = 0.4
-		planet_autofab_gases_produces_mult = 0.4
-		planet_autofab_crystals_produces_mult = 0.4
-		planet_autofab_srs_produces_mult = 0.4
+		planet_jobs_produces_mult = -0.3
+		planet_autofab_produces_mult = 0.5
+		planet_autofab_generator_produces_mult = 0.5
+		planet_autofab_farm_produces_mult = 0.5
+		planet_autofab_mine_produces_mult = 0.5
+		planet_autofab_foundry_produces_mult = 0.5
+		planet_autofab_factory_produces_mult = 0.5
+		planet_autofab_motes_produces_mult = 0.5
+		planet_autofab_gases_produces_mult = 0.5
+		planet_autofab_crystals_produces_mult = 0.5
+		planet_autofab_srs_produces_mult = 0.5
 	}
 }

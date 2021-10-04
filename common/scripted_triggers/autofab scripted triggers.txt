@@ -6,11 +6,17 @@ can_use_autofab = {
 	OR = {
 		has_origin = origin_autofab
 		has_ascension_perk = ap_autofab
+		has_autofab_civic = yes
+		has_global_flag = autofab_for_all
+	}
+}
+
+has_autofab_civic = {
+	OR = {
 		has_valid_civic = civic_autofab
 		has_valid_civic = civic_autofab_machine
 		has_valid_civic = civic_autofab_hive
 		has_valid_civic = civic_autofab_megacorp
-		has_global_flag = autofab_for_all
 	}
 }
 
@@ -35,16 +41,7 @@ can_build_autofab = { #Planet Scope
 can_expand_factory = {
 	free_district_slots > 0
 	has_autofab = yes
-	OR = {
-		NOT = { has_planet_flag = factory_expanding }
-		AND = {
-			always = no
-			has_tradition = tr_autofab_finish
-			has_planet_flag = factory_expanding
-			NOT = { has_planet_flag = factory_expanding_2 }
-			NOT = { has_planet_flag = building_autofab }
-		}
-	}
+	NOT = { has_planet_flag = factory_expanding }
 	can_afford_module = yes
 }
 
@@ -147,7 +144,13 @@ has_energy_available = {
 		}
 		AND = {
 			uses_district_set = habitat
-			has_planet_flag = energy_habitat
+			OR = {
+				has_planet_flag = energy_habitat
+				AND = {
+					exists = from
+					from = { is_gestalt = yes }
+				}
+			}
 			free_district_slots > 0
 		}
 	}

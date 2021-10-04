@@ -15,6 +15,15 @@ autofab_game_start = {
 	set_variable = { which = factory_alloys_stockpile_min value = 0 }
 }
 
+add_autofab_deposit = {
+	if = {
+		limit = {
+		 NOT = { has_deposit = autofab }
+		}
+		add_deposit = autofab
+	}
+}
+
 set_unset_variables = {
 	if = {
 		limit = {
@@ -115,12 +124,7 @@ document_factory_country = {
 	set_variable = { which = autofab_mine value = 0 }
 	set_variable = { which = autofab_power value = 0 }
 	set_variable = { which = autofab_foundry value = 0 }
-	set_variable = { which = autofab_foundry_2 value = 0 }
-	set_variable = { which = autofab_foundry_3 value = 0 }
-	set_variable = { which = autofab_farm value = 0 }
 	set_variable = { which = autofab_factory value = 0 }
-	set_variable = { which = autofab_factory_2 value = 0 }
-	set_variable = { which = autofab_factory_3 value = 0 }
 	set_variable = { which = autofab_refinery value = 0 }
 	set_variable = { which = autofab_chemical value = 0 }
 	set_variable = { which = autofab_translucer value = 0 }
@@ -369,8 +373,20 @@ document_factory_planet = {
 		
 		
 		#count_unused_districts = yes
+		export_trigger_value_to_variable = { trigger = free_district_slots variable = autofab_districts_available }
 		switch = {
 			trigger = uses_district_set
+			giga_birch = {
+				set_variable = { which = autofab_districts_available value = 50 }
+				set_variable = { which = autofab_energy_avail value = autofab_districts_available }
+				set_variable = { which = autofab_minerals_avail value = autofab_districts_available }
+				set_variable = { which = autofab_food_avail value = autofab_districts_available }
+				set_variable = { which = autofab_foundry_available value = autofab_districts_available }
+				set_variable = { which = autofab_factory_available value = autofab_districts_available }
+				set_variable = { which = autofab_motes_available value = autofab_districts_available }
+				set_variable = { which = autofab_gases_available value = autofab_districts_available }
+				set_variable = { which = autofab_crystals_available value = autofab_districts_available }
+			}
 			standard = {
 				count_limited_districts = yes
 				if = {
@@ -567,7 +583,13 @@ document_factory_planet = {
 					}
 					if = {
 						limit = {
-							has_planet_flag = energy_habitat
+							OR = {
+								has_planet_flag = energy_habitat
+								AND = {
+									exists = from
+									from = { is_gestalt = yes }
+								}
+							}
 						}
 						change_variable = { which = autofab_energy_avail value = autofab_districts_available }
 					}
@@ -588,7 +610,13 @@ document_factory_planet = {
 					if = {
 						limit = {
 							is_energy_colony = yes
-							has_planet_flag = energy_habitat	
+							OR = {
+								has_planet_flag = energy_habitat
+								AND = {
+									exists = from
+									from = { is_gestalt = yes }
+								}
+							}
 						}
 						change_variable = { which = autofab_energy_avail value = autofab_districts_available }
 					}
@@ -656,7 +684,6 @@ document_factory_planet = {
 				}
 			}
 		}
-		export_trigger_value_to_variable = { trigger = free_district_slots variable = autofab_districts_available }
 		
 		change_variable = { which = autofab_districts_queued value = autofab_energy_queue }
 		change_variable = { which = autofab_districts_queued value = autofab_mineral_queue }
@@ -679,6 +706,55 @@ document_factory_planet = {
 		subtract_variable = { which = autofab_gases_available value = autofab_gases_queue }
 		subtract_variable = { which = autofab_crystals_available value = autofab_crystals_queue }
 		subtract_variable = { which = autofab_extractor_avail value = autofab_extractor_queue }
+		
+		
+		#Orbital Infrastructure Compat
+		if = {
+			limit = {
+				OR = {
+					AND = {
+						is_moon = yes
+						planet = {
+							uninhabitable_regular_planet = yes
+						}
+					}
+					AND = {
+						has_moon = yes
+						any_moon = {
+							uninhabitable_regular_planet = yes
+						}
+					}
+					solar_system = {
+						any_system_planet = {
+							is_asteroid = yes
+						}
+					}
+				}
+			}
+			change_variable = { which = autofab_minerals_avail value = orbital_infrastructure_space }
+		}
+		if = {
+			limit = {
+				solar_system = {
+					OR = {
+						is_star_class = sc_a
+						is_star_class = sc_b
+						is_star_class = sc_f
+						is_star_class = sc_g
+						is_star_class = sc_k
+						is_star_class = sc_m
+						is_star_class = sc_m_giant
+					}
+				}
+			}
+			change_variable = { which = autofab_energy_avail value = orbital_infrastructure_space }
+		}
+		change_variable = { which = autofab_food_avail value = orbital_infrastructure_space }
+		change_variable = { which = autofab_foundry_available value = orbital_infrastructure_space }
+		change_variable = { which = autofab_factory_available value = orbital_infrastructure_space }
+		change_variable = { which = autofab_motes_available value = orbital_infrastructure_space }
+		change_variable = { which = autofab_gases_available value = orbital_infrastructure_space }
+		change_variable = { which = autofab_crystals_available value = orbital_infrastructure_space }
 	}
 }
 
@@ -804,75 +880,29 @@ reset_district_counts = {
 }
 
 count_limited_districts = {
-	while = {
-		count = 100
+	export_trigger_value_to_variable = { trigger = num_free_districts parameters = { type = district_generator } variable = autofab_energy_avail }
+	if = {
 		limit = {
-			free_district_slots > 0
-			num_free_districts = { type = district_generator value > 0 }
-			OR = {
-				can_build_fallback_planet = yes
-				is_energy_colony = yes
-			}
+			check_variable = { which = autofab_energy_avail value > trigger:free_district_slots }
 		}
-		add_district = district_generator
-		change_variable = { which = autofab_energy_avail value = 1 }
+		set_variable = { which = autofab_energy_avail value = trigger:free_district_slots }
 	}
-	set_variable = { which = autofab_energy_avail_temp value = autofab_energy_avail }
-	while = {
-		count = 100
+	
+	export_trigger_value_to_variable = { trigger = num_free_districts parameters = { type = district_mining } variable = autofab_minerals_avail }
+	if = {
 		limit = {
-			check_variable = { which = autofab_energy_avail_temp value > 0 }
+			check_variable = { which = autofab_minerals_avail value > trigger:free_district_slots }
 		}
-		remove_district = district_generator
-		change_variable = { which = autofab_energy_avail_temp value = -1 }
+		set_variable = { which = autofab_minerals_avail value = trigger:free_district_slots }
 	}
-	reset_district_counts = yes
-	while = {
-		count = 100
+	
+	export_trigger_value_to_variable = { trigger = num_free_districts parameters = { type = district_farming } variable = autofab_food_avail }
+	if = {
 		limit = {
-			free_district_slots > 0
-			num_free_districts = { type = district_mining value > 0 }
-			OR = {
-				can_build_fallback_planet = yes
-				is_mining_colony = yes
-			}
+			check_variable = { which = autofab_food_avail value > trigger:free_district_slots }
 		}
-		add_district = district_mining
-		change_variable = { which = autofab_minerals_avail value = 1 }
+		set_variable = { which = autofab_food_avail value = trigger:free_district_slots }
 	}
-	set_variable = { which = autofab_minerals_avail_temp value = autofab_minerals_avail }
-	while = {
-		count = 100
-		limit = {
-			check_variable = { which = autofab_minerals_avail_temp value > 0 }
-		}
-		remove_district = district_mining
-		change_variable = { which = autofab_minerals_avail_temp value = -1 }
-	}
-	reset_district_counts = yes
-	while = {
-		count = 100
-		limit = {
-			free_district_slots > 0
-			num_free_districts = { type = district_farming value > 0 }
-			OR = {
-				can_build_fallback_planet = yes
-				is_farming_colony = yes
-			}
-		}
-		add_district = district_farming
-		change_variable = { which = autofab_food_avail value = 1 }
-	}
-	set_variable = { which = autofab_food_avail_temp value = autofab_food_avail }
-	while = {
-		count = 100
-		limit = {
-			check_variable = { which = autofab_food_avail_temp value > 0 }
-		}
-		remove_district = district_farming
-		change_variable = { which = autofab_food_avail_temp value = -1 }
-	}
-	reset_district_counts = yes
 }
 
 count_unused_districts = {
@@ -1055,13 +1085,11 @@ reset_factory_part_3 = {
 			OR = {
 				AND = {
 					num_free_districts = { type = district_mining value > 0 }
-					OR = {
-						AND = {
-							uses_district_set = habitat
-							has_planet_flag = mining_habitat
-						}
-						uses_district_set = standard
-					}
+					uses_district_set = standard
+				}
+				AND = {
+					uses_district_set = habitat
+					has_planet_flag = mining_habitat
 				}
 				uses_district_set = hive_world
 				uses_district_set = machine_world
@@ -1076,17 +1104,22 @@ reset_factory_part_3 = {
 			OR = {
 				AND = {
 					num_free_districts = { type = district_generator value > 0 }
+					uses_district_set = standard
+				}
+				AND = {
+					uses_district_set = habitat
 					OR = {
+						has_planet_flag = energy_habitat
 						AND = {
-							uses_district_set = habitat
-							has_planet_flag = energy_habitat
+							exists = from
+							from = { is_gestalt = yes }
 						}
-						uses_district_set = standard
 					}
 				}
 				uses_district_set = hive_world
 				uses_district_set = ring_world
 				uses_district_set = machine_world
+				uses_district_set = giga_birch
 			}
 		}
 		add_deposit = autofab_power

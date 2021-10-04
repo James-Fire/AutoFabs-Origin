@@ -165,15 +165,3 @@ can_afford_module = {
 		}
 	}
 }
-can_afford_building = {
-	owner = {
-		resource_stockpile_compare = {
-			resource = minerals
-			value >= @b1_minerals
-		}
-		resource_stockpile_compare = {
-			resource = alloys
-			value >= @factoryalloycost
-		}
-	}
-}

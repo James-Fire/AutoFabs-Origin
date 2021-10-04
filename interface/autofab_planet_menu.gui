@@ -52,7 +52,7 @@ guiTypes = {
 			position = { x = -95 y = 250 }
 			size = { width = 314 height = 400 }
 			clipping = yes
-			iconType = {
+			ButtonType = {
 				name = "black_frame"
 				spriteType = "GFX_autofab_portrait_bg"
 				position = { x = 95 y = -90 }
@@ -72,23 +72,53 @@ guiTypes = {
 				alwaysTransparent = yes
 			}
 		}
-		iconType = {
+		ButtonType = {
             name = "terminal_image"
             quadTextureSprite = "GFX_planet_terminal_autofab"
             alwaysTransparent = yes
             position = { x = 220 y = 55 }
         }
-		iconType = {#Gear Dongs
-			name = "gearwrench_dongs"
-			spriteType = "GFX_flipped_gearwrench_dongs"
-			position = { x = -23 y = 30 }
-			alwaysTransparent = yes
-		}
-		iconType = {#Gear Dongs
-			name = "gearwrench_dongs_2"
-			spriteType = "GFX_lower_gearwrench_dongs"
-			position = { x = -48 y = 620 }
-			alwaysTransparent = yes
+		containerWindowType = {
+			name = "factory_dongs_contain"
+			position = { x = 0 y = 0 }
+			size = { width = 410 height = 102 }
+			orientation = upper_left
+			ButtonType = {#Gear Dongs
+				name = "gearwrench_dongs"
+				spriteType = "GFX_horflip_empty_dongs_anim"
+				position = { x = -23 y = 30 }
+				alwaysTransparent = yes
+			}
+			ButtonType = {
+				name = "gear_dong"
+				spriteType = "GFX_dong_gear_anim_2"
+				position = { x = 78 y = 58 }
+				alwaysTransparent = yes
+			}
+			ButtonType = {
+				name = "wrench_dong"
+				spriteType = "GFX_autofab_wrench_anim"
+				position = { x = 76 y = 57 }
+				alwaysTransparent = yes
+			}
+			ButtonType = {#Gear Dongs
+				name = "gearwrench_dongs_2"
+				spriteType = "GFX_horverflip_empty_dongs_anim"
+				position = { x = -25 y = 621 }
+				alwaysTransparent = yes
+			}
+			ButtonType = {
+				name = "gear_dong_2"
+				spriteType = "GFX_dong_gear_anim_2"
+				position = { x = 76 y = 643 }
+				alwaysTransparent = yes
+			}
+			ButtonType = {
+				name = "wrench_dong_2"
+				spriteType = "GFX_autofab_wrench_anim"
+				position = { x = 75 y = 642 }
+				alwaysTransparent = yes
+			}
 		}
 		iconType = {#Hexagon fade in
 			name = "hex_bg"
