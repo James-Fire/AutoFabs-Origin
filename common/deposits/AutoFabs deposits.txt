@@ -151,7 +151,7 @@ autofab_power = {
 	
 	triggered_planet_modifier = {
 		potential = {
-			NOT = { uses_district_set = giga_birch }
+			NOT = { uses_infinite_space_district_set = yes }
 		}
 		modifier = {
 			planet_max_districts_add = -1
@@ -357,7 +357,7 @@ autofab_farm = {
 	
 	triggered_planet_modifier = {
 		potential = {
-			NOT = { uses_district_set = giga_birch }
+			NOT = { uses_infinite_space_district_set = yes }
 		}
 		modifier = {
 			planet_max_districts_add = -1
@@ -549,7 +549,7 @@ autofab_mine = {
 	
 	triggered_planet_modifier = {
 		potential = {
-			NOT = { uses_district_set = giga_birch }
+			NOT = { uses_infinite_space_district_set = yes }
 		}
 		modifier = {
 			planet_max_districts_add = -1
@@ -730,7 +730,7 @@ autofab_foundry = {
 	
 	triggered_planet_modifier = {
 		potential = {
-			NOT = { uses_district_set = giga_birch }
+			NOT = { uses_infinite_space_district_set = yes }
 		}
 		modifier = {
 			planet_max_districts_add = -1
@@ -1408,7 +1408,7 @@ autofab_motes_refinery = {
 	
 	triggered_planet_modifier = {
 		potential = {
-			NOT = { uses_district_set = giga_birch }
+			NOT = { uses_infinite_space_district_set = yes }
 		}
 		modifier = {
 			planet_max_districts_add = -1
@@ -1467,7 +1467,7 @@ autofab_gases_refinery = {
 	
 	triggered_planet_modifier = {
 		potential = {
-			NOT = { uses_district_set = giga_birch }
+			NOT = { uses_infinite_space_district_set = yes }
 		}
 		modifier = {
 			planet_max_districts_add = -1
@@ -1526,7 +1526,7 @@ autofab_crystals_refinery = {
 	
 	triggered_planet_modifier = {
 		potential = {
-			NOT = { uses_district_set = giga_birch }
+			NOT = { uses_infinite_space_district_set = yes }
 		}
 		modifier = {
 			planet_max_districts_add = -1
@@ -1585,7 +1585,7 @@ autofab_refinery_extractor = {
 	
 	triggered_planet_modifier = {
 		potential = {
-			NOT = { uses_district_set = giga_birch }
+			NOT = { uses_infinite_space_district_set = yes }
 		}
 		modifier = {
 			planet_max_districts_add = -1

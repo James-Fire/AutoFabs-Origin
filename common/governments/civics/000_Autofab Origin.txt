@@ -41,8 +41,11 @@ civic_autofab = {
 				value = auth_corporate
 				value = auth_hive_mind
 				value = auth_machine_intelligence
+				value = auth_corporate_democratic
+				value = auth_corporate_imperial
 			}
 		}
+		civics = { NOT = { value = civic_galactic_sovereign_megacorp } }
 	}
 	possible = {
 		civics = {

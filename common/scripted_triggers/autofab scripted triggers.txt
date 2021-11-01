@@ -69,6 +69,7 @@ has_supported_district_set = {
 		
 		##Gigas District Sets
 		uses_district_set = giga_birch
+		uses_district_set = acot_giga_void_sphere
 		#uses_district_set = giga_alderson
 		#uses_district_set = giga_alderson_ecu
 		#uses_district_set = giga_alderson_hive
@@ -85,6 +86,7 @@ uses_base_district_set = {
 		uses_district_set = machine_world
 		uses_district_set = shattered_ring_world
 		uses_district_set = giga_birch
+		uses_district_set = acot_giga_void_sphere
 	}
 }
 uses_habitat_district_set = {
@@ -100,6 +102,12 @@ uses_city_district_set = {
 uses_ringworld_district_set = {
 	OR = {
 		uses_district_set = ring_world
+	}
+}
+uses_infinite_space_district_set = {
+	OR = {
+		uses_district_set = giga_birch
+		uses_district_set = acot_giga_void_sphere
 	}
 }
 
