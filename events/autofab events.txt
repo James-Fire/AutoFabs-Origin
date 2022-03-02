@@ -12,7 +12,7 @@ event = {
 				}
 			}
 			set_global_flag = autofab_start
-			country_event = { id = autofab.2 }
+			country_event = { id = autofab.2 days = 1 }
 		}
 	}
 	after = {
